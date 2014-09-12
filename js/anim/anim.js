@@ -133,11 +133,16 @@ var anim = anim || {};
 
             // mouse energy line
             var alpha = (1 - dist / mouseMaxDist) * 0.8;
+            context.save()
+
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
+            context.lineWidth = 2;
             context.beginPath();
             context.moveTo(mouse.x, mouse.y);
             context.lineTo(atom.x, atom.y);
             context.stroke();
+
+            context.restore();
         }
     }
 

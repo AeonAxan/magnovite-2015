@@ -22,7 +22,7 @@ var anim = anim || {};
     // the particles moving around
     var atoms = []
     var nAtoms = 30;
-    var energyMinDist = 150;
+    var energyMinDist = 100;
 
     // mouse effect
     var mouseMaxDist = 150;

@@ -55,6 +55,13 @@ html, body {
     display: inline-block;
 }
 
+@media only screen and (max-width: 767px) {
+    .timer-block {
+        width: 100px;
+        margin: 10px 0;
+    }
+}
+
 .timer-block .numeric {
     color: rgba(16, 19, 65, 1);
     height: 70px;

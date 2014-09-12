@@ -10,6 +10,9 @@ var anim = anim || {};
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var mouse = anim.util.captureMouse(canvas);
+    var touch, touching;
+
+    var text = 'VTTTV';
 
     // timing delays
     var energyDelay = 2000;
@@ -35,6 +38,14 @@ var anim = anim || {};
      * Must be called to init the animation library
      */
     function init() {
+        if (window.innerWidth < 767) {
+            anim.mobile = true;
+        }
+
+        if (Modernizr.touch) {
+            anim.touch = true;
+        }
+
         if (document.readyState == "complete" || document.readyState == "loaded") {
             app.main()
         } else {
@@ -78,8 +89,30 @@ var anim = anim || {};
     function main() {
         var i;
 
+        var height = window.innerHeight - 250;
+
+        if (anim.mobile) {
+            // make logo fullscreen
+            height += 250;
+            nAtoms = 10;
+            text = 'T';
+        }
+
+        if (anim.touch) {
+            touch = anim.util.captureTouch(canvas);
+            canvas.addEventListener('touchstart', function() {
+                console.log('touching');
+                touching = true;
+            });
+
+            canvas.addEventListener('touchend', function() {
+                console.log('touch end');
+                touching = false;
+            });
+        }
+
         canvas.setAttribute('width', window.innerWidth);
-        canvas.setAttribute('height', window.innerHeight - 250);
+        canvas.setAttribute('height', height);
 
         // init atoms
         for (i = 0; i < nAtoms; i++) {
@@ -87,7 +120,7 @@ var anim = anim || {};
         }
 
         // init Letters
-        letters = createLetters('VTTTV');
+        letters = createLetters(text);
         letters.forEach(function(letter) {
             Array.prototype.push.apply(externalLetterEdges, letter.external);
         });
@@ -121,9 +154,32 @@ var anim = anim || {};
     }
 
     /**
+     * Returns an object with x, y or undefiend
+     * If undefined there is no touch
+     *
+     * this handles touches internally
+     */
+    function getMouseCordinates() {
+        if (touch) {
+            if (touching) {
+                return touch;
+            } else {
+                return undefined;
+            }
+        } else {
+            return mouse;
+        }
+    }
+
+    /**
      * Make the mouse interact with the atoms
      */
     function handleMouse(atom, context, alpha) {
+        var m;
+        if (!(m = getMouseCordinates())) {
+            return;
+        }
+
         var dx = mouse.x - atom.x;
         var dy = mouse.y - atom.y;
         var dist = Math.sqrt(dx * dx + dy * dy);

@@ -61,15 +61,17 @@ html, body {
     font-size: 50px;
     height: 70px;
     line-height: 70px;
-    opacity: 0;
 
-    transform: translateY(10px);
     transition: all 250ms ease-in;
 }
 
-.logo-done .timer-block .numeric {
-    opacity: 1;
+.desktop .timer-block .numeric {
+    opacity: 0;
+    transform: translateY(10px);
+}
 
+.desktop.logo-done .timer-block .numeric {
+    opacity: 1;
     transform: translateY(0);
 }
 
@@ -79,15 +81,17 @@ html, body {
     height: 30px;
     letter-spacing: 6px;
     line-height: 30px;
-    opacity: 0.2;
     text-align: center;
     text-transform: uppercase;
     width: 100%;
+}
 
+.desktop .timer-block .description {
+    opacity: 0.2;
     transition: all 500ms ease-out 1000ms;
 }
 
-.logo-done .timer-block .description {
+.desktop.logo-done .timer-block .description {
     opacity: 1;
 }
 
@@ -111,35 +115,37 @@ html, body {
     display: inline-block;
     height: 10px;
     margin: 10px auto;
-    opacity: 0;
     width: 10px;
-
-    transform: translateY(10px);
 
     transition: all 125ms ease-out;
 }
 
-.logo-done .binary .dot {
+.desktop .binary .dot {
+    transform: translateY(10px);
+    opacity: 0;
+}
+
+.desktop.logo-done .binary .dot {
     opacity: 1;
     transform: translateY(0px);
 }
 
-.binary .dot:nth-child(4) {
+.desktop .binary .dot:nth-child(4) {
     transition: opacity 250ms ease-in 225ms,
                 transform 125ms ease-in 225ms;
 }
 
-.binary .dot:nth-child(3) {
+.desktop .binary .dot:nth-child(3) {
     transition: opacity 250ms ease-in 250ms,
                 transform 125ms ease-in 250ms;
 }
 
-.binary .dot:nth-child(2) {
+.desktop .binary .dot:nth-child(2) {
     transition: opacity 250ms ease-in 300ms,
                 transform 125ms ease-in 300ms;
 }
 
-.binary .dot:nth-child(1) {
+.desktop .binary .dot:nth-child(1) {
     transition: opacity 250ms ease-in 350ms,
                 transform 125ms ease-in 350ms;
 }

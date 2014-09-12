@@ -96,6 +96,13 @@
         </div>
     </div>
 
+    <script>
+    // TODO: modulerize into a init script
+    if (!Modernizr.touch && window.innerWidth > 767) {
+        document.body.classList.add('desktop');
+    }
+    </script>
+
     <!-- libs -->
     <script src="js/lib/countdown.js"></script>
 

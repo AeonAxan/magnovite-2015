@@ -94,7 +94,7 @@ var anim = anim || {};
         if (anim.mobile) {
             // make logo fullscreen
             height += 250;
-            nAtoms = 10;
+            nAtoms = 5;
             text = 'T';
         }
 

@@ -46,6 +46,11 @@ var anim = anim || {};
             anim.touch = true;
         }
 
+        if (!anim.mobile) {
+            var landing = document.getElementsByClassName('landing')[0];
+            landing.style.height = window.innerHeight + 'px';
+        }
+
         if (document.readyState == "complete" || document.readyState == "loaded") {
             app.main()
         } else {

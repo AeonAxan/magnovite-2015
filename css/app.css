@@ -10,21 +10,14 @@ html, body {
 }
 
 #canvas {
-    position: absolute;
     background: #0a0e3e;
-    left: 0;
-    bottom: 250px;
 }
 
 .landing {
-    height: 100%;
-    position: relative;
+    height: 700px;
 }
 
 .timer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
     height: 250px;
     background: #010212;

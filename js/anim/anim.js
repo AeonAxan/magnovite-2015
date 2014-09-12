@@ -104,19 +104,17 @@ var anim = anim || {};
             var touchstart;
 
             canvas.addEventListener('touchstart', function() {
-                console.log('touching');
-                touching = true;
                 touchstart = new Date();
             });
 
             canvas.addEventListener('touchend', function() {
-                console.log('touch end');
                 touching = false;
                 touchstart = undefined;
             });
 
             canvas.addEventListener('touchmove', function(e) {
-                if (touchstart && (new Date() - touchstart) > 1000) {
+                if (touchstart && (new Date() - touchstart) > 300) {
+                    touching = true;
                     e.preventDefault();
                 }
             });

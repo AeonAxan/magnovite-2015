@@ -15,7 +15,7 @@ var anim = anim || {};
      * {arg canvas} : canvas element DOM node
      * {Constructor}
      */
-    function Atom(canvas) {
+    function Atom(canvas, delay) {
         this.id = id++;
 
         this.bounds = {
@@ -40,6 +40,8 @@ var anim = anim || {};
             this.vx *= -1;
         if (Math.random() * 10 > 5)
             this.vy *= -1;
+
+        this.delay = delay;
     }
 
     /**
@@ -80,6 +82,11 @@ var anim = anim || {};
      * {arg context} : 2d canvas context object
      */
     Atom.prototype.draw = function(context) {
+        if (this.delay > 0) {
+            this.delay -= 15;
+            return;
+        }
+
         context.save();
 
         context.translate(this.x, this.y);

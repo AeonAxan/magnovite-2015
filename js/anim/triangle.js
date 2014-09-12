@@ -39,6 +39,9 @@ var anim = anim || {};
 
         this.highlightAlpha = 0;
         this.fading = 'null';
+
+        // delay for the fading
+        this.delay = 0;
     }
 
     Triangle.prototype.getCallback = function() {
@@ -67,6 +70,11 @@ var anim = anim || {};
     };
 
     Triangle.prototype.draw = function(context) {
+        if (this.delay > 0) {
+            this.delay -= 15;
+            return
+        }
+
         var cord = this.cordinates;
         context.save();
 

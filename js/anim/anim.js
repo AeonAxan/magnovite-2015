@@ -11,6 +11,11 @@ var anim = anim || {};
     var context = canvas.getContext('2d');
     var mouse = anim.util.captureMouse(canvas);
 
+    // timing delays
+    var energyDelay = 2000;
+    var atomMinDelay = 1000;
+    var atomVariableDelay = 1000;
+
     // the particles moving around
     var atoms = []
     var nAtoms = 30;
@@ -78,7 +83,7 @@ var anim = anim || {};
 
         // init atoms
         for (i = 0; i < nAtoms; i++) {
-            atoms.push(new anim.Atom(canvas));
+            atoms.push(new anim.Atom(canvas, atomMinDelay + Math.random() * atomVariableDelay));
         }
 
         // init Letters
@@ -95,7 +100,7 @@ var anim = anim || {};
      * {args atomA} : Object of class {Atom}
      * {args atomB} : Object of class {Atom}
      */
-    function energyLine(atomA, atomB) {
+    function energyLine(atomA, atomB, alpha) {
         var dx, dy, dist, alpha;
 
         if (atomA.id === atomB.id)
@@ -106,7 +111,7 @@ var anim = anim || {};
         dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < energyMinDist) {
-            alpha = (1 - dist / energyMinDist) * 0.2;
+            alpha = (1 - dist / energyMinDist) * (alpha || 0.2);
             context.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
             context.beginPath();
             context.moveTo(atomA.x, atomA.y);
@@ -118,7 +123,7 @@ var anim = anim || {};
     /**
      * Make the mouse interact with the atoms
      */
-    function handleMouse(atom, context) {
+    function handleMouse(atom, context, alpha) {
         var dx = mouse.x - atom.x;
         var dy = mouse.y - atom.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
@@ -132,7 +137,7 @@ var anim = anim || {};
             atom.vy += ay;
 
             // mouse energy line
-            var alpha = (1 - dist / mouseMaxDist) * 0.8;
+            var alpha = (1 - dist / mouseMaxDist) * (alpha || 0.8);
             context.save()
 
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
@@ -146,27 +151,43 @@ var anim = anim || {};
         }
     }
 
-    /**
-     * The main draw loop
-     */
-    function draw() {
-        window.requestAnimationFrame(draw);
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
+    function drawAtoms(context) {
         var buffer = 20;
         var isMouseGravityOn = false;
+
         if (mouse.x > 20 && mouse.x < canvas.width - buffer &&
             mouse.y > 20 && mouse.y < canvas.height - buffer)
             isMouseGravityOn = true;
 
+        var drawEnergy = true;
+        var energyAlpha = undefined;
+        if (energyDelay > 0) {
+            energyDelay -= 15;
+            drawEnergy = false;
+
+        } else if (energyDelay > -500) {
+            energyAlpha = energyDelay / -500;
+            energyDelay -= 15;
+        }
+
         // draw energy lines
         atoms.forEach(function(atom) {
-            if (isMouseGravityOn) {
-                handleMouse(atom, context);
+            var alpha = undefined;
+            if (energyAlpha) {
+                alpha = energyAlpha * 0.8;
+            }
+
+            if (isMouseGravityOn && drawEnergy) {
+                handleMouse(atom, context, alpha);
             }
 
             atoms.forEach(function(atomB) {
-                energyLine(atom, atomB);
+                var alpha = undefined;
+                if (energyAlpha) {
+                    alpha = energyAlpha * 0.2;
+                }
+
+                drawEnergy && energyLine(atom, atomB, alpha);
 
                 // collide atoms with themselves
                 atom.collide(atomB);
@@ -182,6 +203,16 @@ var anim = anim || {};
 
             atom.update(context);
         });
+    }
+
+    /**
+     * The main draw loop
+     */
+    function draw() {
+        window.requestAnimationFrame(draw);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawAtoms(context);
 
         // draw letters
         letters.forEach(function(letter) {

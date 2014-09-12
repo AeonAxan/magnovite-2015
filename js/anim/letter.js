@@ -55,6 +55,8 @@ var anim = anim || {};
             var tObj = new anim.Triangle($this.vertices, triangle);
             $this.triangles.push(tObj);
 
+            tObj.delay = Math.random() * 600 + 200;
+
             // handle external edges
             triangle[3].forEach(function(ext) {
                 var p1 = $this.vertices[ext[0]];

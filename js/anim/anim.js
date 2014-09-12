@@ -10,7 +10,7 @@ var anim = anim || {};
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var mouse = anim.util.captureMouse(canvas);
-    var touch, touching;
+    var touch, touching, touchStart;
 
     var text = 'VTTTV';
 
@@ -96,18 +96,29 @@ var anim = anim || {};
             height += 250;
             nAtoms = 5;
             text = 'T';
+            mouseMaxDist = 200;
         }
 
         if (anim.touch) {
             touch = anim.util.captureTouch(canvas);
+            var touchstart;
+
             canvas.addEventListener('touchstart', function() {
                 console.log('touching');
                 touching = true;
+                touchstart = new Date();
             });
 
             canvas.addEventListener('touchend', function() {
                 console.log('touch end');
                 touching = false;
+                touchstart = undefined;
+            });
+
+            canvas.addEventListener('touchmove', function(e) {
+                if (touchstart && (new Date() - touchstart) > 1000) {
+                    e.preventDefault();
+                }
             });
         }
 
@@ -180,8 +191,8 @@ var anim = anim || {};
             return;
         }
 
-        var dx = mouse.x - atom.x;
-        var dy = mouse.y - atom.y;
+        var dx = m.x - atom.x;
+        var dy = m.y - atom.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < mouseMaxDist) {
@@ -199,7 +210,7 @@ var anim = anim || {};
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
             context.lineWidth = 2;
             context.beginPath();
-            context.moveTo(mouse.x, mouse.y);
+            context.moveTo(m.x, m.y);
             context.lineTo(atom.x, atom.y);
             context.stroke();
 
@@ -211,9 +222,11 @@ var anim = anim || {};
         var buffer = 20;
         var isMouseGravityOn = false;
 
-        if (mouse.x > 20 && mouse.x < canvas.width - buffer &&
-            mouse.y > 20 && mouse.y < canvas.height - buffer)
+        var m = getMouseCordinates();
+        if (m && m.x > 20 && m.x < canvas.width - buffer &&
+            m.y > 20 && m.y < canvas.height - buffer) {
             isMouseGravityOn = true;
+        }
 
         var drawEnergy = true;
         var energyAlpha = undefined;

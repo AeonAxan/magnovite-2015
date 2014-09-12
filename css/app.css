@@ -45,6 +45,16 @@ html, body {
     height: 70px;
     line-height: 70px;
     font-size: 50px;
+
+    transform: translateY(10px);
+    opacity: 0;
+
+    transition: all 250ms ease-in;
+}
+
+.logo-done .timer-block .numeric {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .timer-block .description {
@@ -56,6 +66,13 @@ html, body {
     text-align: center;
     width: 100%;
     line-height: 30px;
+
+    opacity: 0.2;
+    transition: all 500ms ease-out 1000ms;
+}
+
+.logo-done .timer-block .description {
+    opacity: 1;
 }
 
 .timer-block .binary {
@@ -80,7 +97,35 @@ html, body {
     margin: 10px auto;
     width: 10px;
 
+    opacity: 0;
+    transform: translateY(10px);
+
     transition: all 125ms ease-out;
+}
+
+.logo-done .binary .dot {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.binary .dot:nth-child(4) {
+    transition: opacity 250ms ease-in 225ms,
+                transform 125ms ease-in 225ms;
+}
+
+.binary .dot:nth-child(3) {
+    transition: opacity 250ms ease-in 250ms,
+                transform 125ms ease-in 250ms;
+}
+
+.binary .dot:nth-child(2) {
+    transition: opacity 250ms ease-in 300ms,
+                transform 125ms ease-in 300ms;
+}
+
+.binary .dot:nth-child(1) {
+    transition: opacity 250ms ease-in 350ms,
+                transform 125ms ease-in 350ms;
 }
 
 .binary .dot.on {
@@ -88,5 +133,3 @@ html, body {
     border: 1px solid #969696;
     box-shadow: 0px 0px 10px 2px #2F5E00;
 }
-
-

@@ -109,6 +109,11 @@
     // get things rolling
     anim.init();
     new app.Timer();
+
+    document.body.classList.add('loaded');
+    setTimeout(function() {
+        document.body.classList.add('logo-done');
+    }, 2500);
     </script>
 </body>
 </html>

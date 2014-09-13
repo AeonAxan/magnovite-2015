@@ -101,7 +101,7 @@ var app = app || {};
         if (anim.mobile) {
             // make logo fullscreen
             height += 250;
-            nAtoms = 5;
+            nAtoms = 10;
             text = 'T';
             mouseMaxDist = 200;
         }

@@ -53,7 +53,11 @@ html, body {
 @media only screen and (max-width: 767px) {
     .timer-block {
         margin: 10px 0;
-        width: 100px;
+        width: 150px;
+    }
+
+    .timer-block:last-child {
+        display: none;
     }
 }
 

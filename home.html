@@ -102,6 +102,10 @@
 
     if (!Modernizr.touch && window.innerWidth > 767) {
         document.body.classList.add('desktop');
+        app.desktop = true;
+    } else {
+        document.body.classList.add('mobile');
+        app.mobile = true;
     }
     </script>
 

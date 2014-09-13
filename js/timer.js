@@ -7,7 +7,13 @@ var app = app || {};
 
     app.Timer = function() {
         this.tick();
-        window.setInterval(this.tick, 1000);
+
+        var timeout = 1 * 1000;
+        if (app.mobile) {
+            timeout = 15 * 1000;
+        }
+
+        window.setInterval(this.tick, timeout);
     };
 
     /**
@@ -74,7 +80,15 @@ var app = app || {};
         updateTimerBlock(blocks[1], diff.days);
         updateTimerBlock(blocks[2], diff.hours);
         updateTimerBlock(blocks[3], diff.minutes);
-        updateTimerBlock(blocks[4], diff.seconds);
+
+        /*
+         * We dont display seconds in mobile because of a huge
+         * performance error
+         * FIXME
+         */
+        if (!app.mobile) {
+            updateTimerBlock(blocks[4], diff.seconds);
+        }
     };
 
  })();

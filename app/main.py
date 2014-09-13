@@ -9,10 +9,10 @@ if os.environ.get('PROD', None) is None:
 
 @app.route('/')
 def index():
-    if app.debug:
-        template = 'home.html'
-    else:
+    if app.debug == True:
         template = 'dist/home.html'
+    else:
+        template = 'home.html'
 
     return render_template(template)
 

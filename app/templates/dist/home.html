@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magnovite 2014</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/static/dist/style-4da75479.css"/>
+
+    <script src="/static/js/lib/modernizer.js"></script>
+</head>
+<body>
+    <div class="landing">
+        <canvas id="canvas"></canvas>
+
+        <div class="timer">
+            <div class="timer-block">
+                <div class="binary">
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                </div>
+                <p class="description">months</p>
+                <p class="numeric">24</p>
+            </div>
+            <div class="timer-block">
+                <div class="binary">
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                </div>
+                <p class="description">days</p>
+                <p class="numeric">13</p>
+            </div>
+            <div class="timer-block">
+                <div class="binary">
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                    <div class="bin-col">
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                        <div class="dot on"></div>
+                    </div>
+                </div>
+                <p class="description">hours</p>
+                <p class="numeric">8</p>
+            </div>
+            <div class="timer-block">
+                <div class="binary">
+                    <div class="bin-col">
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                </div>
+                <p class="description">minutes</p>
+                <p class="numeric">15</p>
+            </div>
+            <div class="timer-block">
+                <div class="binary">
+                    <div class="bin-col">
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                    <div class="bin-col">
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                        <div class="dot"></div>
+                        <div class="dot on"></div>
+                    </div>
+                </div>
+                <p class="description">seconds</p>
+                <p class="numeric">19</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // TODO: modulerize into a init script
+    var app = {};
+
+    if (!Modernizr.touch && window.innerWidth > 767) {
+        document.body.classList.add('desktop');
+        app.desktop = true;
+    } else {
+        document.body.classList.add('mobile');
+        app.mobile = true;
+    }
+    </script>
+
+    <script src="/static/dist/app-b4054afd.js"></script>
+
+    <script>
+    // get things rolling
+    anim.init();
+    new app.Timer();
+
+    document.body.classList.add('loaded');
+    setTimeout(function() {
+        'use strict';
+
+        document.body.classList.add('logo-done');
+    }, 2500);
+    </script>
+</body>
+</html>

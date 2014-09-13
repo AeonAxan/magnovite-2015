@@ -40,6 +40,10 @@ var app = app || {};
      * Must be called to init the animation library
      */
     function init() {
+        if (!Modernizr.canvas) {
+            window.alert('blah');
+        }
+
         if (window.innerWidth < 767) {
             anim.mobile = true;
         }

@@ -1,1 +1,1 @@
-web: gunicorn main:app --log-file=-
+web: newrelic-admin run-program gunicorn main:app --log-file=- -b "0.0.0.0:$PORT" -w $WEB_CONCURRENCY

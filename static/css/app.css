@@ -9,6 +9,10 @@ html, body {
     padding: 0;
 }
 
+/******************************************************
+ * Landing section (anim and timer)
+ *****************************************************
+ */
 #canvas {
     background: #0a0e3e;
     vertical-align: bottom;
@@ -160,3 +164,4 @@ html, body {
     border: 1px solid #969696;
     box-shadow: 0px 0px 10px 2px #2F5E00;
 }
+

@@ -2,3 +2,4 @@ node_modules
 *\.pyc
 *sublime-*
 app/templates/dist
+app/static/dist

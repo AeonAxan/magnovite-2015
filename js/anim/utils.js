@@ -1,6 +1,7 @@
 var anim = anim || {};
 
 (function() {
+    'use strict';
 
     anim.util = {};
 
@@ -28,7 +29,7 @@ var anim = anim || {};
         }, false);
 
         return mouse;
-    }
+    };
 
     /**
      * https://github.com/lamberta/html5-animation/blob/master/examples/include/utils.js
@@ -38,10 +39,10 @@ var anim = anim || {};
      */
     anim.util.captureTouch = function (element) {
         var touch = {x: null, y: null, isPressed: false, event: null},
-        body_scrollLeft = document.body.scrollLeft,
-        element_scrollLeft = document.documentElement.scrollLeft,
-        body_scrollTop = document.body.scrollTop,
-        element_scrollTop = document.documentElement.scrollTop,
+        bodyScrollLeft = document.body.scrollLeft,
+        elementScrollLeft = document.documentElement.scrollLeft,
+        bodyScrollTop = document.body.scrollTop,
+        elementScrollTop = document.documentElement.scrollTop,
         offsetLeft = element.offsetLeft,
         offsetTop = element.offsetTop;
 
@@ -59,14 +60,14 @@ var anim = anim || {};
 
         element.addEventListener('touchmove', function (event) {
             var x, y,
-            touch_event = event.touches[0]; //first touch
+            touchEvent = event.touches[0]; //first touch
 
-            if (touch_event.pageX || touch_event.pageY) {
-                x = touch_event.pageX;
-                y = touch_event.pageY;
+            if (touchEvent.pageX || touchEvent.pageY) {
+                x = touchEvent.pageX;
+                y = touchEvent.pageY;
             } else {
-                x = touch_event.clientX + body_scrollLeft + element_scrollLeft;
-                y = touch_event.clientY + body_scrollTop + element_scrollTop;
+                x = touchEvent.clientX + bodyScrollLeft + elementScrollLeft;
+                y = touchEvent.clientY + bodyScrollTop + elementScrollTop;
             }
             x -= offsetLeft;
             y -= offsetTop;
@@ -85,6 +86,6 @@ var anim = anim || {};
                 callback(key, obj[key]);
             }
         }
-    }
+    };
 
 })();

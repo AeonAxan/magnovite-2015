@@ -98,6 +98,8 @@
 
     <script>
     // TODO: modulerize into a init script
+    var app = {};
+
     if (!Modernizr.touch && window.innerWidth > 767) {
         document.body.classList.add('desktop');
     }
@@ -123,6 +125,8 @@
 
     document.body.classList.add('loaded');
     setTimeout(function() {
+        'use strict';
+
         document.body.classList.add('logo-done');
     }, 2500);
     </script>

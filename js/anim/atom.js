@@ -1,6 +1,7 @@
 var anim = anim || {};
 
 (function() {
+    'use strict';
 
     var id = 1;
     var background = '#1d215c';
@@ -36,10 +37,13 @@ var anim = anim || {};
         this.vx = Math.random() * maxSpeed;
         this.vy = Math.random() * maxSpeed;
 
-        if (Math.random() * 10 > 5)
+        if (Math.random() * 10 > 5) {
             this.vx *= -1;
-        if (Math.random() * 10 > 5)
+        }
+
+        if (Math.random() * 10 > 5) {
             this.vy *= -1;
+        }
 
         this.delay = delay;
     }
@@ -75,7 +79,7 @@ var anim = anim || {};
         }
 
         this.draw(context);
-    }
+    };
 
     /**
      * Draws this object on the screen
@@ -107,7 +111,7 @@ var anim = anim || {};
         }
 
         context.restore();
-    }
+    };
 
     /**
      * Rotates the cordinate system
@@ -140,13 +144,13 @@ var anim = anim || {};
             var cos = Math.cos(angle);
 
             // find rotated position and velocities
-            var pos0 = {x: 0, y: 0}
+            var pos0 = {x: 0, y: 0};
             var pos1 = rotate(dx, dy, sin, cos, true);
             var vel0 = rotate(this.vx, this.vy, sin, cos, true);
             var vel1 = rotate(atomB.vx, atomB.vy, sin, cos, true);
 
             //collision reaction
-            vxTotal = vel0.x - vel1.x;
+            var vxTotal = vel0.x - vel1.x;
             vel0.x = ((this.mass - atomB.mass) * vel0.x + 2 * atomB.mass * vel1.x) /
                         (this.mass + atomB.mass);
             vel1.x = vxTotal + vel0.x;
@@ -182,7 +186,7 @@ var anim = anim || {};
 
         this.clamp();
         atomB.clamp();
-    }
+    };
 
     /**
      * Have the Atom collide with a {anim.Line} object
@@ -202,7 +206,7 @@ var anim = anim || {};
 
             //rotate coordinates and velocity
             y2 = cos * y1 - sin * x1;
-            vy1 = cos * this.vy - sin * this.vx;
+            var vy1 = cos * this.vy - sin * this.vx;
 
             // collision happens
             if (y2 > -this.radius && y2 < vy1) {
@@ -233,12 +237,14 @@ var anim = anim || {};
      * Clamps the atoms speed to maxSpeed
      */
     Atom.prototype.clamp = function() {
-        if (this.vx > maxSpeed)
+        if (this.vx > maxSpeed) {
             this.vx = maxSpeed;
+        }
 
-        if (this.vy > maxSpeed)
+        if (this.vy > maxSpeed) {
             this.vy = maxSpeed;
-    }
+        }
+    };
 
     // external interface
     anim.Atom = Atom;

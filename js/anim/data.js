@@ -58,4 +58,4 @@ anim.shapeData = {
             ['C', 'G', 'D', [['G', 'D', false], ['C', 'D', true]]]
         ]
     }
-}
+};

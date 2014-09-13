@@ -1,6 +1,7 @@
 var anim = anim || {};
 
 (function() {
+    'use strict';
 
     /**
      * Modified version of the Line constructor from the
@@ -65,7 +66,7 @@ var anim = anim || {};
                 y: this.y + minY,
                 width: maxX - minX,
                 height: maxY - minY
-                }
+            };
         } else {
             var sin = Math.sin(this.rotation),
                 cos = Math.cos(this.rotation),

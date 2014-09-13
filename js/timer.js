@@ -1,12 +1,14 @@
 var app = app || {};
 
 (function() {
+    'use strict';
+
     var magnoviteDate = new Date(2015, 2, 17);
 
     app.Timer = function() {
         this.tick();
-        setInterval(this.tick, 1000);
-    }
+        window.setInterval(this.tick, 1000);
+    };
 
     /**
      * Returns num as a binary string of length 6
@@ -73,6 +75,6 @@ var app = app || {};
         updateTimerBlock(blocks[2], diff.hours);
         updateTimerBlock(blocks[3], diff.minutes);
         updateTimerBlock(blocks[4], diff.seconds);
-    }
+    };
 
  })();

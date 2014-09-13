@@ -1,0 +1,15 @@
+{
+    "curly": true,
+    "camelcase": true,
+    "eqeqeq": true,
+    "undef": true,
+    "indent": 4,
+    "strict": true,
+    "globals": {
+        "Modernizr": true,
+        "countdown": true,
+        "app": true,
+        "anim": true
+    },
+    "browser": true
+}

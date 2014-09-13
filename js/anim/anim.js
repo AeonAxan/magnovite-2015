@@ -1,4 +1,5 @@
 var anim = anim || {};
+var app = app || {};
 
 /**
  * Depends on
@@ -6,6 +7,7 @@ var anim = anim || {};
  * {anim.Atom}
  */
 (function() {
+    'use strict';
 
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
@@ -20,7 +22,7 @@ var anim = anim || {};
     var atomVariableDelay = 1000;
 
     // the particles moving around
-    var atoms = []
+    var atoms = [];
     var nAtoms = 30;
     var energyMinDist = 100;
 
@@ -51,8 +53,8 @@ var anim = anim || {};
             landing.style.height = window.innerHeight + 'px';
         }
 
-        if (document.readyState == "complete" || document.readyState == "loaded") {
-            app.main()
+        if (document.readyState === "complete" || document.readyState === "loaded") {
+            app.main();
         } else {
             document.addEventListener('DOMContentLoaded', main);
         }
@@ -147,18 +149,19 @@ var anim = anim || {};
      * {args atomA} : Object of class {Atom}
      * {args atomB} : Object of class {Atom}
      */
-    function energyLine(atomA, atomB, alpha) {
+    function energyLine(atomA, atomB, baseAlpha) {
         var dx, dy, dist, alpha;
 
-        if (atomA.id === atomB.id)
+        if (atomA.id === atomB.id) {
             return;
+        }
 
         dx = atomB.x - atomA.x;
         dy = atomB.y - atomA.y;
         dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < energyMinDist) {
-            alpha = (1 - dist / energyMinDist) * (alpha || 0.2);
+            alpha = (1 - dist / energyMinDist) * (baseAlpha || 0.2);
             context.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
             context.beginPath();
             context.moveTo(atomA.x, atomA.y);
@@ -188,7 +191,7 @@ var anim = anim || {};
     /**
      * Make the mouse interact with the atoms
      */
-    function handleMouse(atom, context, alpha) {
+    function handleMouse(atom, context, baseAlpha) {
         var m;
         if (!(m = getMouseCordinates())) {
             return;
@@ -207,8 +210,8 @@ var anim = anim || {};
             atom.vy += ay;
 
             // mouse energy line
-            var alpha = (1 - dist / mouseMaxDist) * (alpha || 0.8);
-            context.save()
+            var alpha = (1 - dist / mouseMaxDist) * (baseAlpha || 0.8);
+            context.save();
 
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
             context.lineWidth = 2;
@@ -232,7 +235,8 @@ var anim = anim || {};
         }
 
         var drawEnergy = true;
-        var energyAlpha = undefined;
+        var energyAlpha;
+
         if (energyDelay > 0) {
             energyDelay -= 15;
             drawEnergy = false;
@@ -244,7 +248,7 @@ var anim = anim || {};
 
         // draw energy lines
         atoms.forEach(function(atom) {
-            var alpha = undefined;
+            var alpha;
             if (energyAlpha) {
                 alpha = energyAlpha * 0.8;
             }
@@ -254,12 +258,14 @@ var anim = anim || {};
             }
 
             atoms.forEach(function(atomB) {
-                var alpha = undefined;
+                var alpha;
                 if (energyAlpha) {
                     alpha = energyAlpha * 0.2;
                 }
 
-                drawEnergy && energyLine(atom, atomB, alpha);
+                if(drawEnergy) {
+                    energyLine(atom, atomB, alpha);
+                }
 
                 // collide atoms with themselves
                 atom.collide(atomB);
@@ -289,7 +295,7 @@ var anim = anim || {};
         // draw letters
         letters.forEach(function(letter) {
             letter.draw(context);
-        })
+        });
 
         // draw external edges seperately : // TODO: DEBUG
         // externalLetterEdges.forEach(function(line) {

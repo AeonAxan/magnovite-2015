@@ -1,6 +1,7 @@
 var anim = anim || {};
 
 (function() {
+    'use strict';
 
     // highlight fade speeds
     var fadeInSpeed = 0.01;
@@ -52,7 +53,7 @@ var anim = anim || {};
             $this.fading = 'in';
 
             $this.updateHighlight();
-        }
+        };
     };
 
     Triangle.prototype.updateHighlight = function() {
@@ -72,7 +73,7 @@ var anim = anim || {};
     Triangle.prototype.draw = function(context) {
         if (this.delay > 0) {
             this.delay -= 15;
-            return
+            return;
         }
 
         var cord = this.cordinates;
@@ -95,7 +96,7 @@ var anim = anim || {};
         }
 
         context.restore();
-    }
+    };
 
     anim.Triangle = Triangle;
 

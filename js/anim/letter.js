@@ -6,6 +6,7 @@ var anim = anim || {};
  * {anim.Line}
  */
 (function() {
+    'use strict';
 
     var verticeFillStyle = 'rgba(80, 186, 248, 0.9)';
     var verticeRadius = 2;
@@ -38,17 +39,17 @@ var anim = anim || {};
 
             // make sure we dont re-add edges
             if (!(e01 in $this.edgeList || e10 in $this.edgeList)) {
-                $this.edges.push([$this.vertices[triangle[0]], $this.vertices[triangle[1]]])
+                $this.edges.push([$this.vertices[triangle[0]], $this.vertices[triangle[1]]]);
                 $this.edgeList[e01] = true;
             }
 
             if (!(e12 in $this.edgeList || e21 in $this.edgeList)) {
-                $this.edges.push([$this.vertices[triangle[1]], $this.vertices[triangle[2]]])
+                $this.edges.push([$this.vertices[triangle[1]], $this.vertices[triangle[2]]]);
                 $this.edgeList[e12] = true;
             }
 
             if (!(e02 in $this.edgeList || e20 in $this.edgeList)) {
-                $this.edges.push([$this.vertices[triangle[0]], $this.vertices[triangle[2]]])
+                $this.edges.push([$this.vertices[triangle[0]], $this.vertices[triangle[2]]]);
                 $this.edgeList[e02] = true;
             }
 
@@ -111,7 +112,7 @@ var anim = anim || {};
         });
 
         context.restore();
-    }
+    };
 
     anim.Letter = Letter;
 })();

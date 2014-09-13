@@ -1,6 +1,11 @@
+import os
+
 from flask import Flask, render_template
 
 app = Flask(__name__)
+if os.environ.get('PROD', None) is None:
+    app.debug = True
+    print('DEBUG')
 
 @app.route('/')
 def index():

@@ -52,7 +52,6 @@ html, body {
     display: inline-block;
     height: 250px;
     width: 200px;
-    transform: translateZ(0);
 }
 
 @media only screen and (max-width: 767px) {

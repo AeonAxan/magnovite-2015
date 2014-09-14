@@ -62,5 +62,50 @@ anim.common = {
             context.lineTo(atomB.x, atomB.y);
             context.stroke();
         }
+    },
+
+        /**
+     * Draws an energy line between the mouse and the atom
+
+     * {args m} : object with x, y cordinates of mouse/touch
+     * {args atom} : the atom to process
+     * {args context} : canvas context
+     * {args opts} : optional object with values maxDist, force, alpha
+     */
+    handleMouse: function(m, atom, context, _opts) {
+        'use strict';
+
+        var opts = app.util.extend({
+            maxDist: anim.mobile ? 200 : 150,
+            force: 0.05,
+            alpha: 0.8
+        }, _opts || {});
+
+        var dx = m.x - atom.x;
+        var dy = m.y - atom.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < opts.maxDist) {
+            var angle = Math.atan2(dy, dx);
+            var ax = Math.cos(angle) * opts.force;
+            var ay = Math.sin(angle) * opts.force;
+
+            atom.vx += ax;
+            atom.vy += ay;
+
+            // mouse energy line
+            var alpha = (1 - dist / opts.maxDist) * opts.alpha;
+            context.save();
+            context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
+            context.lineWidth = 2;
+            context.beginPath();
+            context.moveTo(m.x, m.y);
+            context.lineTo(atom.x, atom.y);
+            context.stroke();
+
+            context.restore();
+            return true;
+        }
+        return false;
     }
 };

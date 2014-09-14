@@ -3,8 +3,14 @@ var anim = anim || {};
 (function() {
     'use strict';
 
+    // colors
+    var taggedColor = '#00cc00';
+    var taggedHighlight = 'rgba(0, 255, 0, ';
+
+    var normalColor = '#1d215c';
+    var normalHighlight = 'rgba(88, 93, 155,';
+
     var id = 1;
-    var background = '#1d215c';
     var minRadius = 7;
     var varRadius = 3;
     var maxSpeed = 0.7;
@@ -28,8 +34,8 @@ var anim = anim || {};
 
         this.radius = Math.random() * varRadius + minRadius;
         this.mass = this.radius * weight;
-        this.color = background;
-        this.highlightColor = 'rgba(88, 93, 155,';
+        this.color = normalColor;
+        this.highlightColor = normalHighlight;
         this.highlightAlpha = 0;
 
         this.x = Math.random() * canvas.width;
@@ -47,6 +53,25 @@ var anim = anim || {};
 
         this.delay = delay;
     }
+
+    /**
+     * Marks this atom as tagged
+     */
+    Atom.prototype.tag = function(bool) {
+        if (bool) {
+            this.tagged = true;
+            this.color = taggedColor;
+            this.highlightColor = taggedHighlight;
+        } else {
+            this.tagged = false;
+            this.color = normalColor;
+            this.highlightColor = normalHighlight;
+        }
+    };
+
+    Atom.prototype.isTagged = function() {
+        return this.tagged;
+    };
 
     /**
      * Updates the atoms state at each step.

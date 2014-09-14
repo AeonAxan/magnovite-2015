@@ -76,8 +76,8 @@ anim.common = {
         'use strict';
 
         var opts = app.util.extend({
-            maxDist: anim.mobile ? 200 : 150,
-            force: 0.05,
+            maxDist: anim.mobile ? 200 : 125,
+            force: 0.1,
             alpha: 0.8
         }, _opts || {});
 

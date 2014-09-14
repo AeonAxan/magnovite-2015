@@ -14,7 +14,7 @@ var anim = anim || {};
     var minRadius = 7;
     var varRadius = 3;
     var maxSpeed = 0.7;
-    var weight = 10;
+    var weight = 5;
 
     var mCanvas;
 

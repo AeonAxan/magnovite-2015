@@ -12,6 +12,16 @@ var anim = anim || {};
     var mText = 'TTVTT';
     var mExternalEdges;
 
+    // score
+    var $score;
+    var mScore = 0;
+    var mTimer = 0;
+    var mCurrentCaught = 0;
+
+    // score criteria
+    var mNewAtomScore = 10;
+    var mHeldAtomScore = 20;
+
     // timing delays
     var ATOM_MIN_DELAY = 1000;
     var ATOM_VAR_DELAY = 1000;
@@ -89,7 +99,7 @@ var anim = anim || {};
     function mouseEnergy() {
         var pointer = anim.getPointer();
         if (!pointer) {
-            return;
+            return 0;
         }
 
         // sometimes mouse gets stuck to an edge, so
@@ -98,18 +108,20 @@ var anim = anim || {};
         var buffer = 5;
         if (!(m && m.x > buffer && m.x < mCanvas.width - buffer &&
             m.y > buffer && m.y < mCanvas.height - buffer)) {
-            return;
+            return 0;
         }
 
         // dont draw energy lines during delay
         if (mEnergyDelay > 0) {
-            return;
+            return 0;
         }
 
+        var nCaught = 0;
         mAtoms.forEach(function(atom) {
             var caught = anim.common.handleMouse(pointer, atom, mContext);
 
-            if (caught && mState === 'playing' || mState === 'ready') {
+            if (caught && (mState === 'playing' || mState === 'ready')) {
+                nCaught += 1;
                 atom.tag(true);
 
                 if (mState !== 'playing') {
@@ -118,6 +130,7 @@ var anim = anim || {};
             }
         });
 
+        return nCaught;
     }
 
     /**
@@ -140,12 +153,14 @@ var anim = anim || {};
     }
 
     function draw() {
+        var caught;
+
         mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);
 
         if (mState !== 'paused') {
             // calculat and draw energies
             interAtomEnergy();
-            mouseEnergy();
+            caught = mouseEnergy();
 
             mAtoms.forEach(function(atomA) {
                 mAtoms.forEach(function(atomB) {
@@ -175,6 +190,17 @@ var anim = anim || {};
         mLetters.forEach(function(letter) {
             letter.draw(mContext);
         });
+
+        if (caught !== undefined && !isNaN(caught)) {
+            mCurrentCaught = Math.max(caught, mCurrentCaught);
+        }
+
+        mTimer += 15;
+        if (mTimer > 500) {
+            mTimer = 0;
+
+            updateScore();
+        }
     }
 
     /***
@@ -182,6 +208,20 @@ var anim = anim || {};
      */
     function gameOverDOM(){
         document.body.classList.add('game-over');
+    }
+
+
+    function updateScore() {
+        if ($score === undefined) {
+            $score = document.getElementsByClassName('score')[0];
+        }
+
+        var sum = 0, i;
+        for (i = 1; i <= mCurrentCaught; i++) {
+            sum += Math.pow(2, i);
+        }
+
+        $score.innerHTML = sum;
     }
 
     // external interface

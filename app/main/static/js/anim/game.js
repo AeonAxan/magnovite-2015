@@ -20,7 +20,10 @@ var anim = anim || {};
     var mEnergyDelay = ENERGY_DELAY;
 
     // game vars
-    var mPlaying = false;
+    // state = ready : not playing but ready to play
+    // state = playing : playing the game
+    // state = paused : game is paused
+    var mState = 'ready';
 
     /**
      * Game constructor, this will switch to the game mode
@@ -87,47 +90,82 @@ var anim = anim || {};
             return;
         }
 
+        // sometimes mouse gets stuck to an edge, so
+        // ignore mouse input if too close to edge
+        var m = pointer;
+        var buffer = 5;
+        if (!(m && m.x > buffer && m.x < mCanvas.width - buffer &&
+            m.y > buffer && m.y < mCanvas.height - buffer)) {
+            return;
+        }
+
         // dont draw energy lines during delay
         if (mEnergyDelay > 0) {
             return;
         }
 
         mAtoms.forEach(function(atom) {
-            var tag = anim.common.handleMouse(pointer, atom, mContext);
+            var caught = anim.common.handleMouse(pointer, atom, mContext);
 
-            if (tag) {
+            if (caught && mState === 'playing' || mState === 'ready') {
                 atom.tag(true);
+
+                if (mState !== 'playing') {
+                    startGame();
+                }
             }
         });
 
     }
 
+    /**
+     * Called when the game starts
+     */
+    function startGame() {
+        if (mState !== 'ready') {
+            return;
+        }
+
+        mState = 'playing';
+    }
+
+    /**
+     * Called when the game is over
+     */
+    function gameOver() {
+        mState = 'paused';
+    }
+
     function draw() {
         mContext.clearRect(0, 0, mCanvas.width, mCanvas.height);
 
-        if (mEnergyDelay < 500) {
-            mPlaying = true;
+        if (mState !== 'paused') {
+            // calculat and draw energies
+            interAtomEnergy();
+            mouseEnergy();
+
+            mAtoms.forEach(function(atomA) {
+                mAtoms.forEach(function(atomB) {
+                    atomA.collide(atomB);
+                });
+
+                // collide with letters
+                mExternalEdges.forEach(function(edge) {
+                    var collide = atomA.collideLine(edge);
+                    if (mState === 'playing' && collide && atomA.isTagged()) {
+                        gameOver();
+                    }
+                });
+            });
         }
-
-        // handle inter atom interactions
-        mAtoms.forEach(function(atomA) {
-            mAtoms.forEach(function(atomB) {
-                atomA.collide(atomB);
-            });
-
-            // collide with letters
-            mExternalEdges.forEach(function(edge) {
-                atomA.collideLine(edge);
-            });
-        });
-
-        // draw atom energies
-        interAtomEnergy();
-        mouseEnergy();
 
         // draw the atoms
         mAtoms.forEach(function(atom) {
-            atom.update(mContext);
+            if (mState !== 'paused') {
+                atom.update(mContext);
+            }
+
+            atom.draw(mContext);
         });
 
         // draw the letters

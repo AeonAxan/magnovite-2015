@@ -16,6 +16,8 @@ var anim = anim || {};
     var maxSpeed = 0.7;
     var weight = 10;
 
+    var mCanvas;
+
     /**
      * Initializes an atom object with random cordinates,
      * and random velocity
@@ -24,6 +26,7 @@ var anim = anim || {};
      */
     function Atom(canvas, delay) {
         this.id = id++;
+        mCanvas = canvas;
 
         this.bounds = {
             left: 0,
@@ -42,6 +45,8 @@ var anim = anim || {};
         this.y = Math.random() * canvas.height;
         this.vx = Math.random() * maxSpeed;
         this.vy = Math.random() * maxSpeed;
+        this.vx *= Math.round(Math.random()) * -1;
+        this.vy *= Math.round(Math.random()) * -1;
 
         if (Math.random() * 10 > 5) {
             this.vx *= -1;
@@ -53,6 +58,18 @@ var anim = anim || {};
 
         this.delay = delay;
     }
+
+    Atom.prototype.randomise = function() {
+        this.x = Math.random() * mCanvas.width;
+        this.y = Math.random() * mCanvas.height;
+        this.x = Math.random() * mCanvas.width;
+        this.y = Math.random() * mCanvas.height;
+        this.vx = Math.random() * maxSpeed;
+        this.vy = Math.random() * maxSpeed;
+
+        this.vx *= Math.round(Math.random()) * -1;
+        this.vy *= Math.round(Math.random()) * -1;
+    };
 
     /**
      * Marks this atom as tagged
@@ -70,7 +87,7 @@ var anim = anim || {};
     };
 
     Atom.prototype.isTagged = function() {
-        return this.tagged;
+        return !!this.tagged;
     };
 
     /**
@@ -102,8 +119,6 @@ var anim = anim || {};
             this.y = this.bounds.top + this.radius;
             this.vy *= -1;
         }
-
-        this.draw(context);
     };
 
     /**
@@ -216,6 +231,7 @@ var anim = anim || {};
     /**
      * Have the Atom collide with a {anim.Line} object
      * Straight from the book
+     * Returns: did collision happen
      */
     Atom.prototype.collideLine = function(line) {
         var bounds = line.getBounds();
@@ -254,8 +270,12 @@ var anim = anim || {};
                 if (line.callback) {
                     line.callback(this);
                 }
+
+                return true;
             }
         }
+
+        return false;
     };
 
     /**

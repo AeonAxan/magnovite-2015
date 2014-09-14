@@ -62,15 +62,13 @@ var app = app || {};
         return draw;
     }
 
-
-
     function drawAtoms(context) {
         var buffer = 20;
         var isMouseGravityOn = false;
 
         var m = anim.getPointer();
-        if (m && m.x > 20 && m.x < canvas.width - buffer &&
-            m.y > 20 && m.y < canvas.height - buffer) {
+        if (m && m.x > buffer && m.x < canvas.width - buffer &&
+            m.y > buffer && m.y < canvas.height - buffer) {
             isMouseGravityOn = true;
         }
 
@@ -121,6 +119,7 @@ var app = app || {};
             });
 
             atom.update(context);
+            atom.draw(context);
         });
     }
 

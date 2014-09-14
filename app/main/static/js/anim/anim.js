@@ -24,11 +24,8 @@ var app = app || {};
     // the particles moving around
     var atoms = [];
     var nAtoms = 30;
-    var energyMinDist = 100;
 
     // mouse effect
-    var mouseMaxDist = 150;
-    var mouseForce = 0.05;
 
     // the letters
     var letters = [];
@@ -150,10 +147,13 @@ var app = app || {};
 
     /**
      * Draws a line between two atoms based on the distance
+     * {Self Contained}
      * {args atomA} : Object of class {Atom}
      * {args atomB} : Object of class {Atom}
      */
     function energyLine(atomA, atomB, baseAlpha) {
+        var energyMinDist = 100;
+
         var dx, dy, dist, alpha;
 
         if (atomA.id === atomB.id) {
@@ -194,27 +194,28 @@ var app = app || {};
 
     /**
      * Make the mouse interact with the atoms
+     * {args m} : object with x, y cordinates of mouse/touch
      */
-    function handleMouse(atom, context, baseAlpha) {
-        var m;
-        if (!(m = getMouseCordinates())) {
-            return;
-        }
+    function handleMouse(m, atom, context, baseAlpha, _opts) {
+        var opts = app.util.extend({
+            maxDist: 150,
+            force: 0.05
+        }, _opts || {});
 
         var dx = m.x - atom.x;
         var dy = m.y - atom.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < mouseMaxDist) {
+        if (dist < opts.maxDist) {
             var angle = Math.atan2(dy, dx);
-            var ax = Math.cos(angle) * mouseForce;
-            var ay = Math.sin(angle) * mouseForce;
+            var ax = Math.cos(angle) * opts.force;
+            var ay = Math.sin(angle) * opts.force;
 
             atom.vx += ax;
             atom.vy += ay;
 
             // mouse energy line
-            var alpha = (1 - dist / mouseMaxDist) * (baseAlpha || 0.8);
+            var alpha = (1 - dist / opts.maxDist) * (baseAlpha || 0.8);
             context.save();
 
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
@@ -225,7 +226,9 @@ var app = app || {};
             context.stroke();
 
             context.restore();
+            return true;
         }
+        return false;
     }
 
     function drawAtoms(context) {
@@ -241,6 +244,7 @@ var app = app || {};
         var drawEnergy = true;
         var energyAlpha;
 
+        // used for the fade in effect on load
         if (energyDelay > 0) {
             energyDelay -= 15;
             drawEnergy = false;
@@ -258,7 +262,10 @@ var app = app || {};
             }
 
             if (isMouseGravityOn && drawEnergy) {
-                handleMouse(atom, context, alpha);
+                var coords = getMouseCordinates();
+                if (coords) {
+                    handleMouse(coords, atom, context, alpha);
+                }
             }
 
             atoms.forEach(function(atomB) {

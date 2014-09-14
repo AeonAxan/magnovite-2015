@@ -13,6 +13,9 @@ var app = app || {};
 
     var text = 'VTTTV';
 
+    var lastInteracted = 0;
+    var gameBannerShown = false;
+
     // timing delays
     var ATOM_MIN_DELAY = 1000;
     var ATOM_VAR_DELAY = 1000;
@@ -86,14 +89,19 @@ var app = app || {};
         }
 
         // draw energy lines
+        var caughtAtoms = 0;
         atoms.forEach(function(atom) {
             if (isMouseGravityOn && drawEnergy && m) {
+                var caught;
                 if (energyAlpha) {
-                    anim.common.handleMouse(m, atom, context, {alpha: energyAlpha * 0.8});
+                    caught = anim.common.handleMouse(m, atom, context, {alpha: energyAlpha * 0.8});
                 } else {
-                    anim.common.handleMouse(m, atom, context);
+                    caught = anim.common.handleMouse(m, atom, context);
                 }
 
+                if (caught) {
+                    caughtAtoms += 1;
+                }
             }
 
             atoms.forEach(function(atomB) {
@@ -110,6 +118,21 @@ var app = app || {};
                 atom.collide(atomB);
             });
         });
+
+        if (gameBannerShown && caughtAtoms === 0) {
+            lastInteracted += 15;
+            if (lastInteracted >= 2000 && gameBannerShown) {
+                document.body.classList.remove('logo-interacted');
+                gameBannerShown = false;
+            }
+        }
+
+        // if we caught more than X atoms show game button
+        if (caughtAtoms > 3 && !gameBannerShown) {
+            document.body.classList.add('logo-interacted');
+            gameBannerShown = true;
+            lastInteracted = 0;
+        }
 
         // draw atoms
         atoms.forEach(function(atom) {

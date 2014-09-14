@@ -49,6 +49,8 @@ var anim = anim || {};
             Array.prototype.push.apply(mExternalEdges, letter.external);
         });
 
+        document.body.classList.add('game-mode');
+
         return draw;
     }
 
@@ -134,6 +136,7 @@ var anim = anim || {};
      */
     function gameOver() {
         mState = 'paused';
+        gameOverDOM();
     }
 
     function draw() {
@@ -172,6 +175,13 @@ var anim = anim || {};
         mLetters.forEach(function(letter) {
             letter.draw(mContext);
         });
+    }
+
+    /***
+     * DOM Manipulators
+     */
+    function gameOverDOM(){
+        document.body.classList.add('game-over');
     }
 
     // external interface

@@ -48,6 +48,15 @@ var anim = anim || {};
         } else {
             document.addEventListener('DOMContentLoaded', _ready);
         }
+
+        if (anim.desktop) {
+            document.getElementsByClassName('js-start-game')[0].
+                addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    setMode('game');
+                });
+        }
     }
 
     /**

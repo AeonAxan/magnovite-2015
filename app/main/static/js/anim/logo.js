@@ -9,57 +9,25 @@ var app = app || {};
 (function() {
     'use strict';
 
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var mouse = anim.util.captureMouse(canvas);
-    var touch, touching, touchStart;
+    var canvas, context;
 
     var text = 'VTTTV';
 
     // timing delays
-    var energyDelay = 2000;
-    var atomMinDelay = 1000;
-    var atomVariableDelay = 1000;
+    var ATOM_MIN_DELAY = 1000;
+    var ATOM_VAR_DELAY = 1000;
+    var ENERGY_DELAY = 2000;
+    var energyDelay;
 
     // the particles moving around
-    var atoms = [];
+    var atoms;
     var nAtoms = 30;
 
-    // mouse effect
-
     // the letters
-    var letters = [];
+    var letters;
 
     // array of {Line}s of all external facing edges
     var externalLetterEdges = [];
-
-    /**
-     * Must be called to init the animation library
-     */
-    function init() {
-        if (!Modernizr.canvas) {
-            window.alert('blah');
-        }
-
-        if (window.innerWidth < 767) {
-            anim.mobile = true;
-        }
-
-        if (Modernizr.touch) {
-            anim.touch = true;
-        }
-
-        if (!anim.mobile) {
-            var landing = document.getElementsByClassName('landing')[0];
-            landing.style.height = window.innerHeight + 'px';
-        }
-
-        if (document.readyState === "complete" || document.readyState === "loaded") {
-            app.main();
-        } else {
-            document.addEventListener('DOMContentLoaded', main);
-        }
-    }
 
     /**
      * Layout letters, all letter should be of height 240
@@ -91,49 +59,27 @@ var app = app || {};
     }
 
     /**
-     * Essentially the entry point for the app
-     * Called after DOM load
+     * Entry point for the logo
      */
-    function main() {
+    function main(_canvas, _context) {
         var i;
 
-        var height = window.innerHeight - 250;
+        atoms = [];
+        letters = [];
+        energyDelay = ENERGY_DELAY;
+
+        canvas = _canvas;
+        context = _context;
 
         if (anim.mobile) {
-            // make logo fullscreen
-            height += 250;
             nAtoms = 10;
             text = 'T';
-            mouseMaxDist = 200;
         }
-
-        if (anim.touch) {
-            touch = anim.util.captureTouch(canvas);
-            var touchstart;
-
-            canvas.addEventListener('touchstart', function() {
-                touchstart = new Date();
-            });
-
-            canvas.addEventListener('touchend', function() {
-                touching = false;
-                touchstart = undefined;
-            });
-
-            canvas.addEventListener('touchmove', function(e) {
-                if (touchstart && (new Date() - touchstart) > 300) {
-                    touching = true;
-                    e.preventDefault();
-                }
-            });
-        }
-
-        canvas.setAttribute('width', window.innerWidth);
-        canvas.setAttribute('height', height);
 
         // init atoms
         for (i = 0; i < nAtoms; i++) {
-            atoms.push(new anim.Atom(canvas, atomMinDelay + Math.random() * atomVariableDelay));
+            atoms.push(new anim.Atom(canvas, ATOM_MIN_DELAY +
+                Math.random() * ATOM_VAR_DELAY));
         }
 
         // init Letters
@@ -142,7 +88,7 @@ var app = app || {};
             Array.prototype.push.apply(externalLetterEdges, letter.external);
         });
 
-        draw();
+        return draw;
     }
 
     /**
@@ -175,24 +121,6 @@ var app = app || {};
     }
 
     /**
-     * Returns an object with x, y or undefiend
-     * If undefined there is no touch
-     *
-     * this handles touches internally
-     */
-    function getMouseCordinates() {
-        if (touch) {
-            if (touching) {
-                return touch;
-            } else {
-                return undefined;
-            }
-        } else {
-            return mouse;
-        }
-    }
-
-    /**
      * Draws an energy line between the mouse and the atom
 
      * {args m} : object with x, y cordinates of mouse/touch
@@ -202,7 +130,7 @@ var app = app || {};
      */
     function handleMouse(m, atom, context, _opts) {
         var opts = app.util.extend({
-            maxDist: 150,
+            maxDist: anim.mobile ? 200 : 150,
             force: 0.05,
             alpha: 0.8
         }, _opts || {});
@@ -222,7 +150,6 @@ var app = app || {};
             // mouse energy line
             var alpha = (1 - dist / opts.maxDist) * opts.alpha;
             context.save();
-
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
             context.lineWidth = 2;
             context.beginPath();
@@ -240,7 +167,7 @@ var app = app || {};
         var buffer = 20;
         var isMouseGravityOn = false;
 
-        var m = getMouseCordinates();
+        var m = anim.getPointer();
         if (m && m.x > 20 && m.x < canvas.width - buffer &&
             m.y > 20 && m.y < canvas.height - buffer) {
             isMouseGravityOn = true;
@@ -261,16 +188,13 @@ var app = app || {};
 
         // draw energy lines
         atoms.forEach(function(atom) {
-            var alpha;
-            if (energyAlpha) {
-                alpha = energyAlpha * 0.8;
-            }
-
-            if (isMouseGravityOn && drawEnergy) {
-                var coords = getMouseCordinates();
-                if (coords) {
-                    handleMouse(coords, atom, context, {alpha: alpha});
+            if (isMouseGravityOn && drawEnergy && m) {
+                if (energyAlpha) {
+                    handleMouse(m, atom, context, {alpha: energyAlpha * 0.8});
+                } else {
+                    handleMouse(m, atom, context);
                 }
+
             }
 
             atoms.forEach(function(atomB) {
@@ -303,7 +227,6 @@ var app = app || {};
      * The main draw loop
      */
     function draw() {
-        window.requestAnimationFrame(draw);
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         drawAtoms(context);
@@ -320,8 +243,8 @@ var app = app || {};
     }
 
     // set external interface
-    anim.init = init;
-    anim.canvas = canvas;
-    anim.context = context;
+    anim.logo = {
+        main: main
+    };
 
 })();

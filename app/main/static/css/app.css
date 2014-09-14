@@ -10,11 +10,29 @@ html, body {
     padding: 0;
 }
 
+a {
+    color: inherit;
+}
+
+h3 {
+    font-size: 24px;
+}
+
 /**
  * Common styles
  */
 .button {
+    display: inline-block;
+    height: 40px;
+    padding: 10px 40px;
+    background: #000436;
+    color: #7A74FF;
+    text-decoration: none;
+    border: 1px solid #040E83;
+}
 
+.button:hover {
+    border: 1px solid #4D5AEE;
 }
 
 .clearfix:before,
@@ -280,10 +298,17 @@ html, body {
 }
 
 .game-bar .progress-inner {
-    background: #4fe400;
     width: 150px;
     height: 100%;
     margin: 0 auto;
+}
+
+.game-bar .progress-inner.curr {
+    background: #616DFF;
+}
+
+.game-bar .progress-inner.max {
+    background: #2332DF;
 }
 
 .game-bar-inner {
@@ -298,22 +323,24 @@ html, body {
     float: left;
     color: #7679B3;
     text-align: left;
+
+    transition: all 250ms ease-out;
 }
 
 /**
  * game-bar score
  */
-.game-bar .score {
+.game-bar .score-col .score {
     position: absolute;
     left: 0; top: 0; right: 0; bottom: 0;
     margin: auto;
     width: 250px;
     height: 150px;
-    border: 8px solid #4fe400;
+    border: 8px solid #1D28AD;
     background: #010212;
 
-    color: #4fe400;
-    font-size: 64px;
+    color: #616DFF;
+    font-size: 48px;
     line-height: 124px;
     text-align: center;
 }
@@ -327,7 +354,7 @@ html, body {
     width: 50%;
     height: 100%;
     left: 0;
-    border-right: 4px solid #4fe400;
+    border-right: 4px solid #1D28AD;
 }
 
 .score-col .right {
@@ -335,5 +362,71 @@ html, body {
     width: 50%;
     height: 100%;
     right: 0;
-    border-left: 4px solid #4fe400;
+    border-left: 4px solid #1D28AD;
+}
+
+/**
+ * Game bar left
+ */
+.game-bar .left-col {
+    padding: 30px 0;
+}
+
+.game-bar .left-col p {
+    margin-top: 10px;
+}
+
+.game-bar .button {
+    margin: 30px 20px 0 0;
+}
+
+/**
+ * Game bar right
+ */
+.game-bar .right-col {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.game-bar .right-col .score-block {
+    border: 2px solid #00075F;
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+
+    margin-right: 15px;
+    margin-top: 27px;
+}
+
+.game-bar .score-block h4 {
+    display: block;
+    color: rgba(255, 255, 255, 0.51);
+    background: #1D28AD;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.game-bar .score-block p {
+    height: 76px;
+    background: #00021D;
+    box-shadow: inset 0px 0px 20px #000;
+    line-height: 76px;
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.81);
+}
+
+.game-bar .score-block.curr p {
+    font-weight: bold;
+}
+
+.game-playing .game-bar .left-col {
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.game-playing .game-bar .right-col {
+    transform: translateX(50%);
+    opacity: 0;
 }

@@ -47,7 +47,7 @@ var app = app || {};
 
         if (anim.mobile) {
             nAtoms = 10;
-            text = 'T';
+            text = 'M';
         }
 
         // init atoms
@@ -55,6 +55,9 @@ var app = app || {};
             atoms.push(new anim.Atom(canvas, ATOM_MIN_DELAY +
                 Math.random() * ATOM_VAR_DELAY));
         }
+
+        document.body.classList.remove('game-mode');
+        document.body.classList.add('logo-mode');
 
         // init Letters
         letters = anim.common.createLetters(canvas, text);

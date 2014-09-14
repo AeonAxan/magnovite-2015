@@ -12,15 +12,17 @@ var anim = anim || {};
     var mText = 'TTVTT';
     var mExternalEdges;
 
-    // score
-    var $score;
-    var mScore = 0;
-    var mTimer = 0;
-    var mCurrentCaught = 0;
+    // DOM references
+    var $timer;
+    var $progressMaxBars;
+    var $progressCurrBars;
 
-    // score criteria
-    var mNewAtomScore = 10;
-    var mHeldAtomScore = 20;
+    // stopwatch
+    var MAX_TIME = 1 * 60 * 1000;
+    var mStartTime;
+
+    var currentCaught;
+    var maxCaught;
 
     // timing delays
     var ATOM_MIN_DELAY = 1000;
@@ -28,6 +30,8 @@ var anim = anim || {};
     var ENERGY_DELAY = 2000;
 
     var mEnergyDelay;
+
+    var tickId;
 
     // game vars
     // state = ready : not playing but ready to play
@@ -46,7 +50,11 @@ var anim = anim || {};
 
         mAtoms = [];
         mExternalEdges = [];
+        currentCaught = 0;
+        maxCaught = 0;
+
         mEnergyDelay = ENERGY_DELAY;
+        mState = 'ready';
 
         // init atoms
         for (i = 0; i < mNumAtoms; i++) {
@@ -60,18 +68,29 @@ var anim = anim || {};
             Array.prototype.push.apply(mExternalEdges, letter.external);
         });
 
+        document.body.classList.remove('logo-mode');
         document.body.classList.add('game-mode');
 
         document.getElementsByClassName('js-reset')[0].
             addEventListener('click', function(e) {
                 e.preventDefault();
-
-                mState = 'ready';
                 anim.setMode('game');
             });
 
+        document.getElementsByClassName('js-countdown')[0]
+            .addEventListener('click', function(e) {
+                e.preventDefault();
+                anim.setMode('logo');
+            });
 
-        updateScore();
+        $timer = document.getElementsByClassName('js-timer')[0];
+        $progressMaxBars = Array.prototype.slice.call(
+            document.getElementsByClassName('js-prog-max'));
+        $progressCurrBars = Array.prototype.slice.call(
+            document.getElementsByClassName('js-prog-curr'));
+
+        updateCaught();
+        updateTimer();
         return draw;
     }
 
@@ -152,7 +171,9 @@ var anim = anim || {};
             return;
         }
 
+        mStartTime = new Date();
         mState = 'playing';
+        document.body.classList.add('game-playing');
     }
 
     /**
@@ -161,6 +182,8 @@ var anim = anim || {};
     function gameOver() {
         mState = 'paused';
         gameOverDOM();
+
+        document.body.classList.remove('game-playing');
     }
 
     function draw() {
@@ -182,6 +205,8 @@ var anim = anim || {};
                 mExternalEdges.forEach(function(edge) {
                     var collide = atomA.collideLine(edge);
                     if (mState === 'playing' && collide && atomA.isTagged()) {
+                        atomA.color = '#f00';
+                        atomA.draw(mContext);
                         gameOver();
                     }
                 });
@@ -197,21 +222,19 @@ var anim = anim || {};
             atom.draw(mContext);
         });
 
+        if (caught !== currentCaught) {
+            currentCaught = caught;
+            maxCaught = Math.max(currentCaught, maxCaught);
+
+            updateCaught();
+        }
+
         // draw the letters
         mLetters.forEach(function(letter) {
             letter.draw(mContext);
         });
 
-        if (caught !== undefined && !isNaN(caught)) {
-            mCurrentCaught = Math.max(caught, mCurrentCaught);
-        }
-
-        mTimer += 15;
-        if (mTimer > 500) {
-            mTimer = 0;
-
-            updateScore();
-        }
+        updateTimer();
     }
 
     /***
@@ -221,18 +244,61 @@ var anim = anim || {};
         document.body.classList.add('game-over');
     }
 
+    /**
+     * Upddates the caught bar
+     */
+    function updateCaught() {
+        var i;
+        var width = window.innerWidth;
 
-    function updateScore() {
-        if ($score === undefined) {
-            $score = document.getElementsByClassName('score')[0];
+        var currWidth = currentCaught / mNumAtoms * width;
+        var maxWidth = maxCaught / mNumAtoms * width;
+
+        $progressCurrBars.forEach(function($bar) {
+            $bar.style.width = currWidth + 'px';
+        });
+
+        $progressMaxBars.forEach(function($bar) {
+            $bar.style.width = maxWidth + 'px';
+        });
+    }
+
+    /**
+     * Updates the stop watch
+     */
+    function updateTimer() {
+        if (!mStartTime || mState !== 'playing') {
+            $timer.innerHTML = '0:00:00';
+            return;
         }
 
-        var sum = 0, i;
-        for (i = 1; i <= mCurrentCaught; i++) {
-            sum += Math.pow(2, i);
+        var time = 'X:XX:XX';
+        var diff, min, sec, mils;
+
+        diff = MAX_TIME - ((new Date()) - mStartTime);
+        if (diff <= 0) {
+            gameOver();
+            time = '0:00:00';
+
+        } else {
+            min = Math.floor(diff / (60 * 1000));
+            diff -= min * 60 * 1000;
+
+            sec = '0' + Math.floor(diff / 1000);
+            diff -= sec * 1000;
+
+            mils = diff;
+            if (mils > 100) {
+                mils = Math.floor(mils / 10);
+            }
+
+            mils = '0' + mils;
+
+            time = min + ':' + sec.substring(sec.length - 2) +
+                ':' + mils.substring(mils.length - 2);
         }
 
-        $score.innerHTML = sum;
+        $timer.innerHTML = time;
     }
 
     // external interface

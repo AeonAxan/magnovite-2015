@@ -16,6 +16,8 @@ var anim = anim || {};
     var $timer;
     var $progressMaxBars;
     var $progressCurrBars;
+    var $scoreCurrent;
+    var $scoreBest;
 
     // stopwatch
     var MAX_TIME = 1 * 60 * 1000;
@@ -30,8 +32,6 @@ var anim = anim || {};
     var ENERGY_DELAY = 2000;
 
     var mEnergyDelay;
-
-    var tickId;
 
     // game vars
     // state = ready : not playing but ready to play
@@ -84,6 +84,9 @@ var anim = anim || {};
             });
 
         $timer = document.getElementsByClassName('js-timer')[0];
+        $scoreCurrent = document.getElementsByClassName('js-score-curr')[0];
+        $scoreBest = document.getElementsByClassName('js-score-best')[0];
+
         $progressMaxBars = Array.prototype.slice.call(
             document.getElementsByClassName('js-prog-max'));
         $progressCurrBars = Array.prototype.slice.call(
@@ -184,6 +187,22 @@ var anim = anim || {};
         gameOverDOM();
 
         document.body.classList.remove('game-playing');
+
+        // calculate score board
+        var maxScore;
+        if (typeof(Storage) !== 'undefined') {
+            maxScore = localStorage.getItem('maxScore');
+
+            if (!maxScore || maxCaught > maxScore) {
+                localStorage.setItem('maxScore', maxCaught);
+                maxScore = maxCaught;
+            }
+        } else {
+            maxScore = '-';
+        }
+
+        $scoreCurrent.innerHTML = maxCaught;
+        $scoreBest.innerHTML = maxScore;
     }
 
     function draw() {

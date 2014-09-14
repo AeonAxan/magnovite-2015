@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-78b9b419.css"/>
+    <link rel="stylesheet" href="/static/dist/style-0296afef.css"/>
 
     <script src="/static/js/lib/modernizer.js"></script>
 </head>
@@ -18,23 +18,43 @@
 
             <div class="game-bar">
                 <div class="progress top">
-                    <div class="progress-inner"></div>
+                    <div class="progress-inner max js-prog-max">
+                        <div class="progress-inner curr js-prog-curr"></div>
+                    </div>
                 </div>
 
                 <div class="game-bar-inner clearfix">
                     <div class="col left-col">
+                        <h3>How to Play</h3>
+                        <p>Collect all the atoms without touching the letters!</p>
+                        <p>
+                        Your score is the maximum number of of atoms you collect
+                        together under the pointer
+                        </p>
+
+                        <a href="#" class="button js-countdown">Countdown</a>
                         <a href="#" class="button js-reset">Reset</a>
                     </div>
                     <div class="col score-col">
                         <div class="left"></div>
                         <div class="right"></div>
-                        <div class="score">0</div>
+                        <div class="score js-timer">-:--:--</div>
                     </div>
                     <div class="col right-col">
+                        <div class="score-block curr">
+                            <h4>Score</h4>
+                            <p class="score js-score-curr">2</p>
+                        </div>
+                        <div class="score-block best">
+                            <h4>Best</h4>
+                            <p class="score js-score-best">19</p>
+                        </div>
                     </div>
                 </div>
                 <div class="progress bottom">
-                    <div class="progress-inner"></div>
+                     <div class="progress-inner max js-prog-max">
+                        <div class="progress-inner curr js-prog-curr"></div>
+                    </div>
                 </div>
             </div>
 
@@ -141,7 +161,7 @@
     }
     </script>
 
-    <script src="/static/dist/app-613a1902.js"></script>
+    <script src="/static/dist/app-2c916688.js"></script>
 
     <script>
     // get things rolling
@@ -155,12 +175,6 @@
 
         document.body.classList.add('logo-done');
     }, 2500);
-
-    setTimeout(function() {
-        'use strict';
-
-        // anim.setMode('game');
-    }, 3500);
     </script>
 </body>
 </html>

@@ -27,7 +27,7 @@ var anim = anim || {};
     var ATOM_VAR_DELAY = 1000;
     var ENERGY_DELAY = 2000;
 
-    var mEnergyDelay = ENERGY_DELAY;
+    var mEnergyDelay;
 
     // game vars
     // state = ready : not playing but ready to play
@@ -46,6 +46,7 @@ var anim = anim || {};
 
         mAtoms = [];
         mExternalEdges = [];
+        mEnergyDelay = ENERGY_DELAY;
 
         // init atoms
         for (i = 0; i < mNumAtoms; i++) {
@@ -61,6 +62,16 @@ var anim = anim || {};
 
         document.body.classList.add('game-mode');
 
+        document.getElementsByClassName('js-reset')[0].
+            addEventListener('click', function(e) {
+                e.preventDefault();
+
+                mState = 'ready';
+                anim.setMode('game');
+            });
+
+
+        updateScore();
         return draw;
     }
 

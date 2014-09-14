@@ -27,7 +27,7 @@ var app = app || {};
     var letters;
 
     // array of {Line}s of all external facing edges
-    var externalLetterEdges = [];
+    var externalLetterEdges;
 
     /**
      * Layout letters, all letter should be of height 240
@@ -66,6 +66,7 @@ var app = app || {};
 
         atoms = [];
         letters = [];
+        externalLetterEdges = [];
         energyDelay = ENERGY_DELAY;
 
         canvas = _canvas;

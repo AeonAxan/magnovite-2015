@@ -193,13 +193,18 @@ var app = app || {};
     }
 
     /**
-     * Make the mouse interact with the atoms
+     * Draws an energy line between the mouse and the atom
+
      * {args m} : object with x, y cordinates of mouse/touch
+     * {args atom} : the atom to process
+     * {args context} : canvas context
+     * {args opts} : optional object with values maxDist, force, alpha
      */
-    function handleMouse(m, atom, context, baseAlpha, _opts) {
+    function handleMouse(m, atom, context, _opts) {
         var opts = app.util.extend({
             maxDist: 150,
-            force: 0.05
+            force: 0.05,
+            alpha: 0.8
         }, _opts || {});
 
         var dx = m.x - atom.x;
@@ -215,7 +220,7 @@ var app = app || {};
             atom.vy += ay;
 
             // mouse energy line
-            var alpha = (1 - dist / opts.maxDist) * (baseAlpha || 0.8);
+            var alpha = (1 - dist / opts.maxDist) * opts.alpha;
             context.save();
 
             context.strokeStyle = 'rgba(0, 255, 0, ' + alpha + ')';
@@ -264,7 +269,7 @@ var app = app || {};
             if (isMouseGravityOn && drawEnergy) {
                 var coords = getMouseCordinates();
                 if (coords) {
-                    handleMouse(coords, atom, context, alpha);
+                    handleMouse(coords, atom, context, {alpha: alpha});
                 }
             }
 

@@ -17,6 +17,20 @@ html, body {
 
 }
 
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
 /******************************************************
  * Landing section (anim and timer)
  *****************************************************
@@ -242,11 +256,12 @@ html, body {
 
 .game-bar {
     display: none;
-    background: red;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
 .desktop .game-bar {
@@ -256,4 +271,69 @@ html, body {
 
 .game-mode .game-bar {
     transform: translateX(0);
+}
+
+.game-bar .progress {
+    width: 100%;
+    height: 7px;
+    background: #000;
+}
+
+.game-bar .progress-inner {
+    background: #4fe400;
+    width: 150px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.game-bar-inner {
+    width: 990px;
+    height: 236px; /* 250 - 7*2 */
+    margin: 0 auto;
+}
+
+.game-bar .col {
+    width: 330px;
+    height: 100%;
+    float: left;
+    color: #7679B3;
+    text-align: left;
+}
+
+/**
+ * game-bar score
+ */
+.game-bar .score {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    margin: auto;
+    width: 250px;
+    height: 150px;
+    border: 8px solid #4fe400;
+    background: #010212;
+
+    color: #4fe400;
+    font-size: 64px;
+    line-height: 124px;
+    text-align: center;
+}
+
+.game-bar .score-col {
+    position: relative;
+}
+
+.score-col .left {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    border-right: 4px solid #4fe400;
+}
+
+.score-col .right {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    border-left: 4px solid #4fe400;
 }

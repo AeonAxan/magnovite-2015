@@ -4,7 +4,7 @@ var anim = anim || {};
     'use strict';
 
     // colors
-    var taggedColor = '#00cc00';
+    var taggedColor = '#4fe400';
     var taggedHighlight = 'rgba(0, 255, 0, ';
 
     var normalColor = '#1d215c';

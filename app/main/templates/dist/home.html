@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-4da75479.css"/>
+    <link rel="stylesheet" href="/static/dist/style-c2ea8c48.css"/>
 
     <script src="/static/js/lib/modernizer.js"></script>
 </head>
@@ -14,85 +14,122 @@
     <div class="landing">
         <canvas id="canvas"></canvas>
 
-        <div class="timer">
-            <div class="timer-block">
-                <div class="binary">
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
+        <div class="landing-bar">
+            <div class="game-bar">
+                <div class="col">
+                    <h3>Stats</h3>
+                    <p class="score">1240</p>
+                </div>
+                <div class="col">
+                    <h3>Rules</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam praesentium libero nesciunt saepe at!</p>
+                </div>
+                <div class="col">
+                    <h3>Leaderboard</h3>
+                    <ul>
+                        <li>
+                            <p>Hello</p>
+                        </li>
+                        <li>
+                            <p>World</p>
+                        </li>
+                        <li>
+                            <p>Hah</p>
+                        </li>
+                        <li>
+                            <p>My Score</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timer">
+                <div class="timer-banner">
+                    <p class="button green js-start-game">Enter Game Arena</p>
+                </div>
+                <div class="timers">
+                    <div class="timer-block">
+                        <div class="binary">
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                        </div>
+                        <p class="description">months</p>
+                        <p class="numeric">24</p>
+                    </div>
+                    <div class="timer-block">
+                        <div class="binary">
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                        </div>
+                        <p class="description">days</p>
+                        <p class="numeric">13</p>
+                    </div>
+                    <div class="timer-block">
+                        <div class="binary">
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                            <div class="bin-col">
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                                <div class="dot on"></div>
+                            </div>
+                        </div>
+                        <p class="description">hours</p>
+                        <p class="numeric">8</p>
+                    </div>
+                    <div class="timer-block">
+                        <div class="binary">
+                            <div class="bin-col">
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                        </div>
+                        <p class="description">minutes</p>
+                        <p class="numeric">15</p>
+                    </div>
+                    <div class="timer-block">
+                        <div class="binary">
+                            <div class="bin-col">
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                            <div class="bin-col">
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                                <div class="dot"></div>
+                                <div class="dot on"></div>
+                            </div>
+                        </div>
+                        <p class="description">seconds</p>
+                        <p class="numeric">19</p>
                     </div>
                 </div>
-                <p class="description">months</p>
-                <p class="numeric">24</p>
+
             </div>
-            <div class="timer-block">
-                <div class="binary">
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                </div>
-                <p class="description">days</p>
-                <p class="numeric">13</p>
-            </div>
-            <div class="timer-block">
-                <div class="binary">
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                    <div class="bin-col">
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                        <div class="dot on"></div>
-                    </div>
-                </div>
-                <p class="description">hours</p>
-                <p class="numeric">8</p>
-            </div>
-            <div class="timer-block">
-                <div class="binary">
-                    <div class="bin-col">
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                </div>
-                <p class="description">minutes</p>
-                <p class="numeric">15</p>
-            </div>
-            <div class="timer-block">
-                <div class="binary">
-                    <div class="bin-col">
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                    <div class="bin-col">
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                        <div class="dot"></div>
-                        <div class="dot on"></div>
-                    </div>
-                </div>
-                <p class="description">seconds</p>
-                <p class="numeric">19</p>
-            </div>
+
         </div>
     </div>
 
@@ -109,11 +146,12 @@
     }
     </script>
 
-    <script src="/static/dist/app-639aae4c.js"></script>
+    <script src="/static/dist/app-4a06f751.js"></script>
 
     <script>
     // get things rolling
     anim.init();
+    anim.setMode('logo');
     new app.Timer();
 
     document.body.classList.add('loaded');
@@ -122,6 +160,12 @@
 
         document.body.classList.add('logo-done');
     }, 2500);
+
+    setTimeout(function() {
+        'use strict';
+
+        // anim.setMode('game');
+    }, 3500);
     </script>
 </body>
 </html>

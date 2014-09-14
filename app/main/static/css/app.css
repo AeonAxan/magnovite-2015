@@ -59,6 +59,10 @@ html, body {
     }
 
     .landing-bar {
+        height: auto;
+    }
+
+    .timer {
         display: block;
         height: auto;
         position: static;

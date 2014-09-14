@@ -286,6 +286,10 @@ var anim = anim || {};
      * Updates the stop watch
      */
     function updateTimer() {
+        if (mState === 'paused') {
+            return;
+        }
+
         if (!mStartTime || mState !== 'playing') {
             $timer.innerHTML = '0:00:00';
             return;

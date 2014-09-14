@@ -169,7 +169,7 @@ anim.shapeData = {
             ['B', 'E', 'X', [['X', 'B', true]]],
             ['A', 'X', 'D', [['X', 'A', false]]],
             ['D', 'X', 'E', []]
-        ] 
+        ]
     },
 
     'V': {
@@ -224,7 +224,7 @@ anim.shapeData = {
         ]
     },
 
-   
+
     'T': {
         'width': 110,
         'height': 130,
@@ -250,7 +250,7 @@ anim.shapeData = {
             ['F', 'E', 'G', [['G', 'E', false]]],
             ['F', 'G', 'H', [['H', 'F', true]]],
             ['G', 'H', 'I', [['H', 'I', false], ['G', 'I', true]]],
-            ['E', 'J', 'K', [['E', 'J', false], ['J', 'K', false], ['K', 'E', false]]]
+            ['E', 'J', 'K', [['E', 'J', true], ['J', 'K', true], ['K', 'E', true]]]
         ]
     },
 

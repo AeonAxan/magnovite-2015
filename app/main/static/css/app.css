@@ -235,6 +235,7 @@ h3 {
     height: 40px;
     padding: 10px 40px;
     transition: all 450ms ease-out;
+    border: 0;
 }
 
 .button.green {

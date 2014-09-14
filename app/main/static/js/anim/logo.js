@@ -11,7 +11,7 @@ var app = app || {};
 
     var canvas, context;
 
-    var text = 'VTTTV';
+    var text = 'MAGNOVITE';
 
     var lastInteracted = 0;
     var gameBannerShown = false;

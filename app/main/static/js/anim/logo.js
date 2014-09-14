@@ -63,35 +63,6 @@ var app = app || {};
     }
 
     /**
-     * Draws a line between two atoms based on the distance
-     * {Self Contained}
-     * {args atomA} : Object of class {Atom}
-     * {args atomB} : Object of class {Atom}
-     */
-    function energyLine(atomA, atomB, baseAlpha) {
-        var energyMinDist = 100;
-
-        var dx, dy, dist, alpha;
-
-        if (atomA.id === atomB.id) {
-            return;
-        }
-
-        dx = atomB.x - atomA.x;
-        dy = atomB.y - atomA.y;
-        dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < energyMinDist) {
-            alpha = (1 - dist / energyMinDist) * (baseAlpha || 0.2);
-            context.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
-            context.beginPath();
-            context.moveTo(atomA.x, atomA.y);
-            context.lineTo(atomB.x, atomB.y);
-            context.stroke();
-        }
-    }
-
-    /**
      * Draws an energy line between the mouse and the atom
 
      * {args m} : object with x, y cordinates of mouse/touch
@@ -175,7 +146,7 @@ var app = app || {};
                 }
 
                 if(drawEnergy) {
-                    energyLine(atom, atomB, alpha);
+                    anim.common.energyLine(context, atom, atomB, alpha);
                 }
 
                 // collide atoms with themselves

@@ -9,7 +9,11 @@ var anim = anim || {};
     var mPointer;
     var mTouching;
 
-    var mMode = 'logo';
+    // ready will be set to true when DOM loaded
+    // and we have appropritate width/height
+    var mReady = false;
+
+    var mMode;
     var mDrawFn;
 
     /**
@@ -40,7 +44,7 @@ var anim = anim || {};
         }
 
         if (document.readyState === "complete" || document.readyState === "loaded") {
-            app.main();
+            _ready();
         } else {
             document.addEventListener('DOMContentLoaded', _ready);
         }
@@ -85,8 +89,14 @@ var anim = anim || {};
         mCanvas.setAttribute('width', window.innerWidth);
         mCanvas.setAttribute('height', height);
 
-        // show the logo
-        mDrawFn = anim.logo.main(mCanvas, mContext);
+        // goto ready and recall set mode if if it was called
+        // and set before we were ready
+        mReady = true;
+        if (mMode !== undefined) {
+            setMode(mMode);
+        }
+
+        // register loop and goto ready state
         window.requestAnimationFrame(loop);
     }
 
@@ -95,16 +105,22 @@ var anim = anim || {};
      */
     function loop() {
         window.requestAnimationFrame(loop);
+        if (!mReady || mMode === undefined){
+            return;
+        }
+
         mDrawFn();
     }
 
-    function changeMode(mode) {
+    function setMode(mode) {
         if (mode === 'game') {
             mDrawFn = anim.game.main(mCanvas, mContext);
 
         } else if (mode === 'logo') {
             mDrawFn = anim.logo.main(mCanvas, mContext);
         }
+
+        mMode = mode;
     }
 
     /**
@@ -120,7 +136,7 @@ var anim = anim || {};
 
     // external interface
     anim.init = init;
-    anim.changeMode = changeMode;
+    anim.setMode = setMode;
     anim.getPointer = getPointer;
 
 })();

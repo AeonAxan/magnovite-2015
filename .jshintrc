@@ -9,7 +9,8 @@
         "Modernizr": true,
         "countdown": true,
         "app": true,
-        "anim": true
+        "anim": true,
+        "mixpanel": true
     },
     "browser": true
 }

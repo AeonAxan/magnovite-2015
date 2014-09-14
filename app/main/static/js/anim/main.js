@@ -54,6 +54,7 @@ var anim = anim || {};
                 addEventListener('click', function(e) {
                     e.preventDefault();
 
+                    mixpanel.track('game-mode-start');
                     setMode('game');
                 });
         }

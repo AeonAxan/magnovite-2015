@@ -30,42 +30,12 @@ var app = app || {};
     var externalLetterEdges;
 
     /**
-     * Layout letters, all letter should be of height 240
-     */
-    function createLetters(text) {
-        var letterSpacing = 30;
-
-        var letters = [];
-
-        // calculate width needed
-        var totalWidth = 0;
-        text.split('').forEach(function(c) {
-            totalWidth += anim.shapeData[c].width;
-            totalWidth += letterSpacing;
-        });
-        totalWidth -= letterSpacing;
-
-        var letterX = (canvas.width / 2) - (totalWidth / 2);
-        var letterY = (canvas.height / 2) - (240 / 2);
-        text.split('').forEach(function(c) {
-            var shape = anim.shapeData[c];
-
-            letters.push(new anim.Letter(letterX, letterY, shape));
-
-            letterX += shape.width + letterSpacing;
-        });
-
-        return letters;
-    }
-
-    /**
      * Entry point for the logo
      */
     function main(_canvas, _context) {
         var i;
 
         atoms = [];
-        letters = [];
         externalLetterEdges = [];
         energyDelay = ENERGY_DELAY;
 
@@ -84,7 +54,7 @@ var app = app || {};
         }
 
         // init Letters
-        letters = createLetters(text);
+        letters = anim.common.createLetters(canvas, text);
         letters.forEach(function(letter) {
             Array.prototype.push.apply(externalLetterEdges, letter.external);
         });

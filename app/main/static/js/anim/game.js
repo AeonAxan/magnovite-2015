@@ -211,8 +211,9 @@ var anim = anim || {};
 
         mixpanel.track('game-over', {
             score: maxCaught,
-            time: currentTimeDiff
+            timeLeft: currentTimeDiff
         });
+        console.log(maxCaught,currentTimeDiff);
 
         $scoreCurrent.innerHTML = maxCaught;
         $scoreBest.innerHTML = maxScore;

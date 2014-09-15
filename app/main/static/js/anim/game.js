@@ -213,7 +213,6 @@ var anim = anim || {};
             score: maxCaught,
             timeLeft: currentTimeDiff
         });
-        console.log(maxCaught,currentTimeDiff);
 
         $scoreCurrent.innerHTML = maxCaught;
         $scoreBest.innerHTML = maxScore;

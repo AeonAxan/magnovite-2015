@@ -431,3 +431,8 @@ h3 {
     transform: translateX(50%);
     opacity: 0;
 }
+
+/*Score Reset Button positioning */
+.js-reset {
+    float: right;
+}

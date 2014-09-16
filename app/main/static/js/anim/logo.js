@@ -15,6 +15,7 @@ var app = app || {};
 
     var lastInteracted = 0;
     var gameBannerShown = false;
+    var BANNER_TIMEOUT = 750;
 
     // timing delays
     var ATOM_MIN_DELAY = 1000;
@@ -124,7 +125,7 @@ var app = app || {};
 
         if (gameBannerShown && caughtAtoms === 0) {
             lastInteracted += 15;
-            if (lastInteracted >= 2000 && gameBannerShown) {
+            if (lastInteracted >= BANNER_TIMEOUT && gameBannerShown) {
                 document.body.classList.remove('logo-interacted');
                 gameBannerShown = false;
             }

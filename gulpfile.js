@@ -10,6 +10,20 @@ var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var autoprefixer = require('gulp-autoprefixer');
 
+var browserSync = require('browser-sync');
+
+gulp.task('browser-sync', function() {
+    'use strict';
+
+    browserSync({
+        proxy: 'localhost:8000',
+        files: "app/main/static/css/*.css",
+    });
+});
+
+/**
+ * Distribute task, builds the whole project
+ */
 gulp.task('dist', function(cb) {
     'use strict';
 

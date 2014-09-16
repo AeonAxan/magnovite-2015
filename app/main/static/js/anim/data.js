@@ -199,7 +199,7 @@ anim.shapeData = {
             ['J', 'I', 'H', [['J', 'I', false]]],
             ['I', 'H', 'F', [['I', 'F', false]]],
             ['D', 'F', 'H', [['D', 'H', false]]],
-            ['B', 'D', 'F', [['D', 'B', false], ['F', 'B', false]]],
+            ['B', 'D', 'F', [['D', 'B', true], ['F', 'B', false]]],
         ]
     },
 

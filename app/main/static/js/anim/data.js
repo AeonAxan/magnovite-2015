@@ -287,7 +287,7 @@ anim.shapeData = {
     },
 
 'C': {
-        'width': 150,
+        'width': 170,
         'height': 150,
         'vertices': {
             'A':[30, 0],
@@ -330,7 +330,7 @@ anim.shapeData = {
 
 
 'U': {
-        'width': 150,
+        'width': 170,
         'height': 150,
         'vertices': {
             'A':[00, 0],
@@ -371,7 +371,7 @@ anim.shapeData = {
     },
 
     'F': {
-        'width': 150,
+        'width': 170,
         'height': 150,
         'vertices': {
             'A':[30, 0],
@@ -411,7 +411,7 @@ anim.shapeData = {
     },
 
     'X': {
-        'width': 120,
+        'width': 170,
         'height': 150,
         'vertices': {
             'A': [00, 0],

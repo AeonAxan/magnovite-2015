@@ -8,11 +8,39 @@ var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
+var autoprefixer = require('gulp-autoprefixer');
 
+var browserSync = require('browser-sync');
+
+gulp.task('browser-sync', function() {
+    'use strict';
+
+    browserSync({
+        proxy: 'localhost:8000',
+        files: "app/main/static/css/*.css",
+    });
+});
+
+/**
+ * Distribute task, builds the whole project
+ */
 gulp.task('dist', function(cb) {
     'use strict';
 
-    runSequence(['clean', 'usemin'], 'move-usemin', 'clean-usemin');
+    runSequence(['clean', 'usemin'], 'move-usemin', ['clean-usemin', 'prefix']);
+});
+
+/**
+ * CSS Prefix for the generated css file
+ */
+gulp.task('prefix', function() {
+    'use strict';
+
+    return gulp.src('app/main/static/dist/*.css', {base: './'})
+               .pipe(autoprefixer({
+                    cascade: false
+               }))
+               .pipe(gulp.dest('./'));
 });
 
 /**

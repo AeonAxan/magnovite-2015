@@ -25,6 +25,7 @@ var anim = anim || {};
 
     var currentCaught;
     var maxCaught;
+    var currentTimeDiff;
 
     // timing delays
     var ATOM_MIN_DELAY = 1000;
@@ -91,6 +92,10 @@ var anim = anim || {};
             document.getElementsByClassName('js-prog-max'));
         $progressCurrBars = Array.prototype.slice.call(
             document.getElementsByClassName('js-prog-curr'));
+
+        if (anim.gamePlayCount === undefined) {
+            anim.gamePlayCount = 0;
+        }
 
         updateCaught();
         updateTimer();
@@ -174,6 +179,9 @@ var anim = anim || {};
             return;
         }
 
+        anim.gamePlayCount++;
+
+        mixpanel.track('game-start', {count: anim.gamePlayCount});
         mStartTime = new Date();
         mState = 'playing';
         document.body.classList.add('game-playing');
@@ -200,6 +208,11 @@ var anim = anim || {};
         } else {
             maxScore = '-';
         }
+
+        mixpanel.track('game-over', {
+            score: maxCaught,
+            timeLeft: currentTimeDiff
+        });
 
         $scoreCurrent.innerHTML = maxCaught;
         $scoreBest.innerHTML = maxScore;
@@ -300,10 +313,13 @@ var anim = anim || {};
 
         diff = MAX_TIME - ((new Date()) - mStartTime);
         if (diff <= 0) {
+            currentTimeDiff = 0;
             gameOver();
             time = '0:00:00';
 
         } else {
+            currentTimeDiff = diff;
+
             min = Math.floor(diff / (60 * 1000));
             diff -= min * 60 * 1000;
 

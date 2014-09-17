@@ -52,7 +52,7 @@ anim.shapeData = {
         },
 
         'triangles':[
-            ['A', 'B', 'C', [['A', 'B', false]]],
+            ['A', 'B', 'C', [['A', 'B', true]]],
             ['B', 'C', 'D', [['D', 'B', false]]],
             ['C', 'D', 'E', [['C', 'E', false]]],
             ['E', 'I', 'J', [['E', 'I', false], ['I', 'J', false]]],

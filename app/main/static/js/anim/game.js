@@ -9,7 +9,7 @@ var anim = anim || {};
     var mNumAtoms = 30;
 
     var mLetters;
-    var mText = 'TTVTT';
+    var mText = 'CUFX';
     var mExternalEdges;
 
     // DOM references

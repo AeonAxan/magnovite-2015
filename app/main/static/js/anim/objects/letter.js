@@ -114,6 +114,33 @@ var anim = anim || {};
         context.restore();
     };
 
+    /**
+     * Checks whether the cordinates are in any of the triangles
+     */
+    Letter.prototype.containsPoint = function(x, y) {
+        var topx = this.x;
+        var topy = this.y;
+        var contains = false;
+        var diffx = x - topx;
+        var diffy = y - topy;
+
+        if (diffx < 0 || diffy < 0 || 
+            diffx > this.width || diffy > this.height) {
+            return false;
+        }
+
+        this.triangles.every(function(triangle) {
+            if(triangle.containsPoint(diffx, diffy)) {
+                contains = true;
+                return false;;
+            } 
+            return true;
+        });
+
+        return contains;
+    }
+
     anim.Letter = Letter;
+    
 })();
 

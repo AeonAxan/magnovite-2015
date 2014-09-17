@@ -51,20 +51,22 @@ var app = app || {};
             text = 'M';
         }
 
+           // init Letters
+        letters = anim.common.createLetters(canvas, text);
+        letters.forEach(function(letter) {
+            Array.prototype.push.apply(externalLetterEdges, letter.external);
+        });
+
         // init atoms
         for (i = 0; i < nAtoms; i++) {
             atoms.push(new anim.Atom(canvas, ATOM_MIN_DELAY +
-                Math.random() * ATOM_VAR_DELAY));
+                Math.random() * ATOM_VAR_DELAY, letters));
         }
 
         document.body.classList.remove('game-mode');
         document.body.classList.add('logo-mode');
 
-        // init Letters
-        letters = anim.common.createLetters(canvas, text);
-        letters.forEach(function(letter) {
-            Array.prototype.push.apply(externalLetterEdges, letter.external);
-        });
+     
 
         return draw;
     }

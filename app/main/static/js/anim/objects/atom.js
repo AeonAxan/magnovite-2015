@@ -24,7 +24,7 @@ var anim = anim || {};
      * {arg canvas} : canvas element DOM node
      * {Constructor}
      */
-    function Atom(canvas, delay) {
+    function Atom(canvas, delay, letters) {
         this.id = id++;
         mCanvas = canvas;
 
@@ -41,8 +41,28 @@ var anim = anim || {};
         this.highlightColor = normalHighlight;
         this.highlightAlpha = 0;
 
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        // Makes sure that atom coordinates are not inside the letters
+        var x, y; 
+        var invalid = false;
+        while(true) {
+            x = Math.random() * canvas.width;
+            y = Math.random() * canvas.height;
+            letters.every(function(letter) {
+                if (letter.containsPoint(x, y)) {
+                    invalid = true;
+                    return false;
+                }
+                return true;
+            });
+            if (!invalid) {
+                break;
+            } else {
+                invalid = false;
+            }
+        }
+        this.x = x;
+        this.y = y;
+
         this.vx = Math.random() * maxSpeed;
         this.vy = Math.random() * maxSpeed;
         this.vx *= Math.round(Math.random()) * -1;
@@ -60,8 +80,6 @@ var anim = anim || {};
     }
 
     Atom.prototype.randomise = function() {
-        this.x = Math.random() * mCanvas.width;
-        this.y = Math.random() * mCanvas.height;
         this.x = Math.random() * mCanvas.width;
         this.y = Math.random() * mCanvas.height;
         this.vx = Math.random() * maxSpeed;

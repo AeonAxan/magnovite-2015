@@ -7,21 +7,18 @@ Setup and running
 =================
 Clone the repo and cd to the folder
 
-    git clone https://github.com/AeonAxan/magnovite-2015
-    cd magnovite-2015
+    $ git clone https://github.com/AeonAxan/magnovite-2015
+    $ cd magnovite-2015
 
-Install python3 and use pip3, if your default pip is pip3 use `pip`. (Note: You might want to do this in a virtualenv)
-**If your pip defaults to python2 pip you should use `pip3` instead**
-  
-    pip install -r requirements/dev.txt
+Install and setup Vagrant and VirtualBox. This may take sometime depending
+on your internet speed
+
+    $ vagrant up
     
-If you get an error about postgres look [here](http://stackoverflow.com/questions/5420789/how-to-install-psycopg2-with-pip-on-python)
-    
-Run a development server.
-**If your default python is python2 instead run `python3 manage.py runserver`**
-    
-    ./manage.py runserver
-    
+    $ vagrant ssh
+    $ ./manage.py runserver 0.0.0.0:8000
+
+Now the website should be available on `localhost:8000`
 
 Contributing
 =============

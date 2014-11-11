@@ -1,0 +1,56 @@
+#canvas {
+    background: #0a0e3e;
+    vertical-align: bottom;
+}
+
+.landing {
+    height: 700px;
+    background: #0a0e3e;
+}
+
+.landing-bar {
+    background: #010212;
+    box-shadow: inset 0px 10px 50px -10px #000;
+    height: 250px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.timer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    .landing {
+        height: auto;
+    }
+
+    #canvas {
+        display: block;
+        position: static;
+    }
+
+    .landing-bar {
+        height: auto;
+    }
+
+    .timer {
+        display: block;
+        height: auto;
+        position: static;
+    }
+}
+
+/** logo-interacted will be added to body **/
+.logo-interacted .timers {
+    transform: translateY(40px);
+}
+
+.logo-interacted .timer-banner {
+    transform: translateY(0);
+}

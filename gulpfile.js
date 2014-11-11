@@ -1,6 +1,7 @@
 /* global require */
 
 var gulp = require('gulp');
+var less = require('gulp-less');
 var usemin = require('gulp-usemin');
 var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
@@ -11,6 +12,12 @@ var runSequence = require('run-sequence');
 var autoprefixer = require('gulp-autoprefixer');
 
 var browserSync = require('browser-sync');
+
+gulp.task('watch', function() {
+    'use strict';
+
+    gulp.watch('app/main/static/css/**/*.less', ['css']);
+});
 
 gulp.task('browser-sync', function() {
     'use strict';
@@ -27,7 +34,18 @@ gulp.task('browser-sync', function() {
 gulp.task('dist', function(cb) {
     'use strict';
 
-    runSequence(['clean', 'usemin'], 'move-usemin', ['clean-usemin', 'prefix']);
+    runSequence(['clean', 'usemin', 'css'], 'move-usemin', ['clean-usemin', 'prefix']);
+});
+
+/**
+ * Builds the css files (less) to the app.css file
+ */
+gulp.task('css', function() {
+    'use strict';
+
+    return gulp.src('app/main/static/css/app.less')
+               .pipe(less())
+               .pipe(gulp.dest('app/main/static/css/'));
 });
 
 /**

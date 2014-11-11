@@ -1,0 +1,116 @@
+.timer-block {
+    display: inline-block;
+    height: 250px;
+    width: 200px;
+}
+
+@media only screen and (max-width: 767px) {
+    .timer-block {
+        margin: 10px 0;
+        width: 150px;
+    }
+
+    .timer-block:last-child {
+        display: none;
+    }
+}
+
+.timer-block .numeric {
+    color: rgba(16, 19, 65, 1);
+    font-size: 50px;
+    height: 70px;
+    line-height: 70px;
+
+    transition: all 250ms ease-in;
+}
+
+.desktop .timer-block .numeric {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.desktop.logo-done .timer-block .numeric {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timer-block .description {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    height: 30px;
+    letter-spacing: 6px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.desktop .timer-block .description {
+    opacity: 0.2;
+    transition: all 500ms ease-out 1000ms;
+}
+
+.desktop.logo-done .timer-block .description {
+    opacity: 1;
+}
+
+.timer-block .binary {
+    height: 150px;
+    padding: 10px;
+    text-align: center;
+}
+
+.binary .bin-col {
+    display: inline-block;
+    margin: 5px 5px 0 5px;
+    text-indent: center;
+    width: 20px;
+}
+
+.binary .dot {
+    background: #0a0e3e;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    height: 10px;
+    margin: 10px auto;
+    width: 10px;
+
+    transition: all 125ms ease-out;
+}
+
+.desktop .binary .dot {
+    transform: translateY(10px);
+    opacity: 0;
+}
+
+.desktop.logo-done .binary .dot {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.desktop .binary .dot:nth-child(4) {
+    transition: opacity 250ms ease-in 225ms,
+                transform 125ms ease-in 225ms;
+}
+
+.desktop .binary .dot:nth-child(3) {
+    transition: opacity 250ms ease-in 250ms,
+                transform 125ms ease-in 250ms;
+}
+
+.desktop .binary .dot:nth-child(2) {
+    transition: opacity 250ms ease-in 300ms,
+                transform 125ms ease-in 300ms;
+}
+
+.desktop .binary .dot:nth-child(1) {
+    transition: opacity 250ms ease-in 350ms,
+                transform 125ms ease-in 350ms;
+}
+
+.binary .dot.on {
+    background: #80FF00;
+    border: 1px solid #969696;
+    box-shadow: 0px 0px 10px 2px #2F5E00;
+}

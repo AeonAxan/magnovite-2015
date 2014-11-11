@@ -369,10 +369,10 @@ table {
   margin: 0 auto;
 }
 .game-bar .progress-inner.curr {
-  background: #616DFF;
+  background: #616dff;
 }
 .game-bar .progress-inner.max {
-  background: #2332DF;
+  background: #2332df;
 }
 .game-bar-inner {
   width: 990px;
@@ -384,7 +384,7 @@ table {
   width: 330px;
   height: 100%;
   float: left;
-  color: #7679B3;
+  color: #7679b3;
   text-align: left;
   transition: all 250ms ease-out;
 }
@@ -400,7 +400,7 @@ table {
   margin: auto;
   width: 250px;
   height: 150px;
-  border: 8px solid #1D28AD;
+  border: 8px solid #1d28ad;
   background: #010212;
   color: #616DFF;
   font-size: 48px;
@@ -415,14 +415,14 @@ table {
   width: 50%;
   height: 100%;
   left: 0;
-  border-right: 4px solid #1D28AD;
+  border-right: 4px solid #1d28ad;
 }
 .score-col .right {
   position: absolute;
   width: 50%;
   height: 100%;
   right: 0;
-  border-left: 4px solid #1D28AD;
+  border-left: 4px solid #1d28ad;
 }
 /**
  * Game bar left
@@ -454,7 +454,7 @@ table {
 .game-bar .score-block h4 {
   display: block;
   color: rgba(255, 255, 255, 0.51);
-  background: #1D28AD;
+  background: #1d28ad;
   height: 40px;
   font-size: 14px;
   line-height: 40px;
@@ -482,4 +482,8 @@ table {
 /*Score Reset Button positioning */
 .js-reset {
   float: right;
+}
+.bulb {
+  height: 900px;
+  background: yellow;
 }

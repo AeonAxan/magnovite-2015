@@ -1,3 +1,8 @@
+@c_progress_curr: #616DFF;
+@c_progress_max: #2332DF;
+@c_game_bar_text: #7679B3;
+@c_game_bar_border: #1D28AD;
+
 .game-mode .timer {
     transform: translateX(-100%);
 }
@@ -34,11 +39,11 @@
 }
 
 .game-bar .progress-inner.curr {
-    background: #616DFF;
+    background: @c_progress_curr;
 }
 
 .game-bar .progress-inner.max {
-    background: #2332DF;
+    background: @c_progress_max;
 }
 
 .game-bar-inner {
@@ -51,7 +56,7 @@
     width: 330px;
     height: 100%;
     float: left;
-    color: #7679B3;
+    color: @c_game_bar_text;
     text-align: left;
 
     transition: all 250ms ease-out;
@@ -66,7 +71,7 @@
     margin: auto;
     width: 250px;
     height: 150px;
-    border: 8px solid #1D28AD;
+    border: 8px solid @c_game_bar_border;
     background: #010212;
 
     color: #616DFF;
@@ -84,7 +89,7 @@
     width: 50%;
     height: 100%;
     left: 0;
-    border-right: 4px solid #1D28AD;
+    border-right: 4px solid @c_game_bar_border ;
 }
 
 .score-col .right {
@@ -92,7 +97,7 @@
     width: 50%;
     height: 100%;
     right: 0;
-    border-left: 4px solid #1D28AD;
+    border-left: 4px solid @c_game_bar_border ;
 }
 
 /**
@@ -131,7 +136,7 @@
 .game-bar .score-block h4 {
     display: block;
     color: rgba(255, 255, 255, 0.51);
-    background: #1D28AD;
+    background: @c_game_bar_border ;
     height: 40px;
     font-size: 14px;
     line-height: 40px;

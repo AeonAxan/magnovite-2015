@@ -20,6 +20,15 @@ on your internet speed
 
 Now the website should be available on `localhost:8000`
 
+Development
+============
+
+When developing css, run the gulp watch process which will
+automatically compile the .less files into the needed .css file
+to be included. This will run everytime you save a .less file
+
+    $ gulp watch
+
 Contributing
 =============
 

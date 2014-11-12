@@ -14,7 +14,8 @@ Install and setup Vagrant and VirtualBox. This may take sometime depending
 on your internet speed
 
     $ vagrant up
-    
+    # Go drink a coffee, walk around a bit and come back
+
     $ vagrant ssh
     $ runserver
 

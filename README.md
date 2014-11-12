@@ -29,6 +29,10 @@ to be included. This will run everytime you save a .less file
 
     $ gulp watch
 
+or you can run the `css` gulp task manually
+
+    $ gulp css
+
 Contributing
 =============
 

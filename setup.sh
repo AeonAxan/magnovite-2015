@@ -9,6 +9,9 @@ apt-get update -y
 # Install libraries we need
 apt-get install -y build-essential libpq-dev python3-pip
 
+# install nodejs npm
+apt-get install nodejs npm
+
 set up virtual environment
 pip3 install virtualenv
 pip3 install virtualenvwrapper
@@ -27,7 +30,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv -p /usr/bin/python3 $PROJECT_NAME
 workon $PROJECT_NAME
 
+# setup project dependencies
 pip install -r requirements/dev.txt
+npm install
 
 # edit bashrc so when we ssh we are in the right place
 echo 'workon magnovite' >> /home/vagrant/.bashrc

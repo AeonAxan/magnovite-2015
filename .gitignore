@@ -6,3 +6,4 @@ app/staticfiles
 *.sqlite3
 myvirtualenv
 *~
+.vagrant

@@ -9,7 +9,7 @@ var anim = anim || {};
     var mNumAtoms = 30;
 
     var mLetters;
-    var mText = 'TTVTT';
+    var mText = 'CUFX';
     var mExternalEdges;
 
     // DOM references
@@ -57,17 +57,17 @@ var anim = anim || {};
         mEnergyDelay = ENERGY_DELAY;
         mState = 'ready';
 
-        // init atoms
-        for (i = 0; i < mNumAtoms; i++) {
-            mAtoms.push(new anim.Atom(canvas,
-                ATOM_MIN_DELAY + Math.random() * ATOM_VAR_DELAY));
-        }
-
-        // init letters
+         // init letters
         mLetters = anim.common.createLetters(canvas, mText);
         mLetters.forEach(function(letter) {
             Array.prototype.push.apply(mExternalEdges, letter.external);
         });
+
+        // init atoms
+        for (i = 0; i < mNumAtoms; i++) {
+            mAtoms.push(new anim.Atom(canvas,
+                ATOM_MIN_DELAY + Math.random() * ATOM_VAR_DELAY, mLetters));
+        }
 
         document.body.classList.remove('logo-mode');
         document.body.classList.add('game-mode');

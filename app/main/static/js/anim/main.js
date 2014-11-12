@@ -23,12 +23,14 @@ var anim = anim || {};
      */
     function init() {
         if (!Modernizr.canvas) {
-            window.alert('blah');
+            window.alert('Sorry, we do not support your browser. For a better experience please use' +
+                'a more modern browser');
         }
 
         if (window.innerWidth < 767) {
             anim.mobile = true;
         } else {
+
             anim.desktop = true;
         }
 

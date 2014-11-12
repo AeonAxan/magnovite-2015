@@ -23,3 +23,13 @@ pip install -r requirements/dev.txt
 
 echo "=======Npm installing Node dependencies"
 npm install
+
+# Update bashrc
+echo "=======Updating bashrc"
+cat <<EOF >> ~/.bashrc
+workon magnovite
+cd /home/vagrant/magnovite/
+alias runserver="python manage.py runserver 0.0.0.0:8000"
+echo -e "\n================\n$ runserver - runs the python server"
+echo -e "================\n"
+EOF

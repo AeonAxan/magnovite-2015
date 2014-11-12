@@ -27,11 +27,6 @@ echo 'export WORKON_HOME=/home/vagrant/.virtualenvs' >> /home/vagrant/.bashrc
 echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >> /home/vagrant/.bashrc
 echo '. /usr/local/bin/virtualenvwrapper.sh' >> /home/vagrant/.bashrc
 
-# edit bashrc so when we ssh we are in the right place
-echo "=======Editing bashrc"
-echo 'workon magnovite' >> /home/vagrant/.bashrc
-echo 'cd /home/vagrant/magnovite/' >> /home/vagrant/.bashrc
-
 # gulp needs to be installed globally
 echo "=======Installing gulp globally"
 npm install -g gulp

@@ -539,8 +539,9 @@ table {
 .circle:hover {
   transform: scale(1.1, 1.1);
   transition: all 125ms ease-out;
+  border: 2px solid #ffffff;
   box-shadow: 0px 0px 30px 5px rgba(126, 147, 255, 0.55);
-  background: #80FF00;
+  background: #22AFFF;
 }
 .circle.c1 {
   left: 120px;

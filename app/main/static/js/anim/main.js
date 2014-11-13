@@ -120,6 +120,11 @@ var anim = anim || {};
             return;
         }
 
+        // dont draw if canvas is not visible
+        if (mCanvas.height < window.scrollY) {
+            return;
+        }
+
         mDrawFn();
     }
 

@@ -4,28 +4,16 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var usemin = require('gulp-usemin');
 var uglify = require('gulp-uglify');
-var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var autoprefixer = require('gulp-autoprefixer');
 
-var browserSync = require('browser-sync');
-
 gulp.task('watch', function() {
     'use strict';
 
     gulp.watch('app/main/static/css/**/*.less', ['css']);
-});
-
-gulp.task('browser-sync', function() {
-    'use strict';
-
-    browserSync({
-        proxy: 'localhost:8000',
-        files: "app/main/static/css/*.css",
-    });
 });
 
 /**

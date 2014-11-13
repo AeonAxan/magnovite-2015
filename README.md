@@ -14,9 +14,10 @@ Install and setup Vagrant and VirtualBox. This may take sometime depending
 on your internet speed
 
     $ vagrant up
-    
+    # Go drink a coffee, walk around a bit and come back
+
     $ vagrant ssh
-    $ ./manage.py runserver 0.0.0.0:8000
+    $ runserver
 
 Now the website should be available on `localhost:8000`
 

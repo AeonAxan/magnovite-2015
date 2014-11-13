@@ -1,4 +1,102 @@
+@c_bulb_section_background: @dark_blue;
+@c_circle_background: lighten(@dark_blue, 20%);
+
+@bulb_height: 687px;
+@bulb_width: 700px;
+
+@hexagon_width: 400px;
+@hexagon_height: 450px;
+@hexagon_side_offset: (@bulb_width - @hexagon_width) / 2;
+
+// utilities used for position calculation
+@hex_half_w: @hexagon_width / 2;
+@hex_half_h: @hexagon_height / 2;
+
+// top tent height = w/2 * (tan angle)
+// tan30 = 0.57735026919
+@hex_tent_height: @hex_half_w * 0.70;
+@hex_body_height: @hexagon_height - @hex_tent_height * 2;
+
+@circle_radius: 40px;
+@circle_diameter: @circle_radius * 2;
+
+// whole section in the page
+.bulb-section {
+    width: 100%;
+    height: @bulb_height;
+    background: @c_bulb_section_background;
+}
+
 .bulb {
-    height: 900px;
-    background: yellow;
+    width: @bulb_width;
+    height: @bulb_height;
+    margin: 0 auto;
+    position: relative;
+
+    .background {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Hexagon container
+.hexagon {
+    width: @hexagon_width;
+    height: @hexagon_height;
+
+    position: absolute;
+    top: 70px;
+    left: @hexagon_side_offset;
+    right: @hexagon_side_offset;
+}
+
+// individual circles, numbered 1-6 clockwise
+.circle {
+    width: @circle_diameter;
+    height: @circle_diameter;
+    border-radius: @circle_diameter/2;
+    position: absolute;
+
+    background: @c_circle_background;
+
+    img {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        margin: auto;
+    }
+
+    &:hover {
+        transform: scale(1.1, 1.1);
+        transition: all 125ms ease-out;
+    }
+}
+
+.circle.c1 {
+    left: @hex_half_w - @circle_radius;
+    top: 0;
+}
+
+.circle.c2 {
+    right: 0;
+    top: @hex_tent_height - @circle_radius;
+}
+
+.circle.c3 {
+    right: 0;
+    top: @hex_tent_height + @hex_body_height - @circle_radius;
+}
+
+.circle.c4 {
+    bottom: 0;
+    left: @hex_half_w - @circle_radius;
+}
+
+.circle.c5 {
+    left: 0;
+    top: @hex_tent_height - @circle_radius;
+}
+
+.circle.c6 {
+    left: 0;
+    top: @hex_tent_height + @hex_body_height - @circle_radius;
 }

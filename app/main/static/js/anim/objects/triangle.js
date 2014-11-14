@@ -10,20 +10,20 @@ var anim = anim || {};
 
     var colors = [
         {
-            fill: '#313886',
-            highlight: 'rgba(151, 158, 236, '
+            fill: '#0F59EB',
+            highlight: 'rgba(12, 66, 172, '
         },
         {
-            fill: '#1d226e',
-            highlight: 'rgba(80, 85, 161, '
+            fill: '#0C42AC',
+            highlight: 'rgba(3, 44, 126, '
         },
         {
-            fill: '#0e145d',
-            highlight: 'rgba(65, 71, 144, '
+            fill: '#032C7E',
+            highlight: 'rgba(21, 100, 255, '
         },
         {
-            fill: '#2e347c',
-            highlight: 'rgba(97, 103, 175,'
+            fill: '#1564FF',
+            highlight: 'rgba(15, 89, 235,'
         }
     ];
 
@@ -102,7 +102,7 @@ var anim = anim || {};
      * Checks if the triangle contains the point
      * x and y should be local cordinates to the letters
      * http://stackoverflow.com/questions/13300904/determine-whether-point-lies-inside-triangle
-     */  
+     */
     Triangle.prototype.containsPoint = function(x, y) {
         var ver1x = this.cordinates[0][0];
         var ver1y = this.cordinates[0][1];

@@ -167,15 +167,15 @@ table {
   border: 1px solid #4D5AEE;
 }
 #canvas {
-  background: #0a0e3e;
+  background: #001e6b;
   vertical-align: bottom;
 }
 .landing {
   height: 700px;
-  background: #0a0e3e;
+  background: #001e6b;
 }
 .landing-bar {
-  background: #010212;
+  background: #00021a;
   box-shadow: inset 0px 10px 50px -10px #000000;
   height: 250px;
   text-align: center;
@@ -306,7 +306,7 @@ table {
   box-shadow: 0px 0px 10px 2px #2F5E00;
 }
 .timer-banner {
-  background: #0a3900;
+  background: #188900;
   position: absolute;
   top: 0;
   left: 0;
@@ -325,9 +325,11 @@ table {
 }
 .button.green {
   font-size: 16px;
+  line-height: 21px;
   text-transform: uppercase;
-  background: #80aa00;
-  color: rgba(255, 255, 255, 0.6);
+  background: #85f70a;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: bold;
 }
 .timer-banner .button:hover {
   transition: all 125ms ease-out;
@@ -514,8 +516,7 @@ table {
   border-radius: 40px;
   position: absolute;
   cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0px 0px 1px 2px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(118, 182, 252, 0.9);
   background: #17208d;
 }
 .circle img {
@@ -539,9 +540,9 @@ table {
 .circle:hover {
   transform: scale(1.1, 1.1);
   transition: all 125ms ease-out;
-  border: 2px solid #ffffff;
-  box-shadow: 0px 0px 30px 5px rgba(126, 147, 255, 0.55);
-  background: #22AFFF;
+  border: 2px solid #98D1FD;
+  box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.26);
+  background: #0099FF;
 }
 .circle.c1 {
   left: 85px;

@@ -8,9 +8,9 @@ var anim = anim || {};
 (function() {
     'use strict';
 
-    var verticeFillStyle = 'rgba(80, 186, 248, 0.9)';
+    var verticeFillStyle = '#03A9F4';
     var verticeRadius = 2;
-    var lineStrokeStyle = 'rgba(80, 186, 248, 0.5)';
+    var lineStrokeStyle = '#0D88FF';
 
     /**
      * The Letter object, represents each single letter
@@ -124,7 +124,7 @@ var anim = anim || {};
         var diffx = x - topx;
         var diffy = y - topy;
 
-        if (diffx < 0 || diffy < 0 || 
+        if (diffx < 0 || diffy < 0 ||
             diffx > this.width || diffy > this.height) {
             return false;
         }
@@ -133,7 +133,7 @@ var anim = anim || {};
             if(triangle.containsPoint(diffx, diffy)) {
                 contains = true;
                 return false;;
-            } 
+            }
             return true;
         });
 
@@ -141,6 +141,6 @@ var anim = anim || {};
     }
 
     anim.Letter = Letter;
-    
+
 })();
 

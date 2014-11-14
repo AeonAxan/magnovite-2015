@@ -7,8 +7,8 @@ var anim = anim || {};
     var taggedColor = '#4fe400';
     var taggedHighlight = 'rgba(0, 255, 0, ';
 
-    var normalColor = '#1d215c';
-    var normalHighlight = 'rgba(88, 93, 155,';
+    var normalColor = '#0F6EAB';
+    var normalHighlight = 'rgba(53, 223, 255, ';
 
     var id = 1;
     var minRadius = 7;
@@ -42,7 +42,7 @@ var anim = anim || {};
         this.highlightAlpha = 0;
 
         // Makes sure that atom coordinates are not inside the letters
-        var x, y; 
+        var x, y;
         var invalid = false;
         while(true) {
             x = Math.random() * canvas.width;

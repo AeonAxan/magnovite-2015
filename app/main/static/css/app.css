@@ -501,12 +501,12 @@ table {
   height: 657px;
 }
 .hexagon {
-  width: 320px;
-  height: 350px;
+  width: 250px;
+  height: 288.6751346px;
   position: absolute;
-  top: 70px;
-  left: 90px;
-  right: 90px;
+  top: 110px;
+  left: 125px;
+  right: 125px;
 }
 .circle {
   width: 80px;
@@ -544,26 +544,26 @@ table {
   background: #22AFFF;
 }
 .circle.c1 {
-  left: 120px;
-  top: 0;
+  left: 85px;
+  top: -40px;
 }
 .circle.c2 {
-  right: 0;
-  top: 72px;
+  right: -40px;
+  top: 32.16878365px;
 }
 .circle.c3 {
-  right: 0;
-  top: 198px;
+  right: -40px;
+  bottom: 32.16878365px;
 }
 .circle.c4 {
-  bottom: 0;
-  left: 120px;
+  bottom: -40px;
+  left: 85px;
 }
 .circle.c5 {
-  left: 0;
-  top: 72px;
+  left: -40px;
+  bottom: 32.16878365px;
 }
 .circle.c6 {
-  left: 0;
-  top: 198px;
+  left: -40px;
+  top: 32.16878365px;
 }

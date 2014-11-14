@@ -6,18 +6,21 @@
 @bulb_height: 687px;
 @bulb_width: 500px;
 
-@hexagon_width: 320px;
-@hexagon_height: 350px;
+@hexagon_width: 250px;
+// a = w/2 * cos 30
+@hex_a: @hexagon_width / (2 * 0.86602540378px);
+// tent height = a * cos 60
+@hex_tent_height: @hex_a * 0.5;
+@hexagon_height: @hex_a + 2 * @hex_tent_height;
 @hexagon_side_offset: (@bulb_width - @hexagon_width) / 2;
+@hexagon_top_offset: 110px;
 
 // utilities used for position calculation
 @hex_half_w: @hexagon_width / 2;
 @hex_half_h: @hexagon_height / 2;
 
 // top tent height = w/2 * (tan angle)
-// tan30 = 0.57735026919
-@hex_tent_height: @hex_half_w * 0.70;
-@hex_body_height: @hexagon_height - @hex_tent_height * 2;
+@hex_body_height: @hex_a;
 
 @circle_radius: 40px;
 @circle_diameter: @circle_radius * 2;
@@ -45,11 +48,12 @@
 
 // Hexagon container
 .hexagon {
+    // background: red;
     width: @hexagon_width;
     height: @hexagon_height;
 
     position: absolute;
-    top: 70px;
+    top: @hexagon_top_offset;
     left: @hexagon_side_offset;
     right: @hexagon_side_offset;
 }
@@ -100,30 +104,30 @@
 
 .circle.c1 {
     left: @hex_half_w - @circle_radius;
-    top: 0;
+    top: -@circle_radius;
 }
 
 .circle.c2 {
-    right: 0;
+    right: -@circle_radius;
     top: @hex_tent_height - @circle_radius;
 }
 
 .circle.c3 {
-    right: 0;
-    top: @hex_tent_height + @hex_body_height - @circle_radius;
+    right: -@circle_radius;
+    bottom: @hex_tent_height - @circle_radius;
 }
 
 .circle.c4 {
-    bottom: 0;
+    bottom: -@circle_radius;
     left: @hex_half_w - @circle_radius;
 }
 
 .circle.c5 {
-    left: 0;
-    top: @hex_tent_height - @circle_radius;
+    left: -@circle_radius;
+    bottom: @hex_tent_height - @circle_radius;
 }
 
 .circle.c6 {
-    left: 0;
-    top: @hex_tent_height + @hex_body_height - @circle_radius;
+    left: -@circle_radius;
+    top: @hex_tent_height - @circle_radius;
 }

@@ -568,3 +568,47 @@ table {
   left: -40px;
   top: 32.16878365px;
 }
+.line {
+  width: 144.3375673px;
+  height: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.line.l1 {
+  left: 250px;
+  top: 72.16878365px;
+  transform: rotate(-150deg);
+  transform-origin: left center;
+}
+.line.l2 {
+  left: 250px;
+  top: 72.16878365px;
+  transform: rotate(90deg);
+  transform-origin: left;
+}
+.line.l3 {
+  left: 250px;
+  top: 216.50635095px;
+  transform: rotate(150deg);
+  transform-origin: left;
+}
+.line.l4 {
+  left: 0;
+  top: 216.50635095px;
+  transform: rotate(30deg);
+  transform-origin: left;
+}
+.line.l5 {
+  left: 0;
+  top: 72.16878365px;
+  transform: rotate(90deg);
+  transform-origin: left;
+}
+.line.l6 {
+  left: 0;
+  top: 72.16878365px;
+  transform: rotate(-30deg);
+  transform-origin: left;
+}

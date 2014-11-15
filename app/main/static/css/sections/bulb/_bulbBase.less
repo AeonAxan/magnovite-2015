@@ -183,3 +183,56 @@
     transform: rotate(-30deg);
     transform-origin: left;
 }
+
+// individual lines, numbered 1-6 clockwise
+.line {
+    width: @hex_body_height;
+    height: 2px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.line.l1 {
+    left: @hexagon_width - @circle_radius;
+    top: @hex_tent_height; 
+    transform: rotate(-145deg);
+    transform-origin: left ; 
+}
+
+
+.line.l2 {
+    left: @hexagon_width - @circle_radius;
+    top: @hex_tent_height; 
+    transform: rotate(90deg);
+    transform-origin: left; 
+}
+
+.line.l3 {
+    left: @hexagon_width - @circle_radius;
+    top: @hex_body_height + @hex_tent_height;
+    transform: rotate(145deg);
+    transform-origin: left; 
+}
+
+.line.l4 {
+    left: @circle_radius;
+    top: @hex_body_height + @hex_tent_height;
+    transform: rotate(35deg);
+    transform-origin: left; 
+}
+
+.line.l5 {
+    left: @circle_radius ;
+    top: @hex_tent_height ;
+    transform: rotate(90deg);
+    transform-origin: left; 
+}
+
+.line.l6 {
+    left: @circle_radius;
+    top: @hex_tent_height;
+    transform: rotate(-35deg);
+    transform-origin: left; 
+}

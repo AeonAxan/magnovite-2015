@@ -40,7 +40,8 @@ Contributing
 Please work in your own branch, and send a pull request with your branch rebased onto the latest updated version
 of master. This will make sure all potential conflicts are resolved. 
 
-    git pull upstream master
+    # rebase only when the branch your using have never been pushed to upstream before
+    git pull upstream master --rebase
     git checkout my-feature
     git rebase master
     

@@ -567,3 +567,47 @@ table {
   left: 0;
   top: 198px;
 }
+.line {
+  width: 126px;
+  height: 2px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.line.l1 {
+  left: 280px;
+  top: 112px;
+  transform: rotate(-145deg);
+  transform-origin: left ;
+}
+.line.l2 {
+  left: 280px;
+  top: 112px;
+  transform: rotate(90deg);
+  transform-origin: left;
+}
+.line.l3 {
+  left: 280px;
+  top: 238px;
+  transform: rotate(145deg);
+  transform-origin: left;
+}
+.line.l4 {
+  left: 40px;
+  top: 238px;
+  transform: rotate(35deg);
+  transform-origin: left;
+}
+.line.l5 {
+  left: 40px;
+  top: 112px;
+  transform: rotate(90deg);
+  transform-origin: left;
+}
+.line.l6 {
+  left: 40px;
+  top: 112px;
+  transform: rotate(-35deg);
+  transform-origin: left;
+}

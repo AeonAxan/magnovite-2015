@@ -23,7 +23,10 @@
 @circle_diameter: @circle_radius * 2;
 
 // line animation and fade speed for hex
-@hex_line_speed: 700ms; 
+@hex_line_speed: 600ms; 
+
+//m letter speed
+@m_speed: 3s;
 
 // Hexagon container
 .hexagon {
@@ -269,28 +272,23 @@
     }
 }
 
-//svg 
+.hexagon svg {
+    width: 280px; 
+    height: 290px;
+ }
+
+// svg path 
 .path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  -webkit-animation: dash 10s infinite;
-  animation: dash 5s linear alternate infinite;
+    padding-left: 0;
+    transition: all @m_speed linear;
+    transition-delay: 3 * @hex_line_speed;  
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    fill: @dark_blue;
+    stroke: #98D1FD;
+    stroke-width: 4;
 }
 
-@-webkit-keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
+.hex-loaded .path {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
 }

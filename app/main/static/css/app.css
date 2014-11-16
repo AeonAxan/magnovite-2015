@@ -601,30 +601,30 @@ em {
   top: -40px;
 }
 .circle.c1 img {
-  transition-delay: 1750ms;
+  transition-delay: 1500ms;
 }
 .circle.c1 .cover {
-  transition-delay: 1750ms;
+  transition-delay: 1500ms;
 }
 .circle.c2 {
   right: -40px;
   top: 32.16878365px;
 }
 .circle.c2 img {
-  transition-delay: 1050ms;
+  transition-delay: 900ms;
 }
 .circle.c2 .cover {
-  transition-delay: 1050ms;
+  transition-delay: 900ms;
 }
 .circle.c3 {
   right: -40px;
   bottom: 32.16878365px;
 }
 .circle.c3 img {
-  transition-delay: 350ms;
+  transition-delay: 300ms;
 }
 .circle.c3 .cover {
-  transition-delay: 350ms;
+  transition-delay: 300ms;
 }
 .circle.c4 {
   bottom: -40px;
@@ -641,20 +641,20 @@ em {
   bottom: 32.16878365px;
 }
 .circle.c5 img {
-  transition-delay: 350ms;
+  transition-delay: 300ms;
 }
 .circle.c5 .cover {
-  transition-delay: 350ms;
+  transition-delay: 300ms;
 }
 .circle.c6 {
   left: -40px;
   top: 32.16878365px;
 }
 .circle.c6 img {
-  transition-delay: 1050ms;
+  transition-delay: 900ms;
 }
 .circle.c6 .cover {
-  transition-delay: 1050ms;
+  transition-delay: 900ms;
 }
 .line {
   width: 144.3375673px;
@@ -669,7 +669,7 @@ em {
   width: 0;
   box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.26);
   background: #0099FF;
-  transition: all 700ms ease-out;
+  transition: all 600ms ease-out;
 }
 .hex-loaded .inner-line {
   width: 100%;
@@ -681,7 +681,7 @@ em {
   transform-origin: left center;
 }
 .line.l1 .inner-line {
-  transition-delay: 1400ms;
+  transition-delay: 1200ms;
 }
 .line.l2 {
   left: 250px;
@@ -690,7 +690,7 @@ em {
   transform-origin: left;
 }
 .line.l2 .inner-line {
-  transition-delay: 700ms;
+  transition-delay: 600ms;
 }
 .line.l3 {
   left: 125px;
@@ -717,7 +717,7 @@ em {
   transform-origin: left;
 }
 .line.l5 .inner-line {
-  transition-delay: 700ms;
+  transition-delay: 600ms;
 }
 .line.l6 {
   left: 0;
@@ -726,29 +726,24 @@ em {
   transform-origin: left;
 }
 .line.l6 .inner-line {
-  transition-delay: 1400ms;
+  transition-delay: 1200ms;
+}
+.hexagon svg {
+  width: 280px;
+  height: 290px;
 }
 .path {
+  padding-left: 0;
+  transition: all 3s linear;
+  transition-delay: 1800ms;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  -webkit-animation: dash 10s infinite;
-  animation: dash 5s linear alternate infinite;
+  fill: #03175f;
+  stroke: #98D1FD;
+  stroke-width: 4;
 }
-@-webkit-keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+.hex-loaded .path {
+  stroke-dashoffset: 0;
 }
 .right-pane {
   padding: 80px 10px 0 10px;

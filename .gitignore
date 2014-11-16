@@ -7,3 +7,4 @@ app/staticfiles
 myvirtualenv
 *~
 .vagrant
+app/main/static/css/app\.css

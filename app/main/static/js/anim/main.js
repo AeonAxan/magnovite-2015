@@ -16,6 +16,17 @@ var anim = anim || {};
     var mMode;
     var mDrawFn;
 
+    // we want to scale down everything
+    for (var shape in anim.shapeData) {
+        anim.shapeData[shape].width *= anim.scale;
+        anim.shapeData[shape].height *= anim.scale;
+
+        for (var vertice in anim.shapeData[shape].vertices) {
+            anim.shapeData[shape].vertices[vertice][0] *= anim.scale;
+            anim.shapeData[shape].vertices[vertice][1] *= anim.scale;
+        }
+    }
+
     /**
      * Entry point for the landing page animation
      * This is the only external function

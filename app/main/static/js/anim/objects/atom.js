@@ -11,8 +11,8 @@ var anim = anim || {};
     var normalHighlight = 'rgba(53, 223, 255, ';
 
     var id = 1;
-    var minRadius = 7;
-    var varRadius = 3;
+    var minRadius = 7 * anim.scale;
+    var varRadius = 3 * anim.scale;
     var maxSpeed = 0.7;
     var weight = 5;
 

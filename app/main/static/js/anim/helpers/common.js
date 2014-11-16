@@ -8,7 +8,7 @@ anim.common = {
     createLetters: function(canvas, text) {
         'use strict';
 
-        var letterSpacing = 30;
+        var letterSpacing = 30 * anim.scale;
 
         var letters = [];
 

@@ -22,6 +22,9 @@
 @circle_radius: 40px;
 @circle_diameter: @circle_radius * 2;
 
+// line animation and fade speed for hex
+@hex_line_speed: 700ms; 
+
 // Hexagon container
 .hexagon {
     // background: red;
@@ -114,10 +117,19 @@
     position: absolute;
     top: 0;
     left: 0;
+    background: @dark_blue;
+}
 
+.inner-line {
     border: 1px solid #98D1FD;
+    width: 0;
     box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.26);
     background: #0099FF;
+    transition: all @hex_line_speed ease-out;
+}
+
+.hex-loaded .inner-line {
+    width: 100%;
 }
 
 .line.l1 {
@@ -125,35 +137,54 @@
     top: @hex_tent_height;
     transform: rotate(-150deg);
     transform-origin: left center;
-}
 
+    .inner-line {
+        transition-delay: 2 * @hex_line_speed ;   
+    }
+}
 
 .line.l2 {
     left: @hexagon_width;
-    top: @hex_tent_height;
-    transform: rotate(90deg);
+    top: @hex_a + @hex_tent_height;
+    transform: rotate(-90deg);
     transform-origin: left;
+
+    .inner-line {
+        transition-delay: @hex_line_speed;   
+    }
 }
 
 .line.l3 {
-    left: @hexagon_width;
-    top: @hex_a + @hex_tent_height;
-    transform: rotate(150deg);
+    left: @hex_half_w;
+    top: @hexagon_height;
+    transform: rotate(-30deg);
     transform-origin: left;
+    
+    .inner-line {
+        transition-delay: 0;   
+    }
 }
 
 .line.l4 {
-    left: 0;
-    top: @hex_a + @hex_tent_height;
-    transform: rotate(30deg);
+    left: @hex_half_w;
+    top: @hexagon_height;
+    transform: rotate(-150deg);
     transform-origin: left;
+    
+    .inner-line {
+        transition-delay: 0;   
+    }
 }
 
 .line.l5 {
     left: 0;
-    top: @hex_tent_height ;
-    transform: rotate(90deg);
+    top: @hex_a + @hex_tent_height ;
+    transform: rotate(-90deg);
     transform-origin: left;
+    
+    .inner-line {
+        transition-delay: @hex_line_speed;   
+    }
 }
 
 .line.l6 {
@@ -161,4 +192,34 @@
     top: @hex_tent_height;
     transform: rotate(-30deg);
     transform-origin: left;
+    
+    .inner-line {
+        transition-delay: 2 * @hex_line_speed;   
+    }
+}
+
+//svg 
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 10s infinite;
+  animation: dash 5s linear alternate infinite;
+}
+
+@-webkit-keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }

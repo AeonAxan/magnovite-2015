@@ -592,6 +592,9 @@ em {
   transform: scale(1, 1);
   opacity: 1;
 }
+.hex-loaded .circle:hover .cover {
+  background: none;
+}
 .hex-loaded .circle .cover {
   background: rgba(0, 20, 170, 0.15);
   border: none;

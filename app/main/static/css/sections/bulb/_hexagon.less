@@ -23,7 +23,7 @@
 @circle_diameter: @circle_radius * 2;
 
 // line animation and fade speed for hex
-@hex_line_speed: 600ms; 
+@hex_line_speed: 600ms;
 
 //m letter speed
 @m_speed: 3s;
@@ -47,7 +47,7 @@
     border-radius: @circle_radius;
     position: absolute;
     cursor: pointer;
-    
+
     border: 2px solid @inactive_dark_blue;
 //  border: 2px solid rgba(118, 182, 252, 0.9);
 
@@ -93,10 +93,14 @@
 
 .hex-loaded .circle {
     border: 2px solid rgba(118, 182, 252, 0.9);
-    
+
     img {
         transform: scale(1, 1);
         opacity: 1;
+    }
+
+    &:hover .cover {
+        background: none;
     }
 
     .cover {
@@ -126,7 +130,7 @@
      img {
         transition-delay: 1.5 * @hex_line_speed;
     }
-    
+
     .cover {
         transition-delay: 1.5 * @hex_line_speed;
     }
@@ -135,7 +139,7 @@
 .circle.c3 {
     right: -@circle_radius;
     bottom: @hex_tent_height - @circle_radius;
-    
+
      img {
         transition-delay: .5 * @hex_line_speed;
     }
@@ -148,7 +152,7 @@
 .circle.c4 {
     bottom: -@circle_radius;
     left: @hex_half_w - @circle_radius;
-    
+
      img {
         transition-delay: 0;
     }
@@ -161,7 +165,7 @@
 .circle.c5 {
     left: -@circle_radius;
     bottom: @hex_tent_height - @circle_radius;
-    
+
      img {
         transition-delay: 0.5 * @hex_line_speed;
     }
@@ -178,7 +182,7 @@
     img {
         transition-delay: 1.5 * @hex_line_speed;
     }
-    
+
     .cover {
         transition-delay: 1.5 * @hex_line_speed;
     }
@@ -213,7 +217,7 @@
     transform-origin: left center;
 
     .inner-line {
-        transition-delay: 2 * @hex_line_speed ;   
+        transition-delay: 2 * @hex_line_speed ;
     }
 }
 
@@ -224,7 +228,7 @@
     transform-origin: left;
 
     .inner-line {
-        transition-delay: @hex_line_speed;   
+        transition-delay: @hex_line_speed;
     }
 }
 
@@ -233,9 +237,9 @@
     top: @hexagon_height;
     transform: rotate(-30deg);
     transform-origin: left;
-    
+
     .inner-line {
-        transition-delay: 0;   
+        transition-delay: 0;
     }
 }
 
@@ -244,9 +248,9 @@
     top: @hexagon_height;
     transform: rotate(-150deg);
     transform-origin: left;
-    
+
     .inner-line {
-        transition-delay: 0;   
+        transition-delay: 0;
     }
 }
 
@@ -255,9 +259,9 @@
     top: @hex_a + @hex_tent_height ;
     transform: rotate(-90deg);
     transform-origin: left;
-    
+
     .inner-line {
-        transition-delay: @hex_line_speed;   
+        transition-delay: @hex_line_speed;
     }
 }
 
@@ -266,22 +270,22 @@
     top: @hex_tent_height;
     transform: rotate(-30deg);
     transform-origin: left;
-    
+
     .inner-line {
-        transition-delay: 2 * @hex_line_speed;   
+        transition-delay: 2 * @hex_line_speed;
     }
 }
 
 .hexagon svg {
-    width: 280px; 
+    width: 280px;
     height: 290px;
  }
 
-// svg path 
+// svg path
 .path {
     padding-left: 0;
     transition: all @m_speed linear;
-    transition-delay: 3 * @hex_line_speed;  
+    transition-delay: 3 * @hex_line_speed;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     fill: @dark_blue;

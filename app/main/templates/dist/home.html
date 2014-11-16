@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-c0b6bf4a.css"/>
+    <link rel="stylesheet" href="/static/dist/style-52f25af1.css"/>
 
     <script src="/static/js/lib/modernizer.js"></script>
     <script>
-      /* jshint ignore:start */
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        /* jshint ignore:start */
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-54797624-1', 'auto');
-      ga('send', 'pageview');
-      /* jshint ignore:end */
+        ga('create', 'UA-54797624-1', 'auto');
+        ga('send', 'pageview');
+        /* jshint ignore:end */
     </script>
 
     <script type="text/javascript">
-    /* jshint ignore:start */
-    (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
-    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-    mixpanel.init("9d4e8285d03b2f254b40f5ef2b831028");
-    /* jshint ignore:end */
+        /* jshint ignore:start */
+        (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+            for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+                mixpanel.init("9d4e8285d03b2f254b40f5ef2b831028");
+            /* jshint ignore:end */
     </script>
 </head>
 <body>
@@ -34,7 +34,6 @@
         <canvas id="canvas"></canvas>
 
         <div class="landing-bar">
-
             <div class="game-bar">
                 <div class="progress top">
                     <div class="progress-inner max js-prog-max">
@@ -47,8 +46,8 @@
                         <h3>How to Play</h3>
                         <p>Collect all the atoms without touching the letters!</p>
                         <p>
-                        Your score is the maximum number of of atoms you collect
-                        together under the pointer
+                            Your score is the maximum number of of atoms you collect
+                            together under the pointer
                         </p>
 
                         <a href="#" class="button js-countdown">Countdown</a>
@@ -71,16 +70,13 @@
                     </div>
                 </div>
                 <div class="progress bottom">
-                     <div class="progress-inner max js-prog-max">
+                    <div class="progress-inner max js-prog-max">
                         <div class="progress-inner curr js-prog-curr"></div>
                     </div>
                 </div>
             </div>
 
             <div class="timer">
-                <div class="timer-banner">
-                    <p class="button green js-start-game">Enter Game Arena</p>
-                </div>
                 <div class="timers">
                     <div class="timer-block">
                         <div class="binary">
@@ -160,12 +156,149 @@
                         <p class="description">seconds</p>
                         <p class="numeric">19</p>
                     </div>
-                </div>
+                </div> <!-- /.timers -->
+            </div> <!-- /.timer -->
+        </div> <!-- /.landing-bar -->
 
+        <div class="timer-banner">
+            <p class="button green js-start-game">Enter Game Arena</p>
+        </div>
+    </div> <!-- /.landing -->
+
+    <div class="bulb-section preload default">
+        <div class="backdrop"></div>
+
+        <div class="container">
+
+            <div class="pane bulb-pane">
+                <div class="bulb">
+                    <img class="background" src="/static/img/bulb.png" alt="">
+
+                    <div class="hexagon">
+
+                        <!-- centre.M.svg start -->
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 340 333" enable-background="new 0 0 340 333" xml:space="preserve">
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+
+                            <path class="path"  style="filter: url(#glow);" stroke-miterlimit="10" d="m 125.13336,135.53188 c 0,0 20.93668,24.37023 39.53358,19.2305 18.59692,-5.13976 31.20557,-47.09167 54.54404,-35.7757 8.06895,3.91234 12.36646,18.35529 6.43336,13.87732 -28.72014,-21.67638 -24.68558,8.6978 -21.78672,17.70046 1.84701,5.73604 6.28865,17.69903 7.36821,20.06579 3.85529,8.45207 -6.8071,34.52123 -17.29766,34.00726 -10.49057,-0.51397 5.71061,-68.65415 -20.31435,-33.60654 -17.21274,23.18026 -16.3845,3.16654 -36.88668,-17.39237 -20.50336,-20.56008 -16.95828,67.2784 -27.44882,57.51289 -10.490574,-9.76552 -8.73878,-45.661 -4.44719,-63.13612 0,0 8.72059,-28.10746 20.30223,-12.48349 z"/>
+                        </svg><!-- centre.M.svg end -->
+
+                        <div class="line l1"><div class="inner-line"></div></div>
+                        <div class="line l2"><div class="inner-line"></div></div>
+                        <div class="line l3"><div class="inner-line"></div></div>
+                        <div class="line l4"><div class="inner-line"></div></div>
+                        <div class="line l5"><div class="inner-line"></div></div>
+                        <div class="line l6"><div class="inner-line"></div></div>
+
+                        <div class="circle c1" data-type="c1">
+                            <img src="/static/img/wrench.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <div class="circle c2" data-type="c2">
+                            <img src="/static/img/book.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <div class="circle c3" data-type="c3">
+                            <img src="/static/img/guitar.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <div class="circle c4" data-type="c4">
+                            <img src="/static/img/hammer.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <div class="circle c5" data-type="c5">
+                            <img src="/static/img/mic.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <div class="circle c6" data-type="c6">
+                            <img src="/static/img/nuclear.png" alt="">
+                            <div class="cover"></div>
+                        </div>
+                    </div> <!-- /.bulb -->
+                </div>
             </div>
 
+            <div class="pane right-pane">
+                <div class="event-section default">
+                    <h2 class="title">
+                        Magnovite 2015
+                    </h2>
+
+                    <p class="content">
+                        Christ University Faculty of Engineering presents
+                        its annual Tech Fest to be held on <em>24th and 25th of February</em>
+                        2015.
+                    </p>
+                </div>
+                <div class="event-section c1">
+                    <h2 class="title">
+                        Circle One
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+                <div class="event-section c2">
+                    <h2 class="title">
+                        Circle Two
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+                <div class="event-section c3">
+                    <h2 class="title">
+                        Circle Three
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+                <div class="event-section c4">
+                    <h2 class="title">
+                        Circle Four
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+                <div class="event-section c5">
+                    <h2 class="title">
+                        Circle Five
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+                <div class="event-section c6">
+                    <h2 class="title">
+                        Circle Six
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
+                </div>
+            </div> <!-- /.right-pane -->
         </div>
-    </div>
+    </div> <!-- /.bulb-section -->
 
     <script>
     // TODO: modulerize into a init script
@@ -178,11 +311,21 @@
         document.body.classList.add('mobile');
         app.mobile = true;
     }
+
+    // scale down logo
+    var anim = {scale: 0.8};
     </script>
 
-    <script src="/static/dist/app-560cb4b0.js"></script>
+    <script src="/static/dist/app-58dd54e0.js"></script>
 
     <script>
+    // load fonts
+    WebFont.load({
+        google: {
+          families: ['Roboto:300', 'Roboto:700']
+        }
+    });
+
     mixpanel.track('landing-page');
 
     // get things rolling
@@ -196,6 +339,9 @@
 
         document.body.classList.add('logo-done');
     }, 2500);
+
+    // start the choreographer
+    app.choreographer.init();
     </script>
 </body>
 </html>

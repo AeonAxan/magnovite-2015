@@ -7,6 +7,10 @@ app.bulb = {};
     var $hexagon = document.querySelector('.hexagon');
     var $bulbSection = document.querySelector('.bulb-section');
 
+    // the classList last added
+    var lastClicked = 'default';
+    var lastOutClass;
+
     /**
      * Initializes the bulb
      * @return {number} number of ms bulb needs to initialize
@@ -27,7 +31,41 @@ app.bulb = {};
 
         }, hexLines + hexM);
 
+        // set up bulb section hovers
+        var $circles = Array.prototype.slice.call($hexagon.querySelectorAll('.circle'));
+        $circles.forEach(function(circle) {
+            circle.addEventListener('mouseover', handleClick);
+        });
+
         return hexLines + hexM + splitPane;
     };
+
+    function handleClick(e) {
+        var target = e.target;
+        var el = target;
+
+        if (target.classList.contains('cover')) {
+            el = target.parentElement;
+        }
+
+        var sectionClass = el.dataset.type;
+        if (sectionClass === lastClicked) {
+            return;
+        }
+
+        if (lastClicked) {
+            $bulbSection.classList.remove(lastClicked);
+
+            if (lastOutClass) {
+                $bulbSection.classList.remove(lastOutClass);
+            }
+
+            $bulbSection.classList.add(lastClicked + '-out');
+            lastOutClass = lastClicked + '-out';
+        }
+
+        lastClicked = sectionClass;
+        $bulbSection.classList.add(sectionClass);
+    }
 
 })();

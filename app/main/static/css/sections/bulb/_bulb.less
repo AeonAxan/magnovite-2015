@@ -1,0 +1,18 @@
+@bulb_top: 20px;
+@bulb_bottom: 10px;
+@bulb_height: 687px;
+@bulb_width: 500px;
+
+.bulb {
+    width: @bulb_width;
+    height: @bulb_height;
+    margin: 0 auto;
+    position: relative;
+
+    .background {
+        margin-top: @bulb_top;
+        margin-bottom: @bulb_bottom;
+        width: 100%;
+        height: @bulb_height - @bulb_top - @bulb_bottom;
+    }
+}

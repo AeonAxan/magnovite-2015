@@ -10,7 +10,8 @@
         "countdown": true,
         "app": true,
         "anim": true,
-        "mixpanel": true
+        "mixpanel": true,
+        "WebFont": true
     },
     "browser": true
 }

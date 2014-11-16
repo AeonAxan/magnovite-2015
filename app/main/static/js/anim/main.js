@@ -54,6 +54,7 @@ var anim = anim || {};
             // height, in mobile canvas is equal to browser height
             var landing = document.getElementsByClassName('landing')[0];
             landing.style.height = window.innerHeight + 'px';
+            anim.sectionHeight = window.innerHeight;
         }
 
         if (document.readyState === "complete" || document.readyState === "loaded") {

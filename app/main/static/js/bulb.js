@@ -11,6 +11,9 @@ app.bulb = {};
     var lastClicked = 'default';
     var lastOutClass;
 
+    // timeout for hover
+    var hoverTimeout;
+
     /**
      * Initializes the bulb
      * @return {number} number of ms bulb needs to initialize
@@ -34,13 +37,20 @@ app.bulb = {};
         // set up bulb section hovers
         var $circles = Array.prototype.slice.call($hexagon.querySelectorAll('.circle'));
         $circles.forEach(function(circle) {
-            circle.addEventListener('mouseover', handleClick);
+            circle.addEventListener('mouseover', handleHover);
+        });
+
+        $circles.forEach(function(circle) {
+            circle.addEventListener('mouseout', handleHoverOut);
         });
 
         return hexLines + hexM + splitPane;
     };
 
-    function handleClick(e) {
+    /**
+     * When the mouse hovers over a circle
+     */
+    function handleHover(e) {
         var target = e.target;
         var el = target;
 
@@ -66,6 +76,25 @@ app.bulb = {};
 
         lastClicked = sectionClass;
         $bulbSection.classList.add(sectionClass);
+    }
+
+    function handleHoverOut(e) {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+
+        // goto default pane if no hovers in set time
+        hoverTimeout = setTimeout(function() {
+            $bulbSection.classList.remove(lastOutClass);
+
+            $bulbSection.classList.add(lastClicked + '-out');
+            lastOutClass = lastClicked + '-out';
+
+            $bulbSection.classList.remove(lastClicked);
+
+            $bulbSection.classList.add('default');
+            lastClicked = 'default';
+        }, 2000);
     }
 
 })();

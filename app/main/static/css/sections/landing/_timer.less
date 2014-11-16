@@ -1,7 +1,10 @@
+@timer_block_width: 140px;
+@timer_block_height: 220px;
+
 .timer-block {
     display: inline-block;
-    height: 250px;
-    width: 200px;
+    height: @timer_block_height;
+    width: @timer_block_width;
 }
 
 @media only screen and (max-width: 767px) {
@@ -16,10 +19,11 @@
 }
 
 .timer-block .numeric {
-    color: rgba(16, 19, 65, 1);
-    font-size: 50px;
+    color: @text_blue;
+    font-size: 46px;
     height: 70px;
     line-height: 70px;
+    opacity: 1;
 
     transition: all 250ms ease-in;
 }
@@ -30,12 +34,12 @@
 }
 
 .desktop.logo-done .timer-block .numeric {
-    opacity: 1;
+    opacity: 0.7;
     transform: translateY(0);
 }
 
 .timer-block .description {
-    color: rgba(255, 255, 255, 0.2);
+    color: @text_blue;
     font-size: 14px;
     height: 30px;
     letter-spacing: 6px;
@@ -55,25 +59,26 @@
 }
 
 .timer-block .binary {
-    height: 150px;
+    height: auto;
     padding: 10px;
+    padding-bottom: 0;
     text-align: center;
 }
 
 .binary .bin-col {
     display: inline-block;
     margin: 5px 5px 0 5px;
-    text-indent: center;
+    text-align: center;
     width: 20px;
 }
 
 .binary .dot {
-    background: #0a0e3e;
+    background: rgba(0, 36, 102, 1);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 3, 66, 1);
     display: inline-block;
     height: 10px;
-    margin: 10px auto;
+    margin: 5px auto;
     width: 10px;
 
     transition: all 125ms ease-out;
@@ -111,6 +116,6 @@
 
 .binary .dot.on {
     background: #80FF00;
-    border: 1px solid #969696;
-    box-shadow: 0px 0px 10px 2px #2F5E00;
+    border: 1px solid #99FF00;
+    box-shadow: 0px 0px 15px 0px rgba(128, 255, 0, 0.49);
 }

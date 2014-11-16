@@ -1,40 +1,48 @@
+@timer_banner_height: 35px;
+
 .timer-banner {
-    background: #188900;
+    background: rgba(128, 255, 0, 0.3);
     position: absolute;
-    top: 0;
+    bottom: 250px;
     left: 0;
     width: 100%;
-    height: 40px;
+    height: @timer_banner_height;
     text-align: center;
     overflow: hidden;
-    transform: translateY(-40px);
+    opacity: 0;
+    transition: all 250ms ease-out;
+    pointer-events: none;
+}
+
+.logo-interacted .timer-banner {
+    opacity: 1;
+    pointer-events: all;
 }
 
 .timer-banner .button {
     display: inline-block;
-    height: 40px;
-    padding: 10px 40px;
+    height: @timer_banner_height;
+    padding: 0px @timer_banner_height;
     transition: all 450ms ease-out;
     border: 0;
 }
 
 .button.green {
     font-size: 16px;
-    line-height: 21px;
+    line-height: @timer_banner_height;
     text-transform: uppercase;
     background: #85f70a;
-    color: rgba(0, 0, 0, 0.4);
-    font-weight: bold;
+    color: rgba(0, 38, 136, 1);
 }
 
 .timer-banner .button:hover {
     transition: all 125ms ease-out;
     cursor: pointer;
-    padding: 10px 15%;
+    padding: 0px 15%;
     text-align: center;
 }
 
-.game-mode .timer-banner .button {
-    padding: 10px 100%;
-    color: #80aa00;
+.game-mode .timer-banner {
+    opacity: 0;
+    display: none;
 }

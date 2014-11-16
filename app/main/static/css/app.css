@@ -26,6 +26,12 @@ h3 {
 .clearfix {
   *zoom: 1;
 }
+.container {
+  width: 1120px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -153,6 +159,21 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+html,
+body {
+  color: rgba(77, 205, 255, 0.8);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+h1,
+h2 {
+  display: block;
+  font-size: 24px;
+}
+em {
+  font-weight: bold;
 }
 .button {
   display: inline-block;
@@ -430,10 +451,14 @@ table {
  * Game bar left
  */
 .game-bar .left-col {
+  line-height: 1.2em;
   padding: 30px 0;
 }
 .game-bar .left-col p {
   margin-top: 10px;
+}
+.game-bar .left-col h3 {
+  font-weight: bold;
 }
 .game-bar .button {
   margin: 30px 20px 0 0;
@@ -489,26 +514,35 @@ table {
   width: 100%;
   height: 687px;
   background: #03175f;
+  padding: 20px;
+}
+.bulb-section .container {
+  width: 1200px;
+}
+.pane {
+  float: left;
+  width: 600px;
+  height: 100%;
 }
 .bulb {
-  width: 500px;
-  height: 687px;
+  height: 647px;
+  width: 460px;
   margin: 0 auto;
   position: relative;
 }
 .bulb .background {
   margin-top: 20px;
   margin-bottom: 10px;
-  width: 100%;
-  height: 657px;
+  width: 460px;
+  height: 617px;
 }
 .hexagon {
   width: 250px;
   height: 288.6751346px;
   position: absolute;
-  top: 110px;
-  left: 125px;
-  right: 125px;
+  top: 95px;
+  left: 105px;
+  right: 105px;
 }
 .circle {
   width: 80px;
@@ -611,4 +645,19 @@ table {
   top: 72.16878365px;
   transform: rotate(-30deg);
   transform-origin: left;
+}
+.right-pane {
+  padding: 80px 10px 0 10px;
+  text-align: center;
+  font-weight: 300;
+}
+.right-pane .title {
+  font-size: 64px;
+  padding: 50px 0;
+}
+.right-pane p {
+  font-size: 18px;
+  margin: 0 auto;
+  width: 500px;
+  padding: 10px;
 }

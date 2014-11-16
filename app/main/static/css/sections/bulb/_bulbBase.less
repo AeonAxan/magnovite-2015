@@ -1,9 +1,21 @@
 @c_bulb_section_background: #03175f;
 
+@section_width: 1200px;
 
 // whole section in the page
 .bulb-section {
     width: 100%;
-    height: @bulb_height;
+    height: @bulb_height + 40px;
     background: @c_bulb_section_background;
+    padding: 20px;
+
+    .container {
+        width: @section_width;
+    }
+}
+
+.pane {
+    float: left;
+    width: @section_width/2;
+    height: 100%;
 }

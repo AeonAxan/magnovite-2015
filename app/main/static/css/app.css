@@ -604,11 +604,13 @@ em {
 }
 .line {
   width: 144.3375673px;
-  height: 2px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  height: 1px;
   position: absolute;
   top: 0;
   left: 0;
+  border: 1px solid #98D1FD;
+  box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.26);
+  background: #0099FF;
 }
 .line.l1 {
   left: 250px;

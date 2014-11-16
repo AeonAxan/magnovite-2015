@@ -41,8 +41,13 @@ app.choreographer = {};
      */
     app.choreographer.init = function() {
         document.body.scrollTop = 0;
-        scrolling = false;
         sectionTwo = anim.sectionHeight;
+
+        // scrollhijack till logo finishes initializing
+        scrolling = true;
+        setTimeout(function() {
+            scrolling = false;
+        }, 3500);
     };
 
     /**

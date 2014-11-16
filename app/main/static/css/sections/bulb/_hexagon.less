@@ -1,6 +1,6 @@
 @c_circle_background: #17208d;
 
-@hexagon_width: 250px;
+@hexagon_width: 230px;
 
 // a = length of one side
 // a = w/2 * cos 30
@@ -13,17 +13,18 @@
 @hexagon_height: @hex_a + 2 * @hex_tent_height;
 
 @hexagon_side_offset: (@bulb_width - @hexagon_width) / 2;
-@hexagon_top_offset: 95px;
+@hexagon_top_offset: 115px;
 
 // utilities used for position calculation
 @hex_half_w: @hexagon_width / 2;
 @hex_half_h: @hexagon_height / 2;
 
-@circle_radius: 40px;
+@circle_radius: 36px;
 @circle_diameter: @circle_radius * 2;
+@circle_image_size: 40px;
 
 // line animation and fade speed for hex
-@hex_line_speed: 600ms;
+@hex_line_speed: 400ms;
 
 //m letter speed
 @m_speed: 3s;
@@ -49,15 +50,13 @@
     cursor: pointer;
 
     border: 2px solid @inactive_dark_blue;
-//  border: 2px solid rgba(118, 182, 252, 0.9);
-
     background: @c_circle_background;
 
     img {
-        width: 50px;
-        height: 50px;
-        margin-top: (@circle_diameter - 50px) / 2 - 2px;
-        margin-left: (@circle_diameter - 50px) / 2 - 2px;
+        width: @circle_image_size;
+        height: @circle_image_size;
+        margin-top: (@circle_diameter - @circle_image_size) / 2 - 2px;
+        margin-left: (@circle_diameter - @circle_image_size) / 2 - 2px;
         transform: scale(0.4, 0.4);
         opacity: 0.4;
         transition: all 250ms ease-out;
@@ -278,13 +277,13 @@
 }
 
 .hexagon svg {
-    width: 280px;
-    height: 290px;
+    width: @hexagon_width;
+    height: @hexagon_height;
+    margin-left: 10px;
  }
 
 // svg path
 .path {
-    padding-left: 0;
     transition: all @m_speed linear;
     transition-delay: 3 * @hex_line_speed;
     stroke-dasharray: 1000;

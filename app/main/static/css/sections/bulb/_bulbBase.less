@@ -3,15 +3,32 @@
 @section_width: 1200px;
 @bulb_pane_width: @section_width/2;
 
+@backdrop_image_size: 500px;
+
 // whole section in the page
 .bulb-section {
     width: 100%;
     height: @bulb_height + 40px;
     background: @c_bulb_section_background;
     padding: 20px;
+    position: relative;
 
     .container {
         width: @section_width;
+    }
+
+    // the background image
+    .backdrop {
+        width: @backdrop_image_size;
+        height: @backdrop_image_size;
+        background-repeat: none;
+        background-size: @backdrop_image_size @backdrop_image_size;
+        background-position: center center;
+
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        opacity: 0.1;
     }
 }
 
@@ -44,3 +61,28 @@
         transform: translateX(@section_width/4);
     }
 }
+
+.bulb-section.c1 .backdrop {
+    background-image: url('/static/img/wrench.png');
+}
+
+.bulb-section.c2 .backdrop {
+    background-image: url('/static/img/book.png');
+}
+
+.bulb-section.c3 .backdrop {
+    background-image: url('/static/img/guitar.png');
+}
+
+.bulb-section.c4 .backdrop {
+    background-image: url('/static/img/hammer.png');
+}
+
+.bulb-section.c5 .backdrop {
+    background-image: url('/static/img/mic.png');
+}
+
+.bulb-section.c6 .backdrop {
+    background-image: url('/static/img/nuclear.png');
+}
+

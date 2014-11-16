@@ -28,6 +28,11 @@ var anim = anim || {};
             mouse.y = y;
         }, false);
 
+        el.addEventListener('mouseout', function(e) {
+            mouse.x = NaN;
+            mouse.y = NaN;
+        });
+
         return mouse;
     };
 

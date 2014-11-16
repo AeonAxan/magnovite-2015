@@ -75,6 +75,10 @@ anim.common = {
     handleMouse: function(m, atom, context, _opts) {
         'use strict';
 
+        if (isNaN(m.x) || isNaN(m.y)) {
+            return;
+        }
+
         var opts = app.util.extend({
             maxDist: anim.mobile ? 200 : 125,
             force: 0.1,

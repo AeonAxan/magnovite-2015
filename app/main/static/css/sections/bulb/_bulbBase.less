@@ -18,4 +18,28 @@
     float: left;
     width: @section_width/2;
     height: 100%;
+    transition: all 300ms ease-out;
+}
+
+.bulb-section .right-pane {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 600ms;
+}
+
+.bulb-section .bulb-pane {
+    transform: translateX(0);
+    transition: all 250ms ease-in;
+}
+
+// loading animation
+.bulb-section.preload {
+    .right-pane {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    .bulb-pane {
+        transform: translateX(@section_width/4);
+    }
 }

@@ -58,6 +58,7 @@ app.choreographer = {};
     function initBulb() {
         // make sure we dont scroll while the bulb is initializing
         scrolling = true;
+        bulbInit = true;
 
         // bulb.init returns the ms it needs to initialize
         var timeNeeded = app.bulb.init();

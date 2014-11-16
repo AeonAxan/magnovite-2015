@@ -27,7 +27,7 @@
 @hex_line_speed: 400ms;
 
 //m letter speed
-@m_speed: 3s;
+@m_speed: 2s;
 
 // Hexagon container
 .hexagon {
@@ -90,7 +90,7 @@
     }
 }
 
-.hex-loaded .circle {
+.hex-load .circle {
     border: 2px solid rgba(118, 182, 252, 0.9);
 
     img {
@@ -206,7 +206,7 @@
     transition: all @hex_line_speed ease-out;
 }
 
-.hex-loaded .inner-line {
+.hex-load .inner-line {
     width: 100%;
 }
 
@@ -293,6 +293,6 @@
     stroke-width: 3;
 }
 
-.hex-loaded .path {
+.hex-load .path {
     stroke-dashoffset: 0;
 }

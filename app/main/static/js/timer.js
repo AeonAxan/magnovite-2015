@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
     'use strict';
 
-    var magnoviteDate = new Date(2015, 2, 17);
+    var magnoviteDate = new Date(2015, 1, 20);
 
     app.Timer = function() {
         this.tick();

@@ -48,6 +48,18 @@ app.choreographer = {};
         setTimeout(function() {
             scrolling = false;
         }, 3500);
+
+        // show the arrow after 2 seconds
+        document.body.classList.add('hide-arrow');
+        setTimeout(function() {
+            if (!bulbInit) {
+                document.body.classList.remove('hide-arrow');
+            }
+        }, 6000);
+
+        document.querySelector('.js-down-arrow').addEventListener('click', function(e) {
+            onScroll(true);
+        });
     };
 
     /**
@@ -61,6 +73,9 @@ app.choreographer = {};
      * Call the bulbs initizlier
      */
     function initBulb() {
+        // now we have scrolled once, so hide the down pointing arrow
+        document.body.classList.add('hide-arrow');
+
         // make sure we dont scroll while the bulb is initializing
         scrolling = true;
         bulbInit = true;

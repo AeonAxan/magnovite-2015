@@ -27,6 +27,7 @@
     padding-top: 80px;
 
     opacity: 0;
+    visibility: hidden;
     transform: translateY(-80px);
 
     transition: all 250ms ease-in;
@@ -38,6 +39,7 @@
 
 .bulb-section.default .default {
     opacity: 1;
+    visibility: visible;
 }
 
 .bulb-section.c1 .event-section.c1,
@@ -48,6 +50,7 @@
 .bulb-section.c6 .event-section.c6 {
     opacity: 1;
     transform: translateY(0);
+    visibility: visible;
 }
 
 .bulb-section.c1-out .event-section.c1,
@@ -57,5 +60,25 @@
 .bulb-section.c5-out .event-section.c5,
 .bulb-section.c6-out .event-section.c6 {
     opacity: 0;
+    visibility: hidden;
     transform: translateY(80px);
+}
+
+.subscribe {
+    margin-top: 50px;
+
+    p {
+        font-size: 16px;
+    }
+
+    input {
+        margin-right: 10px;
+    }
+}
+
+.subscribe.subscribed {
+    transition: all 350ms ease-out;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
 }

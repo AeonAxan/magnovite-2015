@@ -1,13 +1,79 @@
 .button {
     display: inline-block;
-    height: 40px;
-    padding: 10px 40px;
-    background: #000436;
-    color: #7A74FF;
+
+    height: 38px;
+    line-height: 38px;
+
+    font-size: 16px;
+    font-family: inherit;
     text-decoration: none;
-    border: 1px solid #040E83;
+    cursor: pointer;
+
+    padding: 0px 40px;
+    margin-right: -0.3em;
+
+    background: #00002C;
+    border: 1px solid rgb(0, 0, 49);
+    color: rgba(255, 255, 255, 0.8);
+
+    transition: all 350ms ease-out;
 }
 
 .button:hover {
-    border: 1px solid #4D5AEE;
+    box-shadow: 0px 0px 7px rgba(95, 236, 255, 0.26);
+    border: 1px solid rgba(77, 205, 255, 0.8);
+    background: #006BA7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.button:focus {
+    outline: none;
+}
+
+.progress-button {
+    position: relative;
+
+    .progress, .done {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .progress, .done {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    &.start {
+        .progress {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .text {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+    }
+
+    &.done {
+
+        .done {
+            color: rgba(77, 205, 255, 0.8);
+            text-shadow: 0px 0px 1px rgba(77, 205, 255, 0.8);
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .text {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+    }
 }

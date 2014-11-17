@@ -11,7 +11,8 @@
         "app": true,
         "anim": true,
         "mixpanel": true,
-        "WebFont": true
+        "WebFont": true,
+        "ActiveXObject": true
     },
     "browser": true
 }

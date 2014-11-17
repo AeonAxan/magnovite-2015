@@ -237,6 +237,16 @@
                         its annual Techno-Cultural Fest <em>"Magnovite 2015" to be held on the <em>20th and 21th of February</em>
                         2015.
                     </p>
+                </div>
+                <div class="event-section c1">
+                    <h2 class="title">
+                        Circle One
+                    </h2>
+
+                    <p class="content">
+                        This is the Circle one
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel, possimus!
+                    </p>
 
                     <div class="subscribe">
                         <p>
@@ -245,8 +255,8 @@
                         </p>
 
                         <div class="group">
-                            <input name="email" placeholder="email" />
-                            <button class="button progress-button">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
                                 <span class="text">Subscribe</span>
                                 <span class="progress">...</span>
                                 <span class="done">Subscribed!</span>
@@ -255,13 +265,17 @@
 
                     </div>
                 </div>
+
                 <div class="event-section c1">
                     <h2 class="title">
                         Technical Events
                     </h2>
 
                     <p class="content">
-                        Take a look at our diverse set of technical events each designed to test the engineering prowess and creativity of students from all technical disciplines.
+                        Take a look at our diverse set
+                        of technical events each designed to test the engineering
+                        prowess and creativity of students from all technical
+                        disciplines.
                     </p>
                 </div>
                 <div class="event-section c2">
@@ -272,6 +286,23 @@
                     <p class="content">
                         Get a sneak peak at what brilliant attractions the Manovite 2015 Exhibition will be offering up.
                     </p>
+
+                    <div class="subscribe">
+                        <p>
+                            Our registrations are not open yet. Drop us your email and we'll be sure
+                            to ping you when they are.
+                        </p>
+
+                        <div class="group">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
+                                <span class="text">Subscribe</span>
+                                <span class="progress">...</span>
+                                <span class="done">Subscribed!</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="event-section c3">
                     <h2 class="title">
@@ -281,6 +312,23 @@
                     <p class="content">
                         Let your hair down, and check out our fun-filled cultural night. Keep checking this space for updates!
                     </p>
+
+                    <div class="subscribe">
+                        <p>
+                            Our registrations are not open yet. Drop us your email and we'll be sure
+                            to ping you when they are.
+                        </p>
+
+                        <div class="group">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
+                                <span class="text">Subscribe</span>
+                                <span class="progress">...</span>
+                                <span class="done">Subscribed!</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="event-section c4">
                     <h2 class="title">
@@ -290,6 +338,23 @@
                     <p class="content">
                         Get your hands dirty and challenge your innovative abilities with one of our intuitive workshops.
                     </p>
+
+                    <div class="subscribe">
+                        <p>
+                            Our registrations are not open yet. Drop us your email and we'll be sure
+                            to ping you when they are.
+                        </p>
+
+                        <div class="group">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
+                                <span class="text">Subscribe</span>
+                                <span class="progress">...</span>
+                                <span class="done">Subscribed!</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="event-section c5">
                     <h2 class="title">
@@ -299,6 +364,23 @@
                     <p class="content">
                         Some people sing, some dance, some talk some draw and some just like to Rock n' Roll! Whatever it is you like doing, weve got the stage for you!
                     </p>
+
+                    <div class="subscribe">
+                        <p>
+                            Our registrations are not open yet. Drop us your email and we'll be sure
+                            to ping you when they are.
+                        </p>
+
+                        <div class="group">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
+                                <span class="text">Subscribe</span>
+                                <span class="progress">...</span>
+                                <span class="done">Subscribed!</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="event-section c6">
                     <h2 class="title">
@@ -308,6 +390,23 @@
                     <p class="content">
                         Enlighten yourself at one of our many keynote addresses by emminent members of the Technical and Non-Technical community.
                     </p>
+
+                    <div class="subscribe">
+                        <p>
+                            Our registrations are not open yet. Drop us your email and we'll be sure
+                            to ping you when they are.
+                        </p>
+
+                        <div class="group">
+                            <input class="js-email" name="email" placeholder="email" />
+                            <button class="js-subscribe button progress-button">
+                                <span class="text">Subscribe</span>
+                                <span class="progress">...</span>
+                                <span class="done">Subscribed!</span>
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
             </div> <!-- /.right-pane -->
         </div>
@@ -337,6 +436,7 @@
     <!-- takes care of scrolljacking as well as kicking off bulb anim -->
     <script src="/static/js/choreographer.js"></script>
     <script src="/static/js/bulb.js"></script>
+
     <script src="/static/js/timer.js"></script>
 
     <script src="/static/js/anim/data.js"></script>
@@ -350,6 +450,10 @@
     <script src="/static/js/anim/game.js"></script>
     <script src="/static/js/anim/logo.js"></script>
     <script src="/static/js/anim/main.js"></script>
+
+    <!-- handle subscribe form -->
+    <script src="/static/js/subscribe.js"></script>
+
     <!-- endbuild -->
 
     <script>
@@ -376,6 +480,7 @@
 
     // start the choreographer
     app.choreographer.init();
+    app.subscribe.init();
     </script>
 </body>
 </html>

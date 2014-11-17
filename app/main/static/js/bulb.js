@@ -41,7 +41,7 @@ app.bulb = {};
         });
 
         $circles.forEach(function(circle) {
-            circle.addEventListener('mouseout', handleHoverOut);
+            circle.addEventListener('mouseout', startDefaultDelay);
         });
 
         return hexLines + hexM + splitPane;
@@ -78,7 +78,16 @@ app.bulb = {};
         $bulbSection.classList.add(sectionClass);
     }
 
-    function handleHoverOut(e) {
+    /**
+     * Sets a seconds delay for the pane to change to default
+     * @param  {DOMEvent} e DOMEvent, not required
+     * @return {number} time time to wait for in ms (optional)
+     */
+    function startDefaultDelay(e, time) {
+        if (time === undefined) {
+            time = 2000;
+        }
+
         if (hoverTimeout) {
             clearTimeout(hoverTimeout);
         }
@@ -94,7 +103,23 @@ app.bulb = {};
 
             $bulbSection.classList.add('default');
             lastClicked = 'default';
-        }, 2000);
+        }, time);
     }
+
+    /**
+     * Pause default pane coming up after sometime
+     */
+    app.bulb.pauseDefaultDelay = function() {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+    };
+
+    /**
+     * Resumes the behaviour of default pane coming up after sometime
+     */
+    app.bulb.resumeDefaultDelay = function(ms) {
+        startDefaultDelay(null, ms || 2000);
+    };
 
 })();

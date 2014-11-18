@@ -104,7 +104,26 @@ app.subscribe = {};
         app.bulb.pauseDefaultDelay();
 
         // send the request
-        setTimeout(subscribeSuccess, 2000);
+        app.ajax('POST', '/subscribe/', {'email': email}, function(code, resp) {
+            var json = JSON.parse(resp);
+
+            if (code === 201) {
+                subscribeSuccess();
+            } else {
+                subscribeFailed(json['errors']['email']);
+            }
+        });
+    }
+
+    /**
+     * Subscribe failed
+     * @param  {String} error error text
+     */
+    function subscribeFailed(error) {
+        app.bulb.resumeDefaultDelay(2000);
+
+        removeClassAll('start', $buttons);
+        alert(error);
     }
 
     /**

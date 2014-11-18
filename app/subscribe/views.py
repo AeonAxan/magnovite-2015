@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -10,7 +12,12 @@ def subscribe(req):
             status=501
         )
 
-    form = SubscribeForm(req.POST)
+    if req.is_ajax():
+        data = json.loads(req.body.decode('utf-8'))
+    else:
+        data = req.POST
+
+    form = SubscribeForm(data)
     if form.is_valid():
         form.save()
         return JsonResponse(

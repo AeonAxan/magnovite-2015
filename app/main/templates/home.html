@@ -39,6 +39,8 @@
     </script>
 </head>
 <body>
+    {% csrf_token %}
+
     <div class="landing">
         <div class="top-banner">
             <div class="inner-banner">
@@ -437,6 +439,7 @@
     <!-- build:js(./app/main/) /static/dist/app.js -->
     <script src="/static/js/lib/webfont.js"></script>
     <script src="/static/js/lib/countdown.js"></script>
+    <script src="/static/js/lib/microajax.js"></script>
     <script src="/static/js/utils.js"></script>
 
     <!-- takes care of scrolljacking as well as kicking off bulb anim -->

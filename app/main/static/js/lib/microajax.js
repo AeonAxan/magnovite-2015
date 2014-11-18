@@ -5,14 +5,15 @@
 
 var app = app || {};
 
-app.ajax = function(method, url, callbackFunction) {
+app.ajax = function(method, url, body, callback) {
     'use strict';
 
-    var postBody = (arguments[2] || "");
+    var csrftoken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
 
     var stateChange = function (object) {
-        if (this.request.readyState===4) {
-            callbackFunction(request.responseCode, request.responseText);
+        if (request.readyState===4) {
+            console.log(request);
+            callback(request.status, request.responseText);
         }
     };
 
@@ -32,12 +33,12 @@ app.ajax = function(method, url, callbackFunction) {
         if (method === "POST") {
             request.open("POST", url, true);
             request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            request.setRequestHeader('X-CSRFToken', 'token');
+            request.setRequestHeader('Content-type', 'application/json');
+            request.setRequestHeader('X-CSRFToken', csrftoken);
         } else {
             request.open("GET", url, true);
         }
 
-        request.send(postBody);
+        request.send(JSON.stringify(body));
     }
 };

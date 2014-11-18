@@ -106,7 +106,7 @@ var anim = anim || {};
         var height = window.innerHeight;
         if (anim.desktop) {
             // we have a 250height timer on desktop
-            height -= 250;
+            height -= 250 + 80;
         }
 
         mCanvas.setAttribute('width', window.innerWidth);

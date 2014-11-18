@@ -15,6 +15,22 @@ app.bulb = {};
     var hoverTimeout;
 
     /**
+     * Pause default pane coming up after sometime
+     */
+    app.bulb.pauseDefaultDelay = function() {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+    };
+
+    /**
+     * Resumes the behaviour of default pane coming up after sometime
+     */
+    app.bulb.resumeDefaultDelay = function(ms) {
+        startDefaultDelay(null, ms || 2000);
+    };
+
+    /**
      * Initializes the bulb
      * @return {number} number of ms bulb needs to initialize
      */
@@ -53,6 +69,8 @@ app.bulb = {};
     function handleHover(e) {
         var target = e.target;
         var el = target;
+
+        app.bulb.pauseDefaultDelay();
 
         if (target.classList.contains('cover')) {
             el = target.parentElement;
@@ -105,21 +123,5 @@ app.bulb = {};
             lastClicked = 'default';
         }, time);
     }
-
-    /**
-     * Pause default pane coming up after sometime
-     */
-    app.bulb.pauseDefaultDelay = function() {
-        if (hoverTimeout) {
-            clearTimeout(hoverTimeout);
-        }
-    };
-
-    /**
-     * Resumes the behaviour of default pane coming up after sometime
-     */
-    app.bulb.resumeDefaultDelay = function(ms) {
-        startDefaultDelay(null, ms || 2000);
-    };
 
 })();

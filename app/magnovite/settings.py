@@ -28,6 +28,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Custom user model
+AUTH_USER_MODEL = 'main.MUser'
 
 # Application definition
 

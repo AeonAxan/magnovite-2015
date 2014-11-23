@@ -53,14 +53,28 @@
     background: @c_circle_background;
 
     img {
-        width: @circle_image_size;
+        display: block;
+        width: auto;
         height: @circle_image_size;
         margin-top: (@circle_diameter - @circle_image_size) / 2 - 2px;
-        margin-left: (@circle_diameter - @circle_image_size) / 2 - 2px;
+        margin-left: auto;
+        margin-right:auto;
         transform: scale(0.4, 0.4);
         opacity: 0.4;
         transition: all 250ms ease-out;
         transition-delay: 100ms;
+    }
+
+    &.c2 img {
+        width: 60px;
+        height: 60px;
+        margin-top: 5px;
+    }
+
+    &.c5 img {
+        width: 45px;
+        height: 45px;
+        margin-top: 12px;
     }
 
     .cover {

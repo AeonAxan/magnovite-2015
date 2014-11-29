@@ -9,6 +9,11 @@ cd $PROJECT_HOME
 apt-get update -y
 
 # Install libraries we need
+echo "=======Installing Base Dependencies"
+apt-get install -y sqlite3
+
+
+# Install libraries we need
 echo "=======Installing Python requirements"
 apt-get install -y build-essential libpq-dev python3-pip
 

@@ -13,7 +13,7 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('watch', function() {
     'use strict';
 
-    gulp.watch('app/main/static/css/**/*.less', ['css']);
+    gulp.watch('app/static/css/**/*.less', ['css']);
 });
 
 /**
@@ -31,9 +31,9 @@ gulp.task('dist', function(cb) {
 gulp.task('css', function() {
     'use strict';
 
-    return gulp.src('app/main/static/css/app.less')
+    return gulp.src('app/static/css/app.less')
                .pipe(less())
-               .pipe(gulp.dest('app/main/static/css/'));
+               .pipe(gulp.dest('app/static/css/'));
 });
 
 /**
@@ -42,7 +42,7 @@ gulp.task('css', function() {
 gulp.task('prefix', function() {
     'use strict';
 
-    return gulp.src('app/main/static/dist/*.css', {base: './'})
+    return gulp.src('app/static/dist/*.css', {base: './'})
                .pipe(autoprefixer({
                     cascade: false
                }))
@@ -81,7 +81,7 @@ gulp.task('move-usemin', function() {
     ];
 
     return gulp.src(files, {base: 'app/main/templates/tmp/static/'})
-        .pipe(gulp.dest('app/main/static/'));
+        .pipe(gulp.dest('app/static/'));
 
 });
 
@@ -105,7 +105,7 @@ gulp.task('clean', function() {
     var dirs = [
         'app/main/templates/tmp',
         'app/main/templates/dist',
-        'app/main/static/dist'
+        'app/static/dist'
     ];
 
     return gulp.src(dirs, {read: false})

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
 
     'app.main',
     'app.subscribe',
+    'app.event',
 )
 
 MIDDLEWARE_CLASSES = (

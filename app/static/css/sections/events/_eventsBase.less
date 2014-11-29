@@ -15,6 +15,7 @@
     }
 
     .dummy-filter {
+        display: none;
         float: left;
         width: 20%;
         height: 1px;
@@ -25,7 +26,6 @@
         background: lighten(@dark_blue, 5%);
         width: 20%;
         height: 100%;
-        position: fixed;
     }
 
     .pane {
@@ -36,5 +36,16 @@
         box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.15);
         padding: 40px 20px;
         text-align: center;
+    }
+}
+
+.fixed-left {
+    .dummy-filter {
+        display: block;
+    }
+
+    .filter {
+        position: fixed;
+        top: 0;
     }
 }

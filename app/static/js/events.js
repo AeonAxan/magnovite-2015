@@ -22,6 +22,16 @@ app.events = {};
             .addEventListener('click', function(e) {
                 $events.classList.toggle('filter-cultural');
             });
+
+        // scroll listener to add fixed
+        var top = document.querySelector('.banner').clientHeight;
+        window.addEventListener('scroll', function(e) {
+            if (window.scrollY > top) {
+                $events.classList.add('fixed-left');
+            } else if (window.scrollY < top) {
+                $events.classList.remove('fixed-left');
+            }
+        });
     };
 
 })();

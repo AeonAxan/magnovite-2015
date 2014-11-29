@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magnovite 2015</title>
+    <link rel="shortcut icon" href="/static/img/msprite.png">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+
+    <!-- build:css(./app/main/) /static/dist/style.css -->
+    <link rel="stylesheet" href="/static/css/app.css" />
+    <!-- endbuild -->
+
+    <!-- build:js(./app/main/) /static/dist/js-head.js -->
+    <script src="/static/js/lib/modernizer.js"></script>
+    <script src="/static/js/lib/analytics.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    {% csrf_token %}
+
+    {% block "content" %}{% endblock %}
+
+    {% block "pre_js" %}{% endblock %}
+
+    <script>
+    var app = {};
+
+    if (!Modernizr.touch && window.innerWidth > 767) {
+        document.body.classList.add('desktop');
+        app.desktop = true;
+    } else {
+        document.body.classList.add('mobile');
+        app.mobile = true;
+    }
+    </script>
+
+    <!-- build:js(./app/main/) /static/dist/app.js -->
+    <script src="/static/js/lib/webfont.js"></script>
+    <script src="/static/js/lib/countdown.js"></script>
+    <script src="/static/js/lib/microajax.js"></script>
+    <script src="/static/js/utils.js"></script>
+
+    <!-- takes care of scrolljacking as well as kicking off bulb anim -->
+    <script src="/static/js/choreographer.js"></script>
+    <script src="/static/js/bulb.js"></script>
+
+    <script src="/static/js/timer.js"></script>
+
+    <script src="/static/js/anim/data.js"></script>
+    <script src="/static/js/anim/helpers/utils.js"></script>
+    <script src="/static/js/anim/helpers/common.js"></script>
+    <script src="/static/js/anim/objects/line.js"></script>
+    <script src="/static/js/anim/objects/triangle.js"></script>
+    <script src="/static/js/anim/objects/letter.js"></script>
+    <script src="/static/js/anim/objects/atom.js"></script>
+
+    <script src="/static/js/anim/game.js"></script>
+    <script src="/static/js/anim/logo.js"></script>
+    <script src="/static/js/anim/main.js"></script>
+
+    <!-- handle subscribe form -->
+    <script src="/static/js/subscribe.js"></script>
+    <!-- endbuild -->
+
+    {% block "post_js" %}{% endblock %}
+</body>
+</html>

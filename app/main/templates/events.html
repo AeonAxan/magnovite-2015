@@ -13,11 +13,11 @@
                 <div class="filter-section top">
                     <h2>Filter</h2>
                     <ul>
-                        <li>
+                        <li class="js-technical">
                             <div class="pluto technical"></div>
                             <span>Technical</span>
                         </li>
-                        <li>
+                        <li class="js-cultural">
                             <div class="pluto cultural"></div>
                             <span>Cultural</span>
                         </li>
@@ -324,3 +324,8 @@
 </div>
 {% endblock %}
 
+{% block "post_js" %}
+<script>
+app.events.init();
+</script>
+{% endblock "post_js" %}

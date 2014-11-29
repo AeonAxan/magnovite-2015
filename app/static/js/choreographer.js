@@ -20,9 +20,6 @@ app.choreographer = {};
 (function() {
     'use strict';
 
-    // disable scrolling
-    disableScroll();
-
     // are we scrolling
     var scrolling = true;
 
@@ -40,6 +37,8 @@ app.choreographer = {};
      * loads
      */
     app.choreographer.init = function() {
+        disableScroll();
+
         document.body.scrollTop = 0;
         sectionTwo = anim.sectionHeight;
 

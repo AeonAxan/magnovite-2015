@@ -3,8 +3,8 @@ var anim = anim || {};
 (function() {
     'use strict';
 
-    var mCanvas = document.getElementById('canvas');
-    var mContext = mCanvas.getContext('2d');
+    var mCanvas;
+    var mContext;
 
     var mPointer;
     var mTouching;
@@ -37,6 +37,9 @@ var anim = anim || {};
             window.alert('Sorry, we do not support your browser. For a better experience please use' +
                 'a more modern browser');
         }
+
+        mCanvas = document.getElementById('canvas');
+        mContext = mCanvas.getContext('2d');
 
         if (window.innerWidth < 767) {
             anim.mobile = true;

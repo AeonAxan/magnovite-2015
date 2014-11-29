@@ -8,3 +8,7 @@ def index(req):
         template = 'dist/home.html'
 
     return render(req, template)
+
+
+def events(req):
+    return render(req, 'events.html')

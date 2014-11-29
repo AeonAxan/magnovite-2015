@@ -1,20 +1,32 @@
 .card {
     width: 320px;
     height: 200px;
-    background: teal;
+    background: #fefefe;
     display: inline-block;
     margin: 10px;
     text-align: left;
     position: relative;
+    border-radius: 3px;
 
     .header {
+        color: rgba(255, 255, 255, 0.95);
         height: 80px;
         line-height: 40px;
-        background: blue;
         padding: 20px;
+        border-radius: 3px 3px 0 0;
+        cursor: pointer;
+    }
+
+    &.technical .header {
+        background: @color_tech;
+    }
+
+    &.cultural .header {
+        background: @color_cult;
     }
 
     .content {
+        color: #444;
         padding: 20px;
         padding-bottom: 40px;
         text-align: left;
@@ -25,17 +37,17 @@
         bottom: 0;
         width: 100%;
         height: 20px;
-        background: yellow;
         padding-right: 20px;
     }
 
     .tag {
-        @tag_width: 15px;
+        @tag_width: 11px;
         width: @tag_width;
         height: @tag_width;
         border-radius: @tag_width;
         background: red;
         float: right;
-        margin-left: 3px;
+        margin-left: 5px;
+        cursor: pointer;
     }
 }

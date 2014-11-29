@@ -1,6 +1,9 @@
 @events_width: 1200px;
 @filter_width: 300px;
 
+@color_tech: #FF1A1A;
+@color_cult: #00C853;
+
 .events {
     &.container {
         width: 100%;
@@ -15,7 +18,7 @@
 
     .filter {
         float: left;
-        background: red;
+        background: lighten(@dark_blue, 5%);
         width: 20%;
         height: 100%;
         position: fixed;
@@ -24,7 +27,8 @@
     .pane {
         float: left;
         width: 80%;
-        background: green;
+        background: @dark_blue;
+        box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.15);
         padding: 40px 20px;
         text-align: center;
     }

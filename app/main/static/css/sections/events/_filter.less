@@ -1,20 +1,18 @@
 .events .filter {
     .inner {
         margin: 50px 20px;
-        background: yellow;
+        padding: 0 20px;
     }
 
     .filter-section {
-        background: green;
 
         &.top {
             padding-bottom: 30px;
-            border-bottom: 1px solid red;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         &.bottom {
             padding-top: 30px;
-            border-top: 1px solid red;
         }
     }
 
@@ -22,21 +20,47 @@
     ul {
         li {
             padding: 10px 0;
-            background: yellow;
             margin: 1px;
             line-height: 20px;
             height: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
 
+            &:hover {
+                color: white;
+            }
         }
 
-        .circle {
-            width: 20px;
-            height: 20px;
+        .pluto {
+            width: 16px;
+            height: 16px;
+            border-radius: 16px;
             margin-left: 10px;
+            margin-top: 2px;
+            float: left;
+
+            &.technical {
+                border: 2px solid @color_tech;
+
+                &.selected {
+                    background: @color_tech;
+                    border: 0;
+                }
+
+            }
+
+            &.cultural {
+                border: 2px solid @color_cult;
+
+                &.selected {
+                    background: @color_cult;
+                    border: 0;
+                }
+            }
         }
 
         span {
-            margin-left: 40px;
+            margin-left: 15px;
         }
     }
 }

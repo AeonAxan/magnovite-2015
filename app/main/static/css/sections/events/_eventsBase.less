@@ -1,3 +1,31 @@
-.events {
+@events_width: 1200px;
+@filter_width: 300px;
 
+.events {
+    &.container {
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .dummy-filter {
+        float: left;
+        width: 20%;
+        height: 1px;
+    }
+
+    .filter {
+        float: left;
+        background: red;
+        width: 20%;
+        height: 100%;
+        position: fixed;
+    }
+
+    .pane {
+        float: left;
+        width: 80%;
+        background: green;
+        padding: 40px 20px;
+        text-align: center;
+    }
 }

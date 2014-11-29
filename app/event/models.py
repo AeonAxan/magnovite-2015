@@ -9,7 +9,7 @@ class Event(models.Model):
     time = models.CharField(max_length=30)
     venue = models.CharField(max_length=50)
 
-    # cover_picture = models.ImageField(upload_to='covers/')
+    cover_picture = models.ImageField(upload_to='covers/')
 
     def __str__(self):
         return self.title

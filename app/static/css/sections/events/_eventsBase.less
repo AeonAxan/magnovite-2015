@@ -4,10 +4,14 @@
 @color_tech: #FF1A1A;
 @color_cult: #00c853;
 
+.events-page {
+    background: lighten(@dark_blue, 5%);
+    min-height: 700px;
+}
+
 .events {
     &.container {
         width: 100%;
-        overflow-y: scroll;
     }
 
     .dummy-filter {
@@ -27,6 +31,7 @@
     .pane {
         float: left;
         width: 80%;
+        min-height: 600px;
         background: @dark_blue;
         box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.15);
         padding: 40px 20px;

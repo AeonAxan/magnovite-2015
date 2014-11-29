@@ -12,8 +12,10 @@
     <!-- endbuild -->
 
     <!-- build:js(./app/main/) /static/dist/js-head.js -->
-    <script src="/static/js/lib/modernizer.js"></script>
-    <script src="/static/js/lib/analytics.js"></script>
+        <script src="/static/js/lib/modernizer.js"></script>
+    <!-- TODO: DEBUG MODE
+        <script src="/static/js/lib/analytics.js"></script>
+    -->
     <!-- endbuild -->
 </head>
 <body>
@@ -73,11 +75,11 @@
 
     <script>
     // load fonts
-    WebFont.load({
-        google: {
-          families: ['Roboto:300', 'Roboto:700']
-        }
-    });
+    // WebFont.load({
+    //     google: {
+    //       families: ['Roboto:300', 'Roboto:700']
+    //     }
+    // });
     </script>
 
     {% block "post_js" %}{% endblock %}

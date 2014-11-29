@@ -1,4 +1,4 @@
-.events .filter {
+.filter {
     .inner {
         margin: 50px 20px;
         padding: 0 20px;
@@ -6,12 +6,23 @@
 
     .filter-section {
 
+        h2 {
+            color: @text_white;
+            font-size: 20px;
+            margin-left: 40px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
         &.top {
             padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 0;
         }
 
         &.bottom {
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 125ms ease-out;
             padding-top: 30px;
         }
     }
@@ -42,20 +53,10 @@
             &.technical {
                 border: 2px solid @color_tech;
 
-                &.selected {
-                    background: @color_tech;
-                    border: 0;
-                }
-
             }
 
             &.cultural {
                 border: 2px solid @color_cult;
-
-                &.selected {
-                    background: @color_cult;
-                    border: 0;
-                }
             }
         }
 
@@ -63,4 +64,26 @@
             margin-left: 15px;
         }
     }
+}
+
+.filter-cultural .pluto.cultural {
+    background: @color_cult;
+    border: 0;
+}
+
+.filter-technical .pluto.technical {
+    background: @color_tech;
+    border: 0;
+}
+
+.filter-technical .filter-section.bottom {
+    opacity: 1;
+    transform: translateX(0);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filter-cultural .filter-section.bottom {
+    opacity: 0;
+    transform: translateX(-5px);
+    border-top: 0;
 }

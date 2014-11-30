@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{% load socialaccount %}
+
 {% block "content" %}
 <div class="events-page">
     <div class="banner">
-
+        <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
     </div>
     <div class="events container  filter-technical filter-cultural">
         <div class="dummy-filter"></div>

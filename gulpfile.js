@@ -55,12 +55,12 @@ gulp.task('prefix', function() {
 gulp.task('usemin', function() {
     'use strict';
 
-    return gulp.src('app/main/templates/*.html')
+    return gulp.src('app/templates/*.html')
         .pipe(usemin({
             css: [minifyCss(), rev()],
             js: [uglify(), rev()]
         }))
-        .pipe(gulp.dest('app/main/templates/tmp'));
+        .pipe(gulp.dest('app/templates/tmp'));
 });
 
 /**
@@ -71,16 +71,16 @@ gulp.task('move-usemin', function() {
     'use strict';
 
     // move templates
-    gulp.src('app/main/templates/tmp/*.html', {base: 'app/main/templates/tmp/'})
-        .pipe(gulp.dest('app/main/templates/dist'));
+    gulp.src('app/templates/tmp/*.html', {base: 'app/templates/tmp/'})
+        .pipe(gulp.dest('app/templates/dist'));
 
     // move css files
     var files = [
-        'app/main/templates/tmp/static/dist/*.css',
-        'app/main/templates/tmp/static/dist/*.js'
+        'app/templates/tmp/static/dist/*.css',
+        'app/templates/tmp/static/dist/*.js'
     ];
 
-    return gulp.src(files, {base: 'app/main/templates/tmp/static/'})
+    return gulp.src(files, {base: 'app/templates/tmp/static/'})
         .pipe(gulp.dest('app/static/'));
 
 });
@@ -92,7 +92,7 @@ gulp.task('move-usemin', function() {
 gulp.task('clean-usemin', function() {
     'use strict';
 
-    return gulp.src('app/main/templates/tmp', {read: false})
+    return gulp.src('app/templates/tmp', {read: false})
     .pipe(clean());
 });
 
@@ -103,8 +103,8 @@ gulp.task('clean', function() {
     'use strict';
 
     var dirs = [
-        'app/main/templates/tmp',
-        'app/main/templates/dist',
+        'app/templates/tmp',
+        'app/templates/dist',
         'app/static/dist'
     ];
 

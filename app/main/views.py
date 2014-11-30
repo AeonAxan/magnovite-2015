@@ -13,8 +13,18 @@ def index(req):
 
 @staff_member_required
 def events(req):
-    return render(req, 'magnovite/events.html')
+    if settings.DEBUG:
+        template = 'magnovite/events.html'
+    else:
+        template = 'magnovite/dist/events.html'
+
+    return render(req, template)
 
 @staff_member_required
 def profile(req):
-    return render(req, 'magnovite/profile.html')
+    if settings.DEBUG:
+        template = 'magnovite/profile.html'
+    else:
+        template = 'magnovite/dist/profile.html'
+
+    return render(req, template)

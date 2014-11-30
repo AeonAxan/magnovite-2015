@@ -5,6 +5,7 @@ var less = require('gulp-less');
 var usemin = require('gulp-usemin');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
+var replace = require('gulp-replace');
 var rev = require('gulp-rev');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
@@ -55,7 +56,10 @@ gulp.task('prefix', function() {
 gulp.task('usemin', function() {
     'use strict';
 
-    return gulp.src('app/templates/magnovite/base.html')
+    return gulp.src('app/templates/magnovite/*.html')
+        .pipe(replace('<!--DEBUG', ''))
+        .pipe(replace('DEBUG-->', ''))
+        .pipe(replace('{% extends "magnovite/base.html" %}', '{% extends "magnovite/dist/base.html" %}'))
         .pipe(usemin({
             css: [minifyCss(), rev()],
             js: [uglify(), rev()]

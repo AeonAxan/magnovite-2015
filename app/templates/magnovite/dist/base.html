@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magnovite 2015</title>
+    <link rel="shortcut icon" href="/static/img/msprite.png">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/static/dist/style-d4706188.css"/>
+
+    <script src="/static/dist/js-head-8f0796ae.js"></script>
+</head>
+<body>
+    {% csrf_token %}
+
+    {% block "content" %}{% endblock %}
+
+    {% block "pre_js" %}{% endblock %}
+
+    <script>
+    var app = {};
+
+    if (!Modernizr.touch && window.innerWidth > 767) {
+        document.body.classList.add('desktop');
+        app.desktop = true;
+    } else {
+        document.body.classList.add('mobile');
+        app.mobile = true;
+    }
+    </script>
+
+    <script src="/static/dist/app-1f63f362.js"></script>
+
+    <script>
+    // load fonts
+    // WebFont.load({
+    //     google: {
+    //       families: ['Roboto:300', 'Roboto:700']
+    //     }
+    // });
+    </script>
+
+    {% block "post_js" %}{% endblock %}
+</body>
+</html>

@@ -55,7 +55,7 @@ gulp.task('prefix', function() {
 gulp.task('usemin', function() {
     'use strict';
 
-    return gulp.src('app/templates/magnovite/*.html')
+    return gulp.src('app/templates/magnovite/base.html')
         .pipe(usemin({
             css: [minifyCss(), rev()],
             js: [uglify(), rev()]

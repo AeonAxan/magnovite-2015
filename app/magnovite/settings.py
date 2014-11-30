@@ -169,6 +169,15 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+# email settings
+EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST_USER = 'official@magnovite.org'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+DEFAULT_FROM_EMAIL = 'official@magnovite.org'
+SERVER_EMAIL = 'server@magnovite.org'
+EMAIL_PORT = 80
+EMAIL_USE_TLS = False
+
 if not DEBUG:
     exec(open('app/magnovite/settings_heroku.py').read(), globals())
 

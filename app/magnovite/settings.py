@@ -174,7 +174,7 @@ EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = 'official@magnovite.org'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 DEFAULT_FROM_EMAIL = 'official@magnovite.org'
-SERVER_EMAIL = 'server@magnovite.org'
+SERVER_EMAIL = 'official@magnovite.org'
 EMAIL_PORT = 80
 EMAIL_USE_TLS = False
 

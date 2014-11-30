@@ -35,3 +35,12 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Registration(models.Model):
+    event = models.ForeignKey(Event)
+    profile = models.ForeignKey('main.Profile')
+
+    # If this registration is for a team event
+    # then the team id
+    team_id = models.IntegerField(blank=True, null=True)

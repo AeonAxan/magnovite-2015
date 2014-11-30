@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import MUser
+from .models import MUser, Profile
 
 
 class UserCreationForm(forms.ModelForm):
@@ -86,3 +86,9 @@ admin.site.register(MUser, MUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Profile, ProfileAdmin)

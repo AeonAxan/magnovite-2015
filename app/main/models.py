@@ -3,6 +3,8 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+from app.event.models import Event, Registration
+
 
 class MUserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -65,3 +67,33 @@ class MUser(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(MUser, null=True)
+
+    # auth provider
+    auth_provider = models.CharField(max_length=30, blank=True)
+
+    # this will be initialized to user.email
+    # This will be used for commmunication and we will
+    # let the user change this. user.email will be the one
+    # we got from social_provider
+    active_email = models.EmailField()
+
+    # basic details
+    name = models.CharField(blank=True, max_length=50)
+    mobile = models.CharField(blank=True, max_length=10, help_text='Without +91')
+    college = models.CharField(blank=True, max_length=50)
+    city = models.CharField(blank=True, max_length=50)
+    year = models.IntegerField(blank=True, null=True, max_length=1, help_text='Studying in year (1, 2, 3, 4, 5)?')
+
+    registered_events = models.ManyToManyField(Event, through=Registration)
+
+    def is_complete(self):
+        return self.name != '' and self.mobile != '' and \
+            self.college != '' and self.city != '' and \
+            self.year != None and self.active_email != ''
+
+    def __str__(self):
+        return self.name

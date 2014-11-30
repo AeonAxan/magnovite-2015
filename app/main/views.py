@@ -12,3 +12,6 @@ def index(req):
 
 def events(req):
     return render(req, 'magnovite/events.html')
+
+def profile(req):
+    return render(req, 'magnovite/profile.html')

@@ -1,11 +1,19 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.admin import AdminSite
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import MUser, Profile
 
+
+class MyAdmin(AdminSite):
+    site_title = 'Magnovite Admin'
+    site_header = 'Magnovite Admin'
+    index_title = 'Magnovite Admin'
+
+admin_site = MyAdmin()
 
 class UserCreationForm(forms.ModelForm):
     """

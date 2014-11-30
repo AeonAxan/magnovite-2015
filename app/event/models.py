@@ -1,31 +1,36 @@
 from django.db import models
 
+from multiselectfield import MultiSelectField
+
 
 class Event(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField()
+    TECHNICAL_TAGS = (
+        ('CSE', 'Computer Science'),
+        ('EC', 'Electronics'),
+        ('MECH', 'Mechanical'),
+        ('CIVIL', 'Civil'),
+    )
 
-    quote = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(help_text='The event url, use all simple and - as a seperator, Eg: junkyard-wars')
+
+    quote = models.CharField(max_length=50, help_text='Text displayed on the cards in /events/')
 
     # This is assumed to be a Markdown field
-    info = models.TextField(help_text='Please write in Markdown')
+    info = models.TextField(help_text='Please write in Markdown (Use headings, bold, italic, lists)')
 
-    cash_prize = models.IntegerField()
+    cash_prize = models.IntegerField(help_text='Numeric, Eg: 5000')
 
     # Time and venue are simple text
-    time = models.CharField(max_length=30)
-    venue = models.CharField(max_length=50)
+    date = models.IntegerField(max_length=2, help_text='Eg: 21')
+    time = models.CharField(max_length=30, help_text='(Start time), Eg: 2pm')
+    venue = models.CharField(max_length=50, help_text='Eg: Room 243, Block 2')
 
     # if not technical, then cultural
-    technical = models.BooleanField(default=True)
+    technical = models.BooleanField(default=True, help_text='If cultural set to false')
 
     # This is a comma seperated field
-    tags = models.CharField(
-        help_text='Comma seperated list of tags',
-        max_length=100,
-        blank=True,
-        null=True
-    )
+    tags = MultiSelectField(choices=TECHNICAL_TAGS, blank=True, null=True)
 
     cover_picture = models.ImageField(
         upload_to='covers/',

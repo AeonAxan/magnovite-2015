@@ -9,17 +9,17 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('event', '__first__'),
+        ('event', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='MUser',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
+                ('password', models.CharField(verbose_name='password', max_length=128)),
                 ('last_login', models.DateTimeField(default=django.utils.timezone.now, verbose_name='last login')),
-                ('email', models.EmailField(max_length=255, unique=True, verbose_name='Email Address')),
+                ('email', models.EmailField(verbose_name='Email Address', max_length=255, unique=True)),
                 ('is_active', models.BooleanField(default=True)),
                 ('is_admin', models.BooleanField(default=False)),
                 ('is_staff', models.BooleanField(default=False)),
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Profile',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
                 ('auth_provider', models.CharField(blank=True, max_length=30)),
                 ('active_email', models.EmailField(max_length=75)),
                 ('name', models.CharField(blank=True, max_length=50)),
@@ -40,8 +40,8 @@ class Migration(migrations.Migration):
                 ('college', models.CharField(blank=True, max_length=50)),
                 ('city', models.CharField(blank=True, max_length=50)),
                 ('year', models.IntegerField(help_text='Studying in year (1, 2, 3, 4, 5)?', blank=True, max_length=1, null=True)),
-                ('registered_events', models.ManyToManyField(to='event.Event', through='event.Registration')),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL, null=True)),
+                ('registered_events', models.ManyToManyField(through='event.Registration', to='event.Event')),
+                ('user', models.OneToOneField(null=True, to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },

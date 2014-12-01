@@ -125,6 +125,7 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_ADAPTER = 'app.main.allauth.MSocialAccountAdapter'
 
 LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_URL = '/#login'
 
 ROOT_URLCONF = 'app.magnovite.urls'
 

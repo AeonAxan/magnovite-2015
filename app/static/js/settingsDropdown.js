@@ -53,4 +53,8 @@
         }, 50);
     }
 
+    if (window.location.hash === '#login') {
+        showModal();
+    }
+
 })();

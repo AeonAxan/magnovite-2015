@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout
-
+from django.contrib.auth.decorators import login_required
 
 def logout_view(req):
     if req.user.is_authenticated():
@@ -21,6 +21,7 @@ def index(req):
     return render(req, template)
 
 
+@login_required
 def profile(req):
     if settings.DEBUG:
         template = 'magnovite/profile.html'

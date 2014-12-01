@@ -130,7 +130,7 @@ var anim = anim || {};
      * This will get called on requestAnimationFrame
      */
     function loop() {
-        //window.requestAnimationFrame(loop);
+        window.requestAnimationFrame(loop);
         if (!mReady || mMode === undefined){
             return;
         }

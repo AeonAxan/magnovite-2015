@@ -504,15 +504,22 @@ input:focus {
   background: white;
   text-align: center;
 }
-.login-modal div.buttons .button {
+.login-modal div.buttons .social-button {
   display: inline-block;
   margin-right: 20px;
   width: 80px;
   height: 80px;
   position: relative;
 }
-.login-modal div.buttons .button:last-child {
+.login-modal div.buttons .social-button:last-child {
   margin-right: 0;
+}
+.login-modal div.buttons .social-button a {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .login-modal img {
   position: absolute;

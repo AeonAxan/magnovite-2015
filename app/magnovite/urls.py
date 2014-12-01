@@ -5,12 +5,9 @@ from django.contrib import admin
 
 urlpatterns = [
 
-    url(r'^$', 'app.main.views.index', name='home'),
-    url(r'^profile/', 'app.main.views.profile', name='profile'),
-
-    url(r'^events/', 'app.main.views.events', name='events'),
-
+    url(r'', include('app.main.urls')),
     url(r'^subscribe/', include('app.subscribe.urls')),
+    url(r'^events/', include('app.event.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 

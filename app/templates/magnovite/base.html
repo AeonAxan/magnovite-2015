@@ -23,6 +23,30 @@
 <body>
     {% csrf_token %}
 
+    <!-- login modal -->
+    <div class="login-modal">
+        <div class="modal-inner">
+            <div class="close">x</div>
+            <h2>Login or Register</h2>
+
+            <div class="buttons">
+                <div class="button">
+                    <img src="/static/img/fb.png" alt="">
+                    <a href="#"></a>
+                </div>
+                <div class="button">
+                    <img src="/static/img/twitter.png" alt="">
+                    <a href="#"></a>
+                </div>
+            </div>
+            <p class="help-text">
+                Why only Social Login? Because we dont want
+                you to have to remember another set of username/password.
+                Also we request only basic profile details
+            </p>
+        </div>
+    </div>
+
     {% block "content" %}{% endblock %}
 
     {% block "pre_js" %}{% endblock %}
@@ -40,7 +64,10 @@
     </script>
 
     <!-- build:js(./app/) /static/dist/app.js -->
-    <script src="/static/js/lib/webfont.js"></script>
+
+    <!-- common -->
+        <script src="/static/js/settingsDropdown.js"></script>
+    <!-- /Common -->
 
     <!-- HomePage -->
         <script src="/static/js/lib/countdown.js"></script>
@@ -74,15 +101,6 @@
     <!-- /EventPage -->
 
     <!-- endbuild -->
-
-    <script>
-    // load fonts
-    // WebFont.load({
-    //     google: {
-    //       families: ['Roboto:300', 'Roboto:700']
-    //     }
-    // });
-    </script>
 
     {% block "post_js" %}{% endblock %}
 </body>

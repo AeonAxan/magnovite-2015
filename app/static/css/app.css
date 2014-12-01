@@ -1542,78 +1542,188 @@ input:focus {
   transform: translateX(-5px);
   border-top: 0;
 }
-.image_head {
+.event-cover {
+  position: relative;
+}
+.event-cover .image {
+  background: cover;
+  width: 100%;
+  height: 450px;
+}
+.event-cover .content {
+  height: 150px;
+  background: red;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.event-cover .inner-content {
+  background: yellow;
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding-top: 30px;
+}
+.event-cover h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 72px;
+  height: 100px;
+  background: red;
+  float: left;
+  line-height: 100px;
+}
+.event-cover .tags {
+  background: green;
+  float: right;
+  width: 400px;
+  height: 100px;
+  text-align: right;
+  padding-right: 50px;
+}
+.event-cover .tags .tag-container {
+  width: 70px;
+  height: 100%;
   display: inline-block;
-  height: 500px;
-  width: 100%;
-}
-.eventDetails.container {
-  width: 100%;
-}
-.eventDetails .left-flow {
-  float: left;
-  background: grey;
-  width: 60%;
-  height: 800px;
-}
-.eventDetails .right-fixed {
-  float: left;
-  background: black;
-  height: 800px;
-  width: 40%;
-}
-.eventDetails .right-fixed .cash-prize {
-  float: left;
-  height: 10%;
-  width: 37%;
-  margin: 30px;
-  margin-left: 50px;
-  padding: 10px;
-  padding-top: 20px;
   background: blue;
-  text-align: center;
+  position: relative;
 }
-.eventDetails .right-fixed .reg-button {
-  float: left;
-  height: 10%;
-  width: 37%;
-  margin-left: 30px;
-  margin-top: 30px;
-  padding: 10px;
-  padding-top: 20px;
-  background: blue;
-  text-align: center;
+.event-cover .tags .tag {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: teal;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
-.eventDetails .right-fixed .event-heads {
-  margin: 10px;
-  width: 100%;
-  height: 74%;
-  background: pink;
+.event-cover .tags p {
   float: left;
-}
-.eventDetails .right-fixed .event-heads .heads {
-  float: left;
-  background: wheat;
-  margin: 20px;
-  margin-left: 40px;
+  transform: rotate(-45deg);
   width: 200px;
-  height: 560px;
-  background: transparent;
+  background: yellow;
+  text-align: left;
+  margin-bottom: 40px;
+  position: absolute;
+  left: 10px;
+  bottom: 70px;
 }
-.eventDetails .right-fixed .event-heads .heads .person-img {
-  background: transparent;
+.page {
   width: 100%;
-  height: 36%;
-  border-radius: 100px;
-  position: relative;
-  z-index: 9999;
+  background: green;
 }
-.eventDetails .right-fixed .event-heads .heads .contact {
-  background: aqua;
+.page .container {
+  width: 1200px;
+  margin: 0 auto;
+  background: black;
+  padding-bottom: 100px;
+}
+.page .pane {
+  float: left;
   width: 100%;
-  height: 360px;
-  position: relative;
-  z-index: 1;
+  min-height: 1px;
+}
+.page .left {
+  width: 65%;
+  background: blue;
+}
+.page .left .markdown {
+  padding: 40px 20px;
+}
+.page .left .markdown *:first-child {
+  margin-top: 0;
+}
+.page .left .markdown h1,
+.page .left .markdown h2,
+.page .left .markdown h3,
+.page .left .markdown h4,
+.page .left .markdown h5,
+.page .left .markdown h6 {
+  display: block;
+  margin: 40px 0 10px 0;
+  font-weight: 300;
+}
+.page .left .markdown h1,
+.page .left .markdown h2 {
+  font-size: 40px;
+}
+.page .left .markdown h3,
+.page .left .markdown h4 {
+  font-size: 24px;
+}
+.page .left .markdown h5,
+.page .left .markdown h6 {
+  font-size: 18px;
+}
+.page .left .markdown p,
+.page .left .markdown ul {
+  display: block;
+}
+.page .left .markdown ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+.page .left .markdown p {
+  margin: 10px 0;
+}
+.page .right {
+  width: 35%;
+  background: cyan;
+}
+.page .right .register {
+  background: blue;
+  padding: 40px 20px;
+  text-align: center;
+}
+.page .right .info {
+  background: gray;
+}
+.page .right .info .cash {
+  float: left;
+  width: 40%;
+  height: 110px;
+  background: blue;
+  padding: 20px;
+}
+.page .right .info .cash span {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 4px;
+}
+.page .right .info .cash p {
+  font-size: 26px;
+  text-align: center;
+}
+.page .right .info .points {
+  float: left;
+  width: 60%;
+  height: 110px;
+  padding: 20px 0 20px 40px;
+  background: green;
+  list-style: disc;
+}
+.page .right .heads .head {
+  width: 50%;
+  float: left;
+  padding: 20px 10px;
+}
+.page .right .heads img {
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  margin: 0 auto;
+  display: block;
+}
+.page .right .heads p {
+  text-align: center;
+}
+.page .right .heads p.name {
+  font-weight: bold;
+}
+.page .right .heads p.details {
+  font-size: 14px;
 }
 .profile-page {
   height: 680px;

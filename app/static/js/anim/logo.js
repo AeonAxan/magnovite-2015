@@ -66,7 +66,7 @@ var app = app || {};
         document.body.classList.remove('game-mode');
         document.body.classList.add('logo-mode');
 
-     
+
 
         return draw;
     }
@@ -136,7 +136,6 @@ var app = app || {};
         // if we caught more than X atoms show game button
         if (caughtAtoms > 3 && !gameBannerShown) {
             document.body.classList.add('logo-interacted');
-            mixpanel.track('logo-interacted');
             gameBannerShown = true;
             lastInteracted = 0;
         }

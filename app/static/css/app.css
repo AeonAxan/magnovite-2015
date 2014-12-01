@@ -372,8 +372,35 @@ input:focus {
 }
 .banner {
   width: 100%;
-  height: 100px;
+  height: 80px;
   background: #0529a9;
+}
+.banner .banner-inner {
+  width: 1250px;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+}
+.banner .user-settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  height: 80px;
+  line-height: 80px;
+  min-width: 160px;
+}
+.banner .user-settings .text {
+  height: 100%;
+}
+.banner .user-settings .text:hover {
+  background: #007ada;
+}
+.banner .user-settings .dropdown li {
+  background: #0529a9;
+}
+.banner .user-settings .dropdown li:hover {
+  background: #007ada;
 }
 .user-settings {
   width: auto;
@@ -454,6 +481,9 @@ input:focus {
   line-height: 40px;
   text-align: center;
   cursor: pointer;
+}
+.login-modal .close:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 .login-modal h2 {
   font-size: 28px;

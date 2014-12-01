@@ -1,5 +1,42 @@
+@banner_height: 80px;
+@banner_width: 1250px;
+@banner_background: lighten(@dark_blue, 15%);
+
 .banner {
     width: 100%;
-    height: 100px;
-    background: lighten(@dark_blue, 15%);
+    height: @banner_height;
+    background: @banner_background;
+
+    .banner-inner {
+        width: @banner_width;
+        height: @banner_height;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .user-settings {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 9999;
+        height: @banner_height;
+        line-height: @banner_height;
+        min-width: 160px;
+
+        .text {
+            height: 100%;
+
+            &:hover {
+                background: rgb(0, 122, 218);
+            }
+        }
+
+        .dropdown li {
+            background: @banner_background;
+
+            &:hover {
+                background: rgb(0, 122, 218);
+            }
+        }
+    }
 }

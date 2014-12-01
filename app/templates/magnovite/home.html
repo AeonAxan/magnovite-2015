@@ -5,7 +5,7 @@
     <div class="top-banner">
         <div class="inner-banner">
             <img class="christ" src="/static/img/christ.png" />
-            {{ user.logged_in }}
+
             <div class="user-settings
                 {% if user.is_authenticated %}logged-in{% endif %}">
 
@@ -406,8 +406,6 @@
 
 {% block "post_js" %}
 <script>
-    // mixpanel.track('landing-page');
-
     // get things rolling
     anim.init();
     anim.setMode('logo');

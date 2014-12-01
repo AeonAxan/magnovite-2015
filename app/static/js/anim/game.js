@@ -181,7 +181,6 @@ var anim = anim || {};
 
         anim.gamePlayCount++;
 
-        mixpanel.track('game-start', {count: anim.gamePlayCount});
         mStartTime = new Date();
         mState = 'playing';
         document.body.classList.add('game-playing');
@@ -208,11 +207,6 @@ var anim = anim || {};
         } else {
             maxScore = '-';
         }
-
-        mixpanel.track('game-over', {
-            score: maxCaught,
-            timeLeft: currentTimeDiff
-        });
 
         $scoreCurrent.innerHTML = maxCaught;
         $scoreBest.innerHTML = maxScore;

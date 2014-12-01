@@ -97,6 +97,6 @@ admin.site.unregister(Group)
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'user', 'auth_provider', 'active_email')
 
 admin.site.register(Profile, ProfileAdmin)

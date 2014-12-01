@@ -65,7 +65,7 @@ class MSocialAccountAdapter(DefaultSocialAccountAdapter):
     def save_user(self, request, sociallogin, form=None):
         user = super(MSocialAccountAdapter, self).save_user(request, sociallogin, form)
 
-        p = Profile()
+        p = user.profile
         p.auth_provider = sociallogin.account.provider
         p.user = user
         p.active_email = user.email

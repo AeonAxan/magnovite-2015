@@ -1,0 +1,85 @@
+
+.profile-page {
+	height: 680px;
+}
+
+// refers to the body element, class gets added by js
+.profile-body {
+	overflow-y: hidden;
+}
+
+.left-side-bar {
+	float: left;
+	width: 25%;
+	height: 100%;
+	background: @light_dark_blue;
+
+	ul {
+		width: 100%;
+		padding: 40px 0px;
+
+		li {
+			height: 50px;
+			text-align: left;
+			font-size: 20px;
+			padding: 0px 50px;
+			line-height: 50px;
+
+			&:hover,
+			&.selected {
+				background: @dark_blue;
+				cursor: pointer;
+				color: rgba(77, 205, 255, 1);
+			}
+		}
+	}
+}
+
+.profile-right-panel {
+	width: 75%;
+	height: 100%;
+	background: @dark_blue;
+	float: left;
+	padding: 30px 80px;
+
+	.errorlist {
+		color: red;
+		margin: 0 0 0 10px;
+		display: inline-block;
+
+	}
+
+	button {
+		background: #006BA7;
+		margin: 10px 0 0 0;
+		border: 1px solid #00859E;
+
+		&:hover {
+			background: darken(@atoms_highlight, 10%);
+		}
+	}
+
+	h1 {
+		font-size: 56px;
+		margin: 20px 0 55px 0;
+	}
+
+	label {
+		font-size: 16px;
+		display: block;
+		margin: 0;
+	}
+
+	input {
+		border: 1px solid #03091E;
+		display: inline-block;
+		background: #010B2F;
+		width: 400px;
+		margin: 0px 0px 20px 0;
+		padding: 5px 10px;
+
+		&:focus {
+			border:1px solid rgba(77, 205, 255, 0.8);
+		}
+	}
+}

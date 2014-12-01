@@ -1,88 +1,219 @@
+@page_width: 1200px;
 
-.image_head {
-		display: inline-block;
-		height: 500px;
+@cover_image_height: 450px;
+@cover_content_height: 150px;
+
+@detail_tag_size: 50px;
+
+.event-cover {
+	position: relative;
+
+	.image {
+		background: cover;
 		width: 100%;
+		height: @cover_image_height;
 	}
 
-.eventDetails {
-	&.container {
-		width: 100%; 
+	.content {
+		height: @cover_content_height;
+		background: red;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 0;
 	}
 
-	.left-flow {
+	.inner-content {
+		background: yellow;
+		width: @page_width;
+		margin: 0 auto;
+		height: 100%;
+		padding-top: 30px;
+	}
+
+	h1 {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 72px;
+		height: 100px;
+		background: red;
 		float: left;
-		background: grey;
-		width: 60%;
-		height: 800px;
+		line-height: 100px;
 	}
 
-	.right-fixed {
-		float: left;
+	.tags {
+		background: green;
+		float: right;
+		width: 400px;
+		height: 100px;
+		text-align: right;
+		padding-right: 50px;
+
+		.tag-container {
+			width: @detail_tag_size + 20px;
+			height: 100%;
+			display: inline-block;
+			background: blue;
+			position: relative;
+		}
+
+		.tag {
+			width: @detail_tag_size;
+			height: @detail_tag_size;
+			border-radius: @detail_tag_size;
+			background: teal;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		p {
+			float: left;
+			transform: rotate(-45deg);
+			width: 200px;
+			background: yellow;
+			text-align: left;
+			margin-bottom: 40px;
+			position: absolute;
+			left: 10px;
+			bottom: 70px;
+		}
+	}
+}
+
+.page {
+	width: 100%;
+	background: green;
+
+	.container {
+		width: @page_width;
+		margin: 0 auto;
 		background: black;
-		height: 800px;
-		width: 40%;
+		padding-bottom: 100px;
+	}
 
-		.cash-prize {
-			float: left;
-			height: 10%;
-			width: 37%;
-			margin: 30px;
-			margin-left: 50px;
-			padding: 10px;
-			padding-top: 20px; 
+	.pane {
+		float: left;
+		width: 100%;
+		min-height: 1px;
+	}
+
+	.left {
+		width: 65%;
+		background: blue;
+
+
+		.markdown {
+			padding: 40px 20px;
+
+			*:first-child {
+				margin-top: 0;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				display: block;
+				margin: 40px 0 10px 0;
+				font-weight: 300;
+			}
+
+			h1, h2 {
+				font-size: 40px;
+			}
+
+			h3, h4 {
+				font-size: 24px;
+			}
+
+			h5, h6 {
+				font-size: 18px;
+			}
+
+			p, ul {
+				display: block;
+			}
+
+			ul {
+				list-style: disc;
+				margin-left: 20px;
+			}
+
+			p {
+				margin: 10px 0;
+			}
+		}
+	}
+
+	.right {
+		width: 35%;
+		background: cyan;
+
+		.register {
 			background: blue;
+			padding: 40px 20px;
 			text-align: center;
-
 		}
 
-		.reg-button {
-			float: left;
-			height: 10%;
-			width: 37%;
-			margin-left: 30px;
-			margin-top: 30px;
-			padding: 10px;
-			padding-top: 20px; 
-			background: blue;
-			text-align: center;
-		}
+		.info {
+			background: gray;
 
-		.event-heads {
-			margin: 10px;
-			width: 100%;
-			height: 74%;
-			background: pink;
-			float: left;
-
-			.heads {
+			.cash {
 				float: left;
-				background: wheat;
-				margin: 20px;
-				margin-left: 40px;
-				width: 200px;
-				height: 560px;
-				background: transparent;
+				width: 40%;
+				height: 110px;
+				background: blue;
+				padding: 20px;
 
-				.person-img {
-					background: transparent;
-					width: 100%;
-					height: 36%;
-					border-radius: 100px;
-					position: relative;
-  					z-index: 9999;
+				span {
+					display: block;
+					font-size: 14px;
+					text-align: center;
+					margin-bottom: 5px;
+					margin-top: 4px;
 				}
 
-				.contact {
-					background: aqua;
-					width: 100%;
-					height: 360px;
-					position: relative;
-  					z-index: 1;
+				p {
+					font-size: 26px;
+					text-align: center;
+				}
+			}
+
+			.points {
+				float: left;
+				width: 60%;
+				height: 110px;
+				padding: 20px 0 20px 40px;
+				background: green;
+				list-style: disc;
+			}
+		}
+
+		.heads {
+			@head_img_size: 80px;
+
+			.head {
+				width: 50%;
+				float: left;
+				padding: 20px 10px;
+			}
+
+			img {
+				width: @head_img_size;
+				height: @head_img_size;
+				border-radius: @head_img_size;
+				margin: 0 auto;
+				display: block;
+			}
+
+			p {
+				text-align: center;
+
+				&.name {
+					font-weight: bold;
+				}
+
+				&.details {
+					font-size: 14px;
 				}
 			}
 		}
 	}
-	
 }
-	

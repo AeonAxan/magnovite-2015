@@ -1,3 +1,5 @@
+{% load socialaccount %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +9,57 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-d4706188.css"/>
+    <link rel="stylesheet" href="/static/dist/style-bebbd964.css"/>
 
-    <script src="/static/dist/js-head-20f0bc47.js"></script>
+    <script src="/static/dist/js-head-051e1028.js"></script>
 </head>
 <body>
     {% csrf_token %}
+
+    <!-- login modal -->
+    <div class="login-modal">
+        <div class="modal-inner">
+            <div class="close">x</div>
+            <h2>Login or Register</h2>
+
+            <div class="buttons">
+                <div class="social-button">
+                    <img src="/static/img/google.png" alt="">
+                    <a href="{% provider_login_url "google" %}"></a>
+                </div>
+                <div class="social-button">
+                    <img src="/static/img/twitter.png" alt="">
+                    <a href="{% provider_login_url "twitter" %}"></a>
+                </div>
+            </div>
+            <p class="help-text">
+                Why only Social Login? Because we dont want
+                you to have to remember another set of username/password.
+                Also we request only basic profile details
+            </p>
+        </div>
+    </div>
+
+    {% block page_banner %}
+    <div class="banner">
+        <div class="banner-inner">
+            <div class="user-settings
+                {% if user.is_authenticated %}logged-in{% endif %}">
+
+                {% if user.is_authenticated %}
+                    <a class="text" href="#">Hi, <em>{{ profile.name }}</em></a>
+                {% else %}
+                    <a class="text" href="#">Login/Register</a>
+                {% endif %}
+
+                <ul class="dropdown">
+                    <li><a href="/profile/">My Account</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock page_banner %}
 
     {% block "content" %}{% endblock %}
 
@@ -30,16 +77,7 @@
     }
     </script>
 
-    <script src="/static/dist/app-1f63f362.js"></script>
-
-    <script>
-    // load fonts
-    // WebFont.load({
-    //     google: {
-    //       families: ['Roboto:300', 'Roboto:700']
-    //     }
-    // });
-    </script>
+    <script src="/static/dist/app-f665636e.js"></script>
 
     {% block "post_js" %}{% endblock %}
 </body>

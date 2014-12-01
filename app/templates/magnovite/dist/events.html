@@ -4,11 +4,10 @@
 
 {% block "content" %}
 <div class="events-page">
-    <div class="banner">
-        <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
-        <a href="{% provider_login_url "google" method="oauth2" %}">Google OAuth</a>
-    </div>
-    <div class="events container  filter-technical filter-cultural">
+
+    <div class="events container  filter-technical filter-cultural filter-cse
+        filter-mech filter-ec filter-civil">
+
         <div class="dummy-filter"></div>
 
         <div class="filter">
@@ -29,21 +28,21 @@
 
                 <div class="filter-section bottom">
                     <ul>
-                        <li>
-                            <div class="pluto"></div>
+                        <li class="js-cse">
+                            <div class="pluto cse"></div>
+                            <span>Computer Science</span>
+                        </li>
+                        <li class="js-civil">
+                            <div class="pluto civil"></div>
+                            <span>Civil</span>
+                        </li>
+                        <li class="js-mech">
+                            <div class="pluto mech"></div>
                             <span>Mechanical</span>
                         </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
-                        </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
-                        </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
+                        <li class="js-ec">
+                            <div class="pluto ec"></div>
+                            <span>Electronics</span>
                         </li>
                     </ul>
                 </div>
@@ -51,277 +50,28 @@
         </div>
 
         <div class="pane">
-            <div class="card technical">
+
+            {% for event in events %}
+            <div class="card {{ event.type }} {{ event.class_string }}">
                 <div class="header">
-                    <h2>Overnight Coding</h2>
+                    <h2>{{ event.title }}</h2>
                 </div>
                 <div class="body">
-                <p class="content">
-                     The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
-                </p>
+                    <p class="content">{{ event.quote }}</p>
 
-                 <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    {% if event.technical %}
+                        <div class="tags">
+
+                            {% for tag in event.tags %}
+                            <div class="tag {{ tag }}"></div>
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-        </div>
-        <div class="card technical">
-            <div class="header">
-                <h2>Campus Ambessador</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
+            {% endfor %}
 
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card technical">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

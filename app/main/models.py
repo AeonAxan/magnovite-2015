@@ -108,6 +108,9 @@ class Profile(models.Model):
 
     registered_events = models.ManyToManyField(Event, through=Registration)
 
+    def get_absolute_url(self):
+        return '/profile/'
+
     def is_complete(self):
         return self.name != '' and self.mobile != '' and \
             self.college != '' and \

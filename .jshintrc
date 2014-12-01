@@ -12,7 +12,10 @@
         "anim": true,
         "mixpanel": true,
         "WebFont": true,
-        "ActiveXObject": true
+        "ActiveXObject": true,
+        "jQuery": true,
+        "$": true,
+        "NProgress": true
     },
     "browser": true
 }

@@ -5,12 +5,56 @@ app.profile = {};
 	'use strict';
 
 	app.profile.init = function() {
-		var $page = document.querySelector('.profile-page');
-		var $banner = document.querySelector('.banner');
-		var height = window.innerHeight - $banner.clientHeight;
-		$page.style.height = height + 'px';
+        // do the height hack only on desktop
+        if (app.desktop) {
+            fixHeight();
+        }
 
-		document.body.classList.add('profile-body');
-	}
+        $('#profile-form').on('submit', formSubmit);
+	};
+
+    function clearErrors() {
+        $('.errorlist').html('');
+    }
+
+    function formSubmit(e) {
+        e.preventDefault();
+        NProgress.start();
+
+        var form = $(e.target);
+
+        $.post(
+            form.attr('action'),
+            form.serialize()
+
+        ).done(function(data) {
+            clearErrors();
+
+        }).fail(function(err) {
+            clearErrors();
+            var data = err.responseJSON;
+            $.each(data.errors, function(key, val) {
+                var el = $('input[name=' + key + ']');
+                window.el = el;
+                el.next('.errorlist').append('<li>' + val[0] + '</li>');
+            });
+
+        }).always(function() {
+            NProgress.done();
+        });
+    }
+
+    /**
+     * Sets the height to the browser height
+     * and hides the scroll bar , if desktop
+     */
+    function fixHeight() {
+        var $page = document.querySelector('.profile-page');
+        var $banner = document.querySelector('.banner');
+        var height = window.innerHeight - $banner.clientHeight;
+        $page.style.height = height + 'px';
+
+        document.body.classList.add('profile-body');
+    }
 
 })();

@@ -9,51 +9,55 @@
 {% endblock "post_js" %}
 
 {% block "content" %}
-  <div class="profile-page">
-   <div class="left-side-bar">
-   	<ul>
-  		<li>Detail</li>
-  		<li>Event</li>
-  		<li>Help</li>
-  	</ul>
-   </div>
-   <div class ="profile-right-panel">
-   	<div>
-   		<h1>Details</h1>
-   		<div>
-   			<label>Name : </label>
-   				<div class="error-pos">
-   					<input/>
-   					<ul class="errorlist">
-   						<li>Invalid Name</li>
-   					</ul>
-   				</div>
-   		</div>
-   		<div>
-   			<label>Email :</label>
-   				<input/>
-   				<ul class="errorlist">
-   					<li>Invalid Email</li>
-   				</ul>
-   		</div>
-   		<div>
-   			<label>Mobile : </label>
-   				<input/>
-   				<ul class="errorlist">
-   					<li>Invalid Mobile Number</li>
-   				</ul>
-   		</div>
-   		<div>
-   			<label>College/University : </label>
-   				<input/>
-   				<ul class="errorlist">
-   					<li>Invalid Name</li>
-   				</ul>
-   		</div>
-   		<div>
-   			<button class="button">Save</button>
-   		</div>
+<div class="profile-page">
+    <div class="left-side-bar">
+        <ul>
+            <li>Detail</li>
+            <li>Event</li>
+            <li>Help</li>
+        </ul>
     </div>
-   </div>
-  </div> 
+
+    <div class="profile-right-panel">
+        <form id="profile-form" action="{% url "profile_update" pk=profile_form.instance.pk %}" method="POST">
+
+        <div>
+            <h1>Details</h1>
+            <div>
+                <label>Name</label>
+                {{ profile_form.name }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Email</label>
+                {{ profile_form.active_email }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Mobile (without +91)</label>
+                {{ profile_form.mobile }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>College/University</label>
+                {{ profile_form.college }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Year of study (1, 2, 3, 4, 5)</label>
+                {{ profile_form.year }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <button class="button">Save</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
 {% endblock "content" %}

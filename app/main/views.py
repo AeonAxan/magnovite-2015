@@ -2,7 +2,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout
-from django.contrib.admin.views.decorators import staff_member_required
 
 
 def logout_view(req):
@@ -12,6 +11,7 @@ def logout_view(req):
     next = req.GET.get('next', '/')
     return HttpResponseRedirect(next)
 
+
 def index(req):
     if settings.DEBUG:
         template = 'magnovite/home.html'
@@ -20,7 +20,7 @@ def index(req):
 
     return render(req, template)
 
-@staff_member_required
+
 def profile(req):
     if settings.DEBUG:
         template = 'magnovite/profile.html'

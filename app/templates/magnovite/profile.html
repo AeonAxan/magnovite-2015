@@ -3,5 +3,51 @@
 {% load account %}
 
 {% block "content" %}
-    HI {{ user.name }}
+  <div>
+   <div class="left-side-bar">
+   	<ul>
+  		<li>Detail</li>
+  		<li>Event</li>
+  		<li>Help</li>
+  	</ul>
+   </div>
+   <div class ="profile-right-panel">
+   	<div>
+   		<h1>Details</h1>
+   		<div>
+   			<label>Name : </label>
+   				<div class="error-pos">
+   					<input/>
+   					<ul class="errorlist">
+   						<li>Invalid Name</li>
+   					</ul>
+   				</div>
+   		</div>
+   		<div>
+   			<label>Email :</label>
+   				<input/>
+   				<ul class="errorlist">
+   					<li>Invalid Email</li>
+   				</ul>
+   		</div>
+   		<div>
+   			<label>Mobile : </label>
+   				<input/>
+   				<ul class="errorlist">
+   					<li>Invalid Mobile Number</li>
+   				</ul>
+   		</div>
+   		<div>
+   			<label>College/University : </label>
+   				<input/>
+   				<ul class="errorlist">
+   					<li>Invalid Name</li>
+   				</ul>
+   		</div>
+   		<div>
+   			<button class="button">Save</button>
+   		</div>
+    </div>
+   </div>
+  </div>
 {% endblock "content" %}

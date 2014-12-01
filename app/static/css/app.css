@@ -1425,13 +1425,26 @@ input:focus {
   margin-left: 5px;
   cursor: pointer;
 }
+.card .tag.cse {
+  background: #ff9800;
+}
+.card .tag.civil {
+  background: #ffeb3b;
+}
+.card .tag.mech {
+  background: #607d8b;
+}
+.card .tag.ec {
+  background: #00bcd4;
+}
 .card {
   display: none;
 }
-.filter-technical .card.technical {
-  display: inline-block;
-}
-.filter-cultural .card.cultural {
+.filter-cultural .card.cultural,
+.filter-cse .card.cse,
+.filter-ec .card.cs,
+.filter-civil .card.civil,
+.filter-mech .card.mech {
   display: inline-block;
 }
 .filter .inner {
@@ -1480,6 +1493,18 @@ input:focus {
 .filter ul .pluto.cultural {
   border: 2px solid #00c853;
 }
+.filter ul .pluto.cse {
+  border: 2px solid #ff9800;
+}
+.filter ul .pluto.ec {
+  border: 2px solid #00bcd4;
+}
+.filter ul .pluto.mech {
+  border: 2px solid #607d8b;
+}
+.filter ul .pluto.civil {
+  border: 2px solid #ffeb3b;
+}
 .filter ul span {
   margin-left: 15px;
 }
@@ -1489,6 +1514,22 @@ input:focus {
 }
 .filter-technical .pluto.technical {
   background: #ff1a1a;
+  border: 0;
+}
+.filter-cse .pluto.cse {
+  background: #ff9800;
+  border: 0;
+}
+.filter-ec .pluto.ec {
+  background: #00bcd4;
+  border: 0;
+}
+.filter-mech .pluto.mech {
+  background: #607d8b;
+  border: 0;
+}
+.filter-civil .pluto.civil {
+  background: #ffeb3b;
   border: 0;
 }
 .filter-technical .filter-section.bottom {

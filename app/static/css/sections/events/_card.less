@@ -54,6 +54,22 @@
         float: right;
         margin-left: 5px;
         cursor: pointer;
+
+        &.cse {
+            background: @color_cse;
+        }
+
+        &.civil {
+            background: @color_civil;
+        }
+
+        &.mech {
+            background: @color_mech;
+        }
+
+        &.ec {
+            background: @color_ec;
+        }
     }
 }
 
@@ -62,10 +78,10 @@
     display: none;
 }
 
-.filter-technical .card.technical {
-    display: inline-block;
-}
-
-.filter-cultural .card.cultural {
+.filter-cultural .card.cultural,
+.filter-cse .card.cse,
+.filter-ec .card.cs,
+.filter-civil .card.civil,
+.filter-mech .card.mech {
     display: inline-block;
 }

@@ -960,6 +960,7 @@ input:focus {
 .landing .top-banner .inner-banner {
   width: 1000px;
   margin: 0 auto;
+  position: relative;
 }
 .landing .top-banner .christ {
   height: 60px;

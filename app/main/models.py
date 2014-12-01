@@ -49,6 +49,25 @@ class MUser(AbstractBaseUser):
     class Meta:
         verbose_name = 'Magnovite User'
 
+    def save(self, *args, **kwargs):
+        super(MUser, self).save(*args, **kwargs)
+        if self.has_profile():
+            return
+
+        # Create a blank profile if the user doesnt have a profile
+        p = Profile()
+        p.user = self
+        p.auth_provider = 'internal'
+        p.active_email = self.email
+        p.save()
+
+    def has_profile(self):
+        try:
+            self.profile
+            return True
+        except Profile.DoesNotExist:
+            return False
+
     def get_full_name(self):
         # The user is identified by their email address
         return self.email
@@ -85,14 +104,13 @@ class Profile(models.Model):
     name = models.CharField(blank=True, max_length=50)
     mobile = models.CharField(blank=True, max_length=10, help_text='Without +91')
     college = models.CharField(blank=True, max_length=50)
-    city = models.CharField(blank=True, max_length=50)
     year = models.IntegerField(blank=True, null=True, max_length=1, help_text='Studying in year (1, 2, 3, 4, 5)?')
 
     registered_events = models.ManyToManyField(Event, through=Registration)
 
     def is_complete(self):
         return self.name != '' and self.mobile != '' and \
-            self.college != '' and self.city != '' and \
+            self.college != '' and \
             self.year != None and self.active_email != ''
 
     def __str__(self):

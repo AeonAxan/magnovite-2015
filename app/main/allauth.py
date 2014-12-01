@@ -23,6 +23,12 @@ class MSocialAccountAdapter(DefaultSocialAccountAdapter):
            a tech fest website, and uses only FB/Google as providers.
         """
 
+        # twitter doesnt give a email id so use a fake one as the id
+        if sociallogin.account.provider == 'twitter':
+            email = sociallogin.account.extra_data['screen_name'] + '@twitter.com'
+            sociallogin.account.extra_data['email'] = email
+            sociallogin.account._user_cache.email = email
+
         # if this is a returning user dont try to connect
         if sociallogin.account.pk:
             # dont override next

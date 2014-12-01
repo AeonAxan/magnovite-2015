@@ -49,6 +49,27 @@
         </div>
     </div>
 
+    {% block page_banner %}
+    <div class="banner">
+        <div class="banner-inner">
+            <div class="user-settings
+                {% if user.is_authenticated %}logged-in{% endif %}">
+
+                {% if user.is_authenticated %}
+                    <a class="text" href="#">Hi, <em>{{ profile.name }}</em></a>
+                {% else %}
+                    <a class="text" href="#">Login/Register</a>
+                {% endif %}
+
+                <ul class="dropdown">
+                    <li><a href="/profile/">My Account</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock page_banner %}
+
     {% block "content" %}{% endblock %}
 
     {% block "pre_js" %}{% endblock %}

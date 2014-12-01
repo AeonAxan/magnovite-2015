@@ -5,7 +5,9 @@
 {% block "content" %}
 <div class="events-page">
 
-    <div class="events container  filter-technical filter-cultural">
+    <div class="events container  filter-technical filter-cultural filter-cse
+        filter-mech filter-ec filter-civil">
+
         <div class="dummy-filter"></div>
 
         <div class="filter">
@@ -26,21 +28,21 @@
 
                 <div class="filter-section bottom">
                     <ul>
-                        <li>
-                            <div class="pluto"></div>
+                        <li class="js-cse">
+                            <div class="pluto cse"></div>
+                            <span>Computer Science</span>
+                        </li>
+                        <li class="js-civil">
+                            <div class="pluto civil"></div>
+                            <span>Civil</span>
+                        </li>
+                        <li class="js-mech">
+                            <div class="pluto mech"></div>
                             <span>Mechanical</span>
                         </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
-                        </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
-                        </li>
-                        <li>
-                            <div class="pluto"></div>
-                            <span>Mechanical</span>
+                        <li class="js-ec">
+                            <div class="pluto ec"></div>
+                            <span>Electronics</span>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +50,7 @@
         </div>
 
         <div class="pane">
-            <div class="card technical">
+            <div class="card technical cse">
                 <div class="header">
                     <h2>Overnight Coding</h2>
                 </div>
@@ -58,13 +60,11 @@
                 </p>
 
                  <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    <div class="tag cse"></div>
                 </div>
             </div>
         </div>
-        <div class="card technical">
+        <div class="card technical ec">
             <div class="header">
                 <h2>Campus Ambessador</h2>
             </div>
@@ -74,9 +74,7 @@
                 </p>
 
                 <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    <div class="tag ec"></div>
                 </div>
             </div>
         </div>
@@ -88,12 +86,36 @@
                 <p class="content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
                 </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
+            </div>
+        </div>
+        <div class="card cultural">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+            </div>
+        </div>
+        <div class="card cultural">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+            </div>
+        </div>
+        <div class="card cultural">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
             </div>
         </div>
         <div class="card cultural">
@@ -105,10 +127,29 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
                 </p>
 
+            </div>
+        </div>
+        <div class="card cultural">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+            </div>
+        </div>
+        <div class="card technical civil">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+
                 <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    <div class="tag civil"></div>
                 </div>
             </div>
         </div>
@@ -120,11 +161,50 @@
                 <p class="content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
                 </p>
+            </div>
+        </div>
+        <div class="card technical mech">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
 
                 <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    <div class="tag mech"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card technical cse mech">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+
+                <div class="tags">
+                    <div class="tag cse"></div>
+                    <div class="tag mech"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card technical cse civil mech">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+
+                <div class="tags">
+                    <div class="tag civil"></div>
+                    <div class="tag mech"></div>
+                    <div class="tag cse"></div>
                 </div>
             </div>
         </div>
@@ -136,11 +216,33 @@
                 <p class="content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
                 </p>
+            </div>
+        </div>
+        <div class="card technical cse">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
 
                 <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
+                    <div class="tag cse"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card technical civil">
+            <div class="header">
+                <h2>Robotics</h2>
+            </div>
+            <div class="body">
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
+                </p>
+
+                <div class="tags">
+                    <div class="tag civil"></div>
                 </div>
             </div>
         </div>
@@ -152,172 +254,6 @@
                 <p class="content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
                 </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card cultural">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card technical">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2>Robotics</h2>
-            </div>
-            <div class="body">
-                <p class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, est!
-                </p>
-
-                <div class="tags">
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                    <div class="tag"></div>
-                </div>
             </div>
         </div>
     </div>

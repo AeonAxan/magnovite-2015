@@ -11,3 +11,6 @@ def index(req):
         template = 'magnovite/dist/events.html'
 
     return render(req, template)
+
+def details(req):
+ 	return render(req, 'magnovite/eventDetails.html')

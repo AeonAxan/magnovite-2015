@@ -1615,10 +1615,16 @@ input:focus {
   position: relative;
   z-index: 1;
 }
+.profile-page {
+  height: 680px;
+}
+.profile-body {
+  overflow-y: hidden;
+}
 .left-side-bar {
   float: left;
   width: 25%;
-  height: 600px;
+  height: 100%;
   background: #041d78;
 }
 .left-side-bar ul {
@@ -1640,7 +1646,7 @@ input:focus {
 }
 .profile-right-panel {
   width: 75%;
-  height: 600px;
+  height: 100%;
   background: #03175f;
   float: left;
   padding: 30px 80px;

@@ -2,8 +2,14 @@
 
 {% load account %}
 
+{% block "post_js" %}
+<script>
+	app.profile.init();
+</script>
+{% endblock "post_js" %}
+
 {% block "content" %}
-  <div>
+  <div class="profile-page">
    <div class="left-side-bar">
    	<ul>
   		<li>Detail</li>
@@ -49,5 +55,5 @@
    		</div>
     </div>
    </div>
-  </div>
+  </div> 
 {% endblock "content" %}

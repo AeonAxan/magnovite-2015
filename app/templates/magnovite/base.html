@@ -22,7 +22,7 @@
 
     <!-- endbuild -->
 </head>
-<body>
+<body class="{% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}
 
     <!-- login modal -->

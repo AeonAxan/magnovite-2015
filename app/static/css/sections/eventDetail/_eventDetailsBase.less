@@ -1,9 +1,27 @@
-@page_width: 1200px;
+@page_width: 1100px;
 
 @cover_image_height: 450px;
 @cover_content_height: 150px;
 
 @detail_tag_size: 50px;
+
+// edit the banner
+body.event-details .banner {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.4);
+
+	.text:hover {
+		background: rgba(255, 255, 255, 0.3);
+	}
+
+	.dropdown li {
+		background: rgba(0, 0, 0, 0.6);
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.3);
+		}
+	}
+}
 
 .event-cover {
 	position: relative;
@@ -16,7 +34,7 @@
 
 	.content {
 		height: @cover_content_height;
-		background: red;
+		background: linear-gradient(transparent, rgba(0, 0, 0, 1));
 		width: 100%;
 		position: absolute;
 		left: 0;
@@ -24,7 +42,6 @@
 	}
 
 	.inner-content {
-		background: yellow;
 		width: @page_width;
 		margin: 0 auto;
 		height: 100%;
@@ -32,16 +49,16 @@
 	}
 
 	h1 {
-		color: rgba(255, 255, 255, 0.8);
+		color: rgba(255, 255, 255, 0.95);
+		font-weight: 300;
 		font-size: 72px;
 		height: 100px;
-		background: red;
 		float: left;
 		line-height: 100px;
+		margin-left: 20px;
 	}
 
 	.tags {
-		background: green;
 		float: right;
 		width: 400px;
 		height: 100px;
@@ -52,42 +69,44 @@
 			width: @detail_tag_size + 20px;
 			height: 100%;
 			display: inline-block;
-			background: blue;
 			position: relative;
-		}
 
-		.tag {
-			width: @detail_tag_size;
-			height: @detail_tag_size;
-			border-radius: @detail_tag_size;
-			background: teal;
-			position: absolute;
-			bottom: 0;
-			left: 0;
+			&:hover p {
+				color: white;
+			}
 		}
 
 		p {
+			color: rgba(255, 255, 255, 0.25);
 			float: left;
 			transform: rotate(-45deg);
 			width: 200px;
-			background: yellow;
 			text-align: left;
 			margin-bottom: 40px;
 			position: absolute;
 			left: 10px;
 			bottom: 70px;
 		}
+
+		.tag {
+			width: @detail_tag_size;
+			height: @detail_tag_size;
+			border-radius: @detail_tag_size;
+			background: @color_cse;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
 	}
 }
 
 .page {
 	width: 100%;
-	background: green;
+	background: @dark_blue;
 
 	.container {
 		width: @page_width;
 		margin: 0 auto;
-		background: black;
 		padding-bottom: 100px;
 	}
 
@@ -98,12 +117,12 @@
 	}
 
 	.left {
-		width: 65%;
-		background: blue;
+		width: 60%;
 
 
 		.markdown {
 			padding: 40px 20px;
+			color: rgba(255, 255, 255, 0.8);
 
 			*:first-child {
 				margin-top: 0;
@@ -113,6 +132,7 @@
 				display: block;
 				margin: 40px 0 10px 0;
 				font-weight: 300;
+				color: rgba(255, 255, 255, 0.9);
 			}
 
 			h1, h2 {
@@ -143,23 +163,76 @@
 	}
 
 	.right {
-		width: 35%;
-		background: cyan;
+		color: rgba(255, 255, 255, 0.8);
+		width: 40%;
+		box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
 
-		.register {
-			background: blue;
-			padding: 40px 20px;
+		.register-container {
+			@row_height: 100px;
 			text-align: center;
+			overflow: hidden;
+
+			.register-button {
+				float: left;
+				width: 60%;
+				height: @row_height;
+				vertical-align: middle;
+
+				.inner {
+					text-align: center;
+					height: 50px;
+					padding-left: 50px;
+					margin-top: 27px;
+					overflow: hidden;
+				}
+
+				.check {
+					float: left;
+					width: 40px;
+					height: 40px;
+					border-radius: 40px;
+				}
+
+				p {
+					float: left;
+					font-size: 28px;
+					margin-top: 10px;
+					margin-left: 10px;
+				}
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			.team-details {
+				float: left;
+				width: 40%;
+				height: @row_height;
+				padding-right: 10px;
+
+				span {
+					font-size: 14px;
+					height: 40px;
+					display: block;
+					padding-top: 25px;
+				}
+
+				p {
+					padding-top: 10px;
+					font-size: 28px;
+					height: 60px;
+				}
+			}
 		}
 
 		.info {
-			background: gray;
+			overflow: hidden;
 
 			.cash {
 				float: left;
 				width: 40%;
 				height: 110px;
-				background: blue;
 				padding: 20px;
 
 				span {
@@ -168,10 +241,12 @@
 					text-align: center;
 					margin-bottom: 5px;
 					margin-top: 4px;
+					color: rgba(255, 255, 255, 0.45);
 				}
 
 				p {
-					font-size: 26px;
+					color: rgba(255, 255, 255, 0.95);
+					font-size: 30px;
 					text-align: center;
 				}
 			}
@@ -181,13 +256,21 @@
 				width: 60%;
 				height: 110px;
 				padding: 20px 0 20px 40px;
-				background: green;
-				list-style: disc;
+
+				span.label {
+					color: rgba(255, 255, 255, 1);
+					width: 50px;
+					display: inline-block;
+					text-align: right;
+					margin-right: 5px;
+				}
 			}
 		}
 
 		.heads {
-			@head_img_size: 80px;
+			padding: 40px 0;
+			overflow: hidden;
+			@head_img_size: 100px;
 
 			.head {
 				width: 50%;
@@ -200,6 +283,7 @@
 				height: @head_img_size;
 				border-radius: @head_img_size;
 				margin: 0 auto;
+				margin-bottom: 20px;
 				display: block;
 			}
 
@@ -208,12 +292,86 @@
 
 				&.name {
 					font-weight: bold;
+					color: rgba(255, 255, 255, 0.9);
 				}
 
 				&.details {
-					font-size: 14px;
+					font-size: 16px;
 				}
 			}
+		}
+	}
+}
+
+// colors for technical and cultural
+@details_tech_dark: #DF0000;
+@details_tech_2: rgb(207, 0, 0);
+@details_tech_dark_dark: #AA0000;
+@details_tech_active: rgb(290, 0, 0);
+
+@details_cult_dark: #00BD1E;
+@details_cult_2: rgb(0, 173, 28);
+@details_cult_dark_dark: #008821;
+@details_cult_active: rgb(0, 238, 48);
+
+.technical-event {
+	.right {
+		background: @details_tech_dark_dark;
+	}
+
+	.info {
+		background: @details_tech_dark;
+	}
+
+	.team-details {
+		background: @details_tech_dark;
+	}
+
+	.register-button {
+		background: @details_tech_2;
+
+		.check {
+			background: darken(@details_tech_2, 5%);
+		}
+
+		&:hover .check {
+			background: darken(@details_tech_dark_dark, 5%);
+		}
+
+		&:hover,
+		&.registered {
+			background: @details_tech_dark_dark;
+		}
+	}
+}
+
+.cultural-event {
+	.right {
+		background: @details_cult_dark_dark;
+	}
+
+	.info {
+		background: @details_cult_dark;
+	}
+
+	.team-details {
+		background: @details_cult_dark;
+	}
+
+	.register-button {
+		background: @details_cult_2;
+
+		.check {
+			background: darken(@details_cult_2, 5%);
+		}
+
+		&:hover .check {
+			background: darken(@details_cult_dark_dark, 5%);
+		}
+
+		&:hover,
+		&.registered {
+			background: @details_cult_dark_dark;
 		}
 	}
 }

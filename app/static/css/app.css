@@ -443,6 +443,7 @@ input:focus {
   width: 100%;
   height: 80px;
   background: #0529a9;
+  z-index: 999;
 }
 .banner .banner-inner {
   width: 1250px;
@@ -1611,6 +1612,19 @@ input:focus {
   transform: translateX(-5px);
   border-top: 0;
 }
+body.event-details .banner {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+}
+body.event-details .banner .text:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+body.event-details .banner .dropdown li {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.event-details .banner .dropdown li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
 .event-cover {
   position: relative;
 }
@@ -1621,29 +1635,28 @@ input:focus {
 }
 .event-cover .content {
   height: 150px;
-  background: red;
+  background: linear-gradient(transparent, #000000);
   width: 100%;
   position: absolute;
   left: 0;
   bottom: 0;
 }
 .event-cover .inner-content {
-  background: yellow;
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
   height: 100%;
   padding-top: 30px;
 }
 .event-cover h1 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
   font-size: 72px;
   height: 100px;
-  background: red;
   float: left;
   line-height: 100px;
+  margin-left: 20px;
 }
 .event-cover .tags {
-  background: green;
   float: right;
   width: 400px;
   height: 100px;
@@ -1654,37 +1667,38 @@ input:focus {
   width: 70px;
   height: 100%;
   display: inline-block;
-  background: blue;
   position: relative;
 }
-.event-cover .tags .tag {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background: teal;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.event-cover .tags .tag-container:hover p {
+  color: white;
 }
 .event-cover .tags p {
+  color: rgba(255, 255, 255, 0.25);
   float: left;
   transform: rotate(-45deg);
   width: 200px;
-  background: yellow;
   text-align: left;
   margin-bottom: 40px;
   position: absolute;
   left: 10px;
   bottom: 70px;
 }
+.event-cover .tags .tag {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #ff9800;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 .page {
   width: 100%;
-  background: green;
+  background: #03175f;
 }
 .page .container {
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
-  background: black;
   padding-bottom: 100px;
 }
 .page .pane {
@@ -1693,11 +1707,11 @@ input:focus {
   min-height: 1px;
 }
 .page .left {
-  width: 65%;
-  background: blue;
+  width: 60%;
 }
 .page .left .markdown {
   padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.8);
 }
 .page .left .markdown *:first-child {
   margin-top: 0;
@@ -1711,6 +1725,7 @@ input:focus {
   display: block;
   margin: 40px 0 10px 0;
   font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
 }
 .page .left .markdown h1,
 .page .left .markdown h2 {
@@ -1736,22 +1751,66 @@ input:focus {
   margin: 10px 0;
 }
 .page .right {
-  width: 35%;
-  background: cyan;
+  color: rgba(255, 255, 255, 0.8);
+  width: 40%;
+  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
 }
-.page .right .register {
-  background: blue;
-  padding: 40px 20px;
+.page .right .register-container {
   text-align: center;
+  overflow: hidden;
+}
+.page .right .register-container .register-button {
+  float: left;
+  width: 60%;
+  height: 100px;
+  vertical-align: middle;
+}
+.page .right .register-container .register-button .inner {
+  text-align: center;
+  height: 50px;
+  padding-left: 50px;
+  margin-top: 27px;
+  overflow: hidden;
+}
+.page .right .register-container .register-button .check {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+.page .right .register-container .register-button p {
+  float: left;
+  font-size: 28px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.page .right .register-container .register-button:hover {
+  cursor: pointer;
+}
+.page .right .register-container .team-details {
+  float: left;
+  width: 40%;
+  height: 100px;
+  padding-right: 10px;
+}
+.page .right .register-container .team-details span {
+  font-size: 14px;
+  height: 40px;
+  display: block;
+  padding-top: 25px;
+}
+.page .right .register-container .team-details p {
+  padding-top: 10px;
+  font-size: 28px;
+  height: 60px;
 }
 .page .right .info {
-  background: gray;
+  overflow: hidden;
 }
 .page .right .info .cash {
   float: left;
   width: 40%;
   height: 110px;
-  background: blue;
   padding: 20px;
 }
 .page .right .info .cash span {
@@ -1760,9 +1819,11 @@ input:focus {
   text-align: center;
   margin-bottom: 5px;
   margin-top: 4px;
+  color: rgba(255, 255, 255, 0.45);
 }
 .page .right .info .cash p {
-  font-size: 26px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 30px;
   text-align: center;
 }
 .page .right .info .points {
@@ -1770,8 +1831,17 @@ input:focus {
   width: 60%;
   height: 110px;
   padding: 20px 0 20px 40px;
-  background: green;
-  list-style: disc;
+}
+.page .right .info .points span.label {
+  color: #ffffff;
+  width: 50px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 5px;
+}
+.page .right .heads {
+  padding: 40px 0;
+  overflow: hidden;
 }
 .page .right .heads .head {
   width: 50%;
@@ -1779,10 +1849,11 @@ input:focus {
   padding: 20px 10px;
 }
 .page .right .heads img {
-  width: 80px;
-  height: 80px;
-  border-radius: 80px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
   margin: 0 auto;
+  margin-bottom: 20px;
   display: block;
 }
 .page .right .heads p {
@@ -1790,9 +1861,54 @@ input:focus {
 }
 .page .right .heads p.name {
   font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
 }
 .page .right .heads p.details {
-  font-size: 14px;
+  font-size: 16px;
+}
+.technical-event .right {
+  background: #aa0000;
+}
+.technical-event .info {
+  background: #df0000;
+}
+.technical-event .team-details {
+  background: #df0000;
+}
+.technical-event .register-button {
+  background: #cf0000;
+}
+.technical-event .register-button .check {
+  background: #b60000;
+}
+.technical-event .register-button:hover .check {
+  background: #910000;
+}
+.technical-event .register-button:hover,
+.technical-event .register-button.registered {
+  background: #aa0000;
+}
+.cultural-event .right {
+  background: #008821;
+}
+.cultural-event .info {
+  background: #00bd1e;
+}
+.cultural-event .team-details {
+  background: #00bd1e;
+}
+.cultural-event .register-button {
+  background: #00ad1c;
+}
+.cultural-event .register-button .check {
+  background: #009418;
+}
+.cultural-event .register-button:hover .check {
+  background: #006f1b;
+}
+.cultural-event .register-button:hover,
+.cultural-event .register-button.registered {
+  background: #008821;
 }
 .profile-page {
   height: 680px;

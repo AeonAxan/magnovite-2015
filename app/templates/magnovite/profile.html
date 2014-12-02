@@ -18,11 +18,14 @@
         </ul>
     </div>
 
-    <div class="profile-right-panel">
+    <div class="profile-right-panel
+        {% if not profile_form.instance.is_complete %}show-warn{% endif %}">
         <form id="profile-form" action="{% url "profile_update" pk=profile_form.instance.pk %}" method="POST">
 
         <div>
             <h1>Details</h1>
+            <span class="warn">You cannot register to events till you fill all the details</span>
+
             <div>
                 <label>Name</label>
                 {{ profile_form.name }}

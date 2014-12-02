@@ -30,6 +30,18 @@ app.profile = {};
         ).done(function(data) {
             clearErrors();
 
+            // if everything is filled make sure the show-warn
+            // class is removed
+            var filled = true;
+            ['name', 'active_email', 'mobile', 'college', 'year']
+                .forEach(function(key) {
+                    if ($('input[name=' + key + ']').val() === '') {
+                        filled = false;
+                    }
+                });
+
+            $('.profile-right-panel').toggleClass('show-warn', !filled);
+
         }).fail(function(err) {
             clearErrors();
             var data = err.responseJSON;

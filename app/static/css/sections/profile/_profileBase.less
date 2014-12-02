@@ -60,12 +60,29 @@
 	}
 
 	h1 {
-		font-size: 56px;
-		margin: 20px 0 55px 0;
+		font-size: 48px;
+		margin: 20px 0 45px 0;
+	}
+
+	span.warn {
+		color: red;
+		display: none;
+	}
+
+	&.show-warn {
+		h1 {
+			margin-bottom: 15px;
+		}
+
+		span.warn {
+			display: block;
+			margin-bottom: 10px;
+			display: block;
+		}
 	}
 
 	label {
-		font-size: 16px;
+		font-size: 14px;
 		display: block;
 		margin: 0;
 	}

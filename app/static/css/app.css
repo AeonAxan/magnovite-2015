@@ -1844,11 +1844,22 @@ input:focus {
   background: #0a99ff;
 }
 .profile-right-panel h1 {
-  font-size: 56px;
-  margin: 20px 0 55px 0;
+  font-size: 48px;
+  margin: 20px 0 45px 0;
+}
+.profile-right-panel span.warn {
+  color: red;
+  display: none;
+}
+.profile-right-panel.show-warn h1 {
+  margin-bottom: 15px;
+}
+.profile-right-panel.show-warn span.warn {
+  margin-bottom: 10px;
+  display: block;
 }
 .profile-right-panel label {
-  font-size: 16px;
+  font-size: 14px;
   display: block;
   margin: 0;
 }

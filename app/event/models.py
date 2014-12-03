@@ -22,9 +22,20 @@ class Event(models.Model):
     cash_prize = models.IntegerField(help_text='Numeric, Eg: 5000')
 
     # Time and venue are simple text
-    date = models.IntegerField(max_length=2, help_text='Eg: 21')
-    time = models.CharField(max_length=30, help_text='(Start time), Eg: 2pm')
-    venue = models.CharField(max_length=50, help_text='Eg: Room 243, Block 2')
+    date = models.IntegerField(
+        max_length=2,
+        help_text='Eg: 21',
+        blank=True, null=True
+    )
+    time = models.CharField(
+        max_length=30,
+        help_text='(Start time), Eg: 2pm',
+        blank=True
+    )
+    venue = models.CharField(
+        max_length=50,
+        help_text='Eg: Room 243, Block 2',
+        blank=True)
 
     # if not technical, then cultural
     technical = models.BooleanField(default=True, help_text='If cultural set to false')

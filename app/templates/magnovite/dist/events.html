@@ -54,7 +54,9 @@
             {% for event in events %}
             <div class="card {{ event.type }} {{ event.class_string }}">
                 <div class="header">
-                    <h2>{{ event.title }}</h2>
+                    <a href="{{event.get_absolute_url}}">
+                        <h2>{{ event.title }}</h2>
+                    </a>
                 </div>
                 <div class="body">
                     <p class="content">{{ event.quote }}</p>

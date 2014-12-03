@@ -25,7 +25,19 @@ def details(req, slug):
     if req.user.is_authenticated():
         is_registered = req.user.profile.is_registered_to_event(event)
 
+    heads = event.heads.all()
+    head_one = None
+    head_two = None
+    if len(heads) == 1:
+        head_one = heads[0]
+    elif len(heads) >= 2:
+        head_one = heads[0]
+        head_two = heads[1]
+        # we will show only two event heads
+
     return render(req, 'magnovite/eventDetails.html', {
         'event': event,
-        'is_registered': is_registered
+        'is_registered': is_registered,
+        'head_one': head_one,
+        'head_two': head_two
     })

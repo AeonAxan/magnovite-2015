@@ -27,7 +27,9 @@ class MSocialAccountAdapter(DefaultSocialAccountAdapter):
         if sociallogin.account.provider == 'twitter':
             email = sociallogin.account.extra_data['screen_name'] + '@twitter.com'
             sociallogin.account.extra_data['email'] = email
-            sociallogin.account._user_cache.email = email
+
+            if hasattr(sociallogin.account, "_user_cache"):
+                sociallogin.account._user_cache.email = email
 
         # if this is a returning user dont try to connect
         if sociallogin.account.pk:

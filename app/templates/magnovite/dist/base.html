@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-e122acd2.css"/>
+    <link rel="stylesheet" href="/static/dist/style-ffb8f386.css"/>
 
     <script src="/static/dist/js-head-8f0796ae.js"></script>
 </head>
@@ -17,26 +17,29 @@
     {% csrf_token %}
 
     <!-- login modal -->
-    <div class="login-modal">
+    <div class="login-modal modal" id="login-modal">
         <div class="modal-inner">
             <div class="close">x</div>
-            <h2>Login or Register</h2>
 
-            <div class="buttons">
-                <div class="social-button">
-                    <img src="/static/img/google.png" alt="">
-                    <a href="{% provider_login_url "google" %}"></a>
+            <h2 class="title">Login or Register</h2>
+
+            <div class="body">
+                <div class="buttons">
+                    <div class="social-button">
+                        <img src="/static/img/google.png" alt="">
+                        <a href="{% provider_login_url "google" %}"></a>
+                    </div>
+                    <div class="social-button">
+                        <img src="/static/img/twitter.png" alt="">
+                        <a href="{% provider_login_url "twitter" %}"></a>
+                    </div>
                 </div>
-                <div class="social-button">
-                    <img src="/static/img/twitter.png" alt="">
-                    <a href="{% provider_login_url "twitter" %}"></a>
-                </div>
+                <p class="help-text">
+                    Why only Social Login? Because we dont want
+                    you to have to remember another set of username/password.
+                    Also we request only basic profile details
+                </p>
             </div>
-            <p class="help-text">
-                Why only Social Login? Because we dont want
-                you to have to remember another set of username/password.
-                Also we request only basic profile details
-            </p>
         </div>
     </div>
 
@@ -77,7 +80,7 @@
     }
     </script>
 
-    <script src="/static/dist/app-2401fb01.js"></script>
+    <script src="/static/dist/app-0f931c9b.js"></script>
 
     {% block "post_js" %}{% endblock %}
 </body>

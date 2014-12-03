@@ -17,10 +17,20 @@
         color: rgba(255, 255, 255, 0.9);
         height: 80px;
         line-height: 40px;
-        padding: 20px;
         border-radius: 3px 3px 0 0;
         font-weight: normal;
         cursor: pointer;
+
+        a {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.2);
+                color: white;
+            }
+        }
     }
 
     &.technical .header {

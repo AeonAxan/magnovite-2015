@@ -5,10 +5,10 @@ from multiselectfield import MultiSelectField
 
 class Event(models.Model):
     TECHNICAL_TAGS = (
-        ('CSE', 'Computer Science'),
-        ('EC', 'Electronics'),
-        ('MECH', 'Mechanical'),
-        ('CIVIL', 'Civil'),
+        ('cse', 'Computer Science'),
+        ('ec', 'Electronics'),
+        ('mech', 'Mechanical'),
+        ('civil', 'Civil'),
     )
 
     title = models.CharField(max_length=100)
@@ -37,6 +37,15 @@ class Event(models.Model):
         blank=True,
         null=True
     )
+
+    def type(self):
+        if self.technical:
+            return 'technical'
+        else:
+            return 'cultural'
+
+    def class_string(self):
+        return ' '.join(self.tags)
 
     def __str__(self):
         return self.title

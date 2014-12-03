@@ -1512,7 +1512,7 @@ input:focus {
 }
 .filter-cultural .card.cultural,
 .filter-cse .card.cse,
-.filter-ec .card.cs,
+.filter-ec .card.ec,
 .filter-civil .card.civil,
 .filter-mech .card.mech {
   display: inline-block;
@@ -1909,4 +1909,84 @@ body.event-details .banner .dropdown li:hover {
 .cultural-event .register-button:hover,
 .cultural-event .register-button.registered {
   background: #008821;
+}
+.profile-page {
+  height: 680px;
+}
+.profile-body {
+  overflow-y: hidden;
+}
+.left-side-bar {
+  float: left;
+  width: 25%;
+  height: 100%;
+  background: #041d78;
+}
+.left-side-bar ul {
+  width: 100%;
+  padding: 40px 0px;
+}
+.left-side-bar ul li {
+  height: 50px;
+  text-align: left;
+  font-size: 20px;
+  padding: 0px 50px;
+  line-height: 50px;
+}
+.left-side-bar ul li:hover,
+.left-side-bar ul li.selected {
+  background: #03175f;
+  cursor: pointer;
+  color: #4dcdff;
+}
+.profile-right-panel {
+  width: 75%;
+  height: 100%;
+  background: #03175f;
+  float: left;
+  padding: 30px 80px;
+}
+.profile-right-panel .errorlist {
+  color: red;
+  margin: 0 0 0 10px;
+  display: inline-block;
+}
+.profile-right-panel button {
+  background: #006BA7;
+  margin: 10px 0 0 0;
+  border: 1px solid #00859E;
+}
+.profile-right-panel button:hover {
+  background: #0a99ff;
+}
+.profile-right-panel h1 {
+  font-size: 48px;
+  margin: 20px 0 45px 0;
+}
+.profile-right-panel span.warn {
+  color: red;
+  display: none;
+}
+.profile-right-panel.show-warn h1 {
+  margin-bottom: 15px;
+}
+.profile-right-panel.show-warn span.warn {
+  margin-bottom: 10px;
+  display: block;
+}
+.profile-right-panel label {
+  font-size: 14px;
+  display: block;
+  margin: 0;
+}
+.profile-right-panel input {
+  border: 1px solid #03091E;
+  display: inline-block;
+  background: #010B2F;
+  width: 400px;
+  margin: 0px 0px 20px 0;
+  padding: 5px 10px;
+}
+.profile-right-panel input:focus {
+  border: 1px solid rgba(77, 205, 255, 0.8);
 }

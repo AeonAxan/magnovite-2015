@@ -68,6 +68,17 @@
     </div>
     {% endblock page_banner %}
 
+    <div class="notifications">
+        <script type="text/template" id="notification-template">
+            <div data-id="[[id]]" class="notification [[type]] [[actionClass]]">
+                <p class="close js-notif-close">x</p>
+
+                <p class="text">[[text]]</p>
+                <a href="#" class="action js-notif-action">[[action]]</a>
+            </div>
+        </script>
+    </div>
+
     {% block "content" %}{% endblock %}
 
     {% block "pre_js" %}{% endblock %}
@@ -95,6 +106,7 @@
 
     <!-- common -->
         <script src="/static/js/modal.js"></script>
+        <script src="/static/js/notification.js"></script>
         <script src="/static/js/settingsDropdown.js"></script>
         <script src="/static/js/csrfJquerySetup.js"></script>
     <!-- /Common -->
@@ -139,5 +151,16 @@
     <!-- endbuild -->
 
     {% block "post_js" %}{% endblock %}
+
+    {# Show all the messages #}
+    <script>
+    {% for message in messages %}
+        app.notification.notify({
+            text: '{{message}}',
+            type: '{{message.tags}}'
+        });
+    {% endfor %}
+    </script>
+    }
 </body>
 </html>

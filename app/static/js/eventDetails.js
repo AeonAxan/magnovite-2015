@@ -64,7 +64,10 @@ app.eventDetails = {};
             })
             .fail(function() {
                 // alert failure TODO: FIXME
-                alert('Could not unregister at this time');
+                app.notification.notify({
+                    text: 'Could not unregister at this time. Please try again later',
+                    type: 'error'
+                });
             })
             .always(function() {
                 NProgress.done();
@@ -89,17 +92,31 @@ app.eventDetails = {};
             .fail(function(err) {
                 var obj = err.responseJSON;
                 if (!obj) {
-                    alert('Something went wrong! Please try again later');
+                    app.notification.notify({
+                        text: 'Something went wrong! Please try again later',
+                        type: 'error'
+                    });
                     return;
                 }
 
                 if (obj.errorCode === 'profile_incomplete') {
                     // issue a message and a redirect
-                    alert('Complete profile first');
+                    app.notification.notify({
+                        text: 'You cannot register without completing your profile!',
+                        action: 'Complete Now',
+                        type: 'error',
+                        persistant: true,
+                        actionCallback: function() {
+                            window.location.replace('/profile/');
+                        }
+                    });
                     return;
                 }
 
-                alert(obj.errorMessage);
+                app.notification.notify({
+                    text: obj.errorMessage,
+                    type: 'error'
+                });
             })
             .always(function() {
                 NProgress.done();
@@ -129,7 +146,10 @@ app.eventDetails = {};
                 .fail(function(err) {
                     var obj = err.responseJSON;
 
-                    alert(obj.errorMessage);
+                    app.notification.notify({
+                        text: obj.errorMessage,
+                        type: 'error'
+                    });
                 })
                 .always(function() {
                     NProgress.done();
@@ -188,8 +208,6 @@ app.eventDetails = {};
                         html += val.name + '</li>';
                     });
 
-                    console.log(html);
-                    window.data = data;
                     $members.html(html);
 
                     $registerButton.addClass('registered');
@@ -198,6 +216,8 @@ app.eventDetails = {};
                     // show the team detail modal
                     app.modal.hide();
                     unregisterTeam();
+
+                    isRegistered = true;
                 })
                 .fail(function(err) {
                     if (err.status === 404) {
@@ -208,7 +228,10 @@ app.eventDetails = {};
                     }
 
                     var obj = err.responseJSON;
-                    alert(obj.errorMessage);
+                    app.notification.notify({
+                        text: obj.errorMessage,
+                        type: 'text'
+                    });
                 })
                 .always(function() {
                     NProgress.done();

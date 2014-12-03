@@ -6,10 +6,16 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import MUser, Profile
+from app.event.models import Registration
 
+
+class RegistrationsInline(admin.TabularInline):
+    model = Registration
+    extra = 0
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'user', 'auth_provider', 'active_email')
+    inlines = [RegistrationsInline]
 
 admin.site.register(Profile, ProfileAdmin)
 

@@ -30,20 +30,7 @@ event-details {{event.type}}-event
 	<div class="container">
 		<div class="pane left">
 			<div class="markdown">
-				<h1>Rules</h1>
-				<ul>
-					<li>Dont break the rules</li>
-					<li>Dont break the rules</li>
-					<li>Dont break the rules</li>
-					<li>Dont break the rules</li>
-					<li>Dont break the rules</li>
-				</ul>
-				<h2>Guidliens</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, veniam placeat minus aspernatur facilis doloremque!</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, corporis.</p>
-
-				<h3>Lines</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, ipsa assumenda. Tempore, laborum vero modi.</p>
+				{{event.info_as_html|safe}}
 			</div>
 		</div>
 

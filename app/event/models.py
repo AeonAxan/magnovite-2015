@@ -1,3 +1,5 @@
+import markdown
+
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -65,6 +67,12 @@ class Event(models.Model):
         default=False
     )
 
+
+    def info_as_html(self):
+        """
+        Returns the rendered html from the markdown
+        """
+        return markdown.markdown(self.info)
 
     def is_complete(self):
         """

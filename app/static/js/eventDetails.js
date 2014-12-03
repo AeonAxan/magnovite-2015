@@ -228,9 +228,24 @@ app.eventDetails = {};
                     }
 
                     var obj = err.responseJSON;
+
+                    if (obj.errorCode === 'profile_incomplete') {
+                        app.notification.notify({
+                            text: 'You cannot register without completing your profile!',
+                            action: 'Complete Now',
+                            type: 'error',
+                            persistant: true,
+                            actionCallback: function() {
+                                window.location.replace('/profile/');
+                            }
+                        });
+
+                        return;
+                    }
+
                     app.notification.notify({
                         text: obj.errorMessage,
-                        type: 'text'
+                        type: 'error'
                     });
                 })
                 .always(function() {

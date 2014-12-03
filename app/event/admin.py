@@ -31,3 +31,5 @@ admin.site.register(Event, EventAdmin)
 
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = ['event', 'profile', 'team_id']
+
+admin.site.register(Registration, RegistrationAdmin)

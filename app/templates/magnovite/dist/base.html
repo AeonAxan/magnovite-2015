@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-34384c6b.css"/>
+    <link rel="stylesheet" href="/static/dist/style-c1356cb5.css"/>
 
     <script src="/static/dist/js-head-051e1028.js"></script>
 </head>
-<body>
+<body class="{% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}
 
     <!-- login modal -->
@@ -77,7 +77,7 @@
     }
     </script>
 
-    <script src="/static/dist/app-7826ae5c.js"></script>
+    <script src="/static/dist/app-2401fb01.js"></script>
 
     {% block "post_js" %}{% endblock %}
 </body>

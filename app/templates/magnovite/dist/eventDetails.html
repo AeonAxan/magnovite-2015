@@ -1,5 +1,9 @@
 {% extends "magnovite/dist/base.html" %}
 
+{% block "body_css_class" %}
+event-details cultural-event
+{% endblock %}
+
 {% block "content" %}
 <div class="event-cover">
 	<div class="image" style="background: url('/static/img/robotics.jpg')"></div>
@@ -48,8 +52,17 @@
 		</div>
 
 		<div class="pane right">
-			<div class="register">
-				<button class="button">Subscribe</button>
+			<div class="register-container registered">
+				<div class="register-button">
+					<div class="inner">
+						<div class="check"></div>
+						<p>Register</p>
+					</div>
+				</div>
+				<div class="team-details">
+					<span class="label">Members per team</span>
+					<p>1-8</p>
+				</div>
 			</div>
 
 			<div class="info">
@@ -59,15 +72,15 @@
 				</div>
 				<ul class="points">
 					<li>
-						<span>Date: </span>
+						<span class="label">Date</span>
 						<span>21st February</span>
 					</li>
 					<li>
-						<span>Time: </span>
+						<span class="label">Time</span>
 						<span>21st February</span>
 					</li>
 					<li>
-						<span>Venue: </span>
+						<span class="label">Venue</span>
 						<span>21st February</span>
 					</li>
 				</ul>
@@ -77,8 +90,8 @@
 				<div class="head">
 					<img src="/static/img/event_heads/event1_1.jpg" alt="">
 					<p class="name">Ahmed Azaan Hassan</p>
-					<p>+91 890 430 8580</p>
-					<p>azaan@outlook.com</p>
+					<p class="details">+91 890 430 8580</p>
+					<p class="details">azaan@outlook.com</p>
 				</div>
 				<div class="head">
 					<img src="/static/img/event_heads/event1_1.jpg" alt="">

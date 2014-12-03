@@ -49,6 +49,14 @@ class Event(models.Model):
         null=True
     )
 
+    def is_complete(self):
+        """
+        Are all the details of this event complete,
+        we only need to verify optional fields
+        """
+        return bool(self.date and self.time and self.venue and self.cover_picture)
+    is_complete.boolean = True
+
     def type(self):
         if self.technical:
             return 'technical'

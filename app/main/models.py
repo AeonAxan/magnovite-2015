@@ -108,6 +108,18 @@ class Profile(models.Model):
 
     registered_events = models.ManyToManyField(Event, through=Registration)
 
+    # internal fields
+    is_internal = models.BooleanField(
+        default=False,
+        help_text='Is this an internal account? (Event Heads, etc)'
+    )
+    event = models.ForeignKey(Event,
+        related_name='heads',
+        help_text='The event this profile is in-charge of',
+        null=True, blank=True,
+        on_delete=models.SET_NULL
+    )
+
     def get_absolute_url(self):
         return '/profile/'
 

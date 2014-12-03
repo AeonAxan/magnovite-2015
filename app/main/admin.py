@@ -8,12 +8,11 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import MUser, Profile
 
 
-class MyAdmin(AdminSite):
-    site_title = 'Magnovite Admin'
-    site_header = 'Magnovite Admin'
-    index_title = 'Magnovite Admin'
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('name', 'user', 'auth_provider', 'active_email')
 
-admin_site = MyAdmin()
+admin.site.register(Profile, ProfileAdmin)
+
 
 class UserCreationForm(forms.ModelForm):
     """
@@ -63,6 +62,11 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    extra = 0
+
+
 class MUserAdmin(UserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
@@ -88,15 +92,10 @@ class MUserAdmin(UserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
+    inlines = [ProfileInline]
 
 admin.site.register(MUser, MUserAdmin)
 
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
-
-
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'user', 'auth_provider', 'active_email')
-
-admin.site.register(Profile, ProfileAdmin)

@@ -1,0 +1,66 @@
+{% extends "magnovite/dist/base.html" %}
+
+{% load account %}
+
+{% block "post_js" %}
+<script>
+	app.profile.init();
+</script>
+{% endblock "post_js" %}
+
+{% block "content" %}
+<div class="profile-page">
+    <div class="left-side-bar">
+        <ul>
+            <li class="selected">Detail</li>
+            <li>Event</li>
+            <li>Help</li>
+        </ul>
+    </div>
+
+    <div class="profile-right-panel
+        {% if not profile_form.instance.is_complete %}show-warn{% endif %}">
+        <form id="profile-form" action="{% url "profile_update" pk=profile_form.instance.pk %}" method="POST">
+
+        <div>
+            <h1>Details</h1>
+            <span class="warn">You cannot register to events till you fill all the details</span>
+
+            <div>
+                <label>Name</label>
+                {{ profile_form.name }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Email</label>
+                {{ profile_form.active_email }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Mobile (without +91)</label>
+                {{ profile_form.mobile }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>College/University</label>
+                {{ profile_form.college }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <label>Year of study (1, 2, 3, 4, 5)</label>
+                {{ profile_form.year }}
+                <ul class="errorlist">
+                </ul>
+            </div>
+            <div>
+                <button class="button">Save</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock "content" %}

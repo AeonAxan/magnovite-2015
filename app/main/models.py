@@ -132,4 +132,4 @@ class Profile(models.Model):
             self.year != None and self.active_email != ''
 
     def __str__(self):
-        return self.name
+        return self.name + '|' + self.active_email

@@ -421,6 +421,16 @@ em {
   opacity: 0;
   transform: translateX(-20px);
 }
+.button.gray {
+  background: #949494;
+  border: 1px solid #808080;
+  color: white;
+}
+.button.gray:hover {
+  background: #585858;
+  border: 1px solid #7E7E7E;
+  box-shadow: none;
+}
 input {
   height: 38px;
   line-height: 38px;
@@ -438,6 +448,75 @@ input:focus {
   color: rgba(255, 255, 255, 0.9);
   outline: none;
   border: 1px solid rgba(77, 205, 255, 0.8);
+}
+input.gray {
+  background: #807F7F;
+  border: 1px solid #7E7E7E;
+  color: white;
+}
+input.gray:focus {
+  background: #585858;
+  border: 1px solid #7E7E7E;
+  box-shadow: none;
+}
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  trasnfrom: translateY(-50px);
+  opacity: 0.3;
+}
+.modal .body {
+  overflow: hidden;
+}
+.modal .modal-inner {
+  width: 600px;
+  margin: 200px auto;
+  color: rgba(255, 255, 255, 0.95);
+  background: white;
+  position: relative;
+}
+.modal .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.1);
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal .close:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.modal .title {
+  font-size: 28px;
+  display: block;
+  text-align: center;
+  padding: 40px;
+  background: #186bff;
+}
+.modal-loading.modal {
+  display: block;
+  opacity: 0;
+}
+.modal-loading.modal .modal-inner {
+  transform: translateY(-40px);
+  opacity: 0.8;
+}
+.modal-active.modal {
+  display: block;
+  opacity: 1;
+}
+.modal-active.modal .modal-inner {
+  opacity: 1;
+  transform: translateY(0px);
 }
 .banner {
   width: 100%;
@@ -521,47 +600,6 @@ input:focus {
 .user-settings.dropdown-active .dropdown {
   display: block;
 }
-.login-modal {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 5;
-  trasnfrom: translateY(-50px);
-  opacity: 0.3;
-}
-.login-modal .modal-inner {
-  width: 600px;
-  height: 300px;
-  margin: 200px auto;
-  color: rgba(255, 255, 255, 0.95);
-  background: white;
-  position: relative;
-}
-.login-modal .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.1);
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
-.login-modal .close:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-.login-modal h2 {
-  font-size: 28px;
-  display: block;
-  text-align: center;
-  padding: 40px;
-  background: #186bff;
-}
 .login-modal span.light {
   font-size: 14px;
   text-align: center;
@@ -605,22 +643,6 @@ input:focus {
   margin-bottom: 20px;
   color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
-}
-.modal-loading .login-modal {
-  display: block;
-  opacity: 0;
-}
-.modal-loading .login-modal .modal-inner {
-  transform: translateY(-40px);
-  opacity: 0.8;
-}
-.modal-active .login-modal {
-  display: block;
-  opacity: 1;
-}
-.modal-active .login-modal .modal-inner {
-  opacity: 1;
-  transform: translateY(0px);
 }
 #canvas {
   background: #03175f;
@@ -1931,6 +1953,39 @@ body.event-details .banner .dropdown li:hover {
 .cultural-event .register-button:hover,
 .cultural-event .register-button.registered {
   background: #008821;
+}
+.team-register-modal .body {
+  padding: 20px;
+}
+.team-register-modal .panel {
+  width: 50%;
+  float: left;
+  padding: 30px 10px;
+}
+.team-register-modal .panel:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.team-register-modal .text {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  text-align: center;
+}
+.team-register-modal .button {
+  display: block;
+  margin: 20px auto;
+  width: 180px;
+  text-align: center;
+}
+.team-register-modal input {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.team-register-modal.technical .title {
+  background: #df0000;
+}
+.team-register-modal.cultural .title {
+  background: #00bd1e;
 }
 .profile-page {
   height: 680px;

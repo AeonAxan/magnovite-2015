@@ -18,7 +18,7 @@ ADMINS = ('ahmed.azaan@outlook.com',)
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'zqnn4=p1jfl_$#2w+-y-ua92u*woge78$201+wy#mf0(yl+x6y'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'zqnn4=p1jfl_$#2w+-y-ua92u*woge78$201+wy#mf0(yl+x6y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -4,9 +4,50 @@
 
 {% block "body_css_class" %}
 event-details {{event.type}}-event
+{% if not event.is_team %}individual{% endif %}
+{% if is_registered %}registered{% endif %}
 {% endblock %}
 
+{% block "post_js" %}
+<script>
+app.CURRENT_EVENT_ID = {{event.id}}
+app.eventDetails.init();
+</script>
+{% endblock "post_js" %}
+
 {% block "content" %}
+
+<div class="modal team-register-modal {{event.type}}" id="team-register">
+	<div class="modal-inner">
+		<div class="close">x</div>
+
+		<h2 class="title">Team Registrations</h2>
+		<div class="body">
+			<div class="panel">
+				<div class="button gray new-team">
+					Start a Team
+				</div>
+
+				<p class="text">
+					Start your own team! You will be given a unique
+					team ID which your friends can use to join your
+					team
+				</p>
+			</div>
+			<div class="panel">
+				<input class="gray" type="text" maxlength="5" placeholder="Team ID" autocomplete="off" name="teamId">
+				<div class="button gray join-team">
+					Join Team
+				</div>
+
+				<p class="text">
+					Enter a team ID to join an existing team
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="event-cover">
 	<div class="image" style="background: url('{{STATIC_URL}}{{event.cover_picture_path}}')"></div>
 
@@ -40,14 +81,14 @@ event-details {{event.type}}-event
 				<div class="register-button registered">
 					<div class="inner">
 						<div class="check"></div>
-						<p>Registered</p>
+						<p class="js-text">Unregister</p>
 					</div>
 				</div>
 				{% else %}
 				<div class="register-button">
 					<div class="inner">
 						<div class="check"></div>
-						<p>Register</p>
+						<p class="js-text">Register</p>
 					</div>
 				</div>
 				{% endif %}

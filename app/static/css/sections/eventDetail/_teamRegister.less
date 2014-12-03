@@ -1,0 +1,43 @@
+.team-register-modal {
+
+    .body {
+        padding: 20px;
+    }
+
+    .panel {
+        width: 50%;
+        float: left;
+        padding: 30px 10px;
+
+        &:first-child {
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .text {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .button {
+        display: block;
+        margin: 20px auto;
+        width: 180px;
+        text-align: center;
+    }
+
+    input {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &.technical .title {
+        background: @details_tech_dark;
+    }
+
+    &.cultural .title {
+        background: @details_cult_dark;
+    }
+}

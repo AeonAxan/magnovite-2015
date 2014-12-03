@@ -1,4 +1,4 @@
-import markdown
+import markdown2
 
 from django.db import models
 from django.core.urlresolvers import reverse
@@ -20,7 +20,9 @@ class Event(models.Model):
     quote = models.CharField(max_length=50, help_text='Text displayed on the cards in /events/')
 
     # This is assumed to be a Markdown field
-    info = models.TextField(help_text='Please write in Markdown (Use headings, bold, italic, lists)')
+    info = models.TextField(
+        help_text='Please write in Markdown (Editor: http://dillinger.io/)'
+    )
 
     cash_prize = models.IntegerField(help_text='Numeric, Eg: 5000')
 
@@ -72,7 +74,7 @@ class Event(models.Model):
         """
         Returns the rendered html from the markdown
         """
-        return markdown.markdown(self.info)
+        return markdown2.markdown(self.info)
 
     def is_complete(self):
         """
@@ -83,7 +85,7 @@ class Event(models.Model):
     is_complete.boolean = True
 
     def is_team(self):
-        return not self.team_min == 1 and self.team_max == 1
+        return not bool(self.team_min == 1 and self.team_max == 1)
 
     def type(self):
         if self.technical:
@@ -96,6 +98,10 @@ class Event(models.Model):
         Returns an array of objects [{tag, name}]
         """
         out = []
+
+        if not self.tags:
+            return out
+
         for tag in self.tags:
             out.append({
                 'tag': tag,
@@ -108,7 +114,10 @@ class Event(models.Model):
         """
         Returns all the tags as a string
         """
-        return ' '.join(self.tags)
+        if self.tags:
+            return ' '.join(self.tags)
+        else:
+            return ''
 
     def get_tag_verbose(self, tag):
         for row in self.TECHNICAL_TAGS:
@@ -146,3 +155,6 @@ class Registration(models.Model):
     # If this registration is for a team event
     # then the team id
     team_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        unique_together = ['event', 'profile']

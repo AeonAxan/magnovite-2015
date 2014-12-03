@@ -29,28 +29,7 @@
      * Shows the LogIn dropdown
      */
     function showModal() {
-        document.body.classList.add('modal-loading');
-        window.setTimeout(function() {
-            document.body.classList.add('modal-active');
-        }, 50);
-
-        document.querySelector('.login-modal')
-            .addEventListener('click', function(e) {
-                if (e.target.classList.contains('login-modal') ||
-                    e.target.classList.contains('close')) {
-                    closeModal();
-                }
-            });
-    }
-
-    /**
-     * Hide the LogIn Modal
-     */
-    function closeModal() {
-        document.body.classList.remove('modal-active');
-        window.setTimeout(function() {
-            document.body.classList.remove('modal-loading');
-        }, 50);
+        app.modal.show('#login-modal');
     }
 
     if (window.location.hash === '#login') {

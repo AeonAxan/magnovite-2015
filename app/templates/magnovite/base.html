@@ -21,26 +21,29 @@
     {% csrf_token %}
 
     <!-- login modal -->
-    <div class="login-modal">
+    <div class="login-modal modal" id="login-modal">
         <div class="modal-inner">
             <div class="close">x</div>
-            <h2>Login or Register</h2>
 
-            <div class="buttons">
-                <div class="social-button">
-                    <img src="/static/img/google.png" alt="">
-                    <a href="{% provider_login_url "google" %}"></a>
+            <h2 class="title">Login or Register</h2>
+
+            <div class="body">
+                <div class="buttons">
+                    <div class="social-button">
+                        <img src="/static/img/google.png" alt="">
+                        <a href="{% provider_login_url "google" %}"></a>
+                    </div>
+                    <div class="social-button">
+                        <img src="/static/img/twitter.png" alt="">
+                        <a href="{% provider_login_url "twitter" %}"></a>
+                    </div>
                 </div>
-                <div class="social-button">
-                    <img src="/static/img/twitter.png" alt="">
-                    <a href="{% provider_login_url "twitter" %}"></a>
-                </div>
+                <p class="help-text">
+                    Why only Social Login? Because we dont want
+                    you to have to remember another set of username/password.
+                    Also we request only basic profile details
+                </p>
             </div>
-            <p class="help-text">
-                Why only Social Login? Because we dont want
-                you to have to remember another set of username/password.
-                Also we request only basic profile details
-            </p>
         </div>
     </div>
 
@@ -84,13 +87,14 @@
     <!-- build:js(./app/) /static/dist/app.js -->
 
     <!-- Lib -->
+        <script src="/static/js/lib/jquery-2.1.1.min.js"></script>
         <script src="/static/js/lib/nprogress.js"></script>
         <script src="/static/js/lib/countdown.js"></script>
         <script src="/static/js/lib/microajax.js"></script>
-        <script src="/static/js/lib/jquery-2.1.1.min.js"></script>
     <!-- /Lib -->
 
     <!-- common -->
+        <script src="/static/js/modal.js"></script>
         <script src="/static/js/settingsDropdown.js"></script>
         <script src="/static/js/csrfJquerySetup.js"></script>
     <!-- /Common -->
@@ -127,6 +131,10 @@
     <!-- Profile Page -->
         <script src="/static/js/profile.js"></script>
     <!-- /Profile Page -->
+
+    <!-- Event Details page -->
+        <script src="/static/js/eventDetails.js"></script>
+    <!-- /EventDetails -->
 
     <!-- endbuild -->
 

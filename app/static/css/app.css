@@ -1687,10 +1687,21 @@ body.event-details .banner .dropdown li:hover {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  background: #ff9800;
   position: absolute;
   bottom: 0;
   left: 0;
+}
+.event-cover .tags .tag.cse {
+  background: #ff9800;
+}
+.event-cover .tags .tag.ec {
+  background: #00bcd4;
+}
+.event-cover .tags .tag.mech {
+  background: #607d8b;
+}
+.event-cover .tags .tag.civil {
+  background: #ffeb3b;
 }
 .page {
   width: 100%;
@@ -1786,6 +1797,9 @@ body.event-details .banner .dropdown li:hover {
 }
 .page .right .register-container .register-button:hover {
   cursor: pointer;
+}
+.page .right .register-container .register-button.registered .inner {
+  padding-left: 40px;
 }
 .page .right .register-container .team-details {
   float: left;

@@ -1781,15 +1781,29 @@ body.event-details .banner .dropdown li:hover {
   font-size: 18px;
 }
 .page .left .markdown p,
-.page .left .markdown ul {
+.page .left .markdown ul,
+.page .left .markdown ol {
   display: block;
 }
 .page .left .markdown ul {
   list-style: disc;
   margin-left: 20px;
 }
-.page .left .markdown p {
-  margin: 10px 0;
+.page .left .markdown ol {
+  list-style: decimal;
+  margin-left: 20px;
+}
+.page .left .markdown p,
+.page .left .markdown ol,
+.page .left .markdown ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.page .left .markdown em {
+  font-style: italic;
+}
+.page .left .markdown strong {
+  font-weight: bold;
 }
 .page .right {
   color: rgba(255, 255, 255, 0.8);

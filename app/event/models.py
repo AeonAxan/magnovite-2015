@@ -36,7 +36,8 @@ class Event(models.Model):
     venue = models.CharField(
         max_length=50,
         help_text='Eg: Room 243, Block 2',
-        blank=True)
+        blank=True
+    )
 
     team_min = models.IntegerField(
         help_text='Minimum number of people in a team (If individual: 1)',
@@ -46,6 +47,7 @@ class Event(models.Model):
         help_text='Maximum number of people in a team (If individual: 1)',
         default=1
     )
+
     # if not technical, then cultural
     technical = models.BooleanField(default=True, help_text='If cultural set to false')
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from multiselectfield import MultiSelectField
 
@@ -37,6 +38,15 @@ class Event(models.Model):
         help_text='Eg: Room 243, Block 2',
         blank=True)
 
+    team_min = models.IntegerField(
+        help_text='Minimum number of people in a team (If individual: 1)',
+        default=1
+    )
+    team_max = models.IntegerField(
+        help_text='Maximum number of people in a team (If individual: 1)',
+        default=1
+    )
+
     # if not technical, then cultural
     technical = models.BooleanField(default=True, help_text='If cultural set to false')
 
@@ -57,14 +67,43 @@ class Event(models.Model):
         return bool(self.date and self.time and self.venue and self.cover_picture)
     is_complete.boolean = True
 
+    def is_team(self):
+        return not self.team_min == 1 and self.team_max == 1
+
     def type(self):
         if self.technical:
             return 'technical'
         else:
             return 'cultural'
 
+    def tag_assoc(self):
+        """
+        Returns an array of objects [{tag, name}]
+        """
+        out = []
+        for tag in self.tags:
+            out.append({
+                'tag': tag,
+                'name': self.get_tag_verbose(tag)
+            })
+
+        return out
+
     def class_string(self):
+        """
+        Returns all the tags as a string
+        """
         return ' '.join(self.tags)
+
+    def get_tag_verbose(self, tag):
+        for row in self.TECHNICAL_TAGS:
+            if row[0] == tag:
+                return row[1]
+
+        return ""
+
+    def get_absolute_url(self):
+        return reverse('event_details', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title

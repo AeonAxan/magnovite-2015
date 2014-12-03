@@ -120,6 +120,9 @@ class Profile(models.Model):
         on_delete=models.SET_NULL
     )
 
+    def is_registered_to_event(self, event):
+        return self.registered_events.filter(id=event.id).count() == 1
+
     def get_absolute_url(self):
         return '/profile/'
 

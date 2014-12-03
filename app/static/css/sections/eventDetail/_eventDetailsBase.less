@@ -92,10 +92,25 @@ body.event-details .banner {
 			width: @detail_tag_size;
 			height: @detail_tag_size;
 			border-radius: @detail_tag_size;
-			background: @color_cse;
 			position: absolute;
 			bottom: 0;
 			left: 0;
+
+			&.cse {
+				background: @color_cse;
+			}
+
+			&.ec {
+				background: @color_ec;
+			}
+
+			&.mech {
+				background: @color_mech;
+			}
+
+			&.civil {
+				background: @color_civil;
+			}
 		}
 	}
 }
@@ -202,6 +217,10 @@ body.event-details .banner {
 
 				&:hover {
 					cursor: pointer;
+				}
+
+				&.registered .inner {
+					padding-left: 40px;
 				}
 			}
 

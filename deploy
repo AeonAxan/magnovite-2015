@@ -13,12 +13,14 @@ if echo $* | grep -e "--no-dist" -q
 then
     echo ">>>> Skipping Dist step"
 else
-    git checkout "$1"
-    git merge master
     gulp dist
     git add .
     git commit -m "$1: $2"
 fi
+
+echo ">>>> Merging master with $1"
+git checkout "$1"
+git merge master
 
 if [ "$1" == "production" ]
 then

@@ -17,14 +17,14 @@ app.eventDetails.init();
 
 {% block "content" %}
 
-<div class="modal team-register-modal {{event.type}}" id="team-register">
+<div class="modal detail-modals team-register-modal {{event.type}}" id="team-register">
 	<div class="modal-inner">
 		<div class="close">x</div>
 
 		<h2 class="title">Team Registrations</h2>
 		<div class="body">
 			<div class="panel">
-				<div class="button gray new-team">
+				<div class="button gray new-team js-new-team">
 					Start a Team
 				</div>
 
@@ -36,13 +36,46 @@ app.eventDetails.init();
 			</div>
 			<div class="panel">
 				<input class="gray" type="text" maxlength="5" placeholder="Team ID" autocomplete="off" name="teamId">
-				<div class="button gray join-team">
+				<p class="error">Invalid Team ID</p>
+				<div class="button gray join-team js-join-team">
 					Join Team
 				</div>
 
 				<p class="text">
 					Enter a team ID to join an existing team
 				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal detail-modals team-detail-modal {{event.type}}" id="team-detail">
+	<div class="modal-inner">
+		<div class="close">x</div>
+		<h2 class="title">Team Details</h2>
+
+		<div class="body">
+			<div class="panel">
+				<h3>Your Team</h3>
+				<ol class="members">
+					{% for teammate in team_profiles %}
+					<li class="{% if teammate == profile %}me{% endif %}">
+					{{teammate.name}}
+					</li>
+					{% endfor %}
+				</ol>
+			</div>
+			<div class="panel">
+				<h3>Team ID</h3>
+				<p class="team-id">{{team_id}}</p>
+				<p class="text">
+					Have your friends register with this ID to join
+					your team
+				</p>
+
+				<div class="button gray leave-team js-leave">
+					Leave Team
+				</div>
 			</div>
 		</div>
 	</div>
@@ -77,21 +110,27 @@ app.eventDetails.init();
 
 		<div class="pane right">
 			<div class="register-container">
-				{% if is_registered %}
-				<div class="register-button registered">
+				<div class="register-button
+				{% if is_registered %}registered{% endif %}
+				{% if event.is_team %}team-event{% endif %}">
 					<div class="inner">
 						<div class="check"></div>
-						<p class="js-text">Unregister</p>
+
+						<div class="text-container">
+							{% if is_registered %}
+								{% if event.is_team %}
+								<p class="text js-text">View Team</p>
+								{% else %}
+								<p class="text js-text">Unregister</p>
+								{% endif %}
+							{% else %}
+								<p class="text js-text">Register</p>
+							{% endif %}
+
+							<p class="extra">(or Unregister)</p>
+						</div>
 					</div>
 				</div>
-				{% else %}
-				<div class="register-button">
-					<div class="inner">
-						<div class="check"></div>
-						<p class="js-text">Register</p>
-					</div>
-				</div>
-				{% endif %}
 
 				<div class="team-details">
 					<span class="label">Event Type</span>

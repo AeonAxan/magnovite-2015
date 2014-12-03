@@ -5,13 +5,15 @@ app.modal = {};
     'use strict';
 
     var currentModal;
+    var closeCallback;
 
     /**
      * Shows the modal with given id and will handle
      * its close events
      * @param  {string} id DOM id of the modal
+     * @param {function} callback Will be called when modal closes
      */
-    app.modal.show = function(id) {
+    app.modal.show = function(id, callback) {
         if (currentModal) {
             if (currentModal.attr('id') !== id) {
                 app.modal.hide();
@@ -32,6 +34,7 @@ app.modal = {};
             }
         });
 
+        closeCallback = callback;
     };
 
     /**
@@ -44,10 +47,17 @@ app.modal = {};
         }
 
         currentModal.removeClass('modal-active');
-        window.setTimeout(function() {
-            currentModal.removeClass('modal-loading');
-            currentModal = undefined;
-        }, 50);
+        window.setTimeout((function(currentModal) {
+            return function() {
+                currentModal.removeClass('modal-loading');
+                currentModal = undefined;
+            };
+        })(currentModal), 50);
+
+        if (closeCallback) {
+            closeCallback();
+            closeCallback = undefined;
+        }
     };
 
 })();

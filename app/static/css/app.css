@@ -1833,17 +1833,41 @@ body.event-details .banner .dropdown li:hover {
   height: 40px;
   border-radius: 40px;
 }
-.page .right .register-container .register-button p {
+.page .right .register-container .register-button .text {
   float: left;
   font-size: 28px;
   margin-top: 10px;
+  margin-left: 15px;
+}
+.page .right .register-container .register-button .extra {
+  display: none;
+}
+.page .right .register-container .register-button.team-event.registered .text-container {
+  float: left;
+  margin-top: 0;
+  margin-left: 10px;
+}
+.page .right .register-container .register-button.team-event.registered .text {
+  display: block;
+  float: none;
+  margin-top: 0;
+  font-size: 24px;
+}
+.page .right .register-container .register-button.team-event.registered .extra {
+  font-size: 15px;
   margin-left: 10px;
 }
 .page .right .register-container .register-button:hover {
   cursor: pointer;
 }
+.page .right .register-container .register-button:hover .text-container {
+  color: rgba(255, 255, 255, 0.95);
+}
 .page .right .register-container .register-button.registered .inner {
   padding-left: 40px;
+}
+.page .right .register-container .register-button.team-event.registered .extra {
+  display: block;
 }
 .page .right .register-container .team-details {
   float: left;
@@ -1968,38 +1992,84 @@ body.event-details .banner .dropdown li:hover {
 .cultural-event .register-button.registered {
   background: #008821;
 }
-.team-register-modal .body {
+.detail-modals .body {
   padding: 20px;
 }
-.team-register-modal .panel {
+.detail-modals .panel {
   width: 50%;
   float: left;
   padding: 30px 10px;
 }
-.team-register-modal .panel:first-child {
+.detail-modals .panel:first-child {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
-.team-register-modal .text {
+.detail-modals .text {
   color: rgba(0, 0, 0, 0.5);
   font-size: 15px;
   text-align: center;
 }
-.team-register-modal .button {
+.detail-modals .button {
   display: block;
   margin: 20px auto;
   width: 180px;
   text-align: center;
 }
-.team-register-modal input {
+.detail-modals input {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
-.team-register-modal.technical .title {
+.detail-modals.technical .title {
   background: #df0000;
 }
-.team-register-modal.cultural .title {
+.detail-modals.cultural .title {
   background: #00bd1e;
+}
+.team-register-modal .error {
+  display: none;
+}
+.team-register-modal.has-error .error {
+  display: block;
+  font-size: 14px;
+  color: #d10000;
+  text-align: center;
+}
+.team-detail-modal .modal-inner {
+  margin-top: 120px;
+}
+.team-detail-modal ol {
+  list-style: none;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+.team-detail-modal ol li {
+  background: #f3f3f3;
+  margin: 5px 0;
+  padding: 7px 7px 7px 14px;
+  cursor: default;
+  height: 38px;
+}
+.team-detail-modal ol li.me {
+  background: #d8d8d8;
+}
+.team-detail-modal .body {
+  color: rgba(0, 0, 0, 0.5);
+}
+.team-detail-modal .panel {
+  text-align: center;
+  padding: 10px 20px;
+}
+.team-detail-modal .team-id {
+  padding: 20px;
+  background: #f3f3f3;
+  margin: 15px 0;
+  font-size: 28px;
+}
+.team-detail-modal h3 {
+  display: block;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
 }
 .profile-page {
   height: 680px;

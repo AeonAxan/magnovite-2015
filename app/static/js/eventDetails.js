@@ -33,14 +33,25 @@ app.eventDetails = {};
             return;
         }
 
-        if (isRegistered) {
-            unregister();
+        if (isIndividual) {
+            if (isRegistered) {
+                unregisterSingle();
+            } else {
+                registerSingle();
+            }
         } else {
-            register();
+            if (isRegistered) {
+                unregisterTeam();
+            } else {
+                registerTeam();
+            }
         }
     }
 
-    function unregister() {
+    /**
+     * Handle unregistration for a single person event
+     */
+    function unregisterSingle() {
         NProgress.start();
         inProgress = true;
 
@@ -61,48 +72,149 @@ app.eventDetails = {};
             });
     }
 
-    function register() {
-        if (isIndividual) {
-            // simple registration
+    /**
+     * Handle registration for a single person event
+     */
+    function registerSingle() {
+        NProgress.start();
+        inProgress = true;
 
+        $.post('/events/api/register/' + eventID + '/')
+            .done(function() {
+                $registerButton.addClass('registered');
+                $registerButton.find('.js-text').text('Unregister');
+
+                isRegistered = true;
+            })
+            .fail(function(err) {
+                var obj = err.responseJSON;
+                if (!obj) {
+                    alert('Something went wrong! Please try again later');
+                    return;
+                }
+
+                if (obj.errorCode === 'profile_incomplete') {
+                    // issue a message and a redirect
+                    alert('Complete profile first');
+                    return;
+                }
+
+                alert(obj.errorMessage);
+            })
+            .always(function() {
+                NProgress.done();
+                inProgress = false;
+            });
+    }
+
+    function unregisterTeam() {
+        var $modal = $('#team-detail');
+
+        app.modal.show('#team-detail', function() {
+            $modal.off('click', '.js-leave');
+        });
+
+        $modal.on('click', '.js-leave', function(e) {
             NProgress.start();
             inProgress = true;
 
-            $.post('/events/api/register/' + eventID + '/')
+            $.post('/events/api/unregister/' + eventID + '/')
                 .done(function() {
-                    $registerButton.addClass('registered');
-                    $registerButton.find('.js-text').text('Unregister');
+                    $registerButton.removeClass('registered');
+                    $registerButton.find('.js-text').text('Register');
 
-                    isRegistered = true;
+                    isRegistered = false;
+                    app.modal.hide();
                 })
                 .fail(function(err) {
                     var obj = err.responseJSON;
-                    if (!obj) {
-                        alert('Something went wrong! Please try again later');
-                        return;
-                    }
 
-                    if (obj.error_code === 'profile_incomplete') {
-                        // issue a message and a redirect
-                        alert('Complete profile first');
-                        return;
-                    }
-
-                    alert(obj.error_message);
+                    alert(obj.errorMessage);
                 })
                 .always(function() {
                     NProgress.done();
                     inProgress = false;
                 });
-
-            return;
-        }
-
-        teamRegister();
+        });
     }
 
-    function teamRegister() {
-        app.modal.show('#team-register');
+    function registerTeam() {
+        var $modal = $('#team-register');
+
+        app.modal.show('#team-register', function() {
+            $modal.off('click', '.js-new-team');
+            $modal.off('click', '.js-join-team');
+
+            $modal.removeClass('has-error');
+        });
+
+        $modal.on('click', '.js-new-team', handleSubmission);
+        $modal.on('click', '.js-join-team', handleSubmission);
+
+        function handleSubmission(e) {
+            var $input, id = '';
+
+            var url = '/events/api/register/' + eventID + '/';
+
+            if ($(e.target).hasClass('js-join-team')) {
+                $input = $modal.find('input[name=teamId]');
+
+                id = $input.val();
+                if (!id || id.length !== 5) {
+                    $input.focus();
+                    $modal.addClass('has-error');
+                    return;
+                }
+
+                url = url + id + '/';
+            }
+
+            $.post(url)
+                .done(function(data) {
+                    // populate team detail modal
+                    var $teamDetail = $('#team-detail');
+                    var $members = $teamDetail.find('.members');
+
+                    $teamDetail.find('.team-id').text(data.teamId);
+
+                    var html = '';
+                    $.each(data.members, function(i, val) {
+                        if (val.me) {
+                            html += '<li class="me">';
+                        } else {
+                            html += '<li>';
+                        }
+
+                        html += val.name + '</li>';
+                    });
+
+                    console.log(html);
+                    window.data = data;
+                    $members.html(html);
+
+                    $registerButton.addClass('registered');
+                    $registerButton.find('.js-text').text('View Team');
+
+                    // show the team detail modal
+                    app.modal.hide();
+                    unregisterTeam();
+                })
+                .fail(function(err) {
+                    if (err.status === 404) {
+                        // invalid team code
+                        $input.focus();
+                        $modal.addClass('has-error');
+                        return;
+                    }
+
+                    var obj = err.responseJSON;
+                    alert(obj.errorMessage);
+                })
+                .always(function() {
+                    NProgress.done();
+                    inProgress = false;
+                });
+        }
     }
 
 })();

@@ -154,7 +154,7 @@ class Registration(models.Model):
 
     # If this registration is for a team event
     # then the team id
-    team_id = models.IntegerField(blank=True, null=True)
+    team_id = models.CharField(max_length=5, blank=True, null=True)
 
     class Meta:
         unique_together = ['event', 'profile']

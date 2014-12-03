@@ -39,27 +39,41 @@ def details(req, slug):
         head_two = heads[1]
         # we will show only two event heads
 
+    team_profiles = []
+    team_id = ''
+    if is_registered and event.is_team():
+        team_id = Registration.objects.get(event=event, profile=req.user.profile).team_id
+        team_profiles = [x.profile for x in Registration.objects.filter(team_id=team_id)]
+
+        # add dummy profiles so the list has empty placeholders
+        for _ in range(event.team_max - len(team_profiles)):
+            team_profiles.append({'name': '<empty>'})
+
     return render(req, 'magnovite/eventDetails.html', {
         'event': event,
         'is_registered': is_registered,
         'head_one': head_one,
-        'head_two': head_two
+        'head_two': head_two,
+        'team_profiles': team_profiles,
+        'team_id': team_id
     })
 
 
 @require_POST
 def register(req, id, team_id=None):
+    print(id)
+    print(team_id)
     if not req.user.is_authenticated():
         return JsonResponse({
-            'error_code': 'login',
-            'error_message': 'Please login first'
+            'errorCode': 'login',
+            'errorMessage': 'Please login first'
         }, status=400)
 
     # you can only register if profile is complete
     if not req.user.profile.is_complete():
         return JsonResponse({
-            'error_code': 'profile_incomplete',
-            'error_message': 'You need to complete your profile first'
+            'errorCode': 'profile_incomplete',
+            'errorMessage': 'You need to complete your profile first'
         }, status=400)
 
     event = get_object_or_404(Event, id=id)
@@ -74,7 +88,7 @@ def register(req, id, team_id=None):
         # user/event combo and the user will be registered in that team
         if team_id == None:
             corpus = req.user.email + event.slug + settings.SECRET_KEY[:10]
-            team_id = hashlib.sha1(corpus).hexdigest()[:5]
+            team_id = hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
         else:
             # make sure team_id is valid, if user has given a team_id
             # then if it is valid, it must be in our registration table
@@ -82,29 +96,46 @@ def register(req, id, team_id=None):
             num = Registration.objects.filter(team_id=team_id).count()
 
             if num == 0:
-                return JsonResponse({
-                    'error_code': 'invalid_team_id',
-                    'error_message': 'The Team ID you gave is invalid'
-                }, status=400)
+                return HttpResponse(status=404)
 
             # make sure this team is not full
             if num == event.team_max:
                 return JsonResponse({
-                    'error_code': 'team_full',
-                    'error_message': 'The team is full!'
+                    'errorCode': 'team_full',
+                    'errorMessage': 'The team is full!'
                 })
 
         r.team_id = team_id
 
-    r.save()
+    try:
+        r.save()
+    except Exception:
+        return JsonResponse({
+            'errorCode': 'unknown',
+            'errorMessage': 'Something went wrong! Try refreshing the page, or try again later'
+        }, status=400)
 
     if event.is_team():
         registrations = Registration.objects.filter(team_id=team_id)
-        names = [r.profile.name for r in registrations]
+        names = [r.profile for r in registrations]
+
+        def fn(val):
+            out = {}
+            if val == req.user.profile:
+                out['me'] = True
+
+            out['name'] = val.name
+            return out
+
+        names = [_ for _ in map(fn, names)]
+
+        # add <empty> as placeholders
+        for _ in range(event.team_max - len(names)):
+            names.append({'name': '&ltempty&gt'})
 
         return JsonResponse({
-            'team_id': team_id,
-            'names': names
+            'teamId': team_id,
+            'members': names
         })
 
     return HttpResponse(status=200)

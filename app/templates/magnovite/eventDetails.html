@@ -8,7 +8,7 @@ event-details {{event.type}}-event
 
 {% block "content" %}
 <div class="event-cover">
-	<div class="image" style="background: url('{{MEDIA_URL}}{{event.cover_picture}}')"></div>
+	<div class="image" style="background: url('{{STATIC_URL}}{{event.cover_picture_path}}')"></div>
 
 	<div class="content">
 		<div class="inner-content">
@@ -97,14 +97,23 @@ event-details {{event.type}}-event
 			</div>
 
 			<div class="heads">
-				{% for head in event.heads.all %}
+				{% if head_one %}
 				<div class="head">
-					<img src="/static/img/event_heads/event1_1.jpg" alt="">
-					<p class="name">{{head.name}}</p>
-					<p class="details">{{head.mobile}}</p>
-					<p class="details">{{head.active_email}}</p>
+					<img src="{{STATIC_URL}}{{event.event_head_p1}}" alt="">
+					<p class="name">{{head_one.name}}</p>
+					<p class="details">{{head_one.mobile}}</p>
+					<p class="details">{{head_one.active_email}}</p>
 				</div>
-				{% endfor %}
+				{% endif %}
+
+				{% if head_two %}
+				<div class="head">
+					<img src="{{STATIC_URL}}{{event.event_head_p2}}" alt="">
+					<p class="name">{{head_two.name}}</p>
+					<p class="details">{{head_two.mobile}}</p>
+					<p class="details">{{head_two.active_email}}</p>
+				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>

@@ -61,8 +61,6 @@ def details(req, slug):
 
 @require_POST
 def register(req, id, team_id=None):
-    print(id)
-    print(team_id)
     if not req.user.is_authenticated():
         return JsonResponse({
             'errorCode': 'login',

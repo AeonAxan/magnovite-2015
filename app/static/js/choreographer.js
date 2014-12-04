@@ -1,71 +1,32 @@
-/**
- * Handles scrolling,
- *
- * All scrolling is disabled on the page by hijacking
- * mouseweel events and key events (down/up/pgdown/etc)
- *
- * choreographer is also responsible for initializing the bulb
- * at the right time. Bulb's init function should return
- * how many seconds it needs to initialize (scrolling will be
- * hijacked for this time)
- *
- * choreographer also relies on the variable `anim.sectionHeight` which
- * has to be set by the anim functions, it is the height of the first section
- * (logo+timerBanner)
- */
-
 var app = app || {};
 app.choreographer = {};
 
 (function() {
     'use strict';
 
-    // are we scrolling
-    var scrolling = true;
-
-    // current section
-    var section = 'section-one';
-
     // scrollTop of sectiontwo
     var sectionTwo;
-
-    // has the bulb been initialized (the anim)
-    var bulbInit = false;
 
     /**
      * Initializer for choreograhper, must be called after anim
      * loads
      */
     app.choreographer.init = function() {
-        disableScroll();
-
         document.body.scrollTop = 0;
         sectionTwo = anim.sectionHeight;
 
-        // scrollhijack till logo finishes initializing
-        scrolling = true;
-        setTimeout(function() {
-            scrolling = false;
-        }, 3500);
-
-        // show the arrow after 2 seconds
-        document.body.classList.add('hide-arrow');
-        setTimeout(function() {
-            if (!bulbInit) {
-                document.body.classList.remove('hide-arrow');
-            }
-        }, 6000);
-
-        document.querySelector('.js-down-arrow').addEventListener('click', function(e) {
-            onScroll(true);
+        $('.js-down-arrow').on('click', function() {
+            scrollTo(document.body, sectionTwo, 250);
         });
+
+        $(document).on('scroll', scrollHandler);
     };
 
-    /**
-     * Stop choreographer, will disable scrollhijack
-     */
-    app.choreographer.stop = function() {
-        enableScroll();
+    var scrollHandler = function(e) {
+        if ($(document).scrollTop() > (sectionTwo - sectionTwo * (1/5))) {
+            initBulb();
+            $(document).off('scroll', scrollHandler);
+        }
     };
 
     /**
@@ -75,35 +36,7 @@ app.choreographer = {};
         // now we have scrolled once, so hide the down pointing arrow
         document.body.classList.add('hide-arrow');
 
-        // make sure we dont scroll while the bulb is initializing
-        scrolling = true;
-        bulbInit = true;
-
-        // bulb.init returns the ms it needs to initialize
-        var timeNeeded = app.bulb.init();
-
-        setTimeout(function() {
-            scrolling = false;
-        }, timeNeeded);
-    }
-
-    /**
-     * Called when the user tries to scroll
-     * @param  {boolean} down is the scroll down
-     */
-    function onScroll(down) {
-        if (scrolling) {
-            return;
-        }
-
-        if (down && section === 'section-one') {
-            scrollTo(document.body, sectionTwo, 250);
-            section = 'section-two';
-
-        } else if (!down && section === 'section-two') {
-            scrollTo(document.body, 0, 250);
-            section = 'section-one';
-        }
+        app.bulb.init();
     }
 
     /**
@@ -125,64 +58,9 @@ app.choreographer = {};
             element.scrollTop = val;
             if(currentTime < duration) {
                 setTimeout(animateScroll, increment);
-            } else {
-                scrolling = false;
-
-                // if this is the first time we see the bulb start off
-                // the bulb animation
-                if (section === 'section-two' && !bulbInit) {
-                    initBulb();
-                }
             }
         };
         animateScroll();
-    }
-
-    // left: 37, up: 38, right: 39, down: 40,
-    // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-    var keys = [37, 38, 39, 40];
-
-    function preventDefault(e) {
-        e = e || window.event;
-        if (e.preventDefault) {
-            e.preventDefault();
-        }
-        e.returnValue = false;
-    }
-
-    function keydown(e) {
-        for (var i = keys.length; i--;) {
-            if (e.keyCode === keys[i]) {
-                if (e.keyCode === 38) {
-                    onScroll(false);
-                } else if (e.keyCode === 40) {
-                    onScroll(true);
-                }
-
-                preventDefault(e);
-                return;
-            }
-        }
-    }
-
-    function wheel(e) {
-        onScroll(e.wheelDelta < 0);
-        preventDefault(e);
-    }
-
-    function disableScroll() {
-      if (window.addEventListener) {
-          window.addEventListener('DOMMouseScroll', wheel, false);
-      }
-      window.onmousewheel = document.onmousewheel = wheel;
-      document.onkeydown = keydown;
-    }
-
-    function enableScroll() {
-        if (window.removeEventListener) {
-            window.removeEventListener('DOMMouseScroll', wheel, false);
-        }
-        window.onmousewheel = document.onmousewheel = document.onkeydown = null;
     }
 
     //t = current time

@@ -189,6 +189,9 @@ app.eventDetails = {};
                 url = url + id + '/';
             }
 
+            NProgress.start();
+            inProgress = true;
+
             $.post(url)
                 .done(function(data) {
                     // populate team detail modal

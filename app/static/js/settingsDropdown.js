@@ -21,6 +21,8 @@
     var dropdownTimer = null;
     var $dropdown = $('.user-dropdown');
 
+    var DROPDOWN_TIMEOUT = 1500;
+
     $el.find('.text').on('click', function(e) {
             e.preventDefault();
 
@@ -29,7 +31,11 @@
                 return;
             }
 
-            showDropdown();
+            if (dropdownActive) {
+                hideDropdown();
+            } else {
+                showDropdown();
+            }
         });
 
     function dropdownMouseOver(e) {
@@ -40,7 +46,7 @@
     }
 
     function dropdownMouseOut(e) {
-        dropdownTimer = window.setTimeout(hideDropdown, 1000);
+        dropdownTimer = window.setTimeout(hideDropdown, DROPDOWN_TIMEOUT);
     }
 
     function hideDropdown() {

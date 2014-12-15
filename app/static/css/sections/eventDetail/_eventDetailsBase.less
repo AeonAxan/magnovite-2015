@@ -56,6 +56,10 @@ body.event-details .banner {
 		float: left;
 		line-height: 100px;
 		margin-left: 20px;
+
+		// loading anim
+		opacity: 0;
+		transform: translateX(-50px);
 	}
 
 	.tags {
@@ -70,6 +74,10 @@ body.event-details .banner {
 			height: 100%;
 			display: inline-block;
 			position: relative;
+
+			// loading anim
+			opacity: 0;
+			transform: translateX(-10px);
 
 			&:hover p {
 				color: white;
@@ -134,6 +142,9 @@ body.event-details .banner {
 	.left {
 		width: 60%;
 
+		// loading anim
+		opacity: 0;
+		transform: translateX(-10px);
 
 		.markdown {
 			padding: 40px 20px;
@@ -195,6 +206,10 @@ body.event-details .banner {
 		color: rgba(255, 255, 255, 0.8);
 		width: 40%;
 		box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+
+		// loading animation
+		opacity: 0;
+		transform: translateY(-100px);
 
 		.register-container {
 			@row_height: 100px;
@@ -428,5 +443,56 @@ body.event-details .banner {
 		&.registered {
 			background: @details_cult_dark_dark;
 		}
+	}
+}
+
+// loading animation
+.page-loaded .event-cover {
+	h1 {
+		opacity: 1;
+		transform: translateX(0px);
+		transition-delay: 100ms;
+		transition-duration: 300ms;
+	}
+
+	.tag-container {
+		opacity: 1;
+		transform: translateX(0px);
+		transition-duration: 400ms;
+
+		&:nth-child(1) {
+			transition-delay: 400ms;
+		}
+
+		&:nth-child(2) {
+			transition-delay: 450ms;
+		}
+
+		&:nth-child(3) {
+			transition-delay: 500ms;
+		}
+
+		&:nth-child(4) {
+			transition-delay: 550ms;
+		}
+
+		&:nth-child(5) {
+			transition-delay: 600ms;
+		}
+	}
+}
+
+.page-loaded .page {
+	.left {
+		opacity: 1;
+		transform: translateX(0px);
+		transition-delay: 1000ms;
+	}
+
+	.right {
+		opacity: 1;
+		transform: translateY(0px);
+		transition-delay: 1000ms;
+		transition-duration: 500ms;
 	}
 }

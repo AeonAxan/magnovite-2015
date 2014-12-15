@@ -6,6 +6,10 @@
 
     background: linear-gradient(rgba(0, 0, 0, 0.30), @dark_blue);
 
+    // loading animation
+    opacity: 0;
+    transform: translateY(-5px);
+
     .inner-banner {
         width: 1000px;
         margin: 0 auto;
@@ -16,4 +20,14 @@
         height: 60px;
         float: left;
     }
+}
+
+.page-loaded .landing .top-banner {
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: 600ms;
+}
+
+.page-finished .landing .top-banner {
+    transition-duration: 300ms;
 }

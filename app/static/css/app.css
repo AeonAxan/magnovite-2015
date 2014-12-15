@@ -540,6 +540,8 @@ input.gray:focus {
   height: 80px;
   margin: 0 auto;
   position: relative;
+  opacity: 0;
+  transform: translateY(-24px);
 }
 .banner .user-settings {
   position: absolute;
@@ -561,6 +563,10 @@ input.gray:focus {
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
+}
+.page-loaded .banner .banner-inner {
+  opacity: 1;
+  transform: translateY(0);
 }
 .user-settings {
   width: auto;
@@ -1116,6 +1122,8 @@ body.mobile .notifications .notification {
   height: 80px;
   padding: 10px 0;
   background: linear-gradient(rgba(0, 0, 0, 0.3), #03175f);
+  opacity: 0;
+  transform: translateY(-5px);
 }
 .landing .top-banner .inner-banner {
   width: 1000px;
@@ -1125,6 +1133,14 @@ body.mobile .notifications .notification {
 .landing .top-banner .christ {
   height: 60px;
   float: left;
+}
+.page-loaded .landing .top-banner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: 600ms;
+}
+.page-finished .landing .top-banner {
+  transition-duration: 300ms;
 }
 .bulb-section {
   width: 100%;
@@ -1538,6 +1554,8 @@ body.mobile .notifications .notification {
   text-align: left;
   position: relative;
   border-radius: 3px;
+  opacity: 0;
+  transform: translateX(-5px);
 }
 .card:hover .header {
   color: white;
@@ -1585,6 +1603,8 @@ body.mobile .notifications .notification {
   float: right;
   margin-left: 5px;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(-20px);
 }
 .card .tag.cse {
   background: #ff9800;
@@ -1608,6 +1628,154 @@ body.mobile .notifications .notification {
 .filter-mech .card.mech {
   display: inline-block;
 }
+.page-loaded .card:nth-child(1) {
+  transition-delay: 550ms;
+}
+.page-loaded .card:nth-child(2) {
+  transition-delay: 600ms;
+}
+.page-loaded .card:nth-child(3) {
+  transition-delay: 650ms;
+}
+.page-loaded .card:nth-child(4) {
+  transition-delay: 700ms;
+}
+.page-loaded .card:nth-child(5) {
+  transition-delay: 750ms;
+}
+.page-loaded .card:nth-child(6) {
+  transition-delay: 800ms;
+}
+.page-loaded .card:nth-child(7) {
+  transition-delay: 850ms;
+}
+.page-loaded .card:nth-child(8) {
+  transition-delay: 900ms;
+}
+.page-loaded .card:nth-child(9) {
+  transition-delay: 950ms;
+}
+.page-loaded .card:nth-child(10) {
+  transition-delay: 1000ms;
+}
+.page-loaded .card:nth-child(11) {
+  transition-delay: 1050ms;
+}
+.page-loaded .card:nth-child(12) {
+  transition-delay: 1100ms;
+}
+.page-loaded .card:nth-child(13) {
+  transition-delay: 1150ms;
+}
+.page-loaded .card:nth-child(14) {
+  transition-delay: 1200ms;
+}
+.page-loaded .card:nth-child(15) {
+  transition-delay: 1250ms;
+}
+.page-loaded .card:nth-child(16) {
+  transition-delay: 1300ms;
+}
+.page-loaded .card:nth-child(17) {
+  transition-delay: 1350ms;
+}
+.page-loaded .card:nth-child(18) {
+  transition-delay: 1400ms;
+}
+.page-loaded .card:nth-child(19) {
+  transition-delay: 1450ms;
+}
+.page-loaded .card:nth-child(20) {
+  transition-delay: 1500ms;
+}
+.page-loaded .card:nth-child(21) {
+  transition-delay: 1550ms;
+}
+.page-loaded .card:nth-child(22) {
+  transition-delay: 1600ms;
+}
+.page-loaded .card:nth-child(23) {
+  transition-delay: 1650ms;
+}
+.page-loaded .card:nth-child(24) {
+  transition-delay: 1700ms;
+}
+.page-loaded .card:nth-child(25) {
+  transition-delay: 1750ms;
+}
+.page-loaded .card:nth-child(26) {
+  transition-delay: 1800ms;
+}
+.page-loaded .card:nth-child(27) {
+  transition-delay: 1850ms;
+}
+.page-loaded .card:nth-child(28) {
+  transition-delay: 1900ms;
+}
+.page-loaded .card:nth-child(29) {
+  transition-delay: 1950ms;
+}
+.page-loaded .card:nth-child(30) {
+  transition-delay: 2000ms;
+}
+.page-loaded .card:nth-child(31) {
+  transition-delay: 2050ms;
+}
+.page-loaded .card:nth-child(32) {
+  transition-delay: 2100ms;
+}
+.page-loaded .card:nth-child(33) {
+  transition-delay: 2150ms;
+}
+.page-loaded .card:nth-child(34) {
+  transition-delay: 2200ms;
+}
+.page-loaded .card:nth-child(35) {
+  transition-delay: 2250ms;
+}
+.page-loaded .card:nth-child(36) {
+  transition-delay: 2300ms;
+}
+.page-loaded .card:nth-child(37) {
+  transition-delay: 2350ms;
+}
+.page-loaded .card:nth-child(38) {
+  transition-delay: 2400ms;
+}
+.page-loaded .card:nth-child(39) {
+  transition-delay: 2450ms;
+}
+.page-loaded .card:nth-child(40) {
+  transition-delay: 2500ms;
+}
+.page-loaded .card {
+  opacity: 1;
+  transform: translateX(0px);
+  transition-duration: 400ms;
+}
+.page-finished .card {
+  transition-delay: 0;
+}
+.page-loaded .card .tag:nth-child(1) {
+  transition-delay: 1100ms;
+}
+.page-loaded .card .tag:nth-child(2) {
+  transition-delay: 1200ms;
+}
+.page-loaded .card .tag:nth-child(3) {
+  transition-delay: 1300ms;
+}
+.page-loaded .card .tag:nth-child(4) {
+  transition-delay: 1400ms;
+}
+.page-loaded .card .tag {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 400ms;
+}
+.page-finished .card .tag {
+  transition-delay: 0;
+}
 .filter .inner {
   margin: 50px 20px;
   padding: 0 20px;
@@ -1618,6 +1786,8 @@ body.mobile .notifications .notification {
   margin-left: 40px;
   text-transform: uppercase;
   margin-bottom: 15px;
+  transform: translateX(-30px);
+  opacity: 0;
 }
 .filter .filter-section.top {
   padding-bottom: 30px;
@@ -1636,6 +1806,8 @@ body.mobile .notifications .notification {
   height: 40px;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
+  transform: translateX(-30px);
+  opacity: 0;
 }
 .filter ul li:hover {
   color: white;
@@ -1668,6 +1840,23 @@ body.mobile .notifications .notification {
 }
 .filter ul span {
   margin-left: 15px;
+}
+.page-loaded .filter h2 {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.page-loaded .filter ul li {
+  transform: translateX(0px);
+  opacity: 1;
+}
+.page-loaded .filter ul li:nth-child(1) {
+  transition-delay: 100ms;
+}
+.page-loaded .filter ul li:nth-child(2) {
+  transition-delay: 150ms;
+}
+.page-finished .filter ul li {
+  transition-delay: 0;
 }
 .filter-cultural .pluto.cultural {
   background: #00c853;
@@ -1746,6 +1935,8 @@ body.event-details .banner .dropdown li:hover {
   float: left;
   line-height: 100px;
   margin-left: 20px;
+  opacity: 0;
+  transform: translateX(-50px);
 }
 .event-cover .tags {
   float: right;
@@ -1759,6 +1950,8 @@ body.event-details .banner .dropdown li:hover {
   height: 100%;
   display: inline-block;
   position: relative;
+  opacity: 0;
+  transform: translateX(-10px);
 }
 .event-cover .tags .tag-container:hover p {
   color: white;
@@ -1810,6 +2003,8 @@ body.event-details .banner .dropdown li:hover {
 }
 .page .left {
   width: 60%;
+  opacity: 0;
+  transform: translateX(-10px);
 }
 .page .left .markdown {
   padding: 40px 20px;
@@ -1870,6 +2065,8 @@ body.event-details .banner .dropdown li:hover {
   color: rgba(255, 255, 255, 0.8);
   width: 40%;
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-100px);
 }
 .page .right .register-container {
   text-align: center;
@@ -2052,6 +2249,43 @@ body.event-details .banner .dropdown li:hover {
 .cultural-event .register-button:hover,
 .cultural-event .register-button.registered {
   background: #008821;
+}
+.page-loaded .event-cover h1 {
+  opacity: 1;
+  transform: translateX(0px);
+  transition-delay: 100ms;
+  transition-duration: 300ms;
+}
+.page-loaded .event-cover .tag-container {
+  opacity: 1;
+  transform: translateX(0px);
+  transition-duration: 400ms;
+}
+.page-loaded .event-cover .tag-container:nth-child(1) {
+  transition-delay: 400ms;
+}
+.page-loaded .event-cover .tag-container:nth-child(2) {
+  transition-delay: 450ms;
+}
+.page-loaded .event-cover .tag-container:nth-child(3) {
+  transition-delay: 500ms;
+}
+.page-loaded .event-cover .tag-container:nth-child(4) {
+  transition-delay: 550ms;
+}
+.page-loaded .event-cover .tag-container:nth-child(5) {
+  transition-delay: 600ms;
+}
+.page-loaded .page .left {
+  opacity: 1;
+  transform: translateX(0px);
+  transition-delay: 1000ms;
+}
+.page-loaded .page .right {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 1000ms;
+  transition-duration: 500ms;
 }
 .detail-modals .body {
   padding: 20px;

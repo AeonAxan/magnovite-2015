@@ -1,15 +1,22 @@
 (function() {
     'use strict';
 
+    // page-loading -> [DOMContentLoaded] -> page-loading -> 2s -> page-finished
+
     $(document).ready(function() {
         if (app.DEBUG) {
-            setTimeout(function() {
-                $(document.body).removeClass('page-loading');
-                $(document.body).addClass('page-loaded');
-            }, 1500);
+            setTimeout(pageLoaded, 1500);
         } else {
-            $(document.body).removeClass('page-loading');
-            $(document.body).addClass('page-loaded');
+            pageLoaded();
         }
-   });
+    });
+
+    function pageLoaded() {
+        $(document.body).removeClass('page-loading');
+        $(document.body).addClass('page-loaded');
+
+        setTimeout(function() {
+            $(document.body).addClass('page-finished');
+        }, 2000);
+    }
 })();

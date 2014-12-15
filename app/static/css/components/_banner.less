@@ -13,6 +13,10 @@
         height: @banner_height;
         margin: 0 auto;
         position: relative;
+
+        // loading
+        opacity: 0;
+        transform: translateY(-@banner_height * 0.3);
     }
 
     .user-settings {
@@ -40,4 +44,9 @@
             }
         }
     }
+}
+
+.page-loaded .banner .banner-inner {
+    opacity: 1;
+    transform: translateY(0);
 }

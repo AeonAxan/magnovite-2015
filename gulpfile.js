@@ -57,8 +57,7 @@ gulp.task('usemin', function() {
     'use strict';
 
     return gulp.src('app/templates/magnovite/*.html')
-        .pipe(replace('<!--DEBUG', ''))
-        .pipe(replace('DEBUG-->', ''))
+        .pipe(replace('app.DEBUG = true', 'app.DEBUG = false'))
         .pipe(replace('{% extends "magnovite/base.html" %}', '{% extends "magnovite/dist/base.html" %}'))
         .pipe(usemin({
             css: [minifyCss(), rev()],

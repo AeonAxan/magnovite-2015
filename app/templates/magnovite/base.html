@@ -17,7 +17,7 @@
         <script src="/static/js/lib/modernizer.js"></script>
     <!-- endbuild -->
 </head>
-<body class="{% block "body_css_class" %}{% endblock %}">
+<body class="page-loading {% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}
 
     <!-- login modal -->
@@ -93,6 +93,8 @@
         document.body.classList.add('mobile');
         app.mobile = true;
     }
+
+    app.DEBUG = true;
     </script>
 
     <!-- build:js(./app/) /static/dist/app.js -->
@@ -105,6 +107,7 @@
     <!-- /Lib -->
 
     <!-- common -->
+        <script src="/static/js/common/onload.js"></script>
         <script src="/static/js/common/modal.js"></script>
         <script src="/static/js/common/notification.js"></script>
         <script src="/static/js/common/settingsDropdown.js"></script>

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 from app.event.models import Event, Registration
@@ -30,7 +30,7 @@ class MUserManager(BaseUserManager):
         return user
 
 
-class MUser(AbstractBaseUser):
+class MUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='Email Address',
         max_length=255,
@@ -39,7 +39,7 @@ class MUser(AbstractBaseUser):
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False, help_text='Has access to admin site')
 
     objects = MUserManager()
 
@@ -75,14 +75,6 @@ class MUser(AbstractBaseUser):
     def get_short_name(self):
         # The user is identified by their email address
         return self.email
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permission to view the app"
-        return True
 
     def __str__(self):
         return self.email

@@ -85,7 +85,10 @@ class MUserAdmin(UserAdmin):
     list_filter = ('is_admin', 'is_staff')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_admin', 'is_staff')}),
+        ('Permissions', {
+            'fields': ('is_admin', 'is_superuser', 'is_staff')
+        }),
+        ('Permissions+', {'fields': ('groups', 'user_permissions')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -101,7 +104,3 @@ class MUserAdmin(UserAdmin):
     inlines = [ProfileInline]
 
 admin.site.register(MUser, MUserAdmin)
-
-# ... and, since we're not using Django's built-in permissions,
-# unregister the Group model from admin.
-admin.site.unregister(Group)

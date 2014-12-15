@@ -674,6 +674,9 @@ input.gray:focus {
 .notifications .notification.info {
   background: #0875A0;
 }
+.notifications .notification.warn {
+  background: #EF6C00;
+}
 .notifications .close {
   position: absolute;
   left: 0;

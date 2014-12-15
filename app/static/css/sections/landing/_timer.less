@@ -1,6 +1,15 @@
 @timer_block_width: 140px;
 @timer_block_height: 220px;
 
+.timers {
+    position: relative;
+}
+
+.timers-container {
+    display: inline-block;
+    position: relative;
+}
+
 .timer-block {
     display: inline-block;
     height: @timer_block_height;
@@ -36,6 +45,47 @@
 .desktop.logo-done .timer-block .numeric {
     opacity: 0.7;
     transform: translateY(0);
+}
+
+.mobile .timer-info {
+    display: none;
+}
+
+.timer .timer-info {
+    position: absolute;
+    bottom: 50px;
+    left: -150px;
+
+    a {
+        background: rgba(255, 255, 255, 0.02);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+}
+
+.timer .down-arrow {
+    position: absolute;
+    bottom: 50px;
+    right: -150px;
+
+    a {
+        background: rgba(255, 255, 255, 0.05);
+
+        &:hover img {
+            opacity: 0.8;
+        }
+    }
+
+    img {
+        width: 50%;
+        opacity: 0.3;
+    }
+}
+
+.hide-arrow .timer .down-arrow {
+    display: none;
 }
 
 .timer-block .description {

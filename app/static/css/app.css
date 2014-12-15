@@ -704,6 +704,13 @@ input.gray:focus {
 .notifications .no-action .action {
   display: none;
 }
+body.mobile .notifications {
+  top: 0;
+  width: 100%;
+}
+body.mobile .notifications .notification {
+  margin-bottom: 2px;
+}
 #canvas {
   background: #03175f;
   vertical-align: bottom;

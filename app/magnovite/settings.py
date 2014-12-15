@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'app.main',
     'app.subscribe',
     'app.event',
+    'app.quest',
 )
 
 if DEBUG:

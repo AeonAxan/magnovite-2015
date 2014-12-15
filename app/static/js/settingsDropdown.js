@@ -6,15 +6,22 @@
 (function() {
     'use strict';
 
-    var el = document.querySelector('.user-settings');
-    if (!el) {
+    var $el = $('.user-settings');
+    if ($el.size() === 0) {
         return;
     }
 
-    var loggedIn = el.classList.contains('logged-in');
+    var loggedIn = $el.hasClass('logged-in');
 
-    el.querySelector('.text')
-        .addEventListener('click', function(e) {
+    /**
+     * Dropdown when you click your name on the top right
+     * @type {Boolean}
+     */
+    var dropdownActive = false;
+    var dropdownTimer = null;
+    var $dropdown = $('.user-dropdown');
+
+    $el.find('.text').on('click', function(e) {
             e.preventDefault();
 
             if (!loggedIn) {
@@ -22,8 +29,40 @@
                 return;
             }
 
-            el.classList.toggle('dropdown-active');
+            showDropdown();
         });
+
+    function dropdownMouseOver(e) {
+        if (dropdownTimer) {
+            window.clearTimeout(dropdownTimer);
+            dropdownTimer = null;
+        }
+    }
+
+    function dropdownMouseOut(e) {
+        dropdownTimer = window.setTimeout(hideDropdown, 1000);
+    }
+
+    function hideDropdown() {
+        $el.removeClass('dropdown-active');
+        dropdownActive = false;
+
+        $dropdown.off('mouseover', dropdownMouseOver);
+        $dropdown.off('mouseout', dropdownMouseOut);
+
+        if (dropdownTimer) {
+            window.clearTimeout(dropdownTimer);
+            dropdownTimer = null;
+        }
+    }
+
+    function showDropdown() {
+        $el.addClass('dropdown-active');
+        dropdownActive = true;
+
+        $dropdown.on('mouseover', dropdownMouseOver);
+        $dropdown.on('mouseout', dropdownMouseOut);
+    }
 
     /**
      * Shows the LogIn dropdown

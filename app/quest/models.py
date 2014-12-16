@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.db import models
-from django.utils.dateformat import format
 
 from app.main.models import Profile
 
@@ -37,9 +36,10 @@ class QuestScore(models.Model):
             if not self.max_time:
                 self.max_time = datetime.now()
 
-                self.sort_key = str(self.max_level) + format(self.max_time, 'U')
+            time = datetime(2020, 1, 1).timestamp() - self.max_time.timestamp()
+            self.sort_key = str(self.max_level) + str(int(time))
 
         super(QuestScore, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ['sort_key']
+        ordering = ['-sort_key']

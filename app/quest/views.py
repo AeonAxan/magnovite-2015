@@ -38,7 +38,7 @@ def index(req):
     questscores = QuestScore.objects.all()[:5]
 
     if quest_score and quest_score.sort_key:
-        position = QuestScore.objects.filter(sort_key__lt=quest_score.sort_key).count()
+        position = QuestScore.objects.filter(sort_key__gt=quest_score.sort_key).count()
         position += 1
     else:
         position = None

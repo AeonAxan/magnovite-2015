@@ -2616,6 +2616,19 @@ body.mobile .notifications .notification {
   overflow: hidden;
   height: 50px;
 }
+.quest-page .q-right-pane ul li.seperator {
+  background: rgba(0, 0, 0, 0.4);
+  height: 30px;
+}
+.quest-page .q-right-pane ul li.seperator p {
+  display: block;
+  text-align: center;
+  height: 30px;
+  line-height: 20px;
+}
+.quest-page .q-right-pane ul li.me {
+  background: #0f6dab;
+}
 .quest-page .q-right-pane ul .number {
   float: left;
   width: 15px;

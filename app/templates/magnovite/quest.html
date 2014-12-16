@@ -1,4 +1,5 @@
 {% extends "magnovite/base.html" %}
+{% load humanize %}
 
 {% block "body_css_class" %}
 transparent-banner body-quest
@@ -24,7 +25,7 @@ transparent-banner body-quest
         {% if completed %}
             <h2>Congratulations!</h2>
             <div class="answer">
-                <p>You have completed all the levels!</p>
+                <p>You have completed all the levels! You are {{position|ordinal}} in the leaderboards!</p>
             </div>
         {% else %}
             <h2>Level {{cquest.level}}</h2>
@@ -50,76 +51,27 @@ transparent-banner body-quest
         <h2>Leaderboard</h2>
 
         <ul>
-            <li>
-                <p class="number">1</p>
+            {% for score in questscores %}
+            <li class="{% if score.profile == user.profile %}me{% endif %}">
+                <p class="number">{{forloop.counter}}</p>
                 <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span><em>Level 5</em>, 20-Dec, 19:45</span>
+                    <p>{{score.profile.name}}</p>
+                    <span><em>Level {{score.max_level}}</em> {{score.max_time|date:"dS-N P"}}</span>
                 </div>
             </li>
-            <li>
-                <p class="number">2</p>
+            {% endfor %}
+
+            {% if position > 5 %}
+            <li class="seperator"><p>.........</p></li>
+            <li class="me">
+                <p class="number">{{position}}</p>
                 <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
+                    <p>{{cscore.profile.name}}</p>
+                    <span><em>Level {{cscore.max_level}}</em> {{cscore.max_time|date:"dS-N P"}}</span>
                 </div>
             </li>
-            <li>
-                <p class="number">3</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">4</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">5</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">6</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">7</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">8</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">9</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
-            <li>
-                <p class="number">10</p>
-                <div class="content">
-                    <p>Ahmed Azaan Hassan</p>
-                    <span>Level 5, 20-Dec, 19:45</span>
-                </div>
-            </li>
+            <li class="seperator"><p>.........</p></li>
+            {% endif %}
         </ul>
     </div>
 </div>

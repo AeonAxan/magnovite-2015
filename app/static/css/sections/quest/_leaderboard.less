@@ -9,6 +9,22 @@
             height: @leaderboard_item_height;
         }
 
+        li.seperator {
+            background: rgba(0, 0, 0, 0.4);
+            height: @leaderboard_item_height - 20px;
+
+            p {
+                display: block;
+                text-align: center;
+                height: @leaderboard_item_height - 20px;
+                line-height: @leaderboard_item_height - 30px;
+            }
+        }
+
+        li.me {
+            background: @atoms_normal;
+        }
+
         .number {
             float: left;
             width: 15px;

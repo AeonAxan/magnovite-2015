@@ -15,6 +15,7 @@ def index(req):
     if not req.user.is_authenticated():
         messages.error(req, 'Please login to play the game')
         current_level = 1
+        quest_score = None
     else:
         quest_score, created = QuestScore.objects.get_or_create(profile=req.user.profile)
         if created:
@@ -33,10 +34,22 @@ def index(req):
         completed = True
         current_quest = None
 
+    # display 5
+    questscores = QuestScore.objects.all()[:5]
+
+    if quest_score and quest_score.sort_key:
+        position = QuestScore.objects.filter(sort_key__lt=quest_score.sort_key).count()
+        position += 1
+    else:
+        position = None
+
     return render(req, template, {
         'quests': quests,
+        'questscores': questscores,
+        'cscore': quest_score,
         'cquest': current_quest,
-        'completed': completed
+        'completed': completed,
+        'position': position,
     })
 
 

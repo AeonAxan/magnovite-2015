@@ -2461,9 +2461,7 @@ body.mobile .notifications .notification {
 }
 .quest-page-outer {
   background: #0f0f0f;
-  background-image: url('http://i.imgur.com/Mn7nu2X.jpg?1');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url('http://i.imgur.com/E70imDZ.png');
 }
 .quest-page {
   background: rgba(0, 0, 0, 0.6);
@@ -2640,4 +2638,8 @@ body.mobile .notifications .notification {
   display: block;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.7);
+}
+.quest-page .q-right-pane ul .content span em {
+  font-weight: 300;
+  color: #ffffff;
 }

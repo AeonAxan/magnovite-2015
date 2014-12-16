@@ -2415,6 +2415,7 @@ body.mobile .notifications .notification {
   background: #03175f;
   float: left;
   padding: 30px 80px;
+  overflow-y: scroll;
 }
 .profile-right-panel .errorlist {
   color: red;

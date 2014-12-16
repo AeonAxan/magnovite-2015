@@ -2459,21 +2459,21 @@ body.mobile .notifications .notification {
 .profile-right-panel input:focus {
   border: 1px solid rgba(77, 205, 255, 0.8);
 }
+.quest-page-outer {
+  background: #0f0f0f;
+  background-image: url('http://i.imgur.com/Mn7nu2X.jpg?1');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .quest-page {
-  background: #111;
+  background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   overflow: hidden;
   text-align: center;
-  padding: 100px 0 80px;
+  padding: 120px 0 80px;
   min-height: 690px;
   color: rgba(255, 255, 255, 0.95);
-}
-.quest-page h1 {
-  font-size: 56px;
-  padding: 25px 0;
-  margin-bottom: 20px;
-  display: block;
 }
 .quest-page .card-pane {
   display: inline-block;
@@ -2482,8 +2482,9 @@ body.mobile .notifications .notification {
   padding: 20px;
   text-align: left;
   border-radius: 3px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid #151515;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #111;
+  box-shadow: 0px 0px 2px #111;
 }
 .quest-page .card-pane h2 {
   font-family: 24px;
@@ -2501,6 +2502,19 @@ body.mobile .notifications .notification {
   width: 25%;
   max-width: 360px;
 }
+.quest-page .left-pane ul {
+  list-style: decimal;
+  padding-left: 20px;
+}
+.quest-page .left-pane li {
+  color: rgba(255, 255, 255, 0.7);
+}
+.quest-page .left-pane li.completed {
+  color: rgba(255, 255, 255, 0.3);
+}
+.quest-page .left-pane li.current {
+  color: #ffffff;
+}
 .quest-page .center-pane {
   text-align: center;
 }
@@ -2514,9 +2528,116 @@ body.mobile .notifications .notification {
 }
 .quest-page .center-pane .images {
   margin-bottom: 20px;
+  padding: 15px 0;
+}
+.quest-page .center-pane .answer input {
+  width: 400px;
+  padding: 25px 0;
+  text-align: center;
+  background: black;
+  border: 0;
 }
 .quest-page .center-pane .answer button {
   display: block;
-  margin: 20px auto 0 auto;
+  margin: 10px auto 10px auto;
   text-align: center;
+  background: 0;
+  border: 2px solid #aaa;
+  color: #aaa;
+  height: 40px;
+  line-height: 30px;
+}
+.quest-page .center-pane .answer button:hover {
+  background: #aaa;
+  color: #111;
+  border: 2px solid #aaa;
+}
+.quest-page .center-pane .fb {
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 25px;
+  padding: 10px;
+}
+.quest-page .center-pane .fb p {
+  margin-bottom: 10px;
+}
+@-webkit-keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
+.quest-page .q-right-pane ul li {
+  background: rgba(0, 0, 0, 0.7);
+  margin-top: 5px;
+  overflow: hidden;
+  height: 50px;
+}
+.quest-page .q-right-pane ul .number {
+  float: left;
+  width: 15px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 5px;
+  font-size: 13px;
+  text-align: center;
+}
+.quest-page .q-right-pane ul .content {
+  width: 240px;
+  height: 50px;
+  float: left;
+  padding: 2px 15px;
+  text-align: left;
+}
+.quest-page .q-right-pane ul .content p {
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+}
+.quest-page .q-right-pane ul .content span {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
 }

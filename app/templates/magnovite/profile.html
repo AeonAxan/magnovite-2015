@@ -1,6 +1,7 @@
 {% extends "magnovite/base.html" %}
 
 {% load account %}
+{% load humanize %}
 
 {% block "body_css_class" %}
 page-profile browser-height
@@ -67,77 +68,46 @@ page-profile browser-height
         <div class="info-right-panel panel">
             <h1>My Schedule</h1>
 
-            <div class="day-1">
-                <h3>21st</h3>
+            {% for day in days %}
+            <div class="day-{{forloop.counter}} {% if day|length = 0 %}empty-day{% endif %}">
+                <h3>Feb 2{{forloop.counter|ordinal}}</h3>
 
                 <div class="strip empty-strip">
                     <p>You have no activities on this day.</p>
                 </div>
 
-                <div class="strip technical">
+                {% for event in day %}
+                <div class="strip {{event.type}}">
                     <div class="sq-time">
                         <div class="time t-start">
-                            09:00 AM
+                            {{event.time}}
                         </div>
                         <div class="time t-end">
-                            11:00 AM
+                            {{event.end_time}}
                         </div>
                     </div>
                     <div class="sq-event">
-                        Bikers
+                        {{event.title}}
                     </div>
                     <div class="sq-contact">
                         <div class="profile-pic">
                             <img src="http://placehold.it/80x80" />
                         </div>
                         <ul>
-                            <li class="name">Ahmed Azaan Hassan</li>
-                            <li class="mobile">+91 890 430 8580</li>
-                            <li class="email"><a href="#">azaan@magnovite.org</a></li>
+                            {% with head=event.get_first_head %}
+                            <li class="name">{{head.name}}</li>
+                            <li class="mobile">{{head.mobile}}</li>
+                            <li class="email"><a href="{{head.active_email}}">{{head.active_email}}</a></li>
+                            {% endwith %}
                         </ul>
                     </div>
                     <div class="sq-more">
-                        <a href="#">❯</a>
+                        <a href="{{event.get_absolute_url}}">❯</a>
                     </div>
                 </div>
-
-                <div class="strip cultural">
-                    <div class="sq-time">
-                        <div class="time t-start">
-                            09:00 AM
-                        </div>
-                        <div class="time t-end">
-                            11:00 AM
-                        </div>
-                    </div>
-                    <div class="sq-event">
-                        <div class="area">
-                            Bikers
-                        </div>
-                    </div>
-                    <div class="sq-contact">
-                        <div class="profile-pic">
-                            <img src="http://placehold.it/80x80" />
-                        </div>
-                        <ul>
-                            <li class="name">Ahmed Azaan Hassan</li>
-                            <li class="mobile">+91 890 430 8580</li>
-                            <li class="email"><a href="#">azaan@magnovite.org</a></li>
-                        </ul>
-                    </div>
-                    <div class="sq-more">
-                        <a href="#">❯</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-
-            <div class="day-2 empty-day">
-                <h3>22nt</h3>
-
-                <div class="strip empty-strip">
-                    <p>You have no activities on this day.</p>
-                </div>
-            </div>
+            {% endfor %}
 
         </div><!-- ./end of info panel -->
 

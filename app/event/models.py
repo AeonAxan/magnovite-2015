@@ -34,8 +34,13 @@ class Event(models.Model):
     )
     time = models.CharField(
         max_length=30,
-        help_text='(Start time), Eg: 2pm',
+        help_text='(Start time), Eg: 9:00 am',
         blank=True
+    )
+    end_time = models.CharField(
+        max_length=30,
+        help_text='(End Time), Eg: 4:00 pm',
+        blank=True, null=True,
     )
     venue = models.CharField(
         max_length=50,
@@ -140,6 +145,9 @@ class Event(models.Model):
             return 'img/events/' + self.slug + '_h2.jpg'
         else:
             return 'img/events/head_default.jpg'
+
+    def get_first_head(self):
+        return self.heads.first()
 
     def get_absolute_url(self):
         return reverse('event_details', kwargs={'slug': self.slug})

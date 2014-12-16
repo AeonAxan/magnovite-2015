@@ -5,6 +5,8 @@ from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 
+from app.event.models import Registration
+
 from .forms import ProfileForm
 from .models import Profile
 from .utils import AjaxableResponseMixin
@@ -13,8 +15,8 @@ def logout_view(req):
     if req.user.is_authenticated():
         logout(req)
 
-    next = req.GET.get('next', '/')
-    return HttpResponseRedirect(next)
+    next_url = req.GET.get('next', '/')
+    return HttpResponseRedirect(next_url)
 
 
 def index(req):
@@ -36,8 +38,17 @@ def profile(req):
 
     profile_form = ProfileForm(instance=req.user.profile)
 
+    registrations = Registration.objects.filter(profile=req.user.profile)
+    day_one = map(lambda x: x.event, registrations.filter(event__date=21))
+    day_two = map(lambda x: x.event, registrations.filter(event__date=22))
+
+    # evaluate maps
+    day_one = [x for x in day_one]
+    day_two = [x for x in day_two]
+
     return render(req, template, {
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'days': [day_one, day_two],
     })
 
 

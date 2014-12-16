@@ -1,6 +1,7 @@
 {% extends "magnovite/dist/base.html" %}
 
 {% load account %}
+{% load humanize %}
 
 {% block "body_css_class" %}
 page-profile browser-height
@@ -15,8 +16,9 @@ page-profile browser-height
 {% block "content" %}
 <div class="profile-page page-container">
     <div class="left-side-bar">
-        <ul>
-            <li class="selected">Details</li>
+        <ul class="js-profile-nav">
+            <li data-class="profile-view" class="selected">Profile</li>
+            <li data-class="info-view">My Schedule</li>
         </ul>
     </div>
 
@@ -64,63 +66,48 @@ page-profile browser-height
 
         <!-- start info panel -->
         <div class="info-right-panel panel">
-            <h1>My Pack</h1>
-            <div class="strip">
-                <div class="sq-time">
-                    <div class="time1">
-                        09:00 AM
-                    </div>
-                    <div class="time2">
-                        11:00 AM
-                    </div>
-                </div>
-                <div class="sq-event">
-                    <div class="area">
-                        Paper Presentation
-                    </div>
-                </div>
-                <div class="sq-contact">
-                    <div class="profile-pic"></div>
-                    <div class="profile-info">
-                        <div class="ico"></div>Sandeep Kumar
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>09019672209
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>sandeep.kumar@it.christuniversity.in
-                    </div>
-                </div>
-            </div>
+            <h1>My Schedule</h1>
 
-            <!-- 2nd pack -->
-            <div class="strip">
-                <div class="sq-time">
-                    <div class="time1">
-                        09:00 AM
+            {% for day in days %}
+            <div class="day-{{forloop.counter}} {% if day|length = 0 %}empty-day{% endif %}">
+                <h3>Feb 2{{forloop.counter|ordinal}}</h3>
+
+                <div class="strip empty-strip">
+                    <p>You have no activities on this day.</p>
+                </div>
+
+                {% for event in day %}
+                <div class="strip {{event.type}}">
+                    <div class="sq-time">
+                        <div class="time t-start">
+                            {{event.time}}
+                        </div>
+                        <div class="time t-end">
+                            {{event.end_time}}
+                        </div>
                     </div>
-                    <div class="time2">
-                        11:00 AM
+                    <div class="sq-event">
+                        {{event.title}}
+                    </div>
+                    <div class="sq-contact">
+                        <div class="profile-pic">
+                            <img src="http://placehold.it/80x80" />
+                        </div>
+                        <ul>
+                            {% with head=event.get_first_head %}
+                            <li class="name">{{head.name}}</li>
+                            <li class="mobile">{{head.mobile}}</li>
+                            <li class="email"><a href="{{head.active_email}}">{{head.active_email}}</a></li>
+                            {% endwith %}
+                        </ul>
+                    </div>
+                    <div class="sq-more">
+                        <a href="{{event.get_absolute_url}}">❯</a>
                     </div>
                 </div>
-                <div class="sq-event">
-                    <div class="area">
-                        Bikers
-                    </div>
-                </div>
-                <div class="sq-contact">
-                    <div class="profile-pic"></div>
-                    <div class="profile-info">
-                        <div class="ico"></div>Sandeep Kumar
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>09019672209
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>sandy@magnovite.org
-                    </div>
-                </div>
-            </div><!-- ./2nd pack -->
+                {% endfor %}
+            </div>
+            {% endfor %}
 
         </div><!-- ./end of info panel -->
 
@@ -130,7 +117,7 @@ page-profile browser-height
         <form id="profile-form" action="{% url "profile_update" pk=profile_form.instance.pk %}" method="POST">
 
         <div>
-            <h1>Details</h1>
+            <h1>Profile</h1>
             <span class="warn">You cannot register to events till you fill all the details</span>
 
             <div>

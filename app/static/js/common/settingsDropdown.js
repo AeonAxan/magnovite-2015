@@ -21,7 +21,7 @@
     var dropdownTimer = null;
     var $dropdown = $('.user-dropdown');
 
-    var DROPDOWN_TIMEOUT = 1500;
+    var DROPDOWN_TIMEOUT = 1000;
 
     $el.find('.text').on('click', function(e) {
             e.preventDefault();
@@ -68,6 +68,8 @@
 
         $dropdown.on('mouseover', dropdownMouseOver);
         $dropdown.on('mouseout', dropdownMouseOut);
+
+        dropdownTimer = window.setTimeout(hideDropdown, DROPDOWN_TIMEOUT);
     }
 
     /**

@@ -12,6 +12,9 @@ class Quest(models.Model):
     img1 = models.URLField(help_text='Imgur direct JPG url, 250x250 px')
     img2 = models.URLField(help_text='Imgur direct JPG url, 250x250 px')
 
+    class Meta:
+        ordering = ['level']
+
     answer = models.CharField(
         max_length=50,
         help_text='Answer is case insensitive'

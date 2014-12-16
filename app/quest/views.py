@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.conf import settings
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
@@ -12,7 +12,32 @@ def index(req):
     else:
         template = 'magnovite/dist/quest.html'
 
-    return render(req, template)
+    if not req.user.is_authenticated():
+        messages.error(req, 'Please login to play the game')
+        current_level = 1
+    else:
+        quest_score, created = QuestScore.objects.get_or_create(profile=req.user.profile)
+        if created:
+            quest_score.max_level = 1
+            quest_score.save()
+
+        current_level = quest_score.max_level
+
+
+    quests = Quest.objects.all()
+
+    try:
+        current_quest = quests.get(level=current_level)
+        completed = False
+    except Quest.DoesNotExist:
+        completed = True
+        current_quest = None
+
+    return render(req, template, {
+        'quests': quests,
+        'cquest': current_quest,
+        'completed': completed
+    })
 
 
 @require_http_methods(['POST'])

@@ -11,31 +11,39 @@ transparent-banner body-quest
         <h2>Progress</h2>
 
         <ul>
-            <li class="completed">Level 1</li>
-            <li class="completed">Level 2</li>
-            <li class="current">Level 3</li>
-            <li>Level 4</li>
-            <li>Level 5</li>
+            {% for quest in quests %}
+            <li class="{% if quest.level < cquest.level %}completed{% endif %}
+                       {% if quest.level == cquest.level %}current{% endif %}">
+                Level {{quest.level}}
+            </li>
+            {% endfor %}
         </ul>
     </div>
 
     <div class="card-pane center-pane">
-        <h2>Level 3</h2>
+        {% if completed %}
+            <h2>Congratulations!</h2>
+            <div class="answer">
+                <p>You have completed all the levels!</p>
+            </div>
+        {% else %}
+            <h2>Level {{cquest.level}}</h2>
 
-        <div class="images">
-            <img src="http://placehold.it/250x250" alt="">
-            <img src="http://placehold.it/250x250" alt="">
-        </div>
+            <div class="images">
+                <img src="{{cquest.img1}}" alt="">
+                <img src="{{cquest.img2}}" alt="">
+            </div>
 
-        <div class="answer">
-            <input type="text" placeholder="What's your guess?" class="js-answer">
-            <button class="guess button gray js-button" type="submit">Guess</button>
-        </div>
+            <div class="answer">
+                <input type="text" placeholder="What's your guess?" class="js-answer">
+                <button class="guess button gray js-button" type="submit">Guess</button>
+            </div>
+        {% endif %}
 
-        <div class="fb">
-            <p>Like us on Facebook for hints on the questions</p>
-            <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2FMagnovite&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
-        </div>
+            <div class="fb">
+                <p>Like us on Facebook for hints on the questions</p>
+                <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2FMagnovite&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
+            </div>
     </div>
 
     <div class="card-pane q-right-pane">

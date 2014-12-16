@@ -299,6 +299,9 @@ h3 {
   margin: 0 auto;
   overflow: hidden;
 }
+body.browser-height {
+  overflow: hidden;
+}
 html,
 body {
   color: rgba(77, 205, 255, 0.8);
@@ -1554,10 +1557,12 @@ body.mobile .notifications .notification {
 }
 .events-page {
   background: #041d78;
-  min-height: 700px;
+  height: 100%;
+  overflow: hidden;
 }
 .events.container {
   width: 100%;
+  height: 100%;
 }
 .events .dummy-filter {
   display: none;
@@ -1574,11 +1579,12 @@ body.mobile .notifications .notification {
 .events .pane {
   float: left;
   width: 80%;
-  min-height: 600px;
+  height: 100%;
   background: #03175f;
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.15);
   padding: 40px 20px;
   text-align: center;
+  overflow-y: scroll;
 }
 .fixed-left .dummy-filter {
   display: block;
@@ -2478,7 +2484,7 @@ body.mobile .notifications .notification {
   border: 1px solid rgba(77, 205, 255, 0.8);
 }
 .quest-page-outer {
-  background: #0f0f0f;
+  background: #2f2f2f;
   background-image: url('http://i.imgur.com/E70imDZ.png');
 }
 .quest-page {

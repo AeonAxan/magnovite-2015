@@ -5,11 +5,6 @@ app.profile = {};
 	'use strict';
 
 	app.profile.init = function() {
-        // do the height hack only on desktop
-        if (app.desktop) {
-            fixHeight();
-        }
-
         $('#profile-form').on('submit', formSubmit);
 	};
 
@@ -54,19 +49,6 @@ app.profile = {};
         }).always(function() {
             NProgress.done();
         });
-    }
-
-    /**
-     * Sets the height to the browser height
-     * and hides the scroll bar , if desktop
-     */
-    function fixHeight() {
-        var $page = document.querySelector('.profile-page');
-        var $banner = document.querySelector('.banner');
-        var height = window.innerHeight - $banner.clientHeight;
-        $page.style.height = height + 'px';
-
-        document.body.classList.add('profile-body');
     }
 
 })();

@@ -1,5 +1,5 @@
 @banner_height: 80px;
-@banner_width: 1250px;
+@banner_width: 1150px;
 @banner_background: lighten(@dark_blue, 15%);
 
 .banner {
@@ -9,7 +9,7 @@
     z-index: 999;
 
     .banner-inner {
-        width: @banner_width;
+        max-width: @banner_width;
         height: @banner_height;
         margin: 0 auto;
         position: relative;
@@ -18,6 +18,14 @@
         // loading
         opacity: 0;
         transform: translateY(-@banner_height * 0.3);
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: @banner_height;
     }
 
     .user-settings {
@@ -45,6 +53,18 @@
             }
         }
     }
+}
+
+.page-events .banner-inner {
+    max-width: 1300px;
+}
+
+.page-profile .banner-inner {
+    max-width: 1200px;
+}
+
+.event-details .banner-inner {
+    max-width: 1050px;
 }
 
 .transparent-banner .banner {

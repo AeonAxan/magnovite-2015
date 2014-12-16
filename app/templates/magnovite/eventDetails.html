@@ -6,6 +6,7 @@
 event-details {{event.type}}-event
 {% if not event.is_team %}individual{% endif %}
 {% if is_registered %}registered{% endif %}
+transparent-banner
 {% endblock %}
 
 {% block "post_js" %}

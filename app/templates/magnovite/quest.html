@@ -1,7 +1,39 @@
 {% extends "magnovite/base.html" %}
 
+{% block "body_css_class" %}
+transparent-banner
+{% endblock "body_css_class" %}
+
 {% block "content" %}
 <div class="quest-page">
-quest
+    <h1>Quest</h1>
+
+    <div class="card-pane left-pane">
+        <h2>Progress</h2>
+
+        <ul>
+            <li>Level 1 <span class="icon completed"></span></li>
+            <li>Level 2 <span class="icon completed"></span></li>
+            <li>Level 3 <span class="icon completed"></span></li>
+        </ul>
+    </div>
+
+    <div class="card-pane center-pane">
+        <h2>Level 1</h2>
+
+        <div class="images">
+            <img src="http://placehold.it/50x50" alt="">
+            <img src="http://placehold.it/50x50" alt="">
+        </div>
+
+        <div class="answer">
+            <input type="text" id="answer">
+            <button class="guess button gray" type="submit">Guess</button>
+        </div>
+    </div>
+
+    <div class="card-pane right-pane">
+
+    </div>
 </div>
 {% endblock "content" %}

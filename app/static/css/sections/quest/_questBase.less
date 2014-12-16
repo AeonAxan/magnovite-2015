@@ -1,0 +1,52 @@
+@quest_white: rgba(255, 255, 255, 0.95);
+
+.quest-page {
+    background: #111;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+
+    padding: 100px 0 80px;
+    min-height: 690px;
+    color: @quest_white;
+
+    h1 {
+        font-size: 56px;
+        padding: 25px 0;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .card-pane {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0px 4px;
+        padding: 20px;
+        text-align: left;
+
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #151515;
+
+        h2 {
+            font-family: 24px;
+            padding: 10px 0 20px 0;
+        }
+    }
+
+    .left-pane {
+        width: 15%;
+        max-width: 220px;
+    }
+
+    .center-pane {
+        width: 55%;
+        max-width: 720px;
+    }
+
+    .right-pane {
+        width: 25%;
+        max-width: 360px;
+    }
+}

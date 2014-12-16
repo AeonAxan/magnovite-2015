@@ -46,6 +46,23 @@
     }
 }
 
+.transparent-banner .banner {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+
+    .text:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .dropdown li {
+        background: rgba(0, 0, 0, 0.6);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
+}
+
 .page-loaded .banner .banner-inner {
     opacity: 1;
     transform: translateY(0);

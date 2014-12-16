@@ -110,54 +110,6 @@
   src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v14/fg2nPs59wPnJ0blURyMU3PesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
-* {
-  box-sizing: border-box;
-  transition: all 125ms ease-out;
-}
-html,
-body {
-  font-family: 'Arial', 'Helvetica', sans-srif;
-  margin: 0;
-  padding: 0;
-  background: #03175f;
-}
-body {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-a {
-  color: inherit;
-}
-h3 {
-  font-size: 24px;
-}
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix {
-  *zoom: 1;
-}
-::-webkit-scrollbar-track {
-  background: #000413;
-}
-::-webkit-scrollbar {
-  width: 7px;
-  background-color: #0692ff;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #0692ff;
-}
-.container {
-  width: 1120px;
-  position: relative;
-  margin: 0 auto;
-  overflow: hidden;
-}
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -285,6 +237,67 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+  transition: all 125ms ease-out;
+}
+html,
+body {
+  font-family: 'Roboto', 'Helvetica', sans-srif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  background: #03175f;
+}
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+a {
+  color: inherit;
+}
+h3 {
+  font-size: 24px;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+::-webkit-scrollbar-track {
+  background: #000413;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #0692ff;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #0692ff;
+}
+.container {
+  width: 1120px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
 }
 html,
 body {
@@ -563,6 +576,19 @@ input.gray:focus {
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
+}
+.transparent-banner .banner {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+}
+.transparent-banner .banner .text:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.transparent-banner .banner .dropdown li {
+  background: rgba(0, 0, 0, 0.6);
+}
+.transparent-banner .banner .dropdown li:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 .page-loaded .banner .banner-inner {
   opacity: 1;
@@ -1892,19 +1918,6 @@ body.mobile .notifications .notification {
   transform: translateX(-5px);
   border-top: 0;
 }
-body.event-details .banner {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.4);
-}
-body.event-details .banner .text:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-body.event-details .banner .dropdown li {
-  background: rgba(0, 0, 0, 0.6);
-}
-body.event-details .banner .dropdown li:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
 .event-cover {
   position: relative;
 }
@@ -2445,4 +2458,65 @@ body.event-details .banner .dropdown li:hover {
 }
 .profile-right-panel input:focus {
   border: 1px solid rgba(77, 205, 255, 0.8);
+}
+.quest-page {
+  background: #111;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  padding: 100px 0 80px;
+  min-height: 690px;
+  color: rgba(255, 255, 255, 0.95);
+}
+.quest-page h1 {
+  font-size: 56px;
+  padding: 25px 0;
+  margin-bottom: 20px;
+  display: block;
+}
+.quest-page .card-pane {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px 4px;
+  padding: 20px;
+  text-align: left;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #151515;
+}
+.quest-page .card-pane h2 {
+  font-family: 24px;
+  padding: 10px 0 20px 0;
+}
+.quest-page .left-pane {
+  width: 15%;
+  max-width: 220px;
+}
+.quest-page .center-pane {
+  width: 55%;
+  max-width: 720px;
+}
+.quest-page .right-pane {
+  width: 25%;
+  max-width: 360px;
+}
+.quest-page .center-pane {
+  text-align: center;
+}
+.quest-page .center-pane img {
+  width: 250px;
+  height: 250px;
+  background: black;
+}
+.quest-page .center-pane img:first-child {
+  margin-right: 20px;
+}
+.quest-page .center-pane .images {
+  margin-bottom: 20px;
+}
+.quest-page .center-pane .answer button {
+  display: block;
+  margin: 20px auto 0 auto;
+  text-align: center;
 }

@@ -5,7 +5,7 @@ from app.main.models import Profile
 
 
 class QuestAdmin(admin.ModelAdmin):
-    list_display = ['level', 'is_active']
+    list_display = ['level']
 
 
 admin.site.register(Quest, QuestAdmin)

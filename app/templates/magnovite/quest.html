@@ -1,7 +1,7 @@
 {% extends "magnovite/base.html" %}
 
 {% block "body_css_class" %}
-transparent-banner
+transparent-banner body-quest
 {% endblock "body_css_class" %}
 
 {% block "content" %}
@@ -28,8 +28,8 @@ transparent-banner
         </div>
 
         <div class="answer">
-            <input type="text" placeholder="What's your guess?" id="answer">
-            <button class="guess button gray" type="submit">Guess</button>
+            <input type="text" placeholder="What's your guess?" class="js-answer">
+            <button class="guess button gray js-button" type="submit">Guess</button>
         </div>
 
         <div class="fb">

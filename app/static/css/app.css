@@ -2464,7 +2464,7 @@ body.mobile .notifications .notification {
   background-image: url('http://i.imgur.com/E70imDZ.png');
 }
 .quest-page {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.35);
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -2481,8 +2481,6 @@ body.mobile .notifications .notification {
   text-align: left;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #111;
-  box-shadow: 0px 0px 2px #111;
 }
 .quest-page .card-pane h2 {
   font-family: 24px;
@@ -2534,6 +2532,10 @@ body.mobile .notifications .notification {
   text-align: center;
   background: black;
   border: 0;
+}
+.quest-page .center-pane .answer input.wrong {
+  border: 1px solid #f00;
+  color: #f00;
 }
 .quest-page .center-pane .answer button {
   display: block;
@@ -2605,6 +2607,8 @@ body.mobile .notifications .notification {
 .shake {
   -webkit-animation-name: shake;
   animation-name: shake;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1d;
 }
 .quest-page .q-right-pane ul li {
   background: rgba(0, 0, 0, 0.7);

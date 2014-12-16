@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-ca66fabb.css"/>
+    <link rel="stylesheet" href="/static/dist/style-97d93e24.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 </head>
@@ -27,11 +27,11 @@
                 <div class="buttons">
                     <div class="social-button">
                         <img src="/static/img/google.png" alt="">
-                        <a href="{% provider_login_url "google" %}"></a>
+                        <a href="{% provider_login_url "google" %}?next={{request.path}}"></a>
                     </div>
                     <div class="social-button">
                         <img src="/static/img/twitter.png" alt="">
-                        <a href="{% provider_login_url "twitter" %}"></a>
+                        <a href="{% provider_login_url "twitter" %}?next={{request.path}}"></a>
                     </div>
                 </div>
                 <p class="help-text">
@@ -57,7 +57,7 @@
 
                 <ul class="dropdown user-dropdown">
                     <li><a href="/profile/">My Account</a></li>
-                    <li><a href="/logout/">Logout</a></li>
+                    <li><a href="/logout/?next={{request.path}}">Logout</a></li>
                 </ul>
             </div>
         </div>

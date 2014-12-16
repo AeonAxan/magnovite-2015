@@ -22,6 +22,7 @@
 	ul {
 		width: 100%;
 		padding: 40px 0px;
+		color: rgba(255, 255, 255, 0.8);
 
 		li {
 			height: 50px;
@@ -30,11 +31,16 @@
 			padding: 0px 50px;
 			line-height: 50px;
 
-			&:hover,
 			&.selected {
-				background: @dark_blue;
+				background: darken(@dark_blue, 3%);
 				cursor: pointer;
-				color: rgba(77, 205, 255, 1);
+				color: rgba(255, 255, 255, 0.95);
+				font-weight: 400;
+			}
+
+			&:hover {
+				color: rgba(255, 255, 255, 0.95);
+				cursor: pointer;
 			}
 		}
 	}
@@ -46,9 +52,15 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 
+	background-image: url('/static/img/bg_blue.png');
+
 	.panel {
 		display: none;
 		padding: 40px;
+		width: 100%;
+		height: 100%;
+
+		background: rgba(3, 23, 95, 0.55);
 	}
 
 	&.profile-view .profile-right-panel {
@@ -66,5 +78,7 @@
 	h1 {
 		font-size: 32px;
 		margin-bottom: 40px;
+
+		color: rgba(255, 255, 255, 0.95);
 	}
 }

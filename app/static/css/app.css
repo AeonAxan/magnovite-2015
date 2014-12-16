@@ -549,13 +549,20 @@ input.gray:focus {
   z-index: 999;
 }
 .banner .banner-inner {
-  width: 1250px;
+  max-width: 1150px;
   height: 80px;
   margin: 0 auto;
   position: relative;
   z-index: 9999;
   opacity: 0;
   transform: translateY(-24px);
+}
+.banner .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 80px;
 }
 .banner .user-settings {
   position: absolute;
@@ -577,6 +584,15 @@ input.gray:focus {
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
+}
+.page-events .banner-inner {
+  max-width: 1300px;
+}
+.page-profile .banner-inner {
+  max-width: 1200px;
+}
+.event-details .banner-inner {
+  max-width: 1050px;
 }
 .transparent-banner .banner {
   position: absolute;

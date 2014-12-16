@@ -15,8 +15,9 @@ page-profile browser-height
 {% block "content" %}
 <div class="profile-page page-container">
     <div class="left-side-bar">
-        <ul>
-            <li class="selected">Details</li>
+        <ul class="js-profile-nav">
+            <li data-class="profile-view" class="selected">Profile</li>
+            <li data-class="info-view">My Schedule</li>
         </ul>
     </div>
 
@@ -64,63 +65,79 @@ page-profile browser-height
 
         <!-- start info panel -->
         <div class="info-right-panel panel">
-            <h1>My Pack</h1>
-            <div class="strip">
-                <div class="sq-time">
-                    <div class="time1">
-                        09:00 AM
+            <h1>My Schedule</h1>
+
+            <div class="day-1">
+                <h3>21st</h3>
+
+                <div class="strip empty-strip">
+                    <p>You have no activities on this day.</p>
+                </div>
+
+                <div class="strip technical">
+                    <div class="sq-time">
+                        <div class="time t-start">
+                            09:00 AM
+                        </div>
+                        <div class="time t-end">
+                            11:00 AM
+                        </div>
                     </div>
-                    <div class="time2">
-                        11:00 AM
+                    <div class="sq-event">
+                        Bikers
+                    </div>
+                    <div class="sq-contact">
+                        <div class="profile-pic">
+                            <img src="http://placehold.it/80x80" />
+                        </div>
+                        <ul>
+                            <li class="name">Ahmed Azaan Hassan</li>
+                            <li class="mobile">+91 890 430 8580</li>
+                            <li class="email"><a href="#">azaan@magnovite.org</a></li>
+                        </ul>
+                    </div>
+                    <div class="sq-more">
+                        <a href="#">❯</a>
                     </div>
                 </div>
-                <div class="sq-event">
-                    <div class="area">
-                        Paper Presentation
+
+                <div class="strip cultural">
+                    <div class="sq-time">
+                        <div class="time t-start">
+                            09:00 AM
+                        </div>
+                        <div class="time t-end">
+                            11:00 AM
+                        </div>
                     </div>
-                </div>
-                <div class="sq-contact">
-                    <div class="profile-pic"></div>
-                    <div class="profile-info">
-                        <div class="ico"></div>Sandeep Kumar
+                    <div class="sq-event">
+                        <div class="area">
+                            Bikers
+                        </div>
                     </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>09019672209
+                    <div class="sq-contact">
+                        <div class="profile-pic">
+                            <img src="http://placehold.it/80x80" />
+                        </div>
+                        <ul>
+                            <li class="name">Ahmed Azaan Hassan</li>
+                            <li class="mobile">+91 890 430 8580</li>
+                            <li class="email"><a href="#">azaan@magnovite.org</a></li>
+                        </ul>
                     </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>sandeep.kumar@it.christuniversity.in
+                    <div class="sq-more">
+                        <a href="#">❯</a>
                     </div>
                 </div>
             </div>
 
-            <!-- 2nd pack -->
-            <div class="strip">
-                <div class="sq-time">
-                    <div class="time1">
-                        09:00 AM
-                    </div>
-                    <div class="time2">
-                        11:00 AM
-                    </div>
+            <div class="day-2 empty-day">
+                <h3>22nt</h3>
+
+                <div class="strip empty-strip">
+                    <p>You have no activities on this day.</p>
                 </div>
-                <div class="sq-event">
-                    <div class="area">
-                        Bikers
-                    </div>
-                </div>
-                <div class="sq-contact">
-                    <div class="profile-pic"></div>
-                    <div class="profile-info">
-                        <div class="ico"></div>Sandeep Kumar
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>09019672209
-                    </div>
-                    <div class="profile-info">
-                        <div class="ico"></div>sandy@magnovite.org
-                    </div>
-                </div>
-            </div><!-- ./2nd pack -->
+            </div>
 
         </div><!-- ./end of info panel -->
 
@@ -130,7 +147,7 @@ page-profile browser-height
         <form id="profile-form" action="{% url "profile_update" pk=profile_form.instance.pk %}" method="POST">
 
         <div>
-            <h1>Details</h1>
+            <h1>Profile</h1>
             <span class="warn">You cannot register to events till you fill all the details</span>
 
             <div>

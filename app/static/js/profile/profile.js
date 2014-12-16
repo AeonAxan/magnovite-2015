@@ -4,9 +4,41 @@ app.profile = {};
 (function() {
 	'use strict';
 
+    var $list, $container;
+    var currentView = 'profile-view';
+
+
 	app.profile.init = function() {
         $('#profile-form').on('submit', formSubmit);
+
+        $container = $('.profile-page .right-container');
+        $list = $('.js-profile-nav');
+
+        $list.on('click', 'li', function(e) {
+            choseView($(e.target).data('class'));
+        });
+
+        if (window.location.hash !== '') {
+            choseView(window.location.hash.substring(1));
+        }
 	};
+
+    function choseView(view) {
+        if (view.indexOf('-view') === -1) {
+            view = view + '-view';
+        }
+
+        if (view === currentView) {
+            return;
+        }
+
+        $list.find('li').removeClass('selected');
+
+        $list.find('li[data-class=' + view + ']').addClass('selected');
+        $container.removeClass(currentView);
+        $container.addClass(view);
+        currentView = view;
+    }
 
     function clearErrors() {
         $('.errorlist').html('');

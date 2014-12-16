@@ -41,8 +41,14 @@
 }
 
 .right-container {
+	width: 75%;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+
 	.panel {
 		display: none;
+		padding: 40px;
 	}
 
 	&.profile-view .profile-right-panel {
@@ -57,73 +63,8 @@
 		display: block;
 	}
 
-}
-
-
-
-.profile-right-panel {
-	width: 75%;
-	height: 100%;
-	background: @dark_blue;
-	float: left;
-	padding: 30px 80px;
-	overflow-y: scroll;
-
-	.errorlist {
-		color: red;
-		margin: 0 0 0 10px;
-		display: inline-block;
-
-	}
-
-	button {
-		background: #006BA7;
-		margin: 10px 0 0 0;
-		border: 1px solid #00859E;
-
-		&:hover {
-			background: darken(@atoms_highlight, 10%);
-		}
-	}
-
 	h1 {
-		font-size: 48px;
-		margin: 20px 0 45px 0;
-	}
-
-	span.warn {
-		color: red;
-		display: none;
-	}
-
-	&.show-warn {
-		h1 {
-			margin-bottom: 15px;
-		}
-
-		span.warn {
-			display: block;
-			margin-bottom: 10px;
-			display: block;
-		}
-	}
-
-	label {
-		font-size: 14px;
-		display: block;
-		margin: 0;
-	}
-
-	input {
-		border: 1px solid #03091E;
-		display: inline-block;
-		background: #010B2F;
-		width: 400px;
-		margin: 0px 0px 20px 0;
-		padding: 5px 10px;
-
-		&:focus {
-			border:1px solid rgba(77, 205, 255, 0.8);
-		}
+		font-size: 32px;
+		margin-bottom: 40px;
 	}
 }

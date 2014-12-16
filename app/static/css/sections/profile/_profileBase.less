@@ -4,7 +4,7 @@
 }
 
 // refers to the body element, class gets added by js
-.profile-body {
+.profile-body { 
 	overflow-y: hidden;
 }
 
@@ -34,6 +34,27 @@
 		}
 	}
 }
+
+.right-container {
+	.panel {
+		display: none;
+	}
+
+	&.profile-view .profile-right-panel {
+		display: block;
+	}
+
+	&.info-view .info-right-panel {
+		display: block;
+	}
+
+	&.help-view .help-right-panel {
+		display: block;
+	}
+
+}
+
+
 
 .profile-right-panel {
 	width: 75%;

@@ -1,1 +1,111 @@
-_help.less
+.help-right-panel {
+	width: 100%;
+	height: 100%;
+	background: white;
+	
+	.help-query {
+		width: 25%;	
+		height: 100%;
+		background: transparent;
+		float: left;
+		padding: 10px;
+
+		.query {
+			width: 100px;
+			height: 100px;
+			float: left;	
+			line-height: 90px;
+			font-size: 28px;
+			text-align: center;
+			margin: 5px 35% 10px 35%;
+			background: transparent;
+			border-radius: 50px;
+			border: 2px solid white;	
+		}
+
+		textarea {
+			border: 1px solid white;
+			display: inline-block;
+			background: transparent;
+			width: 100%;
+			font-size: 20px;
+			height: 370px;
+			margin: 0px 0px 20px 0;
+			padding: 5px 10px;
+			
+			&:focus {
+				border:1px solid rgba(77, 205, 255, 0.8);
+			}
+		}
+
+		button {
+			background: #006BA7;
+			margin: 10px 0 0 0;
+			border: 1px solid #00859E;
+
+			&:hover {
+				background: darken(@atoms_highlight, 10%);
+			}
+		}	
+	}
+
+	.qa-area {
+		overflow-y: hidden;
+		float: left;
+		width: 50%;
+		height: 100%;
+		background: transparent;
+		border: 1px solid white;
+		padding: 0 5px 0 5px;
+		margin: 20px 0 0 0;
+
+		.box-question {
+			padding: 10px 0 7px 10px;
+			width: 100%;
+			background: transparent;
+			float: left;
+			font-size: 24px;
+
+			.area-q {
+				font-size: 16px;
+				margin: 0 10% 0 0;
+				float: right;
+				display: inline-block;
+				width: 80%;
+			}
+		}
+
+		.box-reply {
+			border-top: 1px solid white;
+			width: 100%;
+			float: left;
+			background: transparent;
+			font-size: 20px;
+			padding: 10px 0 10px 10px;
+
+			.area-r {
+				padding: 0 0 0 0;
+				float: right;
+				background: transparent;
+				font-size: 16px;
+				margin: 0 10% 0 0;
+				width: 80%;
+			}
+
+			.box-comment {
+				width: 100%;
+				background: white;
+				height: 20px;
+				float: left;
+
+				td {
+					background: red;
+					width: 20%;
+					height: 15px;
+				}
+			}
+		
+		}
+
+	}
+}

@@ -15,7 +15,9 @@ class RegistrationsInline(admin.TabularInline):
     extra = 0
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'is_complete']
+    list_display = ['title', 'technical', 'is_complete', 'registrations', 'views']
+    ordering = ['-views']
+    list_filter = ['technical',]
     inlines = [EventHeadInline, RegistrationsInline]
 
 admin.site.register(Event, EventAdmin)

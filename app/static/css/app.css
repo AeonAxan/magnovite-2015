@@ -583,6 +583,10 @@ input.gray:focus {
 .banner .user-settings .text {
   height: 100%;
 }
+.banner .user-settings .text .small {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
 .banner .user-settings .text:hover {
   background: #007ada;
 }
@@ -1179,6 +1183,11 @@ body.mobile .notifications .notification {
   width: 1000px;
   margin: 0 auto;
   position: relative;
+}
+.landing .top-banner .text .small {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 2px;
 }
 .landing .top-banner .christ {
   height: 60px;

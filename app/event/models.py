@@ -76,6 +76,10 @@ class Event(models.Model):
         default=False
     )
 
+    # analytics
+    views = models.IntegerField(default=0)
+    registrations = models.IntegerField(default=0)
+
     def clean(self):
         if self.title:
             if (self.title.lower() == self.title or

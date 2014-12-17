@@ -105,9 +105,13 @@
 	}
 }
 
+.page-outer {
+	background-image: url('/static/img/bg_blue.png');
+}
+
 .page {
 	width: 100%;
-	background: @dark_blue;
+	background: rgba(0, 0, 0, 0.1);
 
 	.container {
 		width: @page_width;
@@ -129,7 +133,10 @@
 		transform: translateX(-10px);
 
 		.markdown {
+			background: rgba(0, 0, 0, 0.35);
+
 			padding: 40px 20px;
+			margin: 20px;
 			color: rgba(255, 255, 255, 0.8);
 
 			*:first-child {

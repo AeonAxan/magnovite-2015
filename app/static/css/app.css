@@ -2030,9 +2030,12 @@ body.mobile .notifications .notification {
 .event-cover .tags .tag.civil {
   background: #ffeb3b;
 }
+.page-outer {
+  background-image: url('/static/img/bg_blue.png');
+}
 .page {
   width: 100%;
-  background: #03175f;
+  background: rgba(0, 0, 0, 0.1);
 }
 .page .container {
   width: 1100px;
@@ -2050,7 +2053,9 @@ body.mobile .notifications .notification {
   transform: translateX(-10px);
 }
 .page .left .markdown {
+  background: rgba(0, 0, 0, 0.35);
   padding: 40px 20px;
+  margin: 20px;
   color: rgba(255, 255, 255, 0.8);
 }
 .page .left .markdown *:first-child {

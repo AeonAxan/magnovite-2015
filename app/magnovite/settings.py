@@ -125,6 +125,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+if not DEBUG:
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 SOCIALACCOUNT_ADAPTER = 'app.main.allauth.MSocialAccountAdapter'
 
 LOGIN_REDIRECT_URL = '/profile/'

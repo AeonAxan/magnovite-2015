@@ -87,6 +87,8 @@ app.eventDetails = {};
                 $registerButton.addClass('registered');
                 $registerButton.find('.js-text').text('Unregister');
 
+                showSuccessNotification();
+
                 isRegistered = true;
             })
             .fail(function(err) {
@@ -124,11 +126,21 @@ app.eventDetails = {};
             });
     }
 
-    function unregisterTeam() {
+    /**
+     * @param {boolean} fromSuccess Is this function being called after succcess, after
+     *                              success this is used to show modal
+     */
+    function unregisterTeam(fromSuccess) {
         var $modal = $('#team-detail');
 
-        app.modal.show('#team-detail', function() {
+        app.modal.show('#team-detail', function(type) {
             $modal.off('click', '.js-leave');
+
+            if (fromSuccess && type === 'close-button') {
+                // if we are coming after success, show scheulde
+                // message when the team modal closes
+                showSuccessNotification();
+            }
         });
 
         $modal.on('click', '.js-leave', function(e) {
@@ -216,9 +228,10 @@ app.eventDetails = {};
                     $registerButton.addClass('registered');
                     $registerButton.find('.js-text').text('View Team');
 
-                    // show the team detail modal
                     app.modal.hide();
-                    unregisterTeam();
+
+                    // show the team detail modal
+                    unregisterTeam(true);
 
                     isRegistered = true;
                 })
@@ -256,6 +269,17 @@ app.eventDetails = {};
                     inProgress = false;
                 });
         }
+    }
+
+    function showSuccessNotification() {
+        app.notification.notify({
+            text: 'You have success fully registered. See your schedule.',
+            type: 'info',
+            action: 'View Schedule',
+            actionCallback: function() {
+                window.location.replace('/profile/#schedule');
+            }
+        });
     }
 
 })();

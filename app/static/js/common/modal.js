@@ -30,7 +30,7 @@ app.modal = {};
 
         currentModal.on('click', function(e) {
             if ($(e.target).hasClass('modal') || $(e.target).hasClass('close')) {
-                app.modal.hide();
+                app.modal.hide('close-button');
             }
         });
 
@@ -40,8 +40,10 @@ app.modal = {};
     /**
      * Hides the currently visible modal,
      * does nothing if no modal is open
+     * @param {boolean} type optional string passed to the close callback
+     *                       indicating 'how' it was closed. eg: 'close-button'
      */
-    app.modal.hide = function() {
+    app.modal.hide = function(type) {
         if (!currentModal) {
             return;
         }
@@ -55,7 +57,7 @@ app.modal = {};
         })(currentModal), 50);
 
         if (closeCallback) {
-            closeCallback();
+            closeCallback(type);
             closeCallback = undefined;
         }
     };

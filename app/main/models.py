@@ -46,6 +46,8 @@ class MUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    date_joined = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         verbose_name = 'Magnovite User'
 

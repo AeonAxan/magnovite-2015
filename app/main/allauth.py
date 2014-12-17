@@ -62,7 +62,8 @@ class MSocialAccountAdapter(DefaultSocialAccountAdapter):
 
             raise ImmediateHttpResponse(HttpResponseRedirect(url))
         except MUser.DoesNotExist:
-            pass
+            # this is a new user, make sure we redirect to profile
+            sociallogin.state['next'] = '/profile/'
 
     def save_user(self, request, sociallogin, form=None):
         user = super(MSocialAccountAdapter, self).save_user(request, sociallogin, form)

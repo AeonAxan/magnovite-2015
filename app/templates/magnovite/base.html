@@ -30,11 +30,15 @@
             <div class="body">
                 <div class="buttons">
                     <div class="social-button">
-                        <img src="/static/img/google.png" alt="">
+                        <img src="/static/img/google.png" alt="Google">
                         <a href="{% provider_login_url "google" %}?next={{request.path}}"></a>
                     </div>
                     <div class="social-button">
-                        <img src="/static/img/twitter.png" alt="">
+                        <img src="/static/img/github.png" alt="Github">
+                        <a href="{% provider_login_url "github" %}?next={{request.path}}"></a>
+                    </div>
+                    <div class="social-button">
+                        <img src="/static/img/twitter.png" alt="Twitter">
                         <a href="{% provider_login_url "twitter" %}?next={{request.path}}"></a>
                     </div>
                 </div>

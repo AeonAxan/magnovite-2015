@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Analytics
+
+@admin.register(Analytics)
+class AnalyticsAdmin(admin.ModelAdmin):
+    list_display = ['date']
+    list_filter = ['date']

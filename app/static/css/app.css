@@ -2465,7 +2465,7 @@ body.mobile .notifications .notification {
 .right-container.profile-view .profile-right-panel {
   display: block;
 }
-.right-container.info-view .info-right-panel {
+.right-container.schedule-view .info-right-panel {
   display: block;
 }
 .right-container.help-view .help-right-panel {

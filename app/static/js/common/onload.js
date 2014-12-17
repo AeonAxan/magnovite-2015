@@ -4,11 +4,7 @@
     // page-loading -> [DOMContentLoaded] -> page-loading -> 2s -> page-finished
 
     $(document).ready(function() {
-        if (app.DEBUG) {
-            setTimeout(pageLoaded, 1500);
-        } else {
-            pageLoaded();
-        }
+        setTimeout(pageLoaded, 600);
     });
 
     function pageLoaded() {

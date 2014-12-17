@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-ADMINS = ('ahmed.azaan@outlook.com',)
+ADMINS = ('azaan@outlook.com',)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -185,6 +185,9 @@ TEMPLATE_DIRS = (
 )
 
 # email settings
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = 'official@magnovite.org'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
@@ -209,6 +212,10 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
         },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
         'null': {
             'class': 'django.utils.log.NullHandler',
         }
@@ -222,7 +229,7 @@ LOGGING = {
             'handlers': ['console'],
         },
         'django.request': {
-            'handlers': ['console'],
+            'handlers': ['console', 'mail_admins'],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -232,6 +239,18 @@ LOGGING = {
     }
 }
 
+# Production settings
+if not DEBUG:
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )),
+    )
+
+    # https settings
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+
 if not DEBUG:
     exec(open('app/magnovite/settings_heroku.py').read(), globals())
-

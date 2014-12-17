@@ -26,6 +26,7 @@ class MUserManager(BaseUserManager):
         user = self.create_user(email, password)
         user.is_admin = True
         user.is_staff = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
@@ -108,6 +109,7 @@ class Profile(models.Model):
         help_text='Is this an internal account? (Event Heads, etc)'
     )
     events = models.ManyToManyField(Event,
+        verbose_name='Events Incharge of',
         related_name='heads',
         help_text='The event this profile is in-charge of',
         null=True, blank=True
@@ -125,4 +127,4 @@ class Profile(models.Model):
             self.year != None and self.active_email != ''
 
     def __str__(self):
-        return self.name + '|' + self.active_email
+        return str(self.id) + ', ' + self.name + '(' + self.active_email + ')'

@@ -6,16 +6,23 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import MUser, Profile
-from app.event.models import Registration
+from app.event.models import Registration, Event
 
 
 class RegistrationsInline(admin.TabularInline):
     model = Registration
     extra = 0
 
+class EventsInline(admin.TabularInline):
+    model = Profile.events.through
+    verbose_name = 'Event Incharge Of'
+    verbose_name_plural = 'Events Incharge Of'
+    extra = 0
+
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'user', 'auth_provider', 'active_email')
-    inlines = [RegistrationsInline]
+    exclude = ('events',)
+    inlines = [RegistrationsInline, EventsInline]
 
 admin.site.register(Profile, ProfileAdmin)
 
@@ -81,7 +88,7 @@ class MUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'date_joined', 'is_admin', 'is_staff')
+    list_display = ('id', 'email', 'date_joined', 'is_admin', 'is_staff')
     list_filter = ('is_admin', 'is_staff', 'date_joined')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

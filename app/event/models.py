@@ -80,6 +80,11 @@ class Event(models.Model):
     views = models.IntegerField(default=0)
     registrations = models.IntegerField(default=0)
 
+    class Meta:
+        permissions = (
+            ('change_own', 'Change events incharge of'),
+        )
+
     def clean(self):
         if self.title:
             if (self.title.lower() == self.title or
@@ -102,9 +107,6 @@ class Event(models.Model):
         if self.end_time:
             if not time_re.match(self.end_time):
                 raise ValidationError('End Time must be in format "0:00 am" or "0:00 pm" (note spaces)')
-
-
-
 
     def info_as_html(self):
         """
@@ -197,3 +199,6 @@ class Registration(models.Model):
 
     class Meta:
         unique_together = ['event', 'profile']
+        permissions = (
+            ('own_event_registrations', 'View registrations for own event'),
+        )

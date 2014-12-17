@@ -1,7 +1,9 @@
 import markdown2
+import re
 
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 
 from multiselectfield import MultiSelectField
 
@@ -73,6 +75,31 @@ class Event(models.Model):
         help_text='Does event head 2 have a picture? (name: img/events/[slug]_h2.jpg)',
         default=False
     )
+
+    def clean(self):
+        if self.title:
+            if (self.title.lower() == self.title or
+                self.title.upper() == self.title):
+                raise ValidationError('Title needs to be in Title Case (eg: Dance Event)')
+
+        if self.slug:
+            if not re.match(r'^[-a-z]+$', self.slug):
+                raise ValidationError('Slug must contain only lowercase letters and -')
+
+        if self.date:
+            if not self.date in [21, 22]:
+                raise ValidationError('Date can only be 21 or 22')
+
+        time_re = re.compile(r'^1?\d:\d\d (am|pm)$')
+        if self.time:
+            if not time_re.match(self.time):
+                raise ValidationError('Start Time must be in format "0:00 am" or "0:00 pm" (note spaces)')
+
+        if self.end_time:
+            if not time_re.match(self.end_time):
+                raise ValidationError('End Time must be in format "0:00 am" or "0:00 pm" (note spaces)')
+
+
 
 
     def info_as_html(self):

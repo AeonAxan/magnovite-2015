@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^subscribe/', include('app.subscribe.urls')),
     url(r'^events/', include('app.event.urls')),
     url(r'^quest/', include('app.quest.urls')),
+    url(r'^dashboard/', include('app.dashboard.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 

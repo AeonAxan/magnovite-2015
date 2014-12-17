@@ -2544,7 +2544,11 @@ body.mobile .notifications .notification {
 .help-right-panel .help-query {
   width: 25%;
   height: 100%;
+<<<<<<< HEAD
   background: transparent;
+=======
+  background: red;
+>>>>>>> lame commit
   float: left;
   padding: 10px;
 }
@@ -2632,6 +2636,7 @@ body.mobile .notifications .notification {
   width: 20%;
   height: 15px;
 }
+<<<<<<< HEAD
 .info-right-panel h3 {
   margin-top: 50px;
   margin-bottom: 10px;
@@ -2682,11 +2687,71 @@ body.mobile .notifications .notification {
 .info-right-panel .strip .sq-contact {
   width: 350px;
   height: 100%;
+=======
+.info-right-panel {
+  width: 75%;
+  padding: 20px 0 0 20px;
+  background: transparent;
+  float: left;
+}
+.info-right-panel .strip {
+  width: 1020px;
+  height: 160px;
+  background: transparent;
+  float: left;
+  padding: 30px 10px 10px 20px;
+}
+.info-right-panel .strip .sq-time {
+  padding: 40px 0 0 0;
+  width: 10%;
+  height: 100%;
+  float: left;
+  border-radius: 0 0 0 0;
+}
+.info-right-panel .strip .sq-time .time1 {
+  padding: 0 0 0 10px;
+  text-align: left;
+  line-height: 20px;
+  font-size: 18px;
+  font-style: bold;
+  color: rgba(255, 255, 255, 0.9);
+}
+.info-right-panel .strip .sq-time .time2 {
+  padding: 0 0 0 10px;
+  text-align: left;
+  line-height: 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.info-right-panel .strip .sq-event {
+  width: 33%;
+  height: 100%;
+  background: transparent;
+  float: left;
+  border-radius: 0 0 0 0;
+}
+.info-right-panel .strip .sq-event .area {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px 0 20px;
+  text-align: left;
+  line-height: 90px;
+  font-size: 28px;
+  color: #ffffff;
+}
+.info-right-panel .strip .sq-contact {
+  padding: 4px;
+  width: 57%;
+  height: 100%;
+  text-align: left;
+  background: transparent;
+>>>>>>> lame commit
   float: left;
 }
 .info-right-panel .strip .sq-contact .profile-pic {
   width: 100px;
   height: 100px;
+<<<<<<< HEAD
   padding: 10px;
   float: left;
   margin-left: 5px;
@@ -2772,6 +2837,45 @@ body.mobile .notifications .notification {
 }
 .info-right-panel .strip.technical .sq-more {
   background: #cf0000;
+=======
+  float: left;
+  margin: 5px 10px 0px 12px;
+  background: transparent;
+  border-radius: 50px;
+  border: 1px solid white;
+}
+.info-right-panel .strip .sq-contact .profile-info {
+  background: transparent;
+  float: left;
+  width: 70%;
+  padding: 15px 0 10px 12px;
+  height: 28px;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.88);
+}
+.info-right-panel .strip .sq-contact .ico {
+  margin: 0 10px 5px 3px;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  border: 1px solid white;
+  float: left;
+  display: inline-block;
+}
+.info-right-panel .status {
+  width: 25px;
+  height: 25px;
+  border-radius: 14px;
+  border: 2px solid #BADA55;
+  float: left;
+}
+.info-right-panel h1 {
+  height: 40px;
+  font-size: 32px;
+  margin: 10px 0 0px 20px;
+  padding: 00px 0 10px 0px;
+>>>>>>> lame commit
 }
 .quest-page-outer {
   background: #2f2f2f;

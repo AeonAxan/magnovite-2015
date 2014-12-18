@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('app.dashboard.views',
     url(r'^$', 'index', name='dashboard'),
-    url(r'^capture/', 'capture', name='dashboard:capture'),
-    url(r'^data/', 'data', name='dashboard:data'),
+    url(r'^capture/$', 'capture', name='dashboard:capture'),
+    url(r'^api/analytics/$', 'analytics', name='dashboard:api:analytics'),
+    url(r'^api/registrations/(?P<id>\d+)/$', 'registrations', name='dashboard:api:registrations'),
 )

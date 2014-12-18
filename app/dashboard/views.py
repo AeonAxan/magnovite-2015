@@ -1,11 +1,11 @@
 import json
 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.http import Http404, JsonResponse, HttpResponse
 
-from app.event.models import Event
+from app.event.models import Event, Registration
 from .models import Analytics
 
 
@@ -27,17 +27,25 @@ def index(req):
     })
 
 
-def data(req):
+def analytics(req):
+    """
+    API endpoint for returning analytics for events
+    """
     if not (req.user.is_staff and req.user.has_perm('event.change_event')):
         raise HttpResponse(status=401)
 
     if req.GET.get('ids', '') == '':
         return HttpResponse(status=400)
 
-    ids = list(map(int, req.GET['ids'].split(',')))
+    try:
+        ids = list(map(int, req.GET['ids'].split(',')))
+    except ValueError:
+        return HttpResponse(status=400)
+
     events = Event.objects.filter(id__in=ids)
 
-    if req.user.has_perm('event.change_own'):
+    if not req.user.is_superuser and req.user.has_perm('event.change_own'):
+        # make sure user has permission for all requested ids
         acceptable = Event.objects.filter(heads=req.user.profile)
         if events.exclude(id__in=acceptable).exists():
             return HttpResponse(status=401)
@@ -59,6 +67,47 @@ def data(req):
             })
 
         out.append(obj)
+
+    return JsonResponse(out, safe=False)
+
+
+def registrations(req, id):
+    """
+    API endpoint for returning registrations for given event
+    """
+    if not (req.user.is_staff and req.user.has_perm('event.change_registration')):
+        return HttpResponse(status=401)
+
+    # verify user has permission for given id
+    event = get_object_or_404(Event, id=id)
+    if not req.user.is_superuser and req.user.has_perm('event.own_event_registrations'):
+        if not event.heads.filter(id=req.user.profile.id).exists():
+            return HttpResponse(status=401)
+
+    out = {
+        'id': id,
+        'title': event.title,
+        'registrations': []
+    }
+
+    teams = {}
+    for reg in Registration.objects.filter(event=event).select_related('profile'):
+        obj = {
+            'id': reg.profile.id,
+            'name': reg.profile.name,
+            'email': reg.profile.active_email,
+            'mobile': reg.profile.mobile,
+            'college': reg.profile.college,
+        }
+
+        if event.is_team():
+            teams[reg.team_id] = teams.get(reg.team_id, []) + [obj]
+        else:
+            out['registrations'].append(obj)
+
+    if event.is_team():
+        for team_id, members in teams.items():
+            out['registrations'].append({team_id: members})
 
     return JsonResponse(out, safe=False)
 

@@ -88,7 +88,7 @@ class MUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('id', 'email', 'date_joined', 'is_admin', 'is_staff')
+    list_display = ('email', 'id', 'date_joined', 'is_admin', 'is_staff')
     list_filter = ('is_admin', 'is_staff', 'date_joined')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

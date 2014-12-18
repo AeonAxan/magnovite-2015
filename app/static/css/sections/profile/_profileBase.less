@@ -1,55 +1,7 @@
-.profile-page {
-	height: 680px;
-}
-
-// refers to the body element, class gets added by js
-.page-profile {
-	overflow-y: hidden;
-	overflow-x: hidden;
-
-	.page-container {
-		overflow-y: hidden;
-		overflow-x: hidden;
-	}
-}
-
-.left-side-bar {
-	float: left;
-	width: 25%;
-	height: 100%;
-	background: @light_dark_blue;
-
-	ul {
-		width: 100%;
-		padding: 40px 0px;
-		color: rgba(255, 255, 255, 0.8);
-
-		li {
-			height: 50px;
-			text-align: left;
-			font-size: 20px;
-			padding: 0px 50px;
-			line-height: 50px;
-
-			&.selected {
-				background: darken(@dark_blue, 3%);
-				cursor: pointer;
-				color: rgba(255, 255, 255, 0.95);
-				font-weight: 400;
-			}
-
-			&:hover {
-				color: rgba(255, 255, 255, 0.95);
-				cursor: pointer;
-			}
-		}
-	}
-}
-
 .right-container {
-	width: 75%;
+	width: 80%;
 	height: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 
 	background-image: url('/static/img/bg_blue.png');
@@ -61,6 +13,7 @@
 		height: 100%;
 
 		background: rgba(3, 23, 95, 0.55);
+		box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
 	}
 
 	&.profile-view .profile-right-panel {

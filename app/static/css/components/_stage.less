@@ -1,0 +1,125 @@
+.stage-view .page-container {
+    overflow-y: hidden;
+}
+
+.stage {
+    color: @text_white;
+
+    .s-left {
+        background: @light_dark_blue;
+        width: 20%;
+        height: 100%;
+        float: left;
+
+        box-shadow: inset 0px 5px 15px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .s-right {
+        background: url('/static/img/bg_blue.png');
+        width: 80%;
+        height: 100%;
+        float: left;
+
+        box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .s-inner {
+        height: 100%;
+        overflow-y: auto;
+    }
+}
+
+.s-left {
+    color: @text_white;
+    @stage_left_right_padding: 40px;
+
+    .s-inner {
+        overflow: hidden;
+    }
+
+    .s-item-box {
+        overflow: hidden;
+        clear: both;
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .s-main-title {
+        background: lighten(@light_dark_blue, 5%);
+        padding: 40px 0;
+        overflow: hidden;
+        cursor: default;
+
+        box-shadow: inset 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
+
+        h1 {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+    }
+
+    .s-main-title + * {
+        margin-top: 40px;
+    }
+
+    .s-item {
+        float: right;
+        width: 220px;
+    }
+
+    .s-section-list {
+        width: 100%;
+
+        li {
+            height: 50px;
+            text-align: left;
+            line-height: 50px;
+            margin: 5px 0;
+
+            .s-item-inner {
+                float: right;
+                width: 220px;
+
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 20px;
+            }
+
+            &:hover, &.selected {
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.2);
+                color: rgba(255, 255, 255, 0.95);
+
+                .s-item-inner {
+                    color: rgba(255, 255, 255, 0.95);
+                    transform: translateX(5px);
+                }
+            }
+        }
+
+        li.seperator {
+            height: 1px;
+            margin: 25px 0;
+
+            .s-item-inner {
+                width: 200px;
+                margin-right: 40px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+}
+
+.s-right {
+    .s-scene {
+        padding: 40px;
+        width: 100%;
+        height: 900px;
+    }
+
+    .s-title {
+        h1 {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+}

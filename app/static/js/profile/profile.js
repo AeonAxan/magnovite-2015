@@ -15,7 +15,12 @@ app.profile = {};
         $list = $('.js-profile-nav');
 
         $list.on('click', 'li', function(e) {
-            choseView($(e.target).data('class'));
+            var target = $(e.target);
+            if (target[0].tagName !== 'LI') {
+                target = $(e.target).parent('li')
+            }
+
+            choseView(target.data('class'));
         });
 
         if (window.location.hash !== '') {

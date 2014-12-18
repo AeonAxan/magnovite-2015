@@ -1,64 +1,37 @@
-.filter {
-    .inner {
-        margin: 50px 20px;
-        padding: 0 20px;
-    }
-
-    .filter-section {
-
+.events-page {
+    .s-left {
         h2 {
             color: @text_white;
-            font-size: 20px;
-            margin-left: 40px;
+            font-size: 18px;
             text-transform: uppercase;
-            margin-bottom: 15px;
 
             transform: translateX(-30px);
             opacity: 0;
-        }
-
-        &.top {
-            padding-bottom: 30px;
-            border-bottom: 0;
-        }
-
-        &.bottom {
-            opacity: 0;
-            transform: translateX(-5px);
-            transition: all 125ms ease-out;
-            padding-top: 30px;
         }
     }
 
+    .filter-bottom {
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: all 125ms ease-out;
+    }
 
-    ul {
-        li {
-            padding: 10px 0;
-            margin: 1px;
-            line-height: 20px;
-            height: 40px;
-            color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
+    .pluto-item {
+        transform: translateX(-30px);
+        opacity: 0;
 
-            transform: translateX(-30px);
-            opacity: 0;
-
-            &:hover {
-                color: white;
-            }
+        &:hover {
+            color: white;
         }
 
         .pluto {
             width: 16px;
             height: 16px;
             border-radius: 16px;
-            margin-left: 10px;
-            margin-top: 2px;
-            float: left;
+            display: inline-block;
 
             &.technical {
                 border: 2px solid @color_tech;
-
             }
 
             &.cultural {
@@ -83,18 +56,31 @@
         }
 
         span {
-            margin-left: 15px;
+            margin-left: 5px;
+        }
+    }
+
+    .s-section-list li {
+        height: 40px;
+        line-height: 40px;
+
+        &:hover {
+            background: 0;
+
+            .s-item-inner {
+                transform: none;
+            }
         }
     }
 }
 
-.page-loaded .filter {
+.page-loaded .events-page .s-left {
     h2 {
         transform: translateX(0px);
         opacity: 1;
     }
 
-    ul li {
+    .pluto-item {
         transform: translateX(0px);
         opacity: 1;
 
@@ -108,8 +94,8 @@
     }
 }
 
-.page-finished .filter ul li {
-    transition-delay: 0;
+.page-finished .events-page .s-left .pluto-item {
+    transition-delay: 0 !important;
 }
 
 .filter-cultural .pluto.cultural {
@@ -142,15 +128,13 @@
     border: 0;
 }
 
-.filter-technical .filter-section.bottom {
+.filter-technical .s-left .filter-bottom {
     opacity: 1;
     transform: translateX(0);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.filter-cultural .filter-section.bottom {
+.filter-cultural .s-left .filter-bottom {
     opacity: 0;
     transform: translateX(-5px);
-    border-top: 0;
 }
 

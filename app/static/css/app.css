@@ -549,6 +549,104 @@ input.gray:focus {
   opacity: 1;
   transform: translateY(0px);
 }
+.stage-view .page-container {
+  overflow-y: hidden;
+}
+.stage {
+  color: rgba(255, 255, 255, 0.9);
+}
+.stage .s-left {
+  background: #041d78;
+  width: 20%;
+  height: 100%;
+  float: left;
+  box-shadow: inset 0px 5px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.stage .s-right {
+  background: url('/static/img/bg_blue.png');
+  width: 80%;
+  height: 100%;
+  float: left;
+  box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.stage .s-inner {
+  height: 100%;
+  overflow-y: auto;
+}
+.s-left {
+  color: rgba(255, 255, 255, 0.9);
+}
+.s-left .s-inner {
+  overflow: hidden;
+}
+.s-left .s-item-box {
+  overflow: hidden;
+  clear: both;
+  margin: 20px 0;
+  width: 100%;
+}
+.s-left .s-main-title {
+  background: #052390;
+  padding: 40px 0;
+  overflow: hidden;
+  cursor: default;
+  box-shadow: inset 0px 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+.s-left .s-main-title h1 {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.95);
+}
+.s-left .s-main-title + * {
+  margin-top: 40px;
+}
+.s-left .s-item {
+  float: right;
+  width: 220px;
+}
+.s-left .s-section-list {
+  width: 100%;
+}
+.s-left .s-section-list li {
+  height: 50px;
+  text-align: left;
+  line-height: 50px;
+  margin: 5px 0;
+}
+.s-left .s-section-list li .s-item-inner {
+  float: right;
+  width: 220px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+}
+.s-left .s-section-list li:hover,
+.s-left .s-section-list li.selected {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+}
+.s-left .s-section-list li:hover .s-item-inner,
+.s-left .s-section-list li.selected .s-item-inner {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(5px);
+}
+.s-left .s-section-list li.seperator {
+  height: 1px;
+  margin: 25px 0;
+}
+.s-left .s-section-list li.seperator .s-item-inner {
+  width: 200px;
+  margin-right: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.s-right .s-scene {
+  padding: 40px;
+  width: 100%;
+  height: 900px;
+}
+.s-right .s-title h1 {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.8);
+}
 .banner {
   width: 100%;
   height: 80px;
@@ -1568,54 +1666,8 @@ body.mobile .notifications .notification {
 .subscribe.subscribed input {
   display: none;
 }
-.page-events .page-container {
-  overflow-y: hidden;
-}
-.events-page {
-  background: #041d78;
-  height: 100%;
-  overflow: hidden;
-}
-.events.container {
-  width: 100%;
-  height: 100%;
-}
-.events .dummy-filter {
-  display: none;
-  float: left;
-  width: 20%;
-  height: 1px;
-}
-.events .filter {
-  float: left;
-  background: #041d78;
-  width: 20%;
-  height: 100%;
-}
-.events .pane-outer {
-  background-image: url('/static/img/bg_blue.png');
-  overflow: hidden;
-  height: 100%;
-}
-.events .pane {
-  float: left;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.15);
-  padding: 40px 20px;
-  text-align: center;
-  overflow-y: scroll;
-}
-.fixed-left .dummy-filter {
-  display: block;
-}
-.fixed-left .filter {
-  position: fixed;
-  top: 0;
-}
 .card {
-  width: 320px;
+  width: 300px;
   height: 200px;
   background: #fefefe;
   display: inline-block;
@@ -1846,87 +1898,78 @@ body.mobile .notifications .notification {
 .page-finished .card .tag {
   transition-delay: 0;
 }
-.filter .inner {
-  margin: 50px 20px;
-  padding: 0 20px;
-}
-.filter .filter-section h2 {
+.events-page .s-left h2 {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 20px;
-  margin-left: 40px;
+  font-size: 18px;
   text-transform: uppercase;
-  margin-bottom: 15px;
   transform: translateX(-30px);
   opacity: 0;
 }
-.filter .filter-section.top {
-  padding-bottom: 30px;
-  border-bottom: 0;
-}
-.filter .filter-section.bottom {
+.events-page .filter-bottom {
   opacity: 0;
   transform: translateX(-5px);
   transition: all 125ms ease-out;
-  padding-top: 30px;
 }
-.filter ul li {
-  padding: 10px 0;
-  margin: 1px;
-  line-height: 20px;
-  height: 40px;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
+.events-page .pluto-item {
   transform: translateX(-30px);
   opacity: 0;
 }
-.filter ul li:hover {
+.events-page .pluto-item:hover {
   color: white;
 }
-.filter ul .pluto {
+.events-page .pluto-item .pluto {
   width: 16px;
   height: 16px;
   border-radius: 16px;
-  margin-left: 10px;
-  margin-top: 2px;
-  float: left;
+  display: inline-block;
 }
-.filter ul .pluto.technical {
+.events-page .pluto-item .pluto.technical {
   border: 2px solid #ff1a1a;
 }
-.filter ul .pluto.cultural {
+.events-page .pluto-item .pluto.cultural {
   border: 2px solid #00c853;
 }
-.filter ul .pluto.cse {
+.events-page .pluto-item .pluto.cse {
   border: 2px solid #ff9800;
 }
-.filter ul .pluto.ec {
+.events-page .pluto-item .pluto.ec {
   border: 2px solid #00bcd4;
 }
-.filter ul .pluto.mech {
+.events-page .pluto-item .pluto.mech {
   border: 2px solid #607d8b;
 }
-.filter ul .pluto.civil {
+.events-page .pluto-item .pluto.civil {
   border: 2px solid #ffeb3b;
 }
-.filter ul span {
-  margin-left: 15px;
+.events-page .pluto-item span {
+  margin-left: 5px;
 }
-.page-loaded .filter h2 {
+.events-page .s-section-list li {
+  height: 40px;
+  line-height: 40px;
+}
+.events-page .s-section-list li:hover {
+  background: 0;
+}
+.events-page .s-section-list li:hover .s-item-inner {
+  transform: none;
+}
+.page-loaded .events-page .s-left h2 {
   transform: translateX(0px);
   opacity: 1;
 }
-.page-loaded .filter ul li {
+.page-loaded .events-page .s-left .pluto-item {
   transform: translateX(0px);
   opacity: 1;
 }
-.page-loaded .filter ul li:nth-child(1) {
+.page-loaded .events-page .s-left .pluto-item:nth-child(1) {
   transition-delay: 100ms;
 }
-.page-loaded .filter ul li:nth-child(2) {
+.page-loaded .events-page .s-left .pluto-item:nth-child(2) {
   transition-delay: 150ms;
 }
-.page-finished .filter ul li {
-  transition-delay: 0;
+.page-finished .events-page .s-left .pluto-item {
+  transition-delay: 0 !important;
 }
 .filter-cultural .pluto.cultural {
   background: #00c853;
@@ -1952,15 +1995,13 @@ body.mobile .notifications .notification {
   background: #ffeb3b;
   border: 0;
 }
-.filter-technical .filter-section.bottom {
+.filter-technical .s-left .filter-bottom {
   opacity: 1;
   transform: translateX(0);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
-.filter-cultural .filter-section.bottom {
+.filter-cultural .s-left .filter-bottom {
   opacity: 0;
   transform: translateX(-5px);
-  border-top: 0;
 }
 .event-cover {
   position: relative;
@@ -2428,49 +2469,10 @@ body.mobile .notifications .notification {
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
 }
-.profile-page {
-  height: 680px;
-}
-.page-profile {
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-.page-profile .page-container {
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-.left-side-bar {
-  float: left;
-  width: 25%;
-  height: 100%;
-  background: #041d78;
-}
-.left-side-bar ul {
-  width: 100%;
-  padding: 40px 0px;
-  color: rgba(255, 255, 255, 0.8);
-}
-.left-side-bar ul li {
-  height: 50px;
-  text-align: left;
-  font-size: 20px;
-  padding: 0px 50px;
-  line-height: 50px;
-}
-.left-side-bar ul li.selected {
-  background: #031350;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 400;
-}
-.left-side-bar ul li:hover {
-  color: rgba(255, 255, 255, 0.95);
-  cursor: pointer;
-}
 .right-container {
-  width: 75%;
+  width: 80%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   background-image: url('/static/img/bg_blue.png');
 }
@@ -2480,6 +2482,7 @@ body.mobile .notifications .notification {
   width: 100%;
   height: 100%;
   background: rgba(3, 23, 95, 0.55);
+  box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
 }
 .right-container.profile-view .profile-right-panel {
   display: block;
@@ -2976,27 +2979,4 @@ body.mobile .notifications .notification {
 .quest-page .q-right-pane ul .content span em {
   font-weight: 300;
   color: #ffffff;
-}
-.page-dashboard .page-container {
-  overflow-y: hidden;
-}
-.dashboard {
-  background: green;
-}
-.dashboard .col-left {
-  background: #041d78;
-  width: 20%;
-  height: 100%;
-  float: left;
-  box-shadow: inset 0px 5px 15px 1px rgba(0, 0, 0, 0.2);
-}
-.dashboard .col-right {
-  background: url('/static/img/bg_blue.png');
-  width: 80%;
-  height: 100%;
-  float: left;
-  box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
-}
-.dashboard .col-inner {
-  overflow-y: auto;
 }

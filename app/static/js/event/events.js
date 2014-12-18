@@ -9,53 +9,40 @@ app.events = {};
     var $events;
 
     app.events.init = function() {
-        $events = document.querySelector('.events');
+        $events = $('.events-page');
 
         var hash = window.location.hash;
         if (hash === '#technical' || hash === '#cultural') {
-            $events.classList.remove('filter-technical', 'filter-cultural');
-            $events.classList.add('filter-' + hash.substring(1));
+            $events.removeClass('filter-technical', 'filter-cultural');
+            $events.addClass('filter-' + hash.substring(1));
         }
 
-        document.querySelector('.js-technical')
-            .addEventListener('click', technicalToggle);
-
-        document.querySelector('.js-cultural')
-            .addEventListener('click', culturalToggle);
+        $('.js-technical').on('click', technicalToggle);
+        $('.js-cultural').on('click', culturalToggle);
 
         ['.js-cse', '.js-civil', '.js-mech', '.js-ec'].forEach(function(cls) {
-            document.querySelector(cls).addEventListener('click', technicalSubToggle);
+            $(cls).on('click', technicalSubToggle);
         });
 
-        document.querySelector('.pane').addEventListener('click', tagClicked);
-
-        // scroll listener to add fixed
-        var top = document.querySelector('.banner').clientHeight;
-        window.addEventListener('scroll', function(e) {
-            if (window.scrollY > top) {
-                $events.classList.add('fixed-left');
-            } else if (window.scrollY < top) {
-                $events.classList.remove('fixed-left');
-            }
-        });
+        $('.s-right').on('click', tagClicked);
     };
 
     function tagClicked(e) {
-        if (!e.target.classList.contains('tag')) {
+        if (!$(e.target).hasClass('tag')) {
             return;
         }
 
-        $events.classList.remove.apply($events.classList, [
+        $events.removeClass.apply($events, [
             'filter-cse', 'filter-ec',
             'filter-civil', 'filter-mech',
             'filter-cultural'
         ]);
 
-        $events.classList.add('filter-' + e.target.classList[1]);
+        $events.addClass('filter-' + e.target.classList[1]);
     }
 
     function culturalToggle(e) {
-        $events.classList.toggle('filter-cultural');
+        $events.toggleClass('filter-cultural');
         cultural = !cultural;
     }
 
@@ -63,37 +50,27 @@ app.events = {};
         var fn;
 
         if (technical) {
-            fn = $events.classList.remove;
+            fn = $events.removeClass;
         } else {
-            fn = $events.classList.add;
+            fn = $events.addClass;
         }
 
-        fn.apply($events.classList, [
-            'filter-cse', 'filter-ec',
-            'filter-civil', 'filter-mech',
-            'filter-technical'
-        ]);
+        fn.call($events, 'filter-cse filter-ec filter-civil filter-mech filter-technical');
 
         technical = !technical;
     }
 
     function technicalSubToggle(e) {
-        var li;
-
-        if (e.target.tagName === 'LI') {
-            li = e.target;
-        } else {
-            li = e.target.parentElement;
-        }
+        var li = $(e.target).closest('li');
 
         var filter;
-        Array.prototype.slice.call(li.classList).forEach(function(cls) {
+        li.attr('class').split(' ').forEach(function(cls) {
             if (cls.indexOf('js') !== -1) {
                 filter = cls.substring(3);
             }
         });
 
-        $events.classList.toggle('filter-' + filter);
+        $events.toggleClass('filter-' + filter);
     }
 
 })();

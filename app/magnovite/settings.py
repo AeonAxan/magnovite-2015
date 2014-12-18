@@ -69,6 +69,10 @@ if DEBUG:
         'debug_toolbar',
     )
 
+    DEBUG_TOOLBAR_CONFIG = {
+        'JQUERY_URL': '/static/js/lib/jquery-2.1.1.min.js',
+    }
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

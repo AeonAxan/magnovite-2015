@@ -19,11 +19,14 @@ def index(req):
         template = 'magnovite/dist/dashboard.html'
 
     qs = Event.objects.all()
+    show_summary = True
     if not req.user.is_superuser and req.user.has_perm('event.change_own'):
         qs = qs.filter(heads=req.user.profile)
+        show_summary = False
 
     return render(req, template, {
-        'events': qs
+        'events': qs,
+        'show_summary': show_summary,
     })
 
 

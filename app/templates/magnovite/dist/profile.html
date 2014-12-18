@@ -4,7 +4,7 @@
 {% load humanize %}
 
 {% block "body_css_class" %}
-page-profile browser-height
+page-profile browser-height stage-view
 {% endblock "body_css_class" %}
 
 {% block "post_js" %}
@@ -14,12 +14,24 @@ page-profile browser-height
 {% endblock "post_js" %}
 
 {% block "content" %}
-<div class="profile-page page-container">
-    <div class="left-side-bar">
-        <ul class="js-profile-nav">
-            <li data-class="profile-view" class="selected">Profile</li>
-            <li data-class="schedule-view">My Schedule</li>
-        </ul>
+<div class="profile-page page-container stage">
+    <div class="s-left">
+        <div class="s-inner">
+            <div class="s-main-title">
+                <h1 class="s-item">My Account</h1>
+            </div>
+
+            <div class="s-item-box">
+                <ul class="s-section-list js-profile-nav">
+                    <li data-class="profile-view" class="selected">
+                        <div class="s-item-inner">My Profile</div>
+                    </li>
+                    <li data-class="schedule-view">
+                        <div class="s-item-inner">My Schedule</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="right-container profile-view">

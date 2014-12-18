@@ -3,85 +3,104 @@
 {% load socialaccount %}
 
 {% block "body_css_class" %}
-page-events browser-height
+page-events browser-height stage-view
 {% endblock "body_css_class" %}
 
 {% block "content" %}
-<div class="events-page page-container">
-
-    <div class="events container  filter-technical filter-cultural filter-cse
+<div class="events-page page-container stage filter-technical filter-cultural filter-cse
         filter-mech filter-ec filter-civil">
 
-        <div class="dummy-filter"></div>
+    <div class="s-left">
+        <div class="s-inner">
+            <div class="s-main-title">
+                <h1 class="s-item">Events</h1>
+            </div>
 
-        <div class="filter">
-            <div class="inner">
-                <div class="filter-section top">
+            <div class="s-item-box">
+                <div class="s-item">
                     <h2>Filter</h2>
-                    <ul>
-                        <li class="js-technical">
+                </div>
+            </div>
+
+            <div class="s-item-box">
+                <ul class="s-section-list">
+                    <li class="js-technical pluto-item">
+                        <div class="s-item-inner">
                             <div class="pluto technical"></div>
                             <span>Technical</span>
-                        </li>
-                        <li class="js-cultural">
+                        </div>
+                    </li>
+                    <li class="js-cultural pluto-item">
+                        <div class="s-item-inner">
                             <div class="pluto cultural"></div>
                             <span>Cultural</span>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="filter-section bottom">
-                    <ul>
-                        <li class="js-cse">
+            <div class="s-item-box filter-bottom">
+                <ul class="s-section-list">
+                    <li class="js-cse">
+                        <div class="s-item-inner pluto-item">
                             <div class="pluto cse"></div>
                             <span>Computer Science</span>
-                        </li>
-                        <li class="js-civil">
+                        </div>
+                    </li>
+                    <li class="js-civil">
+                        <div class="s-item-inner pluto-item">
                             <div class="pluto civil"></div>
                             <span>Civil</span>
-                        </li>
-                        <li class="js-mech">
+                        </div>
+                    </li>
+                    <li class="js-mech">
+                        <div class="s-item-inner pluto-item">
                             <div class="pluto mech"></div>
                             <span>Mechanical</span>
-                        </li>
-                        <li class="js-ec">
+                        </div>
+                    </li>
+                    <li class="js-ec">
+                        <div class="s-item-inner pluto-item">
                             <div class="pluto ec"></div>
                             <span>Electronics</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="pane-outer">
-        <div class="pane">
-
-            {% for event in events %}
-            <div class="card {{ event.type }} {{ event.class_string }}">
-                <div class="header">
-                    <a href="{{event.get_absolute_url}}">
-                        <h2>{{ event.title }}</h2>
-                    </a>
-                </div>
-                <div class="body">
-                    <p class="content">{{ event.quote }}</p>
-
-                    {% if event.technical %}
-                        <div class="tags">
-
-                            {% for tag in event.tags %}
-                            <div class="tag {{ tag }}"></div>
-                            {% endfor %}
-
                         </div>
-                    {% endif %}
-                </div>
+                    </li>
+                </ul>
             </div>
-            {% endfor %}
-
-        </div>
         </div>
     </div>
+
+    <div class="s-right">
+        <div class="s-inner">
+            <div class="s-scene">
+                {% for event in events %}
+                <div class="card {{ event.type }} {{ event.class_string }}">
+                    <div class="header">
+                        <a href="{{event.get_absolute_url}}">
+                            <h2>{{ event.title }}</h2>
+                        </a>
+                    </div>
+                    <div class="body">
+                        <p class="content">{{ event.quote }}</p>
+
+                        {% if event.technical %}
+                            <div class="tags">
+
+                                {% for tag in event.tags %}
+                                <div class="tag {{ tag }}"></div>
+                                {% endfor %}
+
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="events container  ">
+
 </div>
 {% endblock %}
 

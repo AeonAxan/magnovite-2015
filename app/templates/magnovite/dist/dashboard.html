@@ -1,0 +1,70 @@
+{% extends "magnovite/dist/base.html" %}
+
+{% block "body_css_class" %}
+page-dashboard browser-height stage-view
+{% endblock "body_css_class" %}
+
+{% block "content" %}
+<div class="dashboard page-container stage">
+    <div class="s-left">
+        <div class="s-inner">
+            <div class="s-main-title">
+                <h1 class="s-item">Dashboard</h1>
+            </div>
+
+            <div class="s-item-box">
+                <ul class="s-section-list">
+                    <li>
+                        <div class="s-item-inner">
+                            Summary
+                        </div>
+                    </li>
+
+                    <li class="seperator">
+                        <div class="s-item-inner"></div>
+                    </li>
+
+                    {% for event in events %}
+                    <li>
+                        <div class="s-item-inner">
+                            {{event.title}}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="s-right">
+        <div class="s-inner">
+            <div class="s-scene">
+                <div class="s-title">
+                    <h1>Summary</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock "content" %}
+
+{% block "post_js" %}
+<script>
+var DASH = {
+    {% if req.user.is_superuser %}
+    admin: true,
+    {% else %}
+    admin: false,
+    {% endif %}
+
+    events: [
+        {% for event in events %}
+        {
+            id: {{event.id}},
+            title: '{{event.title}}'
+        },
+        {% endfor %}
+    ]
+}
+</script>
+{% endblock "post_js" %}

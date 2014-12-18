@@ -1591,6 +1591,7 @@ body.mobile .notifications .notification {
   stroke-dashoffset: 0;
 }
 .right-pane {
+  color: #add1ff;
   padding: 80px 10px 0 10px;
   text-align: center;
   font-weight: 300;

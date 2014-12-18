@@ -572,12 +572,10 @@ input.gray:focus {
 .stage .s-inner {
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .s-left {
   color: rgba(255, 255, 255, 0.9);
-}
-.s-left .s-inner {
-  overflow-y: auto;
 }
 .s-left .s-item-box {
   overflow: hidden;
@@ -2982,6 +2980,13 @@ body.mobile .notifications .notification {
   font-weight: 300;
   color: #ffffff;
 }
+.page-dashboard .s-scene {
+  display: none;
+}
+.page-dashboard .summary-scene-on .summary-scene,
+.page-dashboard .event-scene-on .event-scene {
+  display: block;
+}
 .dash-card {
   color: #111;
   min-width: 100px;
@@ -2999,6 +3004,5 @@ body.mobile .notifications .notification {
   text-align: center;
 }
 .summary-scene .summary-card {
-  width: 950px;
   height: auto;
 }

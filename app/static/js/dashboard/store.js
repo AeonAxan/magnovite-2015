@@ -8,6 +8,51 @@ app.dashboard.store = {};
     var cache = {};
 
     /**
+     * Returns summaryData
+     * @param  {Function} callback callback on success
+     * @param  {boolean}   noCache  if true, cache will not be used
+     */
+    app.dashboard.store.summaryData = function(callback, noCache) {
+        if (!noCache && cache['_summary']) {
+            return cache['_summary'];
+        }
+
+        fetch(function() {
+            callback(cache['_summary']);
+        })
+    }
+
+    app.dashboard.store.eventData = function(title, callback, noCache) {
+        function _callback(data) {
+            var out = {
+                dates: [],
+                views: [],
+                registrations: []
+            }
+
+            data.forEach(function(day) {
+                day.events.forEach(function(event) {
+                    if (event.title === title) {
+                        out.dates.push(day.date);
+                        out.views.push(event.views);
+                        out.registrations.push(event.registrations);
+                    }
+                });
+            });
+
+            callback(out);
+        }
+
+        if (!noCache && cache['_data']) {
+            return _callback(cache['_raw']);
+        }
+
+        fetch(function() {
+            _callback(cache['_raw']);
+        });
+    }
+
+    /**
      * Gets the event ids from the global DASH
      * @return {Array} array of ids
      */
@@ -20,21 +65,11 @@ app.dashboard.store = {};
         return ids;
     }
 
-    /**
-     * Comperator for dates in the format 'day/month/year'
-     */
-    function dateComperator(a, b) {
-        var as = a.split('/');
-        var bs = b.split('/');
-
-        for (var i = 2; i >= 0; i--) {
-            var val = parseInt(as[i], 10) - parseInt(bs[i], 10);
-            if (val !== 0) {
-                return val > 0 ? 1 : -1;
-            }
-        }
-
-        return 0;
+    function fetch(callback) {
+        app.dashboard.api.getAnalytics(eventIds(), function(data) {
+            buildCache(data);
+            callback();
+        });
     }
 
     function buildCache(raw) {
@@ -79,27 +114,10 @@ app.dashboard.store = {};
         summary.dates = out.dates;
 
         // cache
-        cache['time'] = new Date();
-        cache['raw'] = raw;
-        cache['data'] = out;
-        cache['summary'] = summary;
-    }
-
-    /**
-     * Returns summaryData
-     * @param  {Function} callback callback on success
-     * @param  {boolean}   noCache  if true, cache will not be used
-     */
-    app.dashboard.store.summaryData = function(callback, noCache) {
-        if (!noCache && cache['summary']) {
-            return cache['summary'];
-        }
-
-        app.dashboard.api.getAnalytics(eventIds(), function(data) {
-            buildCache(data);
-
-            callback(cache['summary']);
-        });
+        cache['_time'] = new Date();
+        cache['_raw'] = raw;
+        cache['_data'] = out;
+        cache['_summary'] = summary;
     }
 
 })();

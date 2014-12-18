@@ -17,8 +17,8 @@ page-dashboard browser-height stage-view
             </div>
 
             <div class="s-item-box">
-                <ul class="s-section-list">
-                    <li>
+                <ul class="s-section-list js-dash-menu">
+                    <li data-class="summary-scene" data-view="summary">
                         <div class="s-item-inner">
                             Summary
                         </div>
@@ -29,7 +29,7 @@ page-dashboard browser-height stage-view
                     </li>
 
                     {% for event in events %}
-                    <li>
+                    <li data-class="event-scene" data-view="{{event.title}}">
                         <div class="s-item-inner">
                             {{event.title}}
                         </div>
@@ -46,6 +46,12 @@ page-dashboard browser-height stage-view
                 <div class="dash-card summary-card">
                     <h1>Total Statistics</h1>
                     <div id="chart-summary"></div>
+                </div>
+            </div>
+            <div class="s-scene event-scene">
+                <div class="dash-card">
+                    <h1>Event Summary</h1>
+                    <div id="chart-event"></div>
                 </div>
             </div>
         </div>

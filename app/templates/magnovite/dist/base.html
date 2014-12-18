@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-4f42cee7.css"/>
+    <link rel="stylesheet" href="/static/dist/style-62362380.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -57,6 +57,7 @@
                     <img src="/static/img/logo.png" alt="Magnovite">
                 </a>
             </div>
+
             <div class="user-settings
                 {% if user.is_authenticated %}logged-in{% endif %}">
 
@@ -74,6 +75,27 @@
                     <li><a href="/logout/?next={{request.path}}">Logout</a></li>
                 </ul>
             </div>
+
+            {% if is_staff %}
+            <div class="access">
+                <div class="top">
+                    <p>Access: <span>{{access_level}}</span></p>
+                </div>
+                <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
+                    {% if has_admin %}
+                    <div class="part">
+                        <a href="/admin/">Admin Panel</a>
+                    </div>
+                    {% endif %}
+                    {% if has_dashboard %}
+                    <div class="part">
+                        <a href="/dashboard/">Dashboard</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
         </div>
     </div>
     {% endblock page_banner %}

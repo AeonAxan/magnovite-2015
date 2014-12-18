@@ -102,6 +102,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     # my processors
     'app.main.context_processors.profile',
+    'app.main.context_processors.access',
 )
 
 AUTHENTICATION_BACKENDS = (

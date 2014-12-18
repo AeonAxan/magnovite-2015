@@ -28,6 +28,58 @@
         height: 60px;
         float: left;
     }
+
+    .access {
+        background: rgba(0, 155, 228, 0.2);
+        color: @text_white;
+        text-align: center;
+        float: right;
+        width: 220px;
+        height: 62px;
+
+        .top {
+            height: 31px;
+            width: 100%;
+            line-height: 31px;
+            color: rgba(255, 255, 255, 0.5);
+
+            span {
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.95);
+            }
+        }
+
+        .bottom {
+            font-size: 16px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+
+            background: rgba(0, 125, 184, 0.2);
+            height: 31px;
+            line-height: 31px;
+            width: 100%;
+
+            a {
+                text-decoration: none;
+            }
+
+            .part {
+                width: 220px;
+                float: left;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                    cursor: pointer;
+                }
+            }
+
+            &.both .part {
+                width: 110px;
+                float: left;
+            }
+        }
+
+    }
 }
 
 .page-loaded .landing .top-banner {

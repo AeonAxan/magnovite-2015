@@ -2977,3 +2977,26 @@ body.mobile .notifications .notification {
   font-weight: 300;
   color: #ffffff;
 }
+.page-dashboard .page-container {
+  overflow-y: hidden;
+}
+.dashboard {
+  background: green;
+}
+.dashboard .col-left {
+  background: #041d78;
+  width: 20%;
+  height: 100%;
+  float: left;
+  box-shadow: inset 0px 5px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.dashboard .col-right {
+  background: url('/static/img/bg_blue.png');
+  width: 80%;
+  height: 100%;
+  float: left;
+  box-shadow: inset 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.dashboard .col-inner {
+  overflow-y: auto;
+}

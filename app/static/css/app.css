@@ -556,7 +556,7 @@ input.gray:focus {
   color: rgba(255, 255, 255, 0.9);
 }
 .stage .s-left {
-  background: #041d78;
+  background: #00278b;
   width: 20%;
   height: 100%;
   float: left;
@@ -586,7 +586,7 @@ input.gray:focus {
   width: 100%;
 }
 .s-left .s-main-title {
-  background: #052390;
+  background: #001977;
   padding: 40px 0;
   overflow: hidden;
   cursor: default;
@@ -641,7 +641,6 @@ input.gray:focus {
 .s-right .s-scene {
   padding: 40px;
   width: 100%;
-  height: 900px;
 }
 .s-right .s-title h1 {
   font-size: 28px;
@@ -650,7 +649,7 @@ input.gray:focus {
 .banner {
   width: 100%;
   height: 80px;
-  background: #0529a9;
+  background: #004fc5;
   z-index: 999;
 }
 .banner .banner-inner {
@@ -689,19 +688,13 @@ input.gray:focus {
   background: #007ada;
 }
 .banner .user-settings .dropdown li {
-  background: #0529a9;
+  background: #004fc5;
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
 }
-.page-events .banner-inner {
+.stage-view .banner-inner {
   max-width: 1300px;
-}
-.page-profile .banner-inner {
-  max-width: 1200px;
-}
-.event-details .banner-inner {
-  max-width: 1050px;
 }
 .transparent-banner .banner {
   position: absolute;

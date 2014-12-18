@@ -1,11 +1,10 @@
 @banner_height: 80px;
 @banner_width: 1150px;
-@banner_background: lighten(@dark_blue, 15%);
 
 .banner {
     width: 100%;
     height: @banner_height;
-    background: @banner_background;
+    background: @banner_color;
     z-index: 999;
 
     .banner-inner {
@@ -51,7 +50,7 @@
         }
 
         .dropdown li {
-            background: @banner_background;
+            background: @banner_color;
 
             &:hover {
                 background: rgb(0, 122, 218);
@@ -60,16 +59,8 @@
     }
 }
 
-.page-events .banner-inner {
+.stage-view .banner-inner {
     max-width: 1300px;
-}
-
-.page-profile .banner-inner {
-    max-width: 1200px;
-}
-
-.event-details .banner-inner {
-    max-width: 1050px;
 }
 
 .transparent-banner .banner {

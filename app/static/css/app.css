@@ -577,7 +577,7 @@ input.gray:focus {
   color: rgba(255, 255, 255, 0.9);
 }
 .s-left .s-inner {
-  overflow: hidden;
+  overflow-y: auto;
 }
 .s-left .s-item-box {
   overflow: hidden;
@@ -2973,4 +2973,24 @@ body.mobile .notifications .notification {
 .quest-page .q-right-pane ul .content span em {
   font-weight: 300;
   color: #ffffff;
+}
+.dash-card {
+  color: #111;
+  min-width: 100px;
+  min-height: 200px;
+  background: #fbfbfb;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.3);
+}
+.dash-card h1 {
+  display: block;
+  color: black;
+  font-size: 32px;
+  margin: 20px 0;
+  text-align: center;
+}
+.summary-scene .summary-card {
+  width: 950px;
+  height: auto;
 }

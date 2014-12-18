@@ -16,6 +16,8 @@
     <!-- build:js(./app/) /static/dist/js-head.js -->
         <script src="/static/js/lib/modernizer.js"></script>
     <!-- endbuild -->
+
+    {% block "css_extra" %}{% endblock "css_extra" %}
 </head>
 <body class="page-loading {% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}

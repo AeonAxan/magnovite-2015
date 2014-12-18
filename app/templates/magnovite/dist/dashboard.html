@@ -4,6 +4,10 @@
 page-dashboard browser-height stage-view
 {% endblock "body_css_class" %}
 
+{% block "css_extra" %}
+<link rel="stylesheet" href="/static/css/lib/c3.min.css" />
+{% endblock "css_extra" %}
+
 {% block "content" %}
 <div class="dashboard page-container stage">
     <div class="s-left">
@@ -38,9 +42,10 @@ page-dashboard browser-height stage-view
 
     <div class="s-right">
         <div class="s-inner">
-            <div class="s-scene">
-                <div class="s-title">
-                    <h1>Summary</h1>
+            <div class="s-scene summary-scene">
+                <div class="dash-card summary-card">
+                    <h1>Total Statistics</h1>
+                    <div id="chart-summary"></div>
                 </div>
             </div>
         </div>
@@ -67,4 +72,11 @@ var DASH = {
     ]
 }
 </script>
+
+<script src="/static/dist/dashboard-91855d31.js"></script>
+
 {% endblock "post_js" %}
+'robotics':
+    24:
+    25:
+    26:

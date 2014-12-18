@@ -9,9 +9,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="/static/dist/style-184183b0.css"/>
+    <link rel="stylesheet" href="/static/dist/style-5ee09ea3.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
+
+    {% block "css_extra" %}{% endblock "css_extra" %}
 </head>
 <body class="page-loading {% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}

@@ -20,17 +20,65 @@
     }
 
     .logo {
-        position: absolute;
-        top: 0;
-        left: 0;
+        float: left;
         width: 250px;
         height: @banner_height;
     }
 
+    .access {
+        background: rgb(0, 155, 228);
+        color: @text_white;
+        text-align: center;
+        float: right;
+        width: 220px;
+        height: @banner_height;
+
+        .top {
+            height: @banner_height/2;
+            width: 100%;
+            line-height: @banner_height/2;
+            color: rgba(255, 255, 255, 0.5);
+
+            span {
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.95);
+            }
+        }
+
+        .bottom {
+            font-size: 16px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+
+            background: rgb(0, 125, 184);
+            height: @banner_height/2;
+            line-height: @banner_height/2;
+            width: 100%;
+
+            a {
+                text-decoration: none;
+            }
+
+            .part {
+                width: 220px;
+                float: left;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                    cursor: pointer;
+                }
+            }
+
+            &.both .part {
+                width: 110px;
+                float: left;
+            }
+        }
+
+    }
+
     .user-settings {
-        position: absolute;
-        top: 0;
-        right: 0;
+        float: right;
         z-index: 9999;
         height: @banner_height;
         line-height: @banner_height;

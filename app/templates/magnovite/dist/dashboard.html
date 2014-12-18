@@ -18,6 +18,7 @@ page-dashboard browser-height stage-view
 
             <div class="s-item-box">
                 <ul class="s-section-list js-dash-menu">
+                    {% if show_summary %}
                     <li data-class="summary-scene" data-view="summary">
                         <div class="s-item-inner">
                             Summary
@@ -27,6 +28,7 @@ page-dashboard browser-height stage-view
                     <li class="seperator">
                         <div class="s-item-inner"></div>
                     </li>
+                    {% endif %}
 
                     {% for event in events %}
                     <li data-class="event-scene" data-view="{{event.title}}">

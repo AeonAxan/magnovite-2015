@@ -54,7 +54,7 @@ def analytics(req):
     for day in Analytics.objects.all():
         events_a = list(filter(lambda o: o['id'] in ids, json.loads(day.data)))
         obj = {
-            'date': day.date.strftime('%d/%m'),
+            'date': day.date.strftime('%Y-%m-%d'),
             'events': [],
         }
 

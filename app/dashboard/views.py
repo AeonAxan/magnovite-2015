@@ -1,7 +1,7 @@
 import json
 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.conf import settings
 from django.http import Http404, JsonResponse, HttpResponse
 
@@ -27,29 +27,38 @@ def index(req):
     })
 
 
-def data(req, id):
+def data(req):
     if not (req.user.is_staff and req.user.has_perm('event.change_event')):
-        raise Http404
+        raise HttpResponse(status=401)
 
-    id = int(id)
-    event = get_object_or_404(Event, id=id)
+    if req.GET.get('ids', '') == '':
+        return HttpResponse(status=400)
+
+    ids = list(map(int, req.GET['ids'].split(',')))
+    events = Event.objects.filter(id__in=ids)
 
     if req.user.has_perm('event.change_own'):
-        if not event.heads.filter(id=req.user.profile.id).exists():
-            return JsonResponse({
-                'error': 'permission_denied',
-            }, status=400)
+        acceptable = Event.objects.filter(heads=req.user.profile)
+        if events.exclude(id__in=acceptable).exists():
+            return HttpResponse(status=401)
 
     out = []
     for day in Analytics.objects.all():
-        event = next(filter(lambda o: o['id'] == id, json.loads(day.data)))
-        out.append({
-            'id': id,
-            'title': event['title'],
+        events_a = list(filter(lambda o: o['id'] in ids, json.loads(day.data)))
+        obj = {
             'date': day.date.strftime('%d/%m'),
-            'views': event['views'],
-            'registrations': event['registrations']
-        })
+            'events': [],
+        }
+
+        for event in events_a:
+            obj['events'].append({
+                'id': event['id'],
+                'title': event['title'],
+                'views': event['views'],
+                'registrations': event['registrations'],
+            })
+
+        out.append(obj)
 
     return JsonResponse(out, safe=False)
 

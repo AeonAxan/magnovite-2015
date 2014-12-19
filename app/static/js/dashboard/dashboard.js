@@ -8,23 +8,8 @@ app.dashboard = app.dashboard || {};
         return;
     }
 
-    var scenes = 'summary-scene-on event-scene-on';
-    var $scene = $('.s-right');
-    var $menu = $('.js-dash-menu');
-
-    $menu.on('click', 'li', function(e) {
+    $('.js-scene-menu').on('click', 'li', function(e) {
         var target = $(e.target).closest('li');
-
-        if (!target.data('class')) {
-            return;
-        }
-
-        $scene.removeClass(scenes);
-        $scene.addClass(target.data('class') + '-on');
-
-        $menu.find('li').removeClass('selected');
-        target.addClass('selected');
-
         showView(target.data('view'));
     })
 

@@ -1,11 +1,14 @@
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 from app.event.models import Registration
+from app.message.models import Thread, Message
 
 from .forms import ProfileForm
 from .models import Profile
@@ -28,6 +31,23 @@ def index(req):
     return render(req, template)
 
 
+@require_POST
+@login_required
+def add_message(req):
+    content = req.POST.get('text', '')
+    if content == '':
+        return HttpResponse(status=400)
+
+    thread, created = Thread.objects.get_or_create(profile=req.user.profile)
+    thread.is_pending = True
+    thread.save()
+
+    message = Message(thread=thread, content=content)
+    message.save()
+
+    return HttpResponse(status=200)
+
+
 @login_required
 def profile(req):
     if settings.DEBUG:
@@ -46,9 +66,16 @@ def profile(req):
     day_one = [x for x in day_one]
     day_two = [x for x in day_two]
 
+    messages = []
+    try:
+        messages = req.user.profile.thread.messages.all()
+    except:
+        pass
+
     return render(req, template, {
         'profile_form': profile_form,
         'days': [day_one, day_two],
+        'help_messages': messages,
     })
 
 

@@ -2656,7 +2656,7 @@ body.mobile .notifications .notification {
 }
 .help-scene .input textarea {
   width: 100%;
-  height: 50px;
+  height: 60px;
   background: #fbfbfb;
   padding: 15px;
   font-family: 'Roboto', sans-serif;

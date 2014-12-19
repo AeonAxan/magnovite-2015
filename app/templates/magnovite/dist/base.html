@@ -1,0 +1,146 @@
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magnovite 2015</title>
+    <link rel="shortcut icon" href="/static/img/msprite.png">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="/static/dist/style-5e581573.css"/>
+
+    <script src="/static/dist/js-head-cd467f0f.js"></script>
+
+    {% block "css_extra" %}{% endblock "css_extra" %}
+</head>
+<body class="page-loading {% block "body_css_class" %}{% endblock %}">
+    {% csrf_token %}
+
+    <!-- login modal -->
+    <div class="login-modal modal" id="login-modal">
+        <div class="modal-inner">
+            <div class="close">x</div>
+
+            <h2 class="title">Login or Register</h2>
+
+            <div class="body">
+                <div class="buttons">
+                    <div class="social-button">
+                        <img src="/static/img/google.png" alt="Google">
+                        <a href="{% provider_login_url "google" %}?next={{request.path}}"></a>
+                    </div>
+                    <div class="social-button">
+                        <img src="/static/img/github.png" alt="Github">
+                        <a href="{% provider_login_url "github" %}?next={{request.path}}"></a>
+                    </div>
+                    <div class="social-button">
+                        <img src="/static/img/twitter.png" alt="Twitter">
+                        <a href="{% provider_login_url "twitter" %}?next={{request.path}}"></a>
+                    </div>
+                </div>
+                <p class="help-text">
+                    Why only Social Login? Because we dont want
+                    you to have to remember another set of username/password.
+                    Also we request only basic profile details
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% block page_banner %}
+    <div class="banner">
+        <div class="banner-inner">
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/img/logo.png" alt="Magnovite">
+                </a>
+            </div>
+
+            <div class="user-settings
+                {% if user.is_authenticated %}logged-in{% endif %}">
+
+                {% if user.is_authenticated %}
+                    <a class="text" href="#">
+                        Hi, <em>{{ profile.name }}</em>
+                        <span class="small">▼</span>
+                    </a>
+                {% else %}
+                    <a class="text" href="#">Login/Register</a>
+                {% endif %}
+
+                <ul class="dropdown user-dropdown">
+                    <li><a href="/profile/">My Account</a></li>
+                    <li><a href="/logout/?next={{request.path}}">Logout</a></li>
+                </ul>
+            </div>
+
+            {% if is_staff %}
+            <div class="access">
+                <div class="top">
+                    <p>Access: <span>{{access_level}}</span></p>
+                </div>
+                <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
+                    {% if has_admin %}
+                    <div class="part">
+                        <a href="/admin/">Admin Panel</a>
+                    </div>
+                    {% endif %}
+                    {% if has_dashboard %}
+                    <div class="part">
+                        <a href="/dashboard/">Dashboard</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endblock page_banner %}
+
+    <div class="notifications">
+        <script type="text/template" id="notification-template">
+            <div data-id="[[id]]" class="notification [[type]] [[actionClass]]">
+                <p class="close js-notif-close">x</p>
+
+                <p class="text">[[text]]</p>
+                <a href="#" class="action js-notif-action">[[action]]</a>
+            </div>
+        </script>
+    </div>
+
+    {% block "content" %}{% endblock %}
+
+    {% block "pre_js" %}{% endblock %}
+
+    <script>
+    var app = {};
+
+    if (!Modernizr.touch && window.innerWidth > 767) {
+        document.body.classList.add('desktop');
+        app.desktop = true;
+    } else {
+        document.body.classList.add('mobile');
+        app.mobile = true;
+    }
+
+    app.DEBUG = false;
+    </script>
+
+    <script src="/static/dist/app-aaced0bb.js"></script>
+
+    {% block "post_js" %}{% endblock %}
+
+    {# Show all the messages #}
+    <script>
+    {% for message in messages %}
+        app.notification.notify({
+            text: '{{message}}',
+            type: '{{message.tags}}'
+        });
+    {% endfor %}
+    </script>
+</body>
+</html>

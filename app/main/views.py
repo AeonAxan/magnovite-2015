@@ -27,7 +27,7 @@ def logout_view(req):
 def redirect_view(req):
     ip = get_real_ip(req)
     if ip and (ip.startswith('173.252.88') or ip.startswith('173.252.81')):
-        return redirect('https://magnovite.herokuapp.com/')
+        return HttpResponse('<h1>Magnovite 2015</h1><p>Christ University presents its annual tech fest</p>')
 
     return redirect('https://magnovite.org/')
 

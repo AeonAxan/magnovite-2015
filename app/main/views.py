@@ -1,3 +1,5 @@
+from ipware.ip import get_real_ip
+
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
@@ -23,7 +25,11 @@ def logout_view(req):
 
 
 def redirect_view(req):
-    return redirect('https://magnovite.org/', permenant=True)
+    ip = get_real_ip(req)
+    if ip and (ip.startswith('173.252.88') or ip.startswith('173.252.81')):
+        return redirect('https://magnovite.herokuapp.com/')
+
+    return redirect('https://magnovite.org/')
 
 
 def index(req):

@@ -23,7 +23,7 @@ def logout_view(req):
 
 
 def redirect_view(req):
-    return redirect('https://magnovite.org/', permenant=True)
+    return redirect('https://magnovite.herokuapp.com/')
 
 
 def index(req):

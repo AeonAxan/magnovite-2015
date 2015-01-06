@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
@@ -20,6 +20,10 @@ def logout_view(req):
 
     next_url = req.GET.get('next', '/')
     return HttpResponseRedirect(next_url)
+
+
+def redirect_view(req):
+    return redirect('https://magnovite.org/', permenant=True)
 
 
 def index(req):

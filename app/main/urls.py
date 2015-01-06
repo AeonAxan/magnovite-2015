@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('app.main.views',
     url('^$', 'index', name='home'),
-    url('^redirect/', 'redirect_view', name='redirect'),
+    url('^_redirect/', 'redirect_view', name='redirect'),
     url('^logout/$', 'logout_view', name='logout'),
     url('^profile/$', 'profile', name='profile'),
     url('^profile/update/(?P<pk>\d+)/$', 'profile_update_view', name='profile_update'),

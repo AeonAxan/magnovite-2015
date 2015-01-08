@@ -19,7 +19,7 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(help_text='The event url, use all simple and - as a seperator, Eg: junkyard-wars')
 
-    quote = models.CharField(max_length=50, help_text='Text displayed on the cards in /events/')
+    quote = models.CharField(max_length=70, help_text='Text displayed on the cards in /events/')
 
     # This is assumed to be a Markdown field
     info = models.TextField(

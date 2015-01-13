@@ -1,5 +1,7 @@
 {% extends "magnovite/base.html" %}
 
+{% block "body_css_class" %}home-page{% endblock %}
+
 {% block page_banner %}{% endblock page_banner %}
 
 {% block "content" %}
@@ -195,6 +197,21 @@
         <p class="button green js-start-game">Enter Game Arena</p>
     </div>
 </div> <!-- /.landing -->
+
+<!-- Mobile View -->
+<div class="mobile-description">
+    <h2 class="title">Magnovite 2015</h2>
+    <p class="content">
+        Christ University Faculty of Engineering presents
+        its annual Techno-Cultural Fest "Magnovite 2015" to be held on the 20th and 21th of February
+        2015.
+    </p>
+</div>
+
+<div class="mobile-events">
+    <a href="/events" class="button mobile-button">Events</a>
+</div>
+<!-- Mobile View ends -->
 
 <div class="bulb-section default preload">
     <div class="backdrop"></div>
@@ -430,6 +447,7 @@
     </div>
 </div> <!-- /.bulb-section -->
 </path>
+
 {% endblock %}
 
 {% block "pre_js" %}

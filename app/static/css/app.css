@@ -462,6 +462,13 @@ em {
   border: 1px solid #7E7E7E;
   box-shadow: none;
 }
+.mobile .mobile-button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 0;
+  text-align: center;
+}
 input {
   height: 38px;
   line-height: 38px;
@@ -506,7 +513,7 @@ input.gray:focus {
   overflow: hidden;
 }
 .modal .modal-inner {
-  width: 600px;
+  max-width: 600px;
   margin: 200px auto;
   color: rgba(255, 255, 255, 0.95);
   background: white;
@@ -548,6 +555,13 @@ input.gray:focus {
 .modal-active.modal .modal-inner {
   opacity: 1;
   transform: translateY(0px);
+}
+.mobile.modal-view {
+  overflow-y: hidden;
+}
+.mobile .modal-inner {
+  margin: 0 auto;
+  height: 100%;
 }
 .stage-view .page-container {
   overflow-y: hidden;
@@ -822,8 +836,8 @@ input.gray:focus {
   text-align: center;
 }
 .login-modal div.buttons .social-button {
-  display: inline-block;
-  margin-right: 20px;
+  display: block;
+  margin: 0 20px 0 0;
   width: 80px;
   height: 80px;
   position: relative;
@@ -852,6 +866,10 @@ input.gray:focus {
   margin-bottom: 20px;
   color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
+}
+.mobile .login-modal div.buttons div.social-button {
+  margin: 15px auto;
+  display: block;
 }
 .info-circle {
   width: 50px;
@@ -1318,7 +1336,7 @@ body.mobile .notifications .notification {
   transform: translateY(-5px);
 }
 .landing .top-banner .inner-banner {
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
   position: relative;
 }
@@ -1380,6 +1398,9 @@ body.mobile .notifications .notification {
 }
 .page-finished .landing .top-banner {
   transition-duration: 300ms;
+}
+.mobile .bulb-section {
+  display: none;
 }
 .bulb-section {
   width: 100%;
@@ -3056,4 +3077,82 @@ body.mobile .notifications .notification {
 }
 .summary-scene .summary-card {
   height: auto;
+}
+.mobile-events {
+  display: none;
+}
+.mobile-description {
+  display: none;
+}
+.mobile.home-page .user-settings .text em {
+  display: none;
+}
+.mobile.home-page .mobile-description {
+  display: block;
+  padding: 3px;
+  margin: 5px;
+}
+.mobile.home-page .mobile-description .title {
+  color: white;
+  padding: 3px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+.mobile.home-page .mobile-description .content {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+.mobile.home-page .mobile-events {
+  display: block;
+}
+.mobile .access {
+  display: none;
+}
+.mobile.stage-view .user-settings {
+  min-width: 0px;
+}
+.mobile.stage-view .user-settings .text {
+  width: 200px;
+  overflow: hidden;
+}
+.mobile.stage-view .user-settings .dropdown li {
+  font-size: 15px;
+  border-bottom: 1px solid white;
+  width: 100%;
+}
+.mobile .s-left {
+  display: none;
+}
+.mobile .s-right {
+  width: 100%;
+}
+.mobile .s-right .card {
+  display: block;
+  margin: 15px auto;
+  width: 85%;
+}
+.mobile .s-right .card .tags {
+  display: none;
+}
+.mobile .s-right .s-scene {
+  margin: 0;
+  padding: 0;
+}
+.logo-mobile {
+  display: none;
+}
+.mobile .logo {
+  width: 70px;
+  height: 70px;
+  margin: 5px 0 5px 20px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 80px;
+}
+.mobile .logo .logo-desktop {
+  display: none;
+}
+.mobile .logo .logo-mobile {
+  display: block;
+  margin: 0 auto 5px auto;
+  height: 75px;
 }

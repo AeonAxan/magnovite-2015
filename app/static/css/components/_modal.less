@@ -15,7 +15,7 @@
     }
 
     .modal-inner {
-        width: 600px;
+        max-width: 600px;
         margin: 200px auto;
         color: rgba(255, 255, 255, 0.95);
         background: white;
@@ -69,3 +69,13 @@
     }
 }
 
+//mobile view
+.mobile {
+    &.modal-view {
+        overflow-y: hidden;
+    }
+    .modal-inner {
+        margin: 0 auto;
+        height: 100%;
+    }
+}

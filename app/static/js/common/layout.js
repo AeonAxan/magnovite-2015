@@ -5,7 +5,7 @@
      * If body has class browser-height set the body's
      * height to the browser height, and adjust on resize
      */
-    if ($(document.body).hasClass('browser-height') && app.desktop) {
+    if ($(document.body).hasClass('browser-height')) {
         $(document.body).height(window.innerHeight);
 
         var bannerHeight = $('.banner').height() || 0;

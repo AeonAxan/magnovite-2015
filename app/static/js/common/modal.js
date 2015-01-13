@@ -22,6 +22,7 @@ app.modal = {};
             }
         }
 
+        $(document.body).addClass('modal-view');
         currentModal = $(id);
         currentModal.addClass('modal-loading');
         window.setTimeout(function() {
@@ -48,6 +49,7 @@ app.modal = {};
             return;
         }
 
+        $(document.body).removeClass('modal-view');
         currentModal.removeClass('modal-active');
         window.setTimeout((function(currentModal) {
             return function() {

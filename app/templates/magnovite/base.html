@@ -123,7 +123,7 @@
     <script>
     var app = {};
 
-    if (!Modernizr.touch && window.innerWidth > 767) {
+    if (window.innerWidth > 767) {
         document.body.classList.add('desktop');
         app.desktop = true;
     } else {

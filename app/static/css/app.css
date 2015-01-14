@@ -3170,3 +3170,50 @@ body.mobile .notifications .notification {
   overflow: hidden;
   position: fixed;
 }
+.mobile .inner-content {
+  width: 100%;
+}
+.mobile .inner-content h1 {
+  font-size: 60px;
+}
+.mobile .container {
+  width: 100%;
+  padding-bottom: 4px;
+}
+.mobile .container .left {
+  width: 100%;
+  margin: 2px;
+  overflow-wrap: break-word;
+}
+.mobile .container .right {
+  width: 100%;
+  margin: 2px;
+}
+.mobile .container .right .register-button .text {
+  font-size: 20px;
+}
+.mobile .container .right .team-details span {
+  font-size: 15px;
+  padding-top: 15px;
+}
+.mobile .container .right .team-details p {
+  font-size: 26px;
+}
+.mobile .container .right .info .cash {
+  width: 100%;
+}
+.mobile .container .right .info .points {
+  border-top: 1px solid white;
+  width: 100%;
+  padding: 20px 0 10px 60px;
+}
+.mobile .container .markdown {
+  margin: 5px;
+  padding: 20px;
+}
+.mobile .container .markdown h2 {
+  line-height: 1.1em;
+}
+.mobile .container .markdown h3 {
+  line-height: 1.3em;
+}

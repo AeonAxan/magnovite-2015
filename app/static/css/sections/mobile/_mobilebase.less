@@ -3,19 +3,36 @@
 }
 
 .mobile {
+	.banner {
+		z-index: 999;
+	}
+	.modal-active.modal {
+		z-index: 10000;
+	}
 	.logo {
 		width: 70px;
 		height: 70px;
 		margin: 5px 0 5px 20px;
 		background: rgba(0, 0, 0, .15);
 		border-radius: 80px;
+		
 		.logo-desktop {
 			display: none;
 		}
+		
 		.logo-mobile {
 			display: block;
 			margin: 0 auto 5px auto;
 			height: 75px;
 		}
 	}
+	p.help-text {
+		color: rgba(0, 0, 0, 0.8);
+		padding: 2px;
+	}
+}
+
+.mobile.modal-view {
+	overflow: hidden;
+	position: fixed;
 }

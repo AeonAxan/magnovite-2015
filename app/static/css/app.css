@@ -836,7 +836,7 @@ input.gray:focus {
   text-align: center;
 }
 .login-modal div.buttons .social-button {
-  display: block;
+  display: inline-block;
   margin: 0 20px 0 0;
   width: 80px;
   height: 80px;
@@ -3141,6 +3141,12 @@ body.mobile .notifications .notification {
 .logo-mobile {
   display: none;
 }
+.mobile .banner {
+  z-index: 999;
+}
+.mobile .modal-active.modal {
+  z-index: 10000;
+}
 .mobile .logo {
   width: 70px;
   height: 70px;
@@ -3155,4 +3161,12 @@ body.mobile .notifications .notification {
   display: block;
   margin: 0 auto 5px auto;
   height: 75px;
+}
+.mobile p.help-text {
+  color: rgba(0, 0, 0, 0.8);
+  padding: 2px;
+}
+.mobile.modal-view {
+  overflow: hidden;
+  position: fixed;
 }

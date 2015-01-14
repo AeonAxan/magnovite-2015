@@ -32,11 +32,11 @@ app.events = {};
             return;
         }
 
-        $events.removeClass.apply($events, [
+        $events.removeClass([
             'filter-cse', 'filter-ec',
             'filter-civil', 'filter-mech',
             'filter-cultural'
-        ]);
+        ].join(' '));
 
         $events.addClass('filter-' + e.target.classList[1]);
     }

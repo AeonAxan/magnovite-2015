@@ -570,7 +570,7 @@ input.gray:focus {
   color: rgba(255, 255, 255, 0.9);
 }
 .stage .s-left {
-  background: #00278b;
+  background: #0f2536;
   width: 20%;
   height: 100%;
   float: left;
@@ -598,7 +598,7 @@ input.gray:focus {
   width: 100%;
 }
 .s-left .s-main-title {
-  background: #001977;
+  background: #091a27;
   padding: 40px 0;
   overflow: hidden;
   cursor: default;
@@ -669,7 +669,7 @@ input.gray:focus {
 .banner {
   width: 100%;
   height: 80px;
-  background: #004fc5;
+  background: #0066ff;
   z-index: 999;
 }
 .banner .banner-inner {
@@ -746,7 +746,7 @@ input.gray:focus {
   background: #007ada;
 }
 .banner .user-settings .dropdown li {
-  background: #004fc5;
+  background: #0066ff;
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
@@ -1705,12 +1705,12 @@ body.mobile .notifications .notification {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   fill: #091A27;
-  stroke: #9DCEF3;
+  stroke: #B9DEFA;
   stroke-width: 4;
 }
 .hex-load .path {
   stroke-dashoffset: 0;
-  fill: #A5C4DD;
+  fill: #B9DEFA;
 }
 .right-pane {
   color: rgba(255, 255, 255, 0.8);

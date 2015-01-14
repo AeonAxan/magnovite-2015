@@ -1,4 +1,4 @@
-@c_circle_background: #17208d;
+@c_circle_background: #007BDB;
 
 @hexagon_width: 200px;
 
@@ -209,13 +209,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: @dark_blue;
+    background: #313336;
 }
 
 .inner-line {
-    border: 1px solid #98D1FD;
+    border: 1px solid #596872;
     width: 0;
-    box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.4);
+    box-shadow: 0px 0px 60px 2px rgba(170, 190, 192, 0.28);
     background: #0099FF;
     transition: all @hex_line_speed ease-out;
 }
@@ -224,6 +224,9 @@
     width: 100%;
 }
 
+@line_anim_delay: 4 * @hex_line_speed;
+@line_anim_duration: 800ms;
+
 .line.l1 {
     left: @hexagon_width;
     top: @hex_tent_height;
@@ -231,7 +234,8 @@
     transform-origin: left center;
 
     .inner-line {
-        transition-delay: 2 * @hex_line_speed ;
+        transition-delay: 2 * @hex_line_speed;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
 }
 
@@ -243,6 +247,7 @@
 
     .inner-line {
         transition-delay: @hex_line_speed;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
 }
 
@@ -254,6 +259,7 @@
 
     .inner-line {
         transition-delay: 0;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
 }
 
@@ -265,6 +271,7 @@
 
     .inner-line {
         transition-delay: 0;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
 }
 
@@ -276,6 +283,7 @@
 
     .inner-line {
         transition-delay: @hex_line_speed;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
 }
 
@@ -287,7 +295,13 @@
 
     .inner-line {
         transition-delay: 2 * @hex_line_speed;
+        -webkit-animation: line-animation @line_anim_duration ease-out @line_anim_delay infinite alternate;
     }
+}
+
+@-webkit-keyframes line-animation {
+    0% {opacity: 1}
+    100% {opacity: 0}
 }
 
 .hexagon svg {
@@ -302,11 +316,12 @@
     transition-delay: 3 * @hex_line_speed;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    fill: @dark_blue;
-    stroke: #98D1FD;
-    stroke-width: 3;
+    fill: #091A27;
+    stroke: #9DCEF3;
+    stroke-width: 4;
 }
 
 .hex-load .path {
     stroke-dashoffset: 0;
+    fill: #A5C4DD;
 }

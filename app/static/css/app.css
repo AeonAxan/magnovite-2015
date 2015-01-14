@@ -248,7 +248,7 @@ body {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  background: #03175f;
+  background: #05295f;
 }
 body {
   overflow-y: scroll;
@@ -400,8 +400,8 @@ em {
   cursor: pointer;
   padding: 0px 40px;
   margin-right: -0.3em;
-  background: #00002C;
-  border: 1px solid #000031;
+  background: #020B18;
+  border: 1px solid #00000E;
   color: rgba(255, 255, 255, 0.8);
   transition: all 350ms ease-out;
 }
@@ -473,8 +473,8 @@ input {
   height: 38px;
   line-height: 38px;
   padding: 0px 10px;
-  background: #00002C;
-  border: 1px solid #000031;
+  background: #020B18;
+  border: 1px solid #00000E;
   color: rgba(255, 255, 255, 0.8);
   font-family: inherit;
   font-size: 16px;
@@ -963,15 +963,15 @@ body.mobile .notifications .notification {
   margin-bottom: 2px;
 }
 #canvas {
-  background: #03175f;
+  background: #05295f;
   vertical-align: bottom;
 }
 .landing {
   height: 700px;
-  background: #03175f;
+  background: #05295f;
 }
 .landing-bar {
-  background: #00021a;
+  background: #01070f;
   box-shadow: inset 0px 10px 50px -10px #000000;
   height: 250px;
   text-align: center;
@@ -1027,7 +1027,7 @@ body.mobile .notifications .notification {
   }
 }
 .timer-block .numeric {
-  color: rgba(39, 91, 255, 0.85);
+  color: rgba(113, 135, 175, 0.85);
   font-size: 46px;
   height: 70px;
   line-height: 70px;
@@ -1075,7 +1075,7 @@ body.mobile .notifications .notification {
   display: none;
 }
 .timer-block .description {
-  color: rgba(39, 91, 255, 0.85);
+  color: rgba(113, 135, 175, 0.85);
   font-size: 14px;
   height: 30px;
   letter-spacing: 6px;
@@ -1104,9 +1104,8 @@ body.mobile .notifications .notification {
   width: 20px;
 }
 .binary .dot {
-  background: #002466;
+  background: #0C223A;
   border-radius: 10px;
-  border: 1px solid #000342;
   display: inline-block;
   height: 10px;
   margin: 5px auto;
@@ -1209,10 +1208,10 @@ body.mobile .notifications .notification {
   margin: 0 auto;
 }
 .game-bar .progress-inner.curr {
-  background: #616dff;
+  background: #008fff;
 }
 .game-bar .progress-inner.max {
-  background: #2332df;
+  background: #19364d;
 }
 .game-bar-inner {
   width: 990px;
@@ -1224,7 +1223,7 @@ body.mobile .notifications .notification {
   width: 330px;
   height: 100%;
   float: left;
-  color: #7679b3;
+  color: #78828A;
   text-align: left;
   transition: all 250ms ease-out;
 }
@@ -1240,9 +1239,9 @@ body.mobile .notifications .notification {
   margin: auto;
   width: 250px;
   height: 150px;
-  border: 8px solid #1d28ad;
-  background: #010212;
-  color: #616DFF;
+  border: 8px solid #008fff;
+  background: #00050A;
+  color: #008fff;
   font-size: 48px;
   line-height: 124px;
   text-align: center;
@@ -1255,14 +1254,14 @@ body.mobile .notifications .notification {
   width: 50%;
   height: 100%;
   left: 0;
-  border-right: 4px solid #1d28ad;
+  border-right: 4px solid #008fff;
 }
 .score-col .right {
   position: absolute;
   width: 50%;
   height: 100%;
   right: 0;
-  border-left: 4px solid #1d28ad;
+  border-left: 4px solid #008fff;
 }
 /**
  * Game bar left
@@ -1288,7 +1287,6 @@ body.mobile .notifications .notification {
   text-align: center;
 }
 .game-bar .right-col .score-block {
-  border: 2px solid #00075F;
   display: inline-block;
   width: 120px;
   height: 120px;
@@ -1298,7 +1296,7 @@ body.mobile .notifications .notification {
 .game-bar .score-block h4 {
   display: block;
   color: rgba(255, 255, 255, 0.51);
-  background: #1d28ad;
+  background: #008FFF;
   height: 40px;
   font-size: 14px;
   line-height: 40px;
@@ -1306,8 +1304,7 @@ body.mobile .notifications .notification {
 }
 .game-bar .score-block p {
   height: 76px;
-  background: #00021D;
-  box-shadow: inset 0px 0px 20px #000;
+  background: #010E1B;
   line-height: 76px;
   font-size: 32px;
   color: rgba(255, 255, 255, 0.81);
@@ -1331,7 +1328,7 @@ body.mobile .notifications .notification {
   width: 100%;
   height: 80px;
   padding: 10px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), #03175f);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), #05295f);
   opacity: 0;
   transform: translateY(-5px);
 }
@@ -1405,7 +1402,7 @@ body.mobile .notifications .notification {
 .bulb-section {
   width: 100%;
   height: 687px;
-  background: #03175f;
+  background: #091a27;
   padding: 20px;
   position: relative;
 }
@@ -1490,7 +1487,7 @@ body.mobile .notifications .notification {
   position: absolute;
   cursor: pointer;
   border: 2px solid #0a237e;
-  background: #17208d;
+  background: #007bdb;
 }
 .circle img {
   display: block;
@@ -1521,8 +1518,8 @@ body.mobile .notifications .notification {
   position: absolute;
   top: 0;
   left: 0;
-  background: #03175f;
-  border: 2px solid #03175f;
+  background: #05295f;
+  border: 2px solid #05295f;
   transition: all 300ms ease-out;
 }
 .circle:hover .cover {
@@ -1617,12 +1614,12 @@ body.mobile .notifications .notification {
   position: absolute;
   top: 0;
   left: 0;
-  background: #03175f;
+  background: #313336;
 }
 .inner-line {
-  border: 1px solid #98D1FD;
+  border: 1px solid #596872;
   width: 0;
-  box-shadow: 0px 0px 60px 2px rgba(95, 236, 255, 0.4);
+  box-shadow: 0px 0px 60px 2px rgba(170, 190, 192, 0.28);
   background: #0099FF;
   transition: all 400ms ease-out;
 }
@@ -1637,6 +1634,7 @@ body.mobile .notifications .notification {
 }
 .line.l1 .inner-line {
   transition-delay: 800ms;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
 }
 .line.l2 {
   left: 200px;
@@ -1646,6 +1644,7 @@ body.mobile .notifications .notification {
 }
 .line.l2 .inner-line {
   transition-delay: 400ms;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
 }
 .line.l3 {
   left: 100px;
@@ -1655,6 +1654,7 @@ body.mobile .notifications .notification {
 }
 .line.l3 .inner-line {
   transition-delay: 0;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
 }
 .line.l4 {
   left: 100px;
@@ -1664,6 +1664,7 @@ body.mobile .notifications .notification {
 }
 .line.l4 .inner-line {
   transition-delay: 0;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
 }
 .line.l5 {
   left: 0;
@@ -1673,6 +1674,7 @@ body.mobile .notifications .notification {
 }
 .line.l5 .inner-line {
   transition-delay: 400ms;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
 }
 .line.l6 {
   left: 0;
@@ -1682,6 +1684,15 @@ body.mobile .notifications .notification {
 }
 .line.l6 .inner-line {
   transition-delay: 800ms;
+  -webkit-animation: line-animation 800ms ease-out 1600ms infinite alternate;
+}
+@-webkit-keyframes line-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 .hexagon svg {
   width: 200px;
@@ -1693,15 +1704,16 @@ body.mobile .notifications .notification {
   transition-delay: 1200ms;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  fill: #03175f;
-  stroke: #98D1FD;
-  stroke-width: 3;
+  fill: #091A27;
+  stroke: #9DCEF3;
+  stroke-width: 4;
 }
 .hex-load .path {
   stroke-dashoffset: 0;
+  fill: #A5C4DD;
 }
 .right-pane {
-  color: #add1ff;
+  color: rgba(255, 255, 255, 0.8);
   padding: 80px 10px 0 10px;
   text-align: center;
   font-weight: 300;

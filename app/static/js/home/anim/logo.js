@@ -134,7 +134,7 @@ var app = app || {};
         }
 
         // if we caught more than X atoms show game button
-        if (caughtAtoms > 3 && !gameBannerShown) {
+        if (app.desktop && caughtAtoms > 3 && !gameBannerShown) {
             document.body.classList.add('logo-interacted');
             gameBannerShown = true;
             lastInteracted = 0;

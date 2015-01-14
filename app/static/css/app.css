@@ -3202,6 +3202,9 @@ body.mobile .notifications .notification {
   width: 100%;
   margin: 2px;
 }
+.mobile .container .right .register-button .inner {
+  padding-left: 20px;
+}
 .mobile .container .right .register-button .text {
   font-size: 20px;
 }
@@ -3216,7 +3219,7 @@ body.mobile .notifications .notification {
   width: 100%;
 }
 .mobile .container .right .info .points {
-  border-top: 1px solid white;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   width: 100%;
   padding: 20px 0 10px 60px;
 }

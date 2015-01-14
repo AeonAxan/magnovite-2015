@@ -3260,6 +3260,10 @@ body.mobile .notifications .notification {
   text-align: center;
   margin: 35px auto;
 }
+.mobile .event-cover .image {
+  height: 500px;
+  width: auto;
+}
 .mobile .container {
   width: 100%;
   padding-bottom: 4px;

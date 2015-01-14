@@ -38,3 +38,4 @@ echo ">>>> Migrationg heroku app $APP"
 heroku run ./manage.py migrate --app="$APP"
 
 git checkout master
+git push origin master

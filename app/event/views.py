@@ -53,7 +53,12 @@ def details(req, slug):
     event.views += 1
     event.save()
 
-    return render(req, 'magnovite/eventDetails.html', {
+    if settings.DEBUG:
+        template = 'magnovite/eventDetails.html'
+    else:
+        template = 'magnovite/dist/eventDetails.html'
+
+    return render(req, template, {
         'event': event,
         'is_registered': is_registered,
         'head_one': head_one,

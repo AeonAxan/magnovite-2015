@@ -1,8 +1,5 @@
-/**
- * Unlike other modules init does not have to be
- * called for this. It will auto start if the
- * tag user-settings is in the DOM
- */
+var app = app || {};
+
 (function() {
     'use strict';
 
@@ -22,6 +19,9 @@
     var $dropdown = $('.user-dropdown');
 
     var DROPDOWN_TIMEOUT = 1000;
+    if (app.mobile) {
+        DROPDOWN_TIMEOUT = 4000;
+    }
 
     $el.find('.text').on('click', function(e) {
             e.preventDefault();

@@ -3138,6 +3138,9 @@ body.mobile .notifications .notification {
   margin: 0;
   padding: 0;
 }
+.mobile.browser-height {
+  overflow: auto;
+}
 .logo-mobile {
   display: none;
 }

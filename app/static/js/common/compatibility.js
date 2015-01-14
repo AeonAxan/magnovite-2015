@@ -5,7 +5,7 @@ var app = app || {};
 
     // check if browser is chrome
     var isChromium = window.chrome,
-        vendorName = window.navigator.vendor;
+    vendorName = window.navigator.vendor;
     app.chrome = isChromium !== null && isChromium !== undefined && vendorName === "Google Inc.";
 
 })();
@@ -14,11 +14,16 @@ $(function() {
     'use strict';
 
     if (app.mobile) {
-        app.notification.notify({
-            text: 'This website is best viewed and used on a desktop',
-            type: 'error',
-            persistant: true
-        });
+        var visited = window.localStorage.getItem('magnovite:visited');
+        if (visited == undefined){
+            app.notification.notify({
+                text: 'This website is best viewed and used on a desktop',
+                type: 'warn',
+                persistant: true
+            });    
+        }
+        window.localStorage.setItem('magnovite:visited',true);
+        
 
     } else if (!app.chrome) {
         var notify = true;

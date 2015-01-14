@@ -128,7 +128,7 @@ class Profile(models.Model):
     def is_complete(self):
         return self.name != '' and self.mobile != '' and \
             self.college != '' and \
-            self.year != None and self.active_email != ''
+            self.active_email != ''
 
     def __str__(self):
         return str(self.id) + ', ' + self.name + '(' + self.active_email + ')'

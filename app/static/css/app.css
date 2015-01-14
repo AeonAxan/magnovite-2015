@@ -3138,6 +3138,9 @@ body.mobile .notifications .notification {
   margin: 0;
   padding: 0;
 }
+.mobile.browser-height {
+  overflow: auto;
+}
 .logo-mobile {
   display: none;
 }
@@ -3170,11 +3173,21 @@ body.mobile .notifications .notification {
   overflow: hidden;
   position: fixed;
 }
-.mobile .inner-content {
-  width: 100%;
+.mobile .content {
+  height: auto;
 }
-.mobile .inner-content h1 {
-  font-size: 60px;
+.mobile .content .inner-content {
+  width: 100%;
+  overflow: hidden;
+}
+.mobile .content .inner-content h1 {
+  font-size: 56px;
+  height: auto;
+}
+.mobile .content .inner-content .tags {
+  padding: 0px;
+  text-align: center;
+  margin: 35px auto;
 }
 .mobile .container {
   width: 100%;

@@ -18,18 +18,6 @@ class ProfileForm(ModelForm):
 
         return mobile
 
-    def clean_year(self):
-        year = self.cleaned_data['year']
-
-        # accept blank
-        if not year:
-            return year
-
-        if year not in [1, 2, 3, 4, 5]:
-            raise forms.ValidationError('Must be a number between 1 and 5')
-
-        return year
-
     class Meta:
         model = Profile
-        fields = ['active_email', 'name', 'mobile', 'college', 'year']
+        fields = ['active_email', 'name', 'mobile', 'college', 'referral']

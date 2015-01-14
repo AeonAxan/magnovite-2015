@@ -99,7 +99,11 @@ class Profile(models.Model):
     name = models.CharField(blank=True, max_length=50)
     mobile = models.CharField(blank=True, max_length=10, help_text='Without +91')
     college = models.CharField(blank=True, max_length=50)
-    year = models.IntegerField(blank=True, null=True, max_length=1, help_text='Studying in year (1, 2, 3, 4, 5)?')
+    referral = models.CharField(
+        blank=True, max_length=50,
+        help_text='Referral: How did you find out about us?',
+        default=''
+    )
 
     registered_events = models.ManyToManyField(Event, through=Registration)
 

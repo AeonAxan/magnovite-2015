@@ -30,6 +30,8 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ['technical',]
     inlines = [EventHeadInline, RegistrationsInline]
 
+    readonly_fields = ('views', 'registrations')
+
     def get_queryset(self, req):
         qs = super(EventAdmin, self).get_queryset(req)
         if req.user.is_superuser:

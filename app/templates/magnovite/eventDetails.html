@@ -83,7 +83,7 @@ app.eventDetails.init();
 </div>
 
 <div class="event-cover">
-	<div class="image" style="background: url('{{STATIC_URL}}{{event.cover_picture_path}}')"></div>
+	<img class="image" src="{{event.cover}}" />
 
 	<div class="content">
 		<div class="inner-content">
@@ -168,7 +168,7 @@ app.eventDetails.init();
 			<div class="heads">
 				{% if head_one %}
 				<div class="head">
-					<img src="{{STATIC_URL}}{{event.event_head_p1}}" alt="">
+					<img src="{{event.event_head_p1}}" alt="">
 					<p class="name">{{head_one.name}}</p>
 					<p class="details">{{head_one.mobile}}</p>
 					<p class="details">{{head_one.active_email}}</p>
@@ -177,7 +177,7 @@ app.eventDetails.init();
 
 				{% if head_two %}
 				<div class="head">
-					<img src="{{STATIC_URL}}{{event.event_head_p2}}" alt="">
+					<img src="{{event.event_head_p2}}" alt="">
 					<p class="name">{{head_two.name}}</p>
 					<p class="details">{{head_two.mobile}}</p>
 					<p class="details">{{head_two.active_email}}</p>

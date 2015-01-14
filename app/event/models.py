@@ -65,16 +65,10 @@ class Event(models.Model):
     # This is a comma seperated field
     tags = MultiSelectField(choices=TECHNICAL_TAGS, blank=True, null=True)
 
-    # event heads
-    picture_one = models.BooleanField(
-        help_text='Does event head 1 have a picture? (name: img/events/[slug]_h1.jpg)',
-        default=False
-    )
-
-    picture_two = models.BooleanField(
-        help_text='Does event head 2 have a picture? (name: img/events/[slug]_h2.jpg)',
-        default=False
-    )
+    # pictures
+    cover = models.URLField(blank=True, default='', help_text='imgur link for cover (1300x500)')
+    picture_one = models.URLField(blank=True, default='', help_text='imgur link for head one (100x100)')
+    picture_two = models.URLField(blank=True, default='', help_text='imgur link for head one (100x100)')
 
     # analytics
     views = models.IntegerField(default=0)
@@ -164,20 +158,17 @@ class Event(models.Model):
 
         return ""
 
-    def cover_picture_path(self):
-        return 'img/events/' + self.slug + '_cover.jpg'
-
     def event_head_p1(self):
         if self.picture_one:
-            return 'img/events/' + self.slug + '_h1.jpg'
+            return self.picture_one
         else:
-            return 'img/events/head_default.jpg'
+            return '/static/img/events/head_default.jpg'
 
-    def event_head_p1(self):
-        if self.picture_one:
-            return 'img/events/' + self.slug + '_h2.jpg'
+    def event_head_p2(self):
+        if self.picture_two:
+            return self.picture_two
         else:
-            return 'img/events/head_default.jpg'
+            return '/static/img/events/head_default.jpg'
 
     def get_first_head(self):
         return self.heads.first()

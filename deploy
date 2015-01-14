@@ -27,7 +27,7 @@ if [ "$1" == "production" ]
 then
     echo ">>>> pushing [production] -> heroku[master]"
     git push heroku production:master
-    APP=magnovite
+    APP=magnovite-2015
 else
     echo ">>>> pushing [staging] -> staging[master]"
     git push staging staging:master

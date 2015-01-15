@@ -196,13 +196,13 @@ TEMPLATE_DIRS = (
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = 'smtpout.secureserver.net'
-EMAIL_HOST_USER = 'official@magnovite.org'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'aeon10'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
-DEFAULT_FROM_EMAIL = 'official@magnovite.org'
-SERVER_EMAIL = 'official@magnovite.org'
-EMAIL_PORT = 80
-EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'official@magnovite.net'
+SERVER_EMAIL = 'server@magnovite.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 LOGGING = {
     'version': 1,

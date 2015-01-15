@@ -43,8 +43,12 @@ h3 {
     *zoom: 1;
 }
 
+.mobile .desktop-only {
+    display: none !important;
+}
+
 ::-webkit-scrollbar-track {
-    background: #000413;
+    background: @bulb_gray;
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -52,9 +56,9 @@ h3 {
 
 ::-webkit-scrollbar {
     width: 7px;
-    background-color: rgb(6, 146, 255);
+    background-color: rgba(77, 205, 255, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(6, 146, 255);
+    background-color: rgba(77, 205, 255, 0.8);
 }

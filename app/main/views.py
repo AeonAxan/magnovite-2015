@@ -1,5 +1,5 @@
 from ipware.ip import get_real_ip
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
@@ -9,6 +9,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from django.utils import timezone
 
 from app.event.models import Registration
 from app.message.models import Thread, Message
@@ -45,13 +46,24 @@ def add_message(req):
 
     thread, created = Thread.objects.get_or_create(profile=req.user.profile)
 
-    # rate limit, 5 in an hour
-    last_hour = datetime.now() - timedelta(hours=1)
-    if (thread.is_pending and Message.objects.filter(timestamp__lt=last_hour).count() > 5):
-        return JsonResponse({
-            'errorCode': 'ratelimit',
-            'errorMessage': 'You can only send 5 requests in an hour, please wait for a response'
-        }, status=400)
+    # rate limit
+    if (thread.is_pending):
+        last_staff_msg = Message.objects.filter(is_staff=True, thread=thread.id)[0]
+        ratelimit_hour = timezone.now() - timedelta(hours=6)
+
+        time_check = ratelimit_hour
+        if (last_staff_msg.timestamp > ratelimit_hour):
+            # chose last hour, or the last time a staff replied
+            time_check = last_staff_msg.timestamp
+
+        count = Message.objects.filter(timestamp__gt=time_check).count()
+        print(count)
+
+        if (count >= 5):
+            return JsonResponse({
+                'errorCode': 'ratelimit',
+                'errorMessage': 'Please wait for a response before trying to send further requests.'
+            }, status=400)
 
     thread.is_pending = True
     thread.save()

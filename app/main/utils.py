@@ -44,11 +44,11 @@ def template_email(from_email, to_email, subject, template, context):
     ctx = Context(context)
 
     plaintext = get_template('magnovite/email/text/' + template + '.text')
-    html = get_template('magnovite/email/html/' + template + '.html')
+    #html = get_template('magnovite/email/html/' + template + '.html')
 
     plaintext = plaintext.render(ctx)
-    html = html.render(ctx)
+    #html = html.render(ctx)
 
     msg = EmailMultiAlternatives(subject, plaintext, from_email, to_email)
-    msg.attach_alternative(html, 'text/html')
+    #msg.attach_alternative(html, 'text/html')
     msg.send()

@@ -48,11 +48,11 @@ def add_message(req):
 
     # rate limit
     if (thread.is_pending):
-        last_staff_msg = Message.objects.filter(is_staff=True, thread=thread.id)[0]
+        last_staff_msg = Message.objects.filter(is_staff=True, thread=thread.id)
         ratelimit_hour = timezone.now() - timedelta(hours=6)
 
         time_check = ratelimit_hour
-        if (last_staff_msg.timestamp > ratelimit_hour):
+        if (last_staff_msg and last_staff_msg[0].timestamp > ratelimit_hour):
             # chose last hour, or the last time a staff replied
             time_check = last_staff_msg.timestamp
 

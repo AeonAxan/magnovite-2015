@@ -119,6 +119,12 @@ class Profile(models.Model):
         null=True, blank=True
     )
 
+    def first_name(self):
+        if not self.name:
+            return ''
+
+        return self.name.split(' ')[0]
+
     def is_registered_to_event(self, event):
         return self.registered_events.filter(id=event.id).count() == 1
 

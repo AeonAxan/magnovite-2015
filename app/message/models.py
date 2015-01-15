@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.mail import send_mail
 
+from app.main.utils import template_email
 from app.main.models import Profile
 
 class Thread(models.Model):
@@ -29,7 +29,10 @@ class Message(models.Model):
             self.thread.save()
 
         if self.should_email:
-            send_mail()
+            template_email('gatekeeper@magnovite.net', [self.thread.profile.active_email],
+                           'Magnovite: Update on help request',
+                           'admin_help_reply',
+                           {'user': self.thread.profile, 'message': self})
 
         super(Message, self).save(*args, **kwargs)
 

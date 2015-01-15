@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-ADMINS = ('azaan@outlook.com',)
+ADMINS = (
+    ('Ahmed Azaan', 'azaan@outlook.com'),
+)
 
 HELP_INCHARGE = ('azaan@outlook.com',)
 

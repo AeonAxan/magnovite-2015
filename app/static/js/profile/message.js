@@ -53,7 +53,16 @@ var app = app || {};
                 $textarea.blur();
                 $input.removeClass('active');
             })
-            .fail(function() {
+            .fail(function(err) {
+                var obj = err.responseJSON;
+                if (obj) {
+                    app.notification.notify({
+                        text: obj.errorMessage,
+                        type: 'error'
+                    });
+                    return;
+                }
+
                 app.notification.notify({
                     text: 'Sorry, Something went wrong. please try again later',
                     type: 'error'

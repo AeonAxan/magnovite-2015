@@ -1,7 +1,8 @@
 from ipware.ip import get_real_ip
+from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.views.generic.edit import UpdateView
@@ -37,9 +38,21 @@ def index(req):
 def add_message(req):
     content = req.POST.get('text', '')
     if content == '':
-        return HttpResponse(status=400)
+        return JsonResponse({
+            'errorCode': 'invalid_request',
+            'errorMessage': 'Invalid request, no text parameter'
+        }, status=400)
 
     thread, created = Thread.objects.get_or_create(profile=req.user.profile)
+
+    # rate limit, 5 in an hour
+    last_hour = datetime.now() - timedelta(hours=1)
+    if (thread.is_pending and Message.objects.filter(timestamp__lt=last_hour).count() > 5):
+        return JsonResponse({
+            'errorCode': 'ratelimit',
+            'errorMessage': 'You can only send 5 requests in an hour, please wait for a response'
+        }, status=400)
+
     thread.is_pending = True
     thread.save()
 

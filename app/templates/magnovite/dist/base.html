@@ -121,12 +121,13 @@
     <script>
     var app = {};
 
-    if (window.innerWidth > 767) {
-        document.body.classList.add('desktop');
-        app.desktop = true;
-    } else {
+    if (window.innerWidth < 767 ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         document.body.classList.add('mobile');
         app.mobile = true;
+    } else {
+        document.body.classList.add('desktop');
+        app.desktop = true;
     }
 
     app.DEBUG = false;

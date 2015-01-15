@@ -470,12 +470,12 @@
     <div class="share">
         <h2>Share With</h2>
         <div class="share-buttons">
-            <a class="fb share-link" href="http://www.facebook.com/sharer.php?u=https://magnovite.net/">
+            <a class="fb share-link" onClick="FB.ui({method: 'share',href: 'https://magnovite.net/',}, function(response){});return false;" href="https://www.facebook.com/dialog/share?app_id=328741147313406&display=popup&href=https%3A%2F%2Fmagnovite.net%2F&redirect_uri=https%3A%2F%2Fmagnovite.net%2F">
                 <img src="/static/img/fb_circle.png" alt="Facebook">
 
                 <div class="share-back fb-back"></div>
             </a>
-            <a class="share-link" href="http://twitter.com/share?text=Magnovite%202015&url=https://magnovite.net/">
+            <a class="share-link" target="_blank" href="http://twitter.com/share?text=Magnovite%202015&url=https://magnovite.net/">
                 <img src="/static/img/twitter_circle.png" alt="Twitter">
             </a>
         </div>
@@ -528,5 +528,21 @@
     // start the choreographer
     app.choreographer.init();
     app.subscribe.init();
+
+    window.fbAsyncInit = function() {
+    FB.init({
+          appId      : '328741147313406',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+    };
+
+    (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 {% endblock %}

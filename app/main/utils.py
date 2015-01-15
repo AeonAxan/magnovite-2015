@@ -1,7 +1,9 @@
 import json
 
 from django.http import HttpResponse
-
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context, TemplateDoesNotExist
 
 class AjaxableResponseMixin(object):
     """
@@ -36,3 +38,17 @@ class AjaxableResponseMixin(object):
             return self.render_to_json_response(data)
         else:
             return response
+
+
+def template_email(from_email, to_email, subject, template, context):
+    ctx = Context(context)
+
+    plaintext = get_template('magnovite/email/text/' + template + '.text')
+    html = get_template('magnovite/email/html/' + template + '.html')
+
+    plaintext = plaintext.render(ctx)
+    html = html.render(ctx)
+
+    msg = EmailMultiAlternatives(subject, plaintext, from_email, to_email)
+    msg.attach_alternative(html, 'text/html')
+    msg.send()

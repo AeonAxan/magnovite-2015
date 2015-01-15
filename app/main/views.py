@@ -14,7 +14,7 @@ from app.message.models import Thread, Message
 
 from .forms import ProfileForm
 from .models import Profile
-from .utils import AjaxableResponseMixin
+from .utils import AjaxableResponseMixin, template_email
 
 def logout_view(req):
     if req.user.is_authenticated():
@@ -45,6 +45,11 @@ def add_message(req):
 
     message = Message(thread=thread, content=content)
     message.save()
+
+    template_email('help@magnovite.net', settings.HELP_INCHARGE,
+                   '[Mag:help] : ' + req.user.email,
+                   'admin_help_request',
+                   {'user': req.user.profile, 'message': message})
 
     return HttpResponse(status=200)
 

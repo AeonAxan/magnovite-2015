@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.mail import send_mail
 
 from app.main.models import Profile
 
@@ -8,7 +9,7 @@ class Thread(models.Model):
     is_pending = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.profile)
+        return 'Thread: ' + str(self.id) + ' | ' + str(self.profile)
 
 
 class Message(models.Model):
@@ -16,7 +17,9 @@ class Message(models.Model):
 
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
     is_staff = models.BooleanField(default=False)
+    should_email = models.BooleanField(default=False, help_text='If checked, the user will be emailed notifying about this reply')
 
     def save(self, *args, **kwargs):
         # if we are adding a staff message then that thread
@@ -24,6 +27,9 @@ class Message(models.Model):
         if self.is_staff:
             self.thread.is_pending = False
             self.thread.save()
+
+        if self.should_email:
+            send_mail()
 
         super(Message, self).save(*args, **kwargs)
 

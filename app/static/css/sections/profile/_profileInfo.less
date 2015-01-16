@@ -1,5 +1,6 @@
+@schedule_strip_height: 100px;
+
 .schedule-scene {
-	@strip_height: 100px;
 	@strip_width: 900px;
 	@strip_event_width: 380px;
 	@strip_contact_width: 350px;
@@ -20,7 +21,7 @@
 		background: rgba(0, 0, 0, 0.2);
 
 		p {
-			line-height: @strip_height;
+			line-height: @schedule_strip_height;
 			display: block;
 			text-align: center;
 
@@ -34,20 +35,20 @@
 
 	.strip {
 		max-width: @strip_width;
-		height: @strip_height;
+		height: @schedule_strip_height;
 		margin: 8px 0;
 		color: @text_white;
 
 		.sq-time {
 			width: @strip_box_width;
-			height: 100%;
+			height: @schedule_strip_height;
 			float: left;
 
 			font-size: 15px;
 
 			.time {
-				height: @strip_height/2;
-				line-height: @strip_height/2;
+				height: @schedule_strip_height/2;
+				line-height: @schedule_strip_height/2;
 				text-align: center;
 			}
 
@@ -59,11 +60,11 @@
 
 		.sq-event {
 			width: @strip_event_width;
-			height: 100%;
+			height: @schedule_strip_height;
 			float: left;
 
 			text-align: left;
-			line-height: @strip_height;
+			line-height: @schedule_strip_height;
 			font-size: 28px;
 
 			padding-left: 20px;
@@ -71,13 +72,13 @@
 
 		.sq-contact {
 			width: @strip_contact_width;
-			height: 100%;
+			height: @schedule_strip_height;
 			float: left;
 
 			.profile-pic {
-				width: @strip_height;
-				height: @strip_height;
-				padding: (@strip_height - 80px)/2;
+				width: @schedule_strip_height;
+				height: @schedule_strip_height;
+				padding: (@schedule_strip_height - 80px)/2;
 				float: left;
 
 				margin-left: 5px;
@@ -127,7 +128,7 @@
 		}
 
 		.sq-more {
-			height: 100%;
+			height: @schedule_strip_height;
 			width: @strip_box_width;
 			float: left;
 
@@ -135,7 +136,7 @@
 				display: block;
 				width: 100%;
 				height: 100%;
-				line-height: @strip_height - 7px;
+				line-height: @schedule_strip_height - 7px;
 				text-align: center;
 				font-size: 28px;
 				text-decoration: none;

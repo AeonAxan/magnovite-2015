@@ -2771,7 +2771,7 @@ body.mobile .notifications .notification {
 }
 .schedule-scene .strip .sq-time {
   width: 85px;
-  height: 100%;
+  height: 100px;
   float: left;
   font-size: 15px;
 }
@@ -2785,7 +2785,7 @@ body.mobile .notifications .notification {
 }
 .schedule-scene .strip .sq-event {
   width: 380px;
-  height: 100%;
+  height: 100px;
   float: left;
   text-align: left;
   line-height: 100px;
@@ -2794,7 +2794,7 @@ body.mobile .notifications .notification {
 }
 .schedule-scene .strip .sq-contact {
   width: 350px;
-  height: 100%;
+  height: 100px;
   float: left;
 }
 .schedule-scene .strip .sq-contact .profile-pic {
@@ -2839,7 +2839,7 @@ body.mobile .notifications .notification {
   text-decoration: underline;
 }
 .schedule-scene .strip .sq-more {
-  height: 100%;
+  height: 100px;
   width: 85px;
   float: left;
 }
@@ -3390,6 +3390,51 @@ body.mobile .notifications .notification {
 .mobile.page-profile .s-left .s-section-list li.selected .s-item-inner {
   transform: translateX(0px);
 }
-.mobile.page-profile input {
+.mobile.page-profile .profile-scene input {
   width: 100%;
+}
+.mobile.page-profile .help-scene .messages {
+  width: 100%;
+}
+.mobile.page-profile .help-scene .message {
+  width: 100%;
+}
+.mobile.page-profile .help-scene .message.me {
+  margin-left: 15px;
+}
+.mobile.page-profile .help-scene .message.me .timestamp {
+  right: 25px;
+}
+.mobile.page-profile .help-scene .message.me .message-inner {
+  padding-right: 30px;
+}
+.mobile.page-profile .help-scene .message.them {
+  margin-right: 15px;
+}
+.mobile.page-profile .help-scene .message.them .message-inner {
+  padding-left: 30px;
+}
+.mobile.page-profile .schedule-scene .strip {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.mobile.page-profile .schedule-scene .sq-time {
+  width: 30%;
+}
+.mobile.page-profile .schedule-scene .sq-event {
+  width: 70%;
+  font-size: 24px;
+}
+.mobile.page-profile .schedule-scene .sq-contact {
+  width: 80%;
+}
+.mobile.page-profile .schedule-scene .sq-contact .profile-pic {
+  display: none;
+}
+.mobile.page-profile .schedule-scene .sq-contact a {
+  text-decoration: underline;
+}
+.mobile.page-profile .schedule-scene .sq-more {
+  width: 20%;
 }

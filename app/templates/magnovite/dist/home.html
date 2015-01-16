@@ -1,4 +1,5 @@
 {% extends "magnovite/dist/base.html" %}
+{% load tags %}
 
 {% block "extra_meta" %}
 <meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 21st and 22nd of February 2015." />
@@ -34,43 +35,55 @@
 
             <img class="christ desktop-only" src="/static/img/christ.png" />
 
-            <div class="user-settings
-                {% if user.is_authenticated %}logged-in{% endif %}">
+            <div class="banner-box-list">
 
-                {% if user.is_authenticated %}
-                    <a class="text" href="#">
-                        Hi, <em>{{ profile.name }}</em>
-                        <span class="small">▼</span>
-                    </a>
-                {% else %}
-                    <a class="text" href="#">Login/Register</a>
+                {% if is_staff %}
+                <div class="access banner-box">
+                    <div class="top">
+                        <p>Access: <span>{{access_level}}</span></p>
+                    </div>
+                    <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
+                        {% if has_admin %}
+                        <div class="part">
+                            <a href="/admin/">Admin Panel</a>
+                        </div>
+                        {% endif %}
+                        {% if has_dashboard %}
+                        <div class="part">
+                            <a href="/dashboard/">Dashboard</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
                 {% endif %}
 
-                <ul class="dropdown user-dropdown">
-                    <li><a href="/profile/">My Account</a></li>
-                    <li><a href="/logout/">Logout</a></li>
-                </ul>
-            </div>
+                <div class="{% selected "/quest/" %} banner-page-link banner-box">
+                    <a href="/quest/">Quest</a>
+                </div>
 
-            {% if is_staff %}
-            <div class="access">
-                <div class="top">
-                    <p>Access: <span>{{access_level}}</span></p>
+                <div class="{% selected "/events/" %} banner-page-link banner-box">
+                    <a href="/events/">Events</a>
                 </div>
-                <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
-                    {% if has_admin %}
-                    <div class="part">
-                        <a href="/admin/">Admin Panel</a>
-                    </div>
+
+                <div class="user-settings banner-box
+                    {% if user.is_authenticated %}logged-in{% endif %}">
+
+                    {% if user.is_authenticated %}
+                        <a class="text" href="#">
+                            Hi, <em>{{ profile.name }}</em>
+                            <span class="small">▼</span>
+                        </a>
+                    {% else %}
+                        <a class="text" href="#">Login/Register</a>
                     {% endif %}
-                    {% if has_dashboard %}
-                    <div class="part">
-                        <a href="/dashboard/">Dashboard</a>
-                    </div>
-                    {% endif %}
+
+                    <ul class="dropdown user-dropdown">
+                        <li><a href="/profile/">My Account</a></li>
+                        <li><a href="/logout/?next={{request.path}}">Logout</a></li>
+                    </ul>
                 </div>
+
             </div>
-            {% endif %}
 
         </div>
     </div>

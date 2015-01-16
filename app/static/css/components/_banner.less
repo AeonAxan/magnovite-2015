@@ -1,6 +1,8 @@
 @banner_height: 80px;
 @banner_width: 1150px;
 
+@banner_item_hover_color: rgba(255, 255, 255, 0.3);
+
 .banner {
     width: 100%;
     height: @banner_height;
@@ -29,9 +31,7 @@
         background: rgb(0, 155, 228);
         color: @text_white;
         text-align: center;
-        float: right;
         width: 220px;
-        height: @banner_height;
 
         .top {
             height: @banner_height/2;
@@ -78,9 +78,7 @@
     }
 
     .user-settings {
-        float: right;
         z-index: 9999;
-        height: @banner_height;
         line-height: @banner_height;
         min-width: 160px;
 
@@ -93,7 +91,7 @@
             }
 
             &:hover {
-                background: rgb(0, 122, 218);
+                background: @banner_item_hover_color;
             }
         }
 
@@ -101,7 +99,7 @@
             background: @banner_color;
 
             &:hover {
-                background: rgb(0, 122, 218);
+                background: @banner_item_hover_color;
             }
         }
     }
@@ -131,4 +129,66 @@
 .page-loaded .banner .banner-inner {
     opacity: 1;
     transform: translateY(0);
+}
+
+.banner-box-list {
+        width: auto;
+        height: @banner_height;
+        float: right;
+        color: rgba(255, 255, 255, 0.8);
+}
+
+.banner-box {
+    float: left;
+    height: @banner_height;
+    width: auto;
+}
+
+.banner-page-link {
+    a {
+        display: block;
+        line-height: @banner_height;
+        padding: 0px 20px;
+        text-decoration: none;
+
+        &:hover {
+            background: @banner_item_hover_color;
+        }
+    }
+
+    &.selected a {
+        background: @banner_item_hover_color;
+        font-weight: bold;
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+.mobile .banner-page-link {
+    display: none;
+}
+
+.landing .top-banner {
+
+    .banner-box {
+        height: 50px;
+    }
+
+    .banner-page-link {
+        a {
+            line-height: 50px;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+        }
+
+        &.selected a {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    }
+
+    .banner-box-list {
+        height: 50px;
+    }
 }

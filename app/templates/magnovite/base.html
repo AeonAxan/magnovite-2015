@@ -1,4 +1,5 @@
 {% load socialaccount %}
+{% load tags %}
 
 <!DOCTYPE html>
 <html>
@@ -128,11 +129,11 @@
 
     <div class="slide-menu">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li class="selected"><a href="#">Events</a></li>
-            <li><a href="#">Profile</a></li>
-            <li class="sub"><a href="#">Schedule</a></li>
-            <li class="sub"><a href="#">Help</a></li>
+            <li class="{% selected "/" %}"><a href="{% selected_url "/" %}">Home</a></li>
+            <li class="{% selected "/events/" %}"><a href="{% selected_url "/events/" %}">Events</a></li>
+            <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
+            <li class="sub"><a href="{% selected_url "/profile/" "#schedule" %}">Schedule</a></li>
+            <li class="sub"><a href="{% selected_url "/profile/" "#help" %}">Help</a></li>
         </ul>
     </div>
 

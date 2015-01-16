@@ -9,6 +9,8 @@
     var $menu = $('.js-scene-menu');
     var $scene = $('.s-right');
 
+    var currentView;
+
     var scenes = [];
     $menu.find('li').each(function(i, li) {
         scenes.push($(li).data('scene') + '-on');
@@ -16,34 +18,43 @@
 
     if (window.location.hash !== '') {
         var view = window.location.hash.substring(1);
-        if (!(view === 'profile' || view === 'schedule' || view === 'help')) {
-            view = 'profile';
-        }
-
         selectView(view + '-scene');
-        $menu.find('li').removeClass('selected');
-        $menu.find('li[data-scene=' + view + '-scene]').addClass('selected');
-    } else {
-        selectView('profile-scene');
-        $menu.find('li').removeClass('selected');
-        $menu.find('li[data-scene=profile-scene]').addClass('selected');
     }
 
+    $(window).on('hashchange', function() {
+        var view = window.location.hash.substring(1) + '-scene';
+        if (view == currentView) {
+            return;
+        }
+
+        selectView(view);
+    });
+
     $menu.on('click', 'li', function(e) {
+        e.preventDefault();
         var target = $(e.target).closest('li');
 
         if (!target.data('scene')) {
             return;
         }
 
-        selectView(target.data('scene'));
+        view = target.data('scene');
+
+        selectView(view);
         $menu.find('li').removeClass('selected');
         target.addClass('selected');
+
+        window.location.hash = view.split('-scene')[0];
     });
 
     function selectView(view) {
         $scene.removeClass(scenes.join(' '));
         $scene.addClass(view + '-on');
+
+        $menu.find('li').removeClass('selected');
+        $menu.find('li[data-scene=' + view + ']').first().addClass('selected');
+
+        currentView = view;
     }
 
 })();

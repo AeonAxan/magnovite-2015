@@ -3472,9 +3472,10 @@ body.mobile .notifications .notification {
   left: 0;
   top: 0;
   width: 70%;
-  height: 100%;
   background: #f6f6f6;
   z-index: 5100;
+  min-height: 100%;
+  height: auto;
   display: none;
   visibility: hidden;
   transform: translateX(-20%);
@@ -3484,6 +3485,10 @@ body.mobile .notifications .notification {
 .slide-menu ul {
   width: 100%;
   margin-top: 50px;
+  overflow-x: hidden;
+}
+.slide-menu.scrollable {
+  overflow-y: scroll;
 }
 .slide-menu li {
   padding: 5px 0 5px 20px;

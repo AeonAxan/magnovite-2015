@@ -12,6 +12,14 @@ var app = app || {};
         e.preventDefault();
     });
 
+    var scrollable = false;
+    var $menu = $('.slide-menu');
+    if ($menu.height() > window.innerHeight) {
+        $menu.addClass('scrollable');
+        $menu.height(window.innerHeight);
+        scrollable = true;
+    }
+
     function openDrawer() {
         $(document.body).addClass('slide-menu-active');
         $(document.body).on('touchmove', cancelEvent);
@@ -29,6 +37,10 @@ var app = app || {};
     }
 
     function cancelEvent(e) {
-        e.preventDefault();
+        var isMenu = $(e.target).closest('.slide-menu').length != 0;
+        if (!scrollable || !isMenu) {
+            e.preventDefault();
+            return;
+        }
     }
 })();

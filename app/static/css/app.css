@@ -3568,6 +3568,3 @@ body.mobile .notifications .notification {
   visibility: visible;
   opacity: 1;
 }
-.slide-menu-active .full-body {
-  transform: translateX(20px);
-}

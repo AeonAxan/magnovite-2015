@@ -21,6 +21,7 @@ app.events = {};
         });
 
         $('.s-right').on('click', tagClicked);
+        $(window).on('hashchange', filterByHash);
     };
 
     function filterByHash() {
@@ -34,9 +35,8 @@ app.events = {};
         }
     }
 
-    $(window).on('hashchange', filterByHash);
-
     function showAll() {
+        console.log($events);
         $events.addClass([
             'filter-cse', 'filter-ec',
             'filter-civil', 'filter-mech',

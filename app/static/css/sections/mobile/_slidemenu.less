@@ -13,7 +13,6 @@
 
     transform: translateX(-100%);
     transition: all 200ms ease-out;
-    transition-delay: 100ms;
 
     ul {
         width: 100%;
@@ -75,6 +74,10 @@
         display: block;
     }
 
+    .full-body {
+        transition: all 200ms ease-out;
+    }
+
 }
 
 .slide-menu-active {
@@ -89,6 +92,6 @@
     }
 
     .full-body {
-        transform: scale(0.95, 0.95);
+        transform: translateX(20px);
     }
 }

@@ -3470,7 +3470,6 @@ body.mobile .notifications .notification {
   visibility: hidden;
   transform: translateX(-100%);
   transition: all 200ms ease-out;
-  transition-delay: 100ms;
 }
 .slide-menu ul {
   width: 100%;
@@ -3518,6 +3517,9 @@ body.mobile .notifications .notification {
 .mobile .slide-menu-cover {
   display: block;
 }
+.mobile .full-body {
+  transition: all 200ms ease-out;
+}
 .slide-menu-active .slide-menu {
   visibility: visible;
   transform: translateX(0);
@@ -3527,5 +3529,5 @@ body.mobile .notifications .notification {
   opacity: 1;
 }
 .slide-menu-active .full-body {
-  transform: scale(0.95, 0.95);
+  transform: translateX(20px);
 }

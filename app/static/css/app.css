@@ -2519,6 +2519,9 @@ body.mobile .notifications .notification {
   transition-delay: 1000ms;
   transition-duration: 500ms;
 }
+.mobile .page .right .register-container .register-button.registered .inner {
+  padding-left: 10px;
+}
 .detail-modals .body {
   padding: 20px;
 }

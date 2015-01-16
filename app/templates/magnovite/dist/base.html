@@ -156,6 +156,11 @@
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         document.body.classList.add('mobile');
         app.mobile = true;
+
+        // hide addressbar
+        setTimeout(function(){
+            window.scrollTo(0, 1);
+        }, 0);
     } else {
         document.body.classList.add('desktop');
         app.desktop = true;

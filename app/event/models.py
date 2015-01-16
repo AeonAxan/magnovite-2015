@@ -108,13 +108,23 @@ class Event(models.Model):
         """
         return markdown2.markdown(self.info)
 
-    def is_complete(self):
+    def complete_status(self):
         """
         Are all the details of this event complete,
         we only need to verify optional fields
         """
-        return bool(self.date and self.time and self.venue)
-    is_complete.boolean = True
+        fields = ('date', 'time', 'end_time', 'venue', 'cover',
+                  'picture_one', 'picture_two')
+
+        count = 0
+        for field in fields:
+            if bool(getattr(self, field)):
+                count += 1
+
+        if count == len(fields):
+            return 'Complete'
+        else:
+            return str(count) + '/' + str(len(fields))
 
     def is_team(self):
         return not bool(self.team_min == 1 and self.team_max == 1)

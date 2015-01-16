@@ -1,0 +1,47 @@
+.mobile.page-profile {
+    .s-right {
+        width: 100%;
+    }
+
+    .s-scene {
+        margin: 10px;
+    }
+
+    .s-left {
+        width: 100%;
+
+        .s-item-box {
+            margin: 0;
+        }
+
+        .s-section-list {
+            overflow: hidden;
+
+            li {
+                float: left;
+                width: 33.33333333%;
+                text-align: center;
+                margin: 0;
+
+                .s-item-inner {
+                    display: block;
+                    width: 100%;
+                }
+
+                &:hover, &.selected {
+                    background: transparent;
+                    color: rgba(255, 255, 255, 0.95);
+                    border-bottom: 3px solid @banner_color;
+
+                    .s-item-inner {
+                        transform: translateX(0px);
+                    }
+                }
+            }
+        }
+    }
+
+    input {
+        width: 100%;
+    }
+}

@@ -11,7 +11,7 @@
 
     {% block "extra_meta" %}{% endblock "extra_meta" %}
 
-    <link rel="stylesheet" href="/static/dist/style-cfc30f0e.css"/>
+    <link rel="stylesheet" href="/static/dist/style-5a856a81.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -51,70 +51,86 @@
         </div>
     </div>
 
-    {% block page_banner %}
-    <div class="banner">
-        <div class="banner-inner">
-            <div class="logo">
-                <a href="/">
-                    <img src="/static/img/logo.png" class="logo-desktop" alt="Magnovite">
-                    <img src="/static/img/mlogo.png" class="logo-mobile" alt="Magnovite">
-                </a>
-            </div>
+    <div class="full-body">
 
-            <div class="user-settings
-                {% if user.is_authenticated %}logged-in{% endif %}">
-
-                {% if user.is_authenticated %}
-                    <a class="text" href="#">
-                        Hi, <em>{{ profile.name }}</em>
-                        <span class="small">▼</span>
+        {% block page_banner %}
+        <div class="banner">
+            <div class="banner-inner">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/logo.png" class="logo-desktop" alt="Magnovite">
+                        <img src="/static/img/mlogo.png" class="logo-mobile js-drawer" alt="Magnovite">
                     </a>
-                {% else %}
-                    <a class="text" href="#">Login/Register</a>
+                </div>
+
+                <div class="user-settings
+                    {% if user.is_authenticated %}logged-in{% endif %}">
+
+                    {% if user.is_authenticated %}
+                        <a class="text" href="#">
+                            Hi, <em>{{ profile.name }}</em>
+                            <span class="small">▼</span>
+                        </a>
+                    {% else %}
+                        <a class="text" href="#">Login/Register</a>
+                    {% endif %}
+
+                    <ul class="dropdown user-dropdown">
+                        <li><a href="/profile/">My Account</a></li>
+                        <li><a href="/logout/?next={{request.path}}">Logout</a></li>
+                    </ul>
+                </div>
+
+                {% if is_staff %}
+                <div class="access">
+                    <div class="top">
+                        <p>Access: <span>{{access_level}}</span></p>
+                    </div>
+                    <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
+                        {% if has_admin %}
+                        <div class="part">
+                            <a href="/admin/">Admin Panel</a>
+                        </div>
+                        {% endif %}
+                        {% if has_dashboard %}
+                        <div class="part">
+                            <a href="/dashboard/">Dashboard</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
                 {% endif %}
 
-                <ul class="dropdown user-dropdown">
-                    <li><a href="/profile/">My Account</a></li>
-                    <li><a href="/logout/?next={{request.path}}">Logout</a></li>
-                </ul>
             </div>
-
-            {% if is_staff %}
-            <div class="access">
-                <div class="top">
-                    <p>Access: <span>{{access_level}}</span></p>
-                </div>
-                <div class="bottom {% if has_admin and has_dashboard %}both{% endif %}">
-                    {% if has_admin %}
-                    <div class="part">
-                        <a href="/admin/">Admin Panel</a>
-                    </div>
-                    {% endif %}
-                    {% if has_dashboard %}
-                    <div class="part">
-                        <a href="/dashboard/">Dashboard</a>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-
         </div>
+        {% endblock page_banner %}
+
+        <div class="notifications">
+            <script type="text/template" id="notification-template">
+                <div data-id="[[id]]" class="notification [[type]] [[actionClass]]">
+                    <p class="close js-notif-close">x</p>
+
+                    <p class="text">[[text]]</p>
+                    <a href="#" class="action js-notif-action">[[action]]</a>
+                </div>
+            </script>
+        </div>
+
+        {% block "content" %}{% endblock %}
+
     </div>
-    {% endblock page_banner %}
 
-    <div class="notifications">
-        <script type="text/template" id="notification-template">
-            <div data-id="[[id]]" class="notification [[type]] [[actionClass]]">
-                <p class="close js-notif-close">x</p>
+    <div class="slide-menu-cover"></div>
 
-                <p class="text">[[text]]</p>
-                <a href="#" class="action js-notif-action">[[action]]</a>
-            </div>
-        </script>
+    <div class="slide-menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li class="selected"><a href="#">Events</a></li>
+            <li><a href="#">Profile</a></li>
+            <li class="sub"><a href="#">Schedule</a></li>
+            <li class="sub"><a href="#">Help</a></li>
+        </ul>
     </div>
-
-    {% block "content" %}{% endblock %}
 
     {% block "pre_js" %}{% endblock %}
 
@@ -133,7 +149,7 @@
     app.DEBUG = false;
     </script>
 
-    <script src="/static/dist/app-07dceb0d.js"></script>
+    <script src="/static/dist/app-f926713e.js"></script>
 
     {% block "post_js" %}{% endblock %}
 

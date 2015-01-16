@@ -37,7 +37,7 @@ app.bulb = {};
     app.bulb.init = function() {
         // time needed for hexagon animations
         var hexLines = 400 * 2;
-        var hexM = 10000;
+        var hexM = 1800;
 
         // time needed for pane split animation
         var splitPane = 300 + 600;

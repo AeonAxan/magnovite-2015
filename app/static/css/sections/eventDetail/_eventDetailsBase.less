@@ -6,6 +6,7 @@
 
 .event-cover {
 	position: relative;
+	overflow: hidden;
 
 	.image {
 		width: 100%;
@@ -13,7 +14,7 @@
 
 	.content {
 		height: @cover_content_height;
-		background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+		background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
 		width: 100%;
 		position: absolute;
 		left: 0;
@@ -322,7 +323,7 @@
 				float: left;
 				width: 60%;
 				height: 110px;
-				padding: 20px 0 20px 40px;
+				padding: 20px 0 20px 10px;
 
 				span.label {
 					color: rgba(255, 255, 255, 1);
@@ -340,9 +341,20 @@
 			@head_img_size: 100px;
 
 			.head {
-				width: 50%;
-				float: left;
+				width: 100%;
 				padding: 20px 10px;
+				overflow: hidden;
+			}
+
+			.left-head {
+				float: left;
+				width: 35%;
+			}
+
+			.right-head {
+				float: left;
+				width: 65%;
+				padding-top: 10px;
 			}
 
 			img {
@@ -355,7 +367,7 @@
 			}
 
 			p {
-				text-align: center;
+				text-align: left;
 
 				&.name {
 					font-weight: bold;

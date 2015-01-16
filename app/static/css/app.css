@@ -248,7 +248,7 @@ body {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  background: #05295f;
+  background: #091a27;
 }
 body {
   overflow-y: scroll;
@@ -966,12 +966,12 @@ body.mobile .notifications .notification {
   margin-bottom: 2px;
 }
 #canvas {
-  background: #05295f;
+  background: #091a27;
   vertical-align: bottom;
 }
 .landing {
   height: 700px;
-  background: #05295f;
+  background: #091a27;
 }
 .landing-bar {
   background: #01070f;
@@ -1332,7 +1332,7 @@ body.mobile .notifications .notification {
   width: 100%;
   height: 80px;
   padding: 10px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), #05295f);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), #091a27);
   opacity: 0;
   transform: translateY(-5px);
 }
@@ -1522,8 +1522,8 @@ body.mobile .notifications .notification {
   position: absolute;
   top: 0;
   left: 0;
-  background: #05295f;
-  border: 2px solid #05295f;
+  background: #091a27;
+  border: 2px solid #091a27;
   transition: all 300ms ease-out;
 }
 .circle:hover .cover {
@@ -2126,13 +2126,14 @@ body.mobile .notifications .notification {
 }
 .event-cover {
   position: relative;
+  overflow: hidden;
 }
 .event-cover .image {
   width: 100%;
 }
 .event-cover .content {
   height: 150px;
-  background: linear-gradient(transparent, #000000);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
   width: 100%;
   position: absolute;
   left: 0;
@@ -2392,7 +2393,7 @@ body.mobile .notifications .notification {
   float: left;
   width: 60%;
   height: 110px;
-  padding: 20px 0 20px 40px;
+  padding: 20px 0 20px 10px;
 }
 .page .right .info .points span.label {
   color: #ffffff;
@@ -2406,9 +2407,18 @@ body.mobile .notifications .notification {
   overflow: hidden;
 }
 .page .right .heads .head {
-  width: 50%;
-  float: left;
+  width: 100%;
   padding: 20px 10px;
+  overflow: hidden;
+}
+.page .right .heads .left-head {
+  float: left;
+  width: 35%;
+}
+.page .right .heads .right-head {
+  float: left;
+  width: 65%;
+  padding-top: 10px;
 }
 .page .right .heads img {
   width: 100px;
@@ -2419,7 +2429,7 @@ body.mobile .notifications .notification {
   display: block;
 }
 .page .right .heads p {
-  text-align: center;
+  text-align: left;
 }
 .page .right .heads p.name {
   font-weight: bold;

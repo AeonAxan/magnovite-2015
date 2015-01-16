@@ -89,6 +89,7 @@ app.eventDetails.init();
 		<div class="inner-content">
 			<h1>{{event.title}}</h1>
 
+			{% if event.technical %}
 			<div class="tags">
 				{% for tag_obj in event.tag_assoc %}
 					<div class="tag-container">
@@ -97,6 +98,7 @@ app.eventDetails.init();
 					</div>
 				{% endfor %}
 			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
@@ -168,19 +170,27 @@ app.eventDetails.init();
 			<div class="heads">
 				{% if head_one %}
 				<div class="head">
-					<img src="{{event.event_head_p1}}" alt="">
-					<p class="name">{{head_one.name}}</p>
-					<p class="details">{{head_one.mobile}}</p>
-					<p class="details">{{head_one.active_email}}</p>
+					<div class="left-head">
+						<img src="{{event.event_head_p1}}" alt="">
+					</div>
+					<div class="right-head">
+						<p class="name">{{head_one.name}}</p>
+						<p class="details">{{head_one.mobile}}</p>
+						<p class="details">{{head_one.active_email}}</p>
+					</div>
 				</div>
 				{% endif %}
 
 				{% if head_two %}
 				<div class="head">
-					<img src="{{event.event_head_p2}}" alt="">
-					<p class="name">{{head_two.name}}</p>
-					<p class="details">{{head_two.mobile}}</p>
-					<p class="details">{{head_two.active_email}}</p>
+					<div class="left-head">
+						<img src="{{event.event_head_p2}}" alt="">
+					</div>
+					<div class="right-head">
+						<p class="name">{{head_two.name}}</p>
+						<p class="details">{{head_two.mobile}}</p>
+						<p class="details">{{head_two.active_email}}</p>
+					</div>
 				</div>
 				{% endif %}
 			</div>

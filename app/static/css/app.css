@@ -3324,12 +3324,11 @@ body.mobile .notifications .notification {
   position: fixed;
   background: #1f78ff;
   z-index: 2000;
+  height: 60px;
+  padding: 0;
 }
 .mobile.home-page .page-container {
   padding-top: 0;
-}
-.mobile.home-page #canvas {
-  margin-top: 60px;
 }
 .mobile.modal-view {
   overflow: hidden;
@@ -3493,13 +3492,11 @@ body.mobile .notifications .notification {
   height: auto;
   display: none;
   visibility: hidden;
-  transform: translateX(-20%);
-  opacity: 0;
-  transition: all 200ms ease-out;
+  transform: translateX(-100%);
+  transition: all 250ms ease-out;
 }
 .slide-menu ul {
   width: 100%;
-  margin-top: 50px;
   overflow-x: hidden;
 }
 .slide-menu.scrollable {
@@ -3507,6 +3504,16 @@ body.mobile .notifications .notification {
 }
 .slide-menu li {
   padding: 5px 0 5px 20px;
+}
+.slide-menu li.header {
+  height: 60px;
+  background: #0569ff;
+}
+.slide-menu li.header a {
+  padding: 15px 10px;
+  color: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  font-size: 24px;
 }
 .slide-menu li:focus,
 .slide-menu li.selected {
@@ -3518,15 +3525,15 @@ body.mobile .notifications .notification {
   color: rgba(255, 255, 255, 0.8);
 }
 .slide-menu li.sub a {
-  font-size: 22px;
+  font-size: 18px;
   color: #1c517a;
-  padding: 10px 10px 10px 25px;
+  padding: 5px 10px 5px 25px;
 }
 .slide-menu a {
   display: block;
-  padding: 15px 10px;
+  padding: 7px 10px;
   color: #091a27;
-  font-size: 26px;
+  font-size: 20px;
   text-decoration: none;
 }
 .slide-menu-cover {
@@ -3553,7 +3560,6 @@ body.mobile .notifications .notification {
 }
 .slide-menu-active .slide-menu {
   visibility: visible;
-  opacity: 1;
   transform: translateX(0);
 }
 .slide-menu-active .slide-menu-cover {

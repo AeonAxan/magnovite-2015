@@ -13,13 +13,11 @@
 
     visibility: hidden;
 
-    transform: translateX(-20%);
-    opacity: 0;
-    transition: all 200ms ease-out;
+    transform: translateX(-100%);
+    transition: all 250ms ease-out;
 
     ul {
         width: 100%;
-        margin-top: 50px;
         overflow-x: hidden;
     }
 
@@ -29,6 +27,18 @@
 
     li {
         padding: 5px 0 5px 20px;
+
+        &.header {
+            height: @mobile_banner_height;
+            background: darken(@banner_color, 5%);
+
+            a {
+                padding: 15px 10px;
+                color: rgba(255, 255, 255, 0.8);
+                pointer-events: none;
+                font-size: 24px;
+            }
+        }
 
         &:focus, &.selected {
             background: @bulb_gray;
@@ -41,18 +51,18 @@
 
         &.sub {
             a {
-                font-size: 22px;
+                font-size: 18px;
                 color: lighten(@bulb_gray, 20%);
-                padding: 10px 10px 10px 25px;
+                padding: 5px 10px 5px 25px;
             }
         }
     }
 
     a {
         display: block;
-        padding: 15px 10px;
+        padding: 7px 10px;
         color: @bulb_gray;
-        font-size: 26px;
+        font-size: 20px;
         text-decoration: none;
     }
 }
@@ -92,7 +102,6 @@
 .slide-menu-active {
     .slide-menu {
         visibility: visible;
-        opacity: 1;
         transform: translateX(0);
     }
 

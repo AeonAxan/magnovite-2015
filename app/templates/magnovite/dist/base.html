@@ -12,7 +12,7 @@
 
     {% block "extra_meta" %}{% endblock "extra_meta" %}
 
-    <link rel="stylesheet" href="/static/dist/style-918667f5.css"/>
+    <link rel="stylesheet" href="/static/dist/style-d494c592.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -126,7 +126,12 @@
     <div class="slide-menu">
         <ul>
             <li class="{% selected "/" %}"><a href="{% selected_url "/" %}">Home</a></li>
+
             <li class="{% selected "/events/" %}"><a href="{% selected_url "/events/" %}">Events</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#all" %}">All</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#technical" %}">Techical</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
+
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#schedule" %}">Schedule</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#help" %}">Help</a></li>
@@ -150,7 +155,7 @@
     app.DEBUG = false;
     </script>
 
-    <script src="/static/dist/app-5dad9bfb.js"></script>
+    <script src="/static/dist/app-a3e1f4d7.js"></script>
 
     {% block "post_js" %}{% endblock %}
 

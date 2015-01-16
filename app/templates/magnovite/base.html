@@ -130,7 +130,12 @@
     <div class="slide-menu">
         <ul>
             <li class="{% selected "/" %}"><a href="{% selected_url "/" %}">Home</a></li>
+
             <li class="{% selected "/events/" %}"><a href="{% selected_url "/events/" %}">Events</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#all" %}">All</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#technical" %}">Techical</a></li>
+            <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
+
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#schedule" %}">Schedule</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#help" %}">Help</a></li>

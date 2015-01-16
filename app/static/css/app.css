@@ -3249,7 +3249,6 @@ body.mobile .notifications .notification {
   width: 100%;
 }
 .mobile.page-events .s-right .card {
-  display: block;
   margin: 15px auto;
   width: 90%;
 }
@@ -3259,6 +3258,16 @@ body.mobile .notifications .notification {
 .mobile.page-events .s-right .s-scene {
   margin: 0;
   padding: 0;
+}
+.mobile.page-events .card {
+  display: none;
+}
+.mobile.page-events .filter-cultural .card.cultural,
+.mobile.page-events .filter-cse .card.cse,
+.mobile.page-events .filter-ec .card.ec,
+.mobile.page-events .filter-civil .card.civil,
+.mobile.page-events .filter-mech .card.mech {
+  display: block;
 }
 .mobile.browser-height {
   overflow: auto;
@@ -3468,7 +3477,8 @@ body.mobile .notifications .notification {
   z-index: 5100;
   display: none;
   visibility: hidden;
-  transform: translateX(-100%);
+  transform: translateX(-20%);
+  opacity: 0;
   transition: all 200ms ease-out;
 }
 .slide-menu ul {
@@ -3488,8 +3498,9 @@ body.mobile .notifications .notification {
   color: rgba(255, 255, 255, 0.8);
 }
 .slide-menu li.sub a {
-  font-size: 24px;
-  padding-left: 25px;
+  font-size: 22px;
+  color: #1c517a;
+  padding: 10px 10px 10px 25px;
 }
 .slide-menu a {
   display: block;
@@ -3522,6 +3533,7 @@ body.mobile .notifications .notification {
 }
 .slide-menu-active .slide-menu {
   visibility: visible;
+  opacity: 1;
   transform: translateX(0);
 }
 .slide-menu-active .slide-menu-cover {

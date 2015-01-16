@@ -22,7 +22,6 @@
 	.s-right {
 		width: 100%;
 		.card {
-			display: block;
 			margin: 15px auto;
 			width: 90%;
 			.tags {
@@ -34,6 +33,19 @@
 			padding: 0;
 		}
 	}
+
+	.card {
+		display: none;
+	}
+
+	.filter-cultural .card.cultural,
+	.filter-cse .card.cse,
+	.filter-ec .card.ec,
+	.filter-civil .card.civil,
+	.filter-mech .card.mech {
+	    display: block;
+	}
+
 }
 
 .mobile.browser-height {

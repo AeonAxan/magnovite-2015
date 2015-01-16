@@ -11,11 +11,7 @@ app.events = {};
     app.events.init = function() {
         $events = $('.events-page');
 
-        var hash = window.location.hash;
-        if (hash === '#technical' || hash === '#cultural') {
-            $events.removeClass('filter-technical', 'filter-cultural');
-            $events.addClass('filter-' + hash.substring(1));
-        }
+        filterByHash();
 
         $('.js-technical').on('click', technicalToggle);
         $('.js-cultural').on('click', culturalToggle);
@@ -26,6 +22,46 @@ app.events = {};
 
         $('.s-right').on('click', tagClicked);
     };
+
+    function filterByHash() {
+        var hash = window.location.hash.substring(1);
+        if (hash === 'technical') {
+            onlyTechnical();
+        } else if (hash === 'cultural') {
+            onlyCultural();
+        } else {
+            showAll();
+        }
+    }
+
+    $(window).on('hashchange', filterByHash);
+
+    function showAll() {
+        $events.addClass([
+            'filter-cse', 'filter-ec',
+            'filter-civil', 'filter-mech',
+            'filter-cultural', 'filter-technical'
+        ].join(' '));
+    }
+
+    function onlyTechnical() {
+        $events.addClass([
+            'filter-cse', 'filter-ec',
+            'filter-civil', 'filter-mech',
+        ].join(' '));
+
+        $events.removeClass('filter-cultural');
+    }
+
+    function onlyCultural() {
+        $events.removeClass([
+            'filter-cse', 'filter-ec',
+            'filter-civil', 'filter-mech',
+            'filter-technical'
+        ].join(' '));
+
+        $events.addClass('filter-cultural');
+    }
 
     function tagClicked(e) {
         if (!$(e.target).hasClass('tag')) {

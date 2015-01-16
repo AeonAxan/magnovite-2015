@@ -26,7 +26,13 @@
 <div class="landing">
     <div class="top-banner">
         <div class="inner-banner">
-            <img class="christ" src="/static/img/christ.png" />
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/img/mlogo.png" class="logo-mobile js-drawer" alt="Magnovite">
+                </a>
+            </div>
+
+            <img class="christ desktop-only" src="/static/img/christ.png" />
 
             <div class="user-settings
                 {% if user.is_authenticated %}logged-in{% endif %}">
@@ -499,7 +505,7 @@
         </div>
     </div>
 </div>
-
+</div>
 {% endblock %}
 
 {% block "pre_js" %}

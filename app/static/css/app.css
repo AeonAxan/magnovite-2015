@@ -297,10 +297,10 @@ h3 {
 }
 ::-webkit-scrollbar {
   width: 7px;
-  background-color: rgba(77, 205, 255, 0.8);
+  background-color: #1f78ff;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(77, 205, 255, 0.8);
+  background-color: #1f78ff;
 }
 .container {
   width: 1120px;
@@ -678,7 +678,7 @@ input.gray:focus {
 .banner {
   width: 100%;
   height: 80px;
-  background: #0066ff;
+  background: #1f78ff;
   z-index: 999;
 }
 .banner .banner-inner {
@@ -755,7 +755,7 @@ input.gray:focus {
   background: #007ada;
 }
 .banner .user-settings .dropdown li {
-  background: #0066ff;
+  background: #1f78ff;
 }
 .banner .user-settings .dropdown li:hover {
   background: #007ada;
@@ -972,12 +972,12 @@ body.mobile .notifications .notification {
   margin-bottom: 2px;
 }
 #canvas {
-  background: #091a27;
+  background: #053468;
   vertical-align: bottom;
 }
 .landing {
   height: 700px;
-  background: #091a27;
+  background: #053468;
 }
 .landing-bar {
   background: #01070f;
@@ -1338,7 +1338,7 @@ body.mobile .notifications .notification {
   width: 100%;
   height: 80px;
   padding: 10px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), #091a27);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), #053468);
   opacity: 0;
   transform: translateY(-5px);
 }
@@ -3198,6 +3198,12 @@ body.mobile .notifications .notification {
 .mobile-description {
   display: none;
 }
+.top-banner .logo {
+  display: none;
+}
+.mobile.home-page .top-banner .logo {
+  display: inline-block;
+}
 .mobile.home-page .mobile-bulb {
   padding: 40px 0;
   background: #091a27;
@@ -3268,20 +3274,33 @@ body.mobile .notifications .notification {
 .mobile .modal-active.modal {
   z-index: 10000;
 }
+.mobile .banner {
+  height: 60px;
+}
+.mobile .banner .banner-inner {
+  height: 60px;
+}
 .mobile .logo {
-  width: 70px;
-  height: 70px;
-  margin: 5px 0 5px 20px;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 80px;
+  width: auto;
+  height: 60px;
+  padding: 5px 0;
+}
+.mobile .logo a {
+  display: block;
 }
 .mobile .logo .logo-desktop {
   display: none;
 }
 .mobile .logo .logo-mobile {
   display: block;
-  margin: 0 auto 5px auto;
-  height: 75px;
+  height: 50px;
+}
+.mobile .user-settings {
+  height: 60px;
+  line-height: 60px;
+}
+.mobile .user-settings a {
+  line-height: 50px;
 }
 .mobile p.help-text {
   color: rgba(0, 0, 0, 0.8);
@@ -3384,7 +3403,7 @@ body.mobile .notifications .notification {
 .mobile.page-profile .s-left .s-section-list li.selected {
   background: transparent;
   color: rgba(255, 255, 255, 0.95);
-  border-bottom: 3px solid #0066ff;
+  border-bottom: 3px solid #1f78ff;
 }
 .mobile.page-profile .s-left .s-section-list li:hover .s-item-inner,
 .mobile.page-profile .s-left .s-section-list li.selected .s-item-inner {
@@ -3437,4 +3456,75 @@ body.mobile .notifications .notification {
 }
 .mobile.page-profile .schedule-scene .sq-more {
   width: 20%;
+}
+.slide-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 70%;
+  height: 100%;
+  background: #f6f6f6;
+  z-index: 5100;
+  display: none;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: all 200ms ease-out;
+  transition-delay: 100ms;
+}
+.slide-menu ul {
+  width: 100%;
+  margin-top: 150px;
+}
+.slide-menu li {
+  padding: 5px 0 5px 20px;
+}
+.slide-menu li:focus,
+.slide-menu li.selected {
+  background: #091a27;
+  margin-right: -5px;
+}
+.slide-menu li:focus a,
+.slide-menu li.selected a {
+  color: rgba(255, 255, 255, 0.8);
+}
+.slide-menu li.sub a {
+  font-size: 24px;
+  padding-left: 25px;
+}
+.slide-menu a {
+  display: block;
+  padding: 15px 10px;
+  color: #091a27;
+  font-size: 26px;
+  text-decoration: none;
+}
+.slide-menu-cover {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 5000;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+.mobile .slide-menu {
+  display: block;
+}
+.mobile .slide-menu-cover {
+  display: block;
+}
+.slide-menu-active .slide-menu {
+  visibility: visible;
+  transform: translateX(0);
+}
+.slide-menu-active .slide-menu-cover {
+  visibility: visible;
+  opacity: 1;
+}
+.slide-menu-active .full-body {
+  transform: scale(0.95, 0.95);
 }

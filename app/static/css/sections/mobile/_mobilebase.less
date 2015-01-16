@@ -3,6 +3,8 @@
 }
 
 .mobile {
+	@mobile_banner: 60px;
+
 	.access {
 		display: none;
 	}
@@ -15,12 +17,22 @@
 		z-index: 10000;
 	}
 
+	.banner {
+		height: @mobile_banner;
+
+		.banner-inner {
+			height: @mobile_banner;
+		}
+	}
+
 	.logo {
-		width: 70px;
-		height: 70px;
-		margin: 5px 0 5px 20px;
-		background: rgba(0, 0, 0, .15);
-		border-radius: 80px;
+		width: auto;
+		height: @mobile_banner;
+		padding: 5px 0;
+
+		a {
+			display: block;
+		}
 
 		.logo-desktop {
 			display: none;
@@ -28,8 +40,16 @@
 
 		.logo-mobile {
 			display: block;
-			margin: 0 auto 5px auto;
-			height: 75px;
+			height: @mobile_banner - 10px;
+		}
+	}
+
+	.user-settings {
+		height: @mobile_banner;
+		line-height: @mobile_banner;
+
+		a {
+			line-height: @mobile_banner - 10px;
 		}
 	}
 

@@ -3284,7 +3284,11 @@ body.mobile .notifications .notification {
 .mobile .modal-active.modal {
   z-index: 10000;
 }
+.mobile .page-container {
+  padding-top: 60px;
+}
 .mobile .banner {
+  position: fixed;
   height: 60px;
 }
 .mobile .banner .banner-inner {
@@ -3315,6 +3319,17 @@ body.mobile .notifications .notification {
 .mobile p.help-text {
   color: rgba(0, 0, 0, 0.8);
   padding: 2px;
+}
+.mobile.home-page .top-banner {
+  position: fixed;
+  background: #1f78ff;
+  z-index: 2000;
+}
+.mobile.home-page .page-container {
+  padding-top: 0;
+}
+.mobile.home-page #canvas {
+  margin-top: 60px;
 }
 .mobile.modal-view {
   overflow: hidden;

@@ -25,10 +25,9 @@ var app = app || {};
         $(document.body).on('touchmove', cancelEvent);
 
         $(document.body).delegate('.slide-menu a, .slide-menu-cover',
-                'click', function(e) {
+                'click', closeDrawer);
 
-            closeDrawer();
-        });
+        $('.js-slide-close').on('click', closeDrawer);
     }
 
     function closeDrawer() {

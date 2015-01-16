@@ -30,6 +30,7 @@
 
     li {
         padding: 5px 0 5px 20px;
+        position: relative;
 
         &.header {
             height: @mobile_banner_height;
@@ -67,6 +68,16 @@
         color: @bulb_gray;
         font-size: 20px;
         text-decoration: none;
+    }
+
+    .close {
+        color: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 22px;
+        padding: 20px;
+        height: @mobile_banner_height;
     }
 }
 

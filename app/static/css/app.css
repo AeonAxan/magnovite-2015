@@ -876,9 +876,13 @@ input.gray:focus {
   color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
 }
-.mobile .login-modal div.buttons div.social-button {
-  margin: 15px auto;
-  display: block;
+.mobile .login-modal div.buttons .social-button {
+  width: 60px;
+  height: 60px;
+}
+.mobile .login-modal img {
+  width: 60px;
+  height: 60px;
 }
 .info-circle {
   width: 50px;
@@ -2415,7 +2419,7 @@ body.mobile .notifications .notification {
 }
 .page .right .heads .head {
   width: 100%;
-  padding: 20px 10px;
+  padding: 5px 10px;
   overflow: hidden;
 }
 .page .right .heads .left-head {
@@ -2426,6 +2430,7 @@ body.mobile .notifications .notification {
   float: left;
   width: 65%;
   padding-top: 10px;
+  padding-left: 5px;
 }
 .page .right .heads img {
   width: 100px;
@@ -3330,6 +3335,9 @@ body.mobile .notifications .notification {
 .mobile.home-page .page-container {
   padding-top: 0;
 }
+.mobile.event-details .page-container {
+  padding-top: 0;
+}
 .mobile.modal-view {
   overflow: hidden;
   position: fixed;
@@ -3397,6 +3405,17 @@ body.mobile .notifications .notification {
 }
 .mobile .container .markdown h3 {
   line-height: 1.3em;
+}
+.mobile .right .heads img {
+  width: 60px;
+  height: 60px;
+}
+.mobile .right .heads .left-head {
+  width: 30%;
+}
+.mobile .right .heads .right-head {
+  width: 70%;
+  padding-top: 5px;
 }
 .mobile.page-profile .s-right {
   width: 100%;
@@ -3506,6 +3525,7 @@ body.mobile .notifications .notification {
 }
 .slide-menu li {
   padding: 5px 0 5px 20px;
+  position: relative;
 }
 .slide-menu li.header {
   height: 60px;
@@ -3537,6 +3557,15 @@ body.mobile .notifications .notification {
   color: #091a27;
   font-size: 20px;
   text-decoration: none;
+}
+.slide-menu .close {
+  color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 22px;
+  padding: 20px;
+  height: 60px;
 }
 .slide-menu-cover {
   position: fixed;

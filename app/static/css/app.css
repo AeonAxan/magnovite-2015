@@ -3492,6 +3492,8 @@ body.mobile .notifications .notification {
   height: auto;
   display: none;
   visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000;
   transform: translateX(-100%);
   transition: all 250ms ease-out;
 }

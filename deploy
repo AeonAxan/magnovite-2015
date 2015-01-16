@@ -34,8 +34,13 @@ else
     APP=magnovite-staging
 fi
 
-echo ">>>> Migrationg heroku app $APP"
-heroku run ./manage.py migrate --app="$APP"
+if echo $* | grep -e "--no-migrate" -q
+then
+    echo ">>>> Skipping Migrating step"
+else
+    echo ">>>> Migrationg heroku app $APP"
+    heroku run ./manage.py migrate --app="$APP"
+fi
 
 git checkout master
 git push origin master

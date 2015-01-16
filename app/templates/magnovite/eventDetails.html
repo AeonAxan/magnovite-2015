@@ -1,6 +1,22 @@
 {% extends "magnovite/base.html" %}
-
 {% load humanize %}
+
+{% block "extra_meta" %}
+<meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 21st and 22nd of February 2015." />
+<meta name="keywords" content="Magnovite,Tech Fest" />
+<meta name="author" content="CUFE" />
+
+<meta property="og:title" content="{{event.title}} | Magnovite 2015" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{event.cover}}" />
+<meta property="og:url" content="{{event.get_absolute_url}}" />
+<meta property="og:description" content="{{event.quote}}" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{event.title}} | Magnovite 2015" />
+<meta name="twitter:description" content="{{event.quote}}" />
+<meta name="twitter:image" content="{{event.cover}}" />
+{% endblock "extra_meta" %}
 
 {% block "body_css_class" %}
 event-details {{event.type}}-event

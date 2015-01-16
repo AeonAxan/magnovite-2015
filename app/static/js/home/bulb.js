@@ -37,7 +37,7 @@ app.bulb = {};
     app.bulb.init = function() {
         // time needed for hexagon animations
         var hexLines = 400 * 2;
-        var hexM = 2000;
+        var hexM = 10000;
 
         // time needed for pane split animation
         var splitPane = 300 + 600;
@@ -103,7 +103,7 @@ app.bulb = {};
      */
     function startDefaultDelay(e, time) {
         if (time === undefined) {
-            time = 2000;
+            time = 10000;
         }
 
         if (hoverTimeout) {

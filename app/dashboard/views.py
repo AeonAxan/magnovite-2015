@@ -71,18 +71,6 @@ def analytics(req):
 
         out.append(obj)
 
-    # change cumiliative data to daily
-    for i in range(1, len(out)):
-        day = out[i]
-        yesterday = out[i-1]
-
-        for event in day['events']:
-            for event_y in yesterday['events']:
-                if event['id'] == event_y['id']:
-                    event['views'] -= event_y['views']
-                    event['registrations'] -= event_y['registrations']
-
-
     return JsonResponse(out, safe=False)
 
 

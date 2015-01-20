@@ -1878,10 +1878,10 @@ body.mobile .notifications .notification {
   color: white;
 }
 .card.technical .header {
-  background: #ff1a1a;
+  background-image: url("http://i.imgur.com/EqmedRo.jpg");
 }
 .card.cultural .header {
-  background: #00c853;
+  background-image: url("http://i.imgur.com/WkI9sQO.jpg");
 }
 .card .content {
   color: #444;

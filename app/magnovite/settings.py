@@ -16,7 +16,11 @@ ADMINS = (
     ('Ahmed Azaan', 'azaan@outlook.com'),
 )
 
-HELP_INCHARGE = ('azaan@outlook.com',)
+HELP_INCHARGE = (
+    'azaan@outlook.com',
+    'sandeep.kumar@it.christuniversity.in',
+    'arjunjariwala1994@gmail.com',
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/

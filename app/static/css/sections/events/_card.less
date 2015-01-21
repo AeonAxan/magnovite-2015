@@ -8,6 +8,7 @@
     text-align: left;
     position: relative;
     border-radius: 3px;
+    overflow: hidden;
 
     // load animation
     opacity: 0;
@@ -21,7 +22,6 @@
         color: rgba(255, 255, 255, 0.9);
         height: 80px;
         line-height: 40px;
-        border-radius: 3px 3px 0 0;
         font-weight: normal;
         cursor: pointer;
 
@@ -38,11 +38,11 @@
     }
 
     &.technical .header {
-        background: @color_tech;
+        background-image: url("/static/img/card_tech_bg.jpg");
     }
 
     &.cultural .header {
-        background: @color_cult;
+        background-image: url("/static/img/card_cult_bg.jpg");
     }
 
     .content {

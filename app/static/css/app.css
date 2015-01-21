@@ -1854,6 +1854,7 @@ body.mobile .notifications .notification {
   text-align: left;
   position: relative;
   border-radius: 3px;
+  overflow: hidden;
   opacity: 0;
   transform: translateX(-5px);
 }
@@ -1864,7 +1865,6 @@ body.mobile .notifications .notification {
   color: rgba(255, 255, 255, 0.9);
   height: 80px;
   line-height: 40px;
-  border-radius: 3px 3px 0 0;
   font-weight: normal;
   cursor: pointer;
 }
@@ -1878,10 +1878,10 @@ body.mobile .notifications .notification {
   color: white;
 }
 .card.technical .header {
-  background-image: url("http://i.imgur.com/EqmedRo.jpg");
+  background-image: url("/static/img/card_tech_bg.jpg");
 }
 .card.cultural .header {
-  background-image: url("http://i.imgur.com/WkI9sQO.jpg");
+  background-image: url("/static/img/card_cult_bg.jpg");
 }
 .card .content {
   color: #444;

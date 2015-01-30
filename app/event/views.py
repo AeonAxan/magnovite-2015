@@ -92,8 +92,11 @@ def register(req, id, team_id=None):
             'errorMessage': 'You need to complete your profile first'
         }, status=400)
 
+
+    event = get_object_or_404(Event, id=id)
+
     # you cannot register if you are on the blank pack
-    if req.user.profile.pack == 'none':
+    if event.is_individual() and req.user.profile.pack == 'none':
         return JsonResponse({
             'errorCode': 'no_pack',
             'actionType': 'redirect',
@@ -102,23 +105,22 @@ def register(req, id, team_id=None):
             'errorMessage': 'You need to opt-in for a pack before registering. Follow the link below'
         }, status=400)
 
-    if (req.user.profile.pack == 'single' and
-        req.user.profile.registered_events.count() == 1):
+    if (event.is_individual() and
+        req.user.profile.pack == 'single' and
+        req.user.profile.registered_events.filter(is_team=False).count() == 1):
         return JsonResponse({
             'errorCode': 'pack_full',
             'actionType': 'redirect',
             'actionText': 'Upgrade Pack',
             'redirectLocation': '/profile/#pack',
-            'errorMessage': 'You have opted for Single Pack. You can only register to one event.'
+            'errorMessage': 'You have opted for Single Pack. You can only register to one individual event.'
         }, status=400)
-
-    event = get_object_or_404(Event, id=id)
 
     r = Registration()
     r.event = event
     r.profile = req.user.profile
 
-    if event.is_team():
+    if event.is_team:
         # team registrations
         # If team id is not given, a new create will be crated for this
         # user/event combo and the user will be registered in that team
@@ -155,7 +157,7 @@ def register(req, id, team_id=None):
     event.registrations += 1
     event.save()
 
-    if event.is_team():
+    if event.is_team:
         registrations = Registration.objects.filter(team_id=team_id)
         names = [r.profile for r in registrations]
 

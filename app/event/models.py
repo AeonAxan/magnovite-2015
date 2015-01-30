@@ -59,6 +59,8 @@ class Event(models.Model):
         default=1
     )
 
+    is_team = models.BooleanField(default=False)
+
     # if not technical, then cultural
     technical = models.BooleanField(default=True, help_text='If cultural set to false')
 
@@ -125,9 +127,6 @@ class Event(models.Model):
             return 'Complete'
         else:
             return str(count) + '/' + str(len(fields))
-
-    def is_team(self):
-        return not bool(self.team_min == 1 and self.team_max == 1)
 
     def type(self):
         if self.technical:

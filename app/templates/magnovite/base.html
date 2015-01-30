@@ -284,7 +284,8 @@
     {% for message in messages %}
         app.notification.notify({
             text: '{{message}}',
-            type: '{{message.tags}}'
+            type: '{{message.tags}}',
+            persistant: true
         });
     {% endfor %}
     </script>

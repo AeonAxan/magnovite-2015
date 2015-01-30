@@ -156,18 +156,18 @@ PAYU_MERCHANT_KEY = os.environ.get('PAYU_MERCHANT_KEY', '')
 PAYU_MERCHANT_SALT = os.environ.get('PAYU_MERCHANT_SALT', '')
 
 PAYU_URL = 'https://secure.payu.in/_payment'
-PAYU_SUCCESS_URL = 'https://magnovite.net/payments/success/'
-PAYU_FAILURE_URL = 'https://magnovite.net/payments/failure/'
-PAYU_NOTIFY_URL = 'https://magnovite.net/payments/notify/'
+PAYU_SUCCESS_URL = 'https://magnovite.net/payment/success/'
+PAYU_FAILURE_URL = 'https://magnovite.net/payment/failure/'
+PAYU_NOTIFY_URL = 'https://magnovite.net/payment/notify/'
 
 if DEBUG:
     PAYU_MERCHANT_KEY = 'JBZaLc'
     PAYU_MERCHANT_SALT = 'GQs7yium'
 
     PAYU_URL = 'https://test.payu.in/_payment'
-    PAYU_SUCCESS_URL = 'http://localhost:8000/payments/success/'
-    PAYU_FAILURE_URL = 'https://localhost:8000/payments/failure/'
-    PAYU_NOTIFY_URL = 'https://localhost:8000/payments/notify/'
+    PAYU_SUCCESS_URL = 'http://localhost:8000/payment/success/'
+    PAYU_FAILURE_URL = 'https://localhost:8000/payment/failure/'
+    PAYU_NOTIFY_URL = 'https://localhost:8000/payment/notify/'
 
 
 LOGIN_REDIRECT_URL = '/profile/'

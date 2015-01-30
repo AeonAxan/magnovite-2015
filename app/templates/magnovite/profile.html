@@ -101,7 +101,7 @@ app.profile.init();
                 <div class="section base-pack">
                     <div class="inner-pane">
                         <div class="my-pack">
-                            <p>Your current pack <span class="name">{{profile.get_pack_display}}</span></p>
+                            <p>Activated Pack: <span class="name">{{profile.get_pack_display}}</span></p>
                         </div>
 
                         <div class="pack-outer">
@@ -126,7 +126,7 @@ app.profile.init();
                             {% if profile.pack == "single" %}
                             <div class="pack-bottom yours"><span class="check"></span></div>
                             {% elif profile.pack == "none" %}
-                            <div class="pack-bottom choose">Activate</div>
+                            <div data-type="single" class="pack-bottom choose js-pack-activate">Activate</div>
                             {% endif %}
                         </div>
 
@@ -134,15 +134,21 @@ app.profile.init();
                              <div class="pack-box pack-multiple">
                                 <div class="top">Multiple</div>
                                 <div class="bottom">
+                                    {% if profile.pack == "single" %}
+                                    <p class="price">₹ 100</p>
+                                    {% else %}
                                     <p class="price">₹ 200</p>
+                                    {% endif %}
                                     <p class="text">1+ Events</p>
                                 </div>
                             </div>
 
                             {% if profile.pack == "multiple" %}
                             <div class="pack-bottom yours"><span class="check"></span></div>
+                            {% elif profile.pack == "single" %}
+                            <div data-type="upgrade" class="pack-bottom choose js-pack-activate">Upgrade</div>
                             {% else %}
-                            <div class="pack-bottom choose">Activate</div>
+                            <div data-type="multiple" class="pack-bottom choose js-pack-activate">Activate</div>
                             {% endif %}
                         </div>
                     </div>

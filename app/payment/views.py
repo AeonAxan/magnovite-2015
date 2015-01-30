@@ -1,3 +1,5 @@
+import hashlib
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
@@ -6,7 +8,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from app.main.models import Profile
-from app.event.models import Event
+from app.event.models import Event, Registration
 
 from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
@@ -128,7 +130,17 @@ def process_invoice(req, invoice):
         return redirect('/profile/#pack')
 
     elif invoice.invoice_type == 'team':
-        return redirect('/profile/#pack')
+        corpus = req.user.email + invoice.event.slug + settings.SECRET_KEY[:10]
+        team_id = hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
+
+        r = Registration()
+        r.event = invoice.event
+        r.profile = req.user.profile
+        r.team_id = team_id
+        r.is_owner = True
+        r.save()
+
+        return redirect(r.event.get_absolute_url() + '#view-team')
 
     # invalid invoice
     return None

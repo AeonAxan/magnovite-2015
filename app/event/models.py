@@ -197,6 +197,8 @@ class Registration(models.Model):
     # then the team id
     team_id = models.CharField(max_length=5, blank=True, null=True)
 
+    is_owner = models.BooleanField(default=False)
+
     class Meta:
         unique_together = ['event', 'profile']
         permissions = (

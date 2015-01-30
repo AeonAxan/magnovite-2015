@@ -42,8 +42,6 @@ def test_checksum(obj):
     fields = reversed(PAYU_FIELDS + ['status'])
 
     text = settings.PAYU_MERCHANT_SALT + '|' + '|'.join(map(lambda key: str(obj.get(key, '')), fields))
-    print(text)
     hashcode = hashlib.sha512(text.encode('utf-8')).hexdigest()
-    print(hashcode)
 
     return obj.get('hash', '') == hashcode

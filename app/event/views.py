@@ -41,8 +41,11 @@ def details(req, slug):
 
     team_profiles = []
     team_id = ''
-    if is_registered and event.is_team():
-        team_id = Registration.objects.get(event=event, profile=req.user.profile).team_id
+    team_owner = False
+    if is_registered and event.is_team:
+        reg_obj = Registration.objects.get(event=event, profile=req.user.profile)
+        team_id = reg_obj.team_id
+        team_owner = reg_obj.is_owner
         team_profiles = [x.profile for x in Registration.objects.filter(team_id=team_id)]
 
         # add dummy profiles so the list has empty placeholders
@@ -64,7 +67,8 @@ def details(req, slug):
         'head_one': head_one,
         'head_two': head_two,
         'team_profiles': team_profiles,
-        'team_id': team_id
+        'team_id': team_id,
+        'team_owner': team_owner
     })
 
 
@@ -96,7 +100,7 @@ def register(req, id, team_id=None):
     event = get_object_or_404(Event, id=id)
 
     # you cannot register if you are on the blank pack
-    if event.is_individual() and req.user.profile.pack == 'none':
+    if not event.is_team and req.user.profile.pack == 'none':
         return JsonResponse({
             'errorCode': 'no_pack',
             'actionType': 'redirect',
@@ -105,7 +109,7 @@ def register(req, id, team_id=None):
             'errorMessage': 'You need to opt-in for a pack before registering. Follow the link below'
         }, status=400)
 
-    if (event.is_individual() and
+    if (not event.is_team and
         req.user.profile.pack == 'single' and
         req.user.profile.registered_events.filter(is_team=False).count() == 1):
         return JsonResponse({

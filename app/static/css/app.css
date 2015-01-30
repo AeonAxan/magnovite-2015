@@ -805,13 +805,13 @@ input.gray:focus {
   color: rgba(255, 255, 255, 0.4);
 }
 .banner .user-settings .text:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #5297ff;
 }
 .banner .user-settings .dropdown li {
   background: #1f78ff;
 }
 .banner .user-settings .dropdown li:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #5297ff;
 }
 .stage-view .banner-inner {
   max-width: 1300px;
@@ -851,10 +851,10 @@ input.gray:focus {
   text-decoration: none;
 }
 .banner-page-link a:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #5297ff;
 }
 .banner-page-link.selected a {
-  background: rgba(255, 255, 255, 0.3);
+  background: #5297ff;
   font-weight: bold;
   cursor: default;
   pointer-events: none;
@@ -2195,6 +2195,7 @@ body.mobile .notifications .notification {
 }
 .event-cover .image {
   width: 100%;
+  min-height: 300px;
 }
 .event-cover .content {
   height: 150px;
@@ -2674,6 +2675,9 @@ body.mobile .notifications .notification {
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
 }
+.team-create-modal .modal-inner {
+  margin-top: 150px;
+}
 .team-create-modal .btn-invoice {
   width: 250px;
 }
@@ -2863,6 +2867,18 @@ body.mobile .notifications .notification {
   font-size: 28px;
   padding-left: 20px;
 }
+.schedule-scene .strip .sq-event .title {
+  height: 80px;
+  line-height: 80px;
+}
+.schedule-scene .strip .sq-event .small {
+  height: 20px;
+  line-height: 1px;
+  vertical-align: top;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-left: 3px;
+}
 .schedule-scene .strip .sq-contact {
   width: 350px;
   height: 100px;
@@ -2963,12 +2979,12 @@ body.mobile .notifications .notification {
   clear: both;
 }
 .pack-scene .inner-pane {
-  width: 450px;
+  max-width: 450px;
   float: left;
 }
 .pack-scene ul {
   list-style: disc;
-  padding: 20px;
+  margin: 40px 0 0 40px;
 }
 .pack-scene ul li {
   margin-bottom: 5px;
@@ -3013,35 +3029,71 @@ body.mobile .notifications .notification {
   background-repeat: no-repeat;
   height: 25px;
   width: 25px;
-  margin-left: 35px;
+  margin-left: 45px;
   float: left;
 }
 .pack-scene .pack-box {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   vertical-align: bottom;
-  line-height: 100px;
+  line-height: 120px;
   text-align: center;
   background: #51565c;
 }
 .pack-scene .pack-box .top {
   width: 100%;
-  height: 30px;
-  line-height: 30px;
+  height: 36px;
+  line-height: 36px;
   background: #1f78ff;
   font-weight: bold;
 }
 .pack-scene .pack-box .bottom {
   width: 100%;
-  height: 70px;
+  height: 84px;
 }
 .pack-scene .pack-box .bottom .price {
-  line-height: 50px;
+  line-height: 60px;
   font-size: 19px;
 }
 .pack-scene .pack-box .bottom .text {
-  line-height: 10px;
+  line-height: 12px;
   font-size: 15px;
+}
+.pack-scene .event-box {
+  width: 200px;
+  height: 100px;
+  background: red;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 20px 10px;
+  display: inline-block;
+}
+.pack-scene .event-box .title {
+  font-size: 18px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+}
+.pack-scene .event-box.technical:hover .title {
+  background: #ff0000;
+}
+.pack-scene .event-box.cultural:hover .title {
+  background: #00ee30;
+}
+.pack-scene .event-box.technical .title {
+  background: #df0000;
+}
+.pack-scene .event-box.cultural .title {
+  background: #00bd1e;
+}
+.pack-scene .event-box .members {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #51565c;
 }
 .quest-page-outer {
   background: #2f2f2f;

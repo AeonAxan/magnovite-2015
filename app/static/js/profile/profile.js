@@ -20,10 +20,10 @@ app.profile = {};
 
         var type = $(e.target).data('type');
         $.get('/payment/generate/' + type + '/')
-            .done(function(data) {
-                $(data).submit();
+            .done(function(html) {
+                $(html).submit();
 
-                NProgress.set(0.8);
+                NProgress.set(0.9);
             })
             .fail(function() {
                 app.notification.notify({

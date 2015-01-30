@@ -78,7 +78,7 @@ app.eventDetails.init();
 				<li>All members of the team must register on Magnovite.net to join the team</li>
 				<li>Payments towards creating a team is specific to the event and cannot be transferred later.</li>
 			</ul>
-			<div class="button gray btn-invoice js-generate-invoice">Generate Invoice</div>
+			<div data-type="team" data-id="{{event.id}}" class="button gray btn-invoice js-create-team">Create Team</div>
 		</div>
 	</div>
 </div>
@@ -107,9 +107,11 @@ app.eventDetails.init();
 					your team
 				</p>
 
+				{% if not team_owner %}
 				<div class="button gray leave-team js-leave">
 					Leave Team
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -164,7 +166,11 @@ app.eventDetails.init();
 								<p class="text js-text">Register</p>
 							{% endif %}
 
+							{% if team_owner %}
+							<p class="extra">(Team Owner)</p>
+							{% else %}
 							<p class="extra">(or Unregister)</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

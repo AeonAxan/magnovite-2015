@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'app.quest',
     'app.dashboard',
     'app.message',
+    'app.payment',
 )
 
 if DEBUG:
@@ -148,6 +149,26 @@ SOCIALACCOUNT_PROVIDERS = {
 if not DEBUG:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 SOCIALACCOUNT_ADAPTER = 'app.main.allauth.MSocialAccountAdapter'
+
+# payment settings
+PAYU_MERCHANT_ID = os.environ.get('PAYU_MERCHANT_ID', '')
+PAYU_MERCHANT_KEY = os.environ.get('PAYU_MERCHANT_KEY', '')
+PAYU_MERCHANT_SALT = os.environ.get('PAYU_MERCHANT_SALT', '')
+
+PAYU_URL = 'https://secure.payu.in/_payment'
+PAYU_SUCCESS_URL = 'https://magnovite.net/payments/success/'
+PAYU_FAILURE_URL = 'https://magnovite.net/payments/failure/'
+PAYU_NOTIFY_URL = 'https://magnovite.net/payments/notify/'
+
+if DEBUG:
+    PAYU_MERCHANT_KEY = 'JBZaLc'
+    PAYU_MERCHANT_SALT = 'GQs7yium'
+
+    PAYU_URL = 'https://test.payu.in/_payment'
+    PAYU_SUCCESS_URL = 'http://localhost:8000/payments/success/'
+    PAYU_FAILURE_URL = 'https://localhost:8000/payments/failure/'
+    PAYU_NOTIFY_URL = 'https://localhost:8000/payments/notify/'
+
 
 LOGIN_REDIRECT_URL = '/profile/'
 LOGIN_URL = '/#login'

@@ -2413,6 +2413,12 @@ body.mobile .notifications .notification {
 .page .right .register-container .register-button.registered .inner {
   padding-left: 40px;
 }
+.page .right .register-container .register-button.registered .check {
+  background: url('/static/img/check.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+}
 .page .right .register-container .register-button.team-event.registered .extra {
   display: block;
 }
@@ -2676,7 +2682,8 @@ body.mobile .notifications .notification {
 }
 .page-profile .profile-scene-on .profile-scene,
 .page-profile .schedule-scene-on .schedule-scene,
-.page-profile .help-scene-on .help-scene {
+.page-profile .help-scene-on .help-scene,
+.page-profile .pack-scene-on .pack-scene {
   display: block;
 }
 .profile-scene .errorlist {
@@ -2949,6 +2956,92 @@ body.mobile .notifications .notification {
 }
 .schedule-scene .strip.technical .sq-more {
   background: #cf0000;
+}
+.pack-scene .section {
+  margin: 20px 0 20px 0;
+  overflow: hidden;
+  clear: both;
+}
+.pack-scene .inner-pane {
+  width: 450px;
+  float: left;
+}
+.pack-scene ul {
+  list-style: disc;
+  padding: 20px;
+}
+.pack-scene ul li {
+  margin-bottom: 5px;
+}
+.pack-scene ul b {
+  font-weight: bold;
+}
+.pack-scene .my-pack {
+  font-size: 18px;
+}
+.pack-scene .my-pack .name {
+  font-weight: bold;
+}
+.pack-scene .pack-outer {
+  margin: 20px 10px;
+  height: 150px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.pack-scene .pack-bottom {
+  margin: 10px 0;
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100%;
+  height: 35px;
+}
+.pack-scene .pack-bottom.choose {
+  cursor: pointer;
+}
+.pack-scene .pack-bottom.choose:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.pack-scene .pack-bottom.yours {
+  background: rgba(255, 255, 255, 0.1);
+}
+.pack-scene .pack-bottom.yours .check {
+  background: url('/static/img/check_green.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 25px;
+  margin-left: 35px;
+  float: left;
+}
+.pack-scene .pack-box {
+  width: 100px;
+  height: 100px;
+  vertical-align: bottom;
+  line-height: 100px;
+  text-align: center;
+  background: #51565c;
+}
+.pack-scene .pack-box .top {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background: #1f78ff;
+  font-weight: bold;
+}
+.pack-scene .pack-box .bottom {
+  width: 100%;
+  height: 70px;
+}
+.pack-scene .pack-box .bottom .price {
+  line-height: 50px;
+  font-size: 19px;
+}
+.pack-scene .pack-box .bottom .text {
+  line-height: 10px;
+  font-size: 15px;
 }
 .quest-page-outer {
   background: #2f2f2f;

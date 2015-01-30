@@ -1,0 +1,107 @@
+.pack-scene {
+    .section {
+        margin: 20px 0 20px 0;
+        overflow: hidden;
+        clear: both;
+    }
+
+    .inner-pane {
+        width: 450px;
+        float: left;
+    }
+
+    ul {
+        list-style: disc;
+        padding: 20px;
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        b {
+            font-weight: bold;
+        }
+    }
+
+    .my-pack {
+        font-size: 18px;
+
+        .name {
+            font-weight: bold;
+        }
+    }
+
+    .pack-outer {
+        margin: 20px 10px;
+        height: 150px;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .pack-bottom {
+        margin: 10px 0;
+        padding: 5px;
+        text-align: center;
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.3);
+
+        width: 100%;
+        height: 35px;
+
+        &.choose {
+            cursor: pointer;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.5);
+                color: #fff;
+            }
+        }
+
+        &.yours {
+            background: rgba(255, 255, 255, 0.1);
+
+            .check {
+                background: url('/static/img/check_green.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+                height: 25px;
+                width: 25px;
+                margin-left: 35px;
+                float: left;
+            }
+        }
+    }
+
+    .pack-box {
+        @box_size: 100px;
+        width: @box_size;
+        height: @box_size;
+        vertical-align: bottom;
+        line-height: @box_size;
+        text-align: center;
+        background: rgb(81, 86, 92);
+
+        .top {
+            width: 100%;
+            height: .3 * @box_size;
+            line-height: .3 * @box_size;
+            background: @banner_color;
+            font-weight: bold;
+        }
+
+        .bottom {
+            width: 100%;
+            height: .7 * @box_size;
+
+            .price {
+                line-height: .5 * @box_size;
+                font-size: 19px;
+            }
+
+            .text {
+                line-height: .1 * @box_size;
+                font-size: 15px;
+            }
+        }
+    }
+}

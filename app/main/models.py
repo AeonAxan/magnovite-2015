@@ -93,7 +93,7 @@ class Profile(models.Model):
     PACKS = (
         ('none', 'No Pack'),
         ('single', 'Single Event Pack'),
-        ('multiple', 'Multiple Event Pack')
+        ('multiple', 'Multiple Events Pack')
     )
 
     pack = models.CharField(max_length=10, choices=PACKS, default='none')

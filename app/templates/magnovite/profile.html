@@ -28,6 +28,9 @@ app.profile.init();
                     <li data-scene="profile-scene" class="selected">
                         <div class="s-item-inner">Profile</div>
                     </li>
+                    <li data-scene="pack-scene">
+                        <div class="s-item-inner">My Pack</div>
+                    </li>
                     <li data-scene="schedule-scene">
                         <div class="s-item-inner">Schedule</div>
                     </li>
@@ -88,6 +91,75 @@ app.profile.init();
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div class="s-scene glass pack-scene">
+                <div class="s-title">
+                    <h1>My Pack</h1>
+                </div>
+
+                <div class="section base-pack">
+                    <div class="inner-pane">
+                        <div class="my-pack">
+                            <p>Your current pack <span class="name">{{profile.get_pack_display}}</span></p>
+                        </div>
+
+                        <div class="pack-outer">
+                            <div class="pack-box pack-none">
+                                <p>No Pack</p>
+                            </div>
+
+                            {% if profile.pack == "none" %}
+                            <div class="pack-bottom yours"><span class="check"></span></div>
+                            {% endif %}
+                        </div>
+
+                        <div class="pack-outer">
+                            <div class="pack-box pack-single">
+                                <div class="top">Single</div>
+                                <div class="bottom">
+                                    <p class="price">₹ 100</p>
+                                    <p class="text">1 Event</p>
+                                </div>
+                            </div>
+
+                            {% if profile.pack == "single" %}
+                            <div class="pack-bottom yours"><span class="check"></span></div>
+                            {% elif profile.pack == "none" %}
+                            <div class="pack-bottom choose">Activate</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="pack-outer">
+                             <div class="pack-box pack-multiple">
+                                <div class="top">Multiple</div>
+                                <div class="bottom">
+                                    <p class="price">₹ 200</p>
+                                    <p class="text">1+ Events</p>
+                                </div>
+                            </div>
+
+                            {% if profile.pack == "multiple" %}
+                            <div class="pack-bottom yours"><span class="check"></span></div>
+                            {% else %}
+                            <div class="pack-bottom choose">Activate</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="inner-pane help-list">
+                        <ul>
+                            <li>These packs are applicable for only individual events.</li>
+                            <li>Team events has a seperate registration fee per team per event.</li>
+                            <li><b>Single Pack</b> allows you to register to <b>one</b> individual event.</li>
+                            <li><b>Multiple Pack</b> allows you to register to <b>Any Number</b> of individual event.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section team-pack">
+                    <h3>Team Packs</h3>
+
+                </div>
             </div>
 
             <div class="s-scene glass help-scene">

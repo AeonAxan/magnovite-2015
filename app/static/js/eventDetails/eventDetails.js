@@ -101,15 +101,14 @@ app.eventDetails = {};
                     return;
                 }
 
-                if (obj.errorCode === 'profile_incomplete') {
-                    // issue a message and a redirect
+                if (obj.actionType === 'redirect') {
                     app.notification.notify({
-                        text: 'You cannot register without completing your profile!',
-                        action: 'Complete Now',
+                        text: obj.errorMessage,
+                        action: obj.actionText,
                         type: 'error',
                         persistant: true,
                         actionCallback: function() {
-                            window.location.replace('/profile/');
+                            window.location.replace(obj.redirectLocation);
                         }
                     });
                     return;
@@ -180,8 +179,14 @@ app.eventDetails = {};
             $modal.removeClass('has-error');
         });
 
-        $modal.on('click', '.js-new-team', handleSubmission);
+        $modal.on('click', '.js-new-team', createTeam);
         $modal.on('click', '.js-join-team', handleSubmission);
+
+        function createTeam(e) {
+            app.modal.hide();
+
+            app.modal.show('#team-create-modal');
+        }
 
         function handleSubmission(e) {
             var $input, id = '';

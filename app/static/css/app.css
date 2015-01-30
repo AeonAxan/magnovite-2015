@@ -528,6 +528,14 @@ input.gray:focus {
   background: white;
   position: relative;
 }
+.modal .list {
+  list-style: disc;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 20px 50px;
+}
+.modal .list li {
+  margin-bottom: 5px;
+}
 .modal .close {
   position: absolute;
   top: 0;
@@ -2659,6 +2667,9 @@ body.mobile .notifications .notification {
   font-size: 24px;
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
+}
+.team-create-modal .btn-invoice {
+  width: 250px;
 }
 .page-profile .s-scene {
   display: none;

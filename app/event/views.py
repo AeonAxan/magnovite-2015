@@ -79,14 +79,37 @@ def register(req, id, team_id=None):
     if not req.user.is_staff:
         return JsonResponse({
             'errorCode': 'unauthorized',
-            'errorMessage': 'Sorry, Our registrations are not open yet, pleaes check back on 20th Jan'
+            'errorMessage': 'Sorry, Our registrations are not open yet, pleaes check back on 1st of Feb'
         }, status=400)
 
     # you can only register if profile is complete
     if not req.user.profile.is_complete():
         return JsonResponse({
             'errorCode': 'profile_incomplete',
+            'actionType': 'redirect',
+            'actionText': 'Complete Now',
+            'redirectLocation': '/profile/',
             'errorMessage': 'You need to complete your profile first'
+        }, status=400)
+
+    # you cannot register if you are on the blank pack
+    if req.user.profile.pack == 'none':
+        return JsonResponse({
+            'errorCode': 'no_pack',
+            'actionType': 'redirect',
+            'actionText': 'View Pack',
+            'redirectLocation': '/profile/#pack',
+            'errorMessage': 'You need to opt-in for a pack before registering. Follow the link below'
+        }, status=400)
+
+    if (req.user.profile.pack == 'single' and
+        req.user.profile.registered_events.count() == 1):
+        return JsonResponse({
+            'errorCode': 'pack_full',
+            'actionType': 'redirect',
+            'actionText': 'Upgrade Pack',
+            'redirectLocation': '/profile/#pack',
+            'errorMessage': 'You have opted for Single Pack. You can only register to one event.'
         }, status=400)
 
     event = get_object_or_404(Event, id=id)

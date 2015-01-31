@@ -103,12 +103,12 @@ def registrations(req, id):
             'college': reg.profile.college,
         }
 
-        if event.is_team():
+        if event.is_team:
             teams[reg.team_id] = teams.get(reg.team_id, []) + [obj]
         else:
             out['registrations'].append(obj)
 
-    if event.is_team():
+    if event.is_team:
         for team_id, members in teams.items():
             out['registrations'].append({team_id: members})
 

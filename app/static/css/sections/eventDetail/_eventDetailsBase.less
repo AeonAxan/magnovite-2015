@@ -10,6 +10,7 @@
 
 	.image {
 		width: 100%;
+		min-height: 300px;
 	}
 
 	.content {
@@ -265,8 +266,17 @@
 					}
 				}
 
-				&.registered .inner {
-					padding-left: 40px;
+				&.registered {
+					.inner {
+						padding-left: 40px;
+					}
+
+					.check {
+						background: url('/static/img/check.png');
+						background-repeat: no-repeat;
+						background-size: cover;
+						opacity: 0.8;
+					}
 				}
 
 				&.team-event.registered .extra {

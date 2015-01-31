@@ -57,7 +57,6 @@ def add_message(req):
             time_check = last_staff_msg.timestamp
 
         count = Message.objects.filter(timestamp__gt=time_check).count()
-        print(count)
 
         if (count >= 5):
             return JsonResponse({
@@ -103,10 +102,18 @@ def profile(req):
     except:
         pass
 
+    owned_teams = []
+    for obj in Registration.objects.filter(profile=req.user.profile, is_owner=True):
+        event = obj.event
+        num_members = Registration.objects.filter(team_id=obj.team_id).count()
+
+        owned_teams.append((event, num_members))
+
     return render(req, template, {
         'profile_form': profile_form,
         'days': [day_one, day_two],
         'help_messages': messages,
+        'owned_teams': owned_teams
     })
 
 

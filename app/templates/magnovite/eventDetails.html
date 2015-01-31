@@ -66,6 +66,23 @@ app.eventDetails.init();
 	</div>
 </div>
 
+<div class="modal detail-modals team-create-modal {{event.type}}" id="team-create-modal">
+	<div class="modal-inner">
+		<div class="close">x</div>
+		<h2 class="title">Create Team</h2>
+
+		<div class="body">
+			<ul class="list">
+				<li>A one time payment of Rs.500 is charged to create a team</li>
+				<li>Once a team has been created, your team members can join with the team-id; They do not need to pay</li>
+				<li>All members of the team must register on Magnovite.net to join the team</li>
+				<li>Payments towards creating a team is specific to the event and cannot be transferred later.</li>
+			</ul>
+			<div data-type="team" data-id="{{event.id}}" class="button gray btn-invoice js-create-team">Create Team</div>
+		</div>
+	</div>
+</div>
+
 <div class="modal detail-modals team-detail-modal {{event.type}}" id="team-detail">
 	<div class="modal-inner">
 		<div class="close">x</div>
@@ -90,9 +107,11 @@ app.eventDetails.init();
 					your team
 				</p>
 
+				{% if not team_owner %}
 				<div class="button gray leave-team js-leave">
 					Leave Team
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -147,7 +166,11 @@ app.eventDetails.init();
 								<p class="text js-text">Register</p>
 							{% endif %}
 
+							{% if team_owner %}
+							<p class="extra">(Team Owner)</p>
+							{% else %}
 							<p class="extra">(or Unregister)</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

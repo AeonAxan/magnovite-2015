@@ -6,8 +6,35 @@ app.profile = {};
 
 	app.profile.init = function() {
         $('#profile-form').on('submit', formSubmit);
+        $('.js-pack-activate').on('click', activatePack);
 	};
 
+    var activationInProgress = false;
+    function activatePack(e) {
+        if (activationInProgress) {
+            return;
+        }
+
+        activationInProgress = true;
+        NProgress.start();
+
+        var type = $(e.target).data('type');
+        $.get('/payment/generate/' + type + '/')
+            .done(function(html) {
+                $(html).submit();
+
+                NProgress.set(0.9);
+            })
+            .fail(function() {
+                app.notification.notify({
+                    text: 'There was an error, if the problem persists please reach out to us in Help',
+                    type: 'error'
+                });
+
+                NProgress.done();
+                activationInProgress = false;
+            })
+    }
 
     function clearErrors() {
         $('.errorlist').html('');

@@ -89,6 +89,15 @@ class Profile(models.Model):
     # auth provider
     auth_provider = models.CharField(max_length=30, blank=True)
 
+    # The payment pack
+    PACKS = (
+        ('none', 'No Pack'),
+        ('single', 'Single Event Pack'),
+        ('multiple', 'Multiple Events Pack')
+    )
+
+    pack = models.CharField(max_length=10, choices=PACKS, default='none')
+
     # this will be initialized to user.email
     # This will be used for commmunication and we will
     # let the user change this. user.email will be the one

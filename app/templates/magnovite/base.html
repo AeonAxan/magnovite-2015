@@ -144,6 +144,7 @@
 
                         <ul class="dropdown user-dropdown">
                             <li><a href="/profile/">My Account</a></li>
+                            <li><a href="/profile/">My Pack</a></li>
                             <li><a href="/profile/#schedule">My Schedule</a></li>
                             <li><a href="/profile/#help">Help</a></li>
                             <li><a href="/logout/?next={{request.path}}">Logout</a></li>
@@ -186,6 +187,7 @@
             <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
 
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
+            <li class="sub"><a href="{% selected_url "/profile/" "#pack" %}">Pack</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#schedule" %}">Schedule</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#help" %}">Help</a></li>
         </ul>
@@ -284,7 +286,8 @@
     {% for message in messages %}
         app.notification.notify({
             text: '{{message}}',
-            type: '{{message.tags}}'
+            type: '{{message.tags}}',
+            persistant: true
         });
     {% endfor %}
     </script>

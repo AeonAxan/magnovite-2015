@@ -44,7 +44,7 @@
 
     {% block "extra_meta" %}{% endblock "extra_meta" %}
 
-    <link rel="stylesheet" href="/static/dist/style-0af30218.css"/>
+    <link rel="stylesheet" href="/static/dist/style-b151d03b.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -140,6 +140,7 @@
 
                         <ul class="dropdown user-dropdown">
                             <li><a href="/profile/">My Account</a></li>
+                            <li><a href="/profile/">My Pack</a></li>
                             <li><a href="/profile/#schedule">My Schedule</a></li>
                             <li><a href="/profile/#help">Help</a></li>
                             <li><a href="/logout/?next={{request.path}}">Logout</a></li>
@@ -182,6 +183,7 @@
             <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
 
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
+            <li class="sub"><a href="{% selected_url "/profile/" "#pack" %}">Pack</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#schedule" %}">Schedule</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#help" %}">Help</a></li>
         </ul>
@@ -209,7 +211,7 @@
     app.DEBUG = false;
     </script>
 
-    <script src="/static/dist/app-c3153963.js"></script>
+    <script src="/static/dist/app-725ed260.js"></script>
 
     {% block "post_js" %}{% endblock %}
 
@@ -218,7 +220,8 @@
     {% for message in messages %}
         app.notification.notify({
             text: '{{message}}',
-            type: '{{message.tags}}'
+            type: '{{message.tags}}',
+            persistant: true
         });
     {% endfor %}
     </script>

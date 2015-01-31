@@ -25,7 +25,7 @@ class RegistrationsInline(admin.TabularInline):
         return fields
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'id', 'technical', 'complete_status', 'registrations', 'views']
+    list_display = ['title', 'id', 'technical', 'is_team', 'complete_status', 'registrations', 'views']
     ordering = ['-views']
     list_filter = ['technical',]
     inlines = [EventHeadInline, RegistrationsInline]

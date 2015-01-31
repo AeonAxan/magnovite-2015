@@ -155,7 +155,7 @@ PAYU_MERCHANT_ID = os.environ.get('PAYU_MERCHANT_ID', '')
 PAYU_MERCHANT_KEY = os.environ.get('PAYU_MERCHANT_KEY', '')
 PAYU_MERCHANT_SALT = os.environ.get('PAYU_MERCHANT_SALT', '')
 
-PAYU_URL = 'https://test.payu.in/_payment'
+PAYU_URL = 'https://secure.payu.in/_payment'
 PAYU_SUCCESS_URL = 'https://magnovite.net/payment/success/'
 PAYU_FAILURE_URL = 'https://magnovite.net/payment/failure/'
 PAYU_NOTIFY_URL = 'https://magnovite.net/payment/notify/'

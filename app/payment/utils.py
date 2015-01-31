@@ -42,6 +42,9 @@ def test_checksum(obj, debug=False):
     fields = reversed(PAYU_FIELDS + ['status'])
 
     text = settings.PAYU_MERCHANT_SALT + '|' + '|'.join(map(lambda key: str(obj.get(key, '')), fields))
+    if obj.get('additionalCharges', '') != '':
+        text = obj.get('additionalCharges', '') + '|' + text
+
     hashcode = hashlib.sha512(text.encode('utf-8')).hexdigest()
 
     if debug:

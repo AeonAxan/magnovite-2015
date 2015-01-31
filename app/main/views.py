@@ -110,12 +110,16 @@ def profile(req):
 
         owned_teams.append((event, num_members))
 
+    test_payment = False
+    if req.user.is_staff and os.environ.get('TEST_PAYMENT', None) != None:
+        test_payment = True
+
     return render(req, template, {
         'profile_form': profile_form,
         'days': [day_one, day_two],
         'help_messages': messages,
         'owned_teams': owned_teams,
-        'test_payment': os.environ.get('TEST_PAYMENT', None) != None
+        'test_payment': test_payment
     })
 
 

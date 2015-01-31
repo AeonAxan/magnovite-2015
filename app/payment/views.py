@@ -18,7 +18,7 @@ def generate(req, invoice_type):
     if not (req.user.is_authenticated() and req.user.is_staff):
         return HttpResponse(status=400)
 
-    if invoice_type not in ('team', 'single', 'multiple', 'upgrade'):
+    if invoice_type not in ('test', 'team', 'single', 'multiple', 'upgrade'):
         return HttpResponse(status=400)
 
     # if team verify event is correct
@@ -34,6 +34,13 @@ def generate(req, invoice_type):
     elif invoice_type == 'upgrade':
         # upgrade only valid if user is in single pack
         if req.user.profile.pack != 'single':
+            return HttpResponse(status=403)
+
+        invoice = create_invoice(invoice_type, req.user.profile)
+        return get_payu_form(req, invoice)
+
+    elif invoice_type == 'test':
+        if not req.user.is_staff:
             return HttpResponse(status=403)
 
         invoice = create_invoice(invoice_type, req.user.profile)
@@ -145,7 +152,12 @@ def process_invoice(req, invoice):
         r.is_owner = True
         r.save()
 
+        messages.success(req, 'Scucessfully registered for ' + r.event.title)
         return redirect(r.event.get_absolute_url() + '#view-team')
+
+    elif invoice_type == 'test':
+        messages.success(req, 'Payment success!')
+        return redirect('/profile/#pack')
 
     # invalid invoice
     return None

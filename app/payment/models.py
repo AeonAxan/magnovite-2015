@@ -25,6 +25,10 @@ def create_invoice(invoice_type, profile, event=None):
         # upgrade condition must be checked before calling this fn
         invoice.description = 'Upgrade to Multiple Pack'
         invoice.amount = 100
+    elif invoice_type == 'test':
+        invoice.description = 'Test Payment'
+        invoice.amount = 1
+
     else:
         return None
 

@@ -1,3 +1,4 @@
+import os
 from ipware.ip import get_real_ip
 from datetime import timedelta
 
@@ -113,7 +114,8 @@ def profile(req):
         'profile_form': profile_form,
         'days': [day_one, day_two],
         'help_messages': messages,
-        'owned_teams': owned_teams
+        'owned_teams': owned_teams,
+        'test_payment': os.environ.get('TEST_PAYMENT', None) != None
     })
 
 

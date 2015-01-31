@@ -151,6 +151,19 @@ app.profile.init();
                             <div data-type="multiple" class="pack-bottom choose js-pack-activate">Activate</div>
                             {% endif %}
                         </div>
+
+                        {% if is_staff and test_payment %}
+                        <div class="pack-outer">
+                            <div class="pack-box pack-multiple">
+                                <div class="top">Test</div>
+                                <div class="bottom">
+                                    <p class="price">₹ 1</p>
+                                    <p class="text">Test</p>
+                                </div>
+                            </div>
+                            <div data-type="test" class="pack-bottom choose js-pack-activate">Pay</div>
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="inner-pane help-list">
                         <ul>

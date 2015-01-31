@@ -1077,6 +1077,7 @@ body.mobile .notifications .notification {
   display: inline-block;
   height: 220px;
   width: 140px;
+  vertical-align: bottom;
 }
 @media only screen and (max-width: 767px) {
   .timer-block {
@@ -1198,6 +1199,60 @@ body.mobile .notifications .notification {
   background: #80FF00;
   border: 1px solid #99FF00;
   box-shadow: 0px 0px 15px 0px rgba(128, 255, 0, 0.49);
+}
+.date-block {
+  width: 140px;
+  height: 220px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  color: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+}
+.date-block p {
+  display: block;
+}
+.date-block .top {
+  height: 15px;
+  line-height: 15px;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 35px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: -10px;
+}
+.date-block .big {
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  font-size: 25px;
+  opacity: 0.4;
+  color: rgba(255, 255, 255, 0.8);
+}
+.date-block .big sup {
+  vertical-align: super;
+  font-size: 14px;
+}
+.date-block .big .light {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.date-block .bottom {
+  height: 20px;
+  line-height: 20px;
+  widows: 100%;
+  font-size: 19px;
+}
+.logo-done .date-block {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 450ms ease-out;
+}
+.logo-done .date-block .big {
+  opacity: 1;
+  transition: opacity 450ms ease-out;
+  transition-delay: 1000ms;
 }
 .timer-banner {
   background: rgba(128, 255, 0, 0.3);

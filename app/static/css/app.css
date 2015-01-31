@@ -2681,6 +2681,11 @@ body.mobile .notifications .notification {
 .team-create-modal .btn-invoice {
   width: 250px;
 }
+.team-create-modal .btn-invoice.deactive,
+.team-create-modal .btn-invoice.deactive:hover {
+  cursor: default;
+  background: #444;
+}
 .page-profile .s-scene {
   display: none;
 }
@@ -3031,6 +3036,11 @@ body.mobile .notifications .notification {
   width: 25px;
   margin-left: 45px;
   float: left;
+}
+.pack-scene .pack-bottom.deactive,
+.pack-scene .pack-bottom.deactive:hover {
+  cursor: default;
+  background: rgba(255, 255, 255, 0.1);
 }
 .pack-scene .pack-box {
   width: 120px;

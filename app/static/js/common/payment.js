@@ -15,8 +15,10 @@ app.payments = {};
         inProgress = true;
         NProgress.start();
 
-        var type = $(e.target).data('type');
+        var $target = $(e.target);
 
+        $target.addClass('deactive');
+        var type = $(e.target).data('type');
         var params = $(e.target).data('params') || '';
         if (params) {
             params = '?' + params;
@@ -40,6 +42,7 @@ app.payments = {};
 
                 NProgress.done();
                 inProgress = false;
+                $target.removeClass('deactive');
             });
     });
 

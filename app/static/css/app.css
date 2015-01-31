@@ -1927,12 +1927,19 @@ body.mobile .notifications .notification {
 }
 .card .header a {
   display: block;
-  padding: 20px;
+  padding: 10px 20px;
   text-decoration: none;
 }
 .card .header a:hover {
   background: rgba(0, 0, 0, 0.2);
   color: white;
+}
+.card .header a h2 {
+  height: 25px;
+}
+.card .header a p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
 }
 .card.technical .header {
   background-image: url("/static/img/card_tech_bg.jpg");

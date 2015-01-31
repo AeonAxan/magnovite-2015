@@ -14,7 +14,7 @@ from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
 
 def generate(req, invoice_type):
-    if not req.user.is_authenticated():
+    if not (req.user.is_authenticated() and req.user.is_staff):
         return HttpResponse(status=400)
 
     if invoice_type not in ('team', 'single', 'multiple', 'upgrade'):
@@ -92,6 +92,8 @@ def notify(req):
 
     invoice_id = int(req.POST.get('txnid', '').split('-')[1])
     invoice = get_object_or_404(Invoice, id=invoice_id)
+
+    print(req.POST)
 
     # if already processed skip
     if invoice.pending == False:

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import mail_admins
 from django.contrib import messages
 from django.conf import settings
 
@@ -47,6 +48,8 @@ def generate(req, invoice_type):
 def success(req):
     if not test_checksum(req.POST):
         messages.error(req, 'Invalid Transaction, please contact support (Error: ES01)')
+        mail_admins('S-Checksum Fail', str(req.POST) + '\n\n' + test_checksum(req.POST, debug=True))
+        print(req.POST)
         return redirect('/profile/#help')
 
     invoice_id = int(req.POST.get('txnid', '').split('-')[1])

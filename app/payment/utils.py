@@ -38,10 +38,13 @@ def generate_checksum(obj):
     text = '|'.join(map(lambda key: str(obj.get(key, '')), fields)) + '|' + settings.PAYU_MERCHANT_SALT
     return hashlib.sha512(text.encode('utf-8')).hexdigest()
 
-def test_checksum(obj):
+def test_checksum(obj, debug=False):
     fields = reversed(PAYU_FIELDS + ['status'])
 
     text = settings.PAYU_MERCHANT_SALT + '|' + '|'.join(map(lambda key: str(obj.get(key, '')), fields))
     hashcode = hashlib.sha512(text.encode('utf-8')).hexdigest()
+
+    if debug:
+        return text + ' -- ' + hashcode + ' -- ' + obj.get('hash', '')
 
     return obj.get('hash', '') == hashcode

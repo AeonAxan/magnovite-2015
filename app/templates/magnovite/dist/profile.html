@@ -126,7 +126,7 @@ app.profile.init();
                             {% if profile.pack == "single" %}
                             <div class="pack-bottom yours"><span class="check"></span></div>
                             {% elif profile.pack == "none" %}
-                            <div data-type="single" class="pack-bottom choose js-pack-activate">Activate</div>
+                            <div data-type="single" class="pack-bottom choose js-pay">Activate</div>
                             {% endif %}
                         </div>
 
@@ -146,9 +146,9 @@ app.profile.init();
                             {% if profile.pack == "multiple" %}
                             <div class="pack-bottom yours"><span class="check"></span></div>
                             {% elif profile.pack == "single" %}
-                            <div data-type="upgrade" class="pack-bottom choose js-pack-activate">Upgrade</div>
+                            <div data-type="upgrade" class="pack-bottom choose js-pay">Upgrade</div>
                             {% else %}
-                            <div data-type="multiple" class="pack-bottom choose js-pack-activate">Activate</div>
+                            <div data-type="multiple" class="pack-bottom choose js-pay">Activate</div>
                             {% endif %}
                         </div>
 
@@ -161,7 +161,7 @@ app.profile.init();
                                     <p class="text">Test</p>
                                 </div>
                             </div>
-                            <div data-type="test" class="pack-bottom choose js-pack-activate">Pay</div>
+                            <div data-type="test" class="pack-bottom choose js-pay">Pay</div>
                         </div>
                         {% endif %}
                     </div>

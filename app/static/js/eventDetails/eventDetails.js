@@ -23,39 +23,10 @@ app.eventDetails = {};
         isIndividual = $(document.body).hasClass('individual') || false;
         eventID = app.CURRENT_EVENT_ID;
 
-        $('.js-create-team').on('click', createTeam);
-
         if (isRegistered && !isIndividual && window.location.hash === '#view-team') {
             unregisterTeam();
         }
     };
-
-    function createTeam(e) {
-        if (inProgress) {
-            return;
-        }
-
-        inProgress = true;
-        NProgress.start();
-
-        var type = $(e.target).data('type');
-        var id = $(e.target).data('id');
-        $.get('/payment/generate/' + type + '/?id=' + id)
-            .done(function(html) {
-                $(html).submit();
-
-                NProgress.set(0.9);
-            })
-            .fail(function() {
-                app.notification.notify({
-                    text: 'There was an error, if the problem persists reach out to us in Help section',
-                    type: 'error'
-                });
-
-                NProgress.done();
-                inProgress = false;
-            });
-    }
 
     /**
      * Handles the registration logic

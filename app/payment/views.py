@@ -1,6 +1,6 @@
 import hashlib
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
@@ -8,15 +8,17 @@ from django.core.mail import mail_admins
 from django.contrib import messages
 from django.conf import settings
 
-from app.main.models import Profile
 from app.event.models import Event, Registration
 
 from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
 
+
 def generate(req, invoice_type):
     if not (req.user.is_authenticated() and req.user.is_staff):
-        return HttpResponse(status=400)
+        return JsonResponse({
+            'errorMessage': 'Our packages are currently not open for public'
+        }, status=400)
 
     if invoice_type not in ('test', 'team', 'single', 'multiple', 'upgrade'):
         return HttpResponse(status=400)

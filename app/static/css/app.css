@@ -1924,6 +1924,7 @@ body.mobile .notifications .notification {
   line-height: 40px;
   font-weight: normal;
   cursor: pointer;
+  overflow: hidden;
 }
 .card .header a {
   display: block;

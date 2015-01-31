@@ -2725,7 +2725,7 @@ body.mobile .notifications .notification {
   margin-bottom: 20px;
 }
 .team-create-modal .modal-inner {
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .team-create-modal .btn-invoice {
   width: 250px;
@@ -2734,6 +2734,14 @@ body.mobile .notifications .notification {
 .team-create-modal .btn-invoice.deactive:hover {
   cursor: default;
   background: #444;
+}
+.team-create-modal .payu {
+  width: 100%;
+  text-align: center;
+}
+.team-create-modal .payu img {
+  width: 120px;
+  display: inline-block;
 }
 .page-profile .s-scene {
   display: none;
@@ -3168,6 +3176,10 @@ body.mobile .notifications .notification {
   height: 50px;
   line-height: 50px;
   background: #51565c;
+}
+.pack-scene .payu img {
+  width: 120px;
+  margin: 10px 0 0 40px;
 }
 .quest-page-outer {
   background: #2f2f2f;

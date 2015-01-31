@@ -135,7 +135,10 @@ app.profile.init();
                                 <div class="top">Multiple</div>
                                 <div class="bottom">
                                     {% if profile.pack == "single" %}
-                                    <p class="price">₹ 100</p>
+                                    <p class="price">
+                                        <span class="price-new">₹ 100</span>
+                                        <span class="price-old">₹ 200</span>
+                                    </p>
                                     {% else %}
                                     <p class="price">₹ 200</p>
                                     {% endif %}
@@ -172,12 +175,18 @@ app.profile.init();
                             <li>Team events has a seperate registration fee per team per event.</li>
                             <li><b>Single Pack</b> allows you to register to <b>one</b> individual event.</li>
                             <li><b>Multiple Pack</b> allows you to register to <b>Any Number</b> of individual event.</li>
+                            <li>We use <a target="_blank" href="http://payumoney.com/">PayuMoney</a> as the payment gateway, It is extremely secure and well known</li>
                         </ul>
+
+                        <div class="payu">
+                            <img src="/static/img/payu.jpg" alt="">
+                        </div>
                     </div>
                 </div>
 
+                {% if owned_teams %}
                 <div class="section team-pack">
-                    <h3>Teams you Own</h3>
+                    <h3>Teams you paid for</h3>
 
                     <div class="event-box-container inner-pane">
                         {% for event, num_members in owned_teams %}
@@ -188,6 +197,7 @@ app.profile.init();
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
             </div>
 
             <div class="s-scene glass help-scene">

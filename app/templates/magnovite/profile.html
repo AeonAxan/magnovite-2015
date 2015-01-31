@@ -135,7 +135,10 @@ app.profile.init();
                                 <div class="top">Multiple</div>
                                 <div class="bottom">
                                     {% if profile.pack == "single" %}
-                                    <p class="price">₹ 100</p>
+                                    <p class="price">
+                                        <span class="price-new">₹ 100</span>
+                                        <span class="price-old">₹ 200</span>
+                                    </p>
                                     {% else %}
                                     <p class="price">₹ 200</p>
                                     {% endif %}

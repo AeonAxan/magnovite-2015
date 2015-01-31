@@ -79,32 +79,50 @@
 
     .pack-box {
         @box_size: 120px;
+        @box_height: @box_size + 20px;
         width: @box_size;
-        height: @box_size;
+        height: @box_height;
         vertical-align: bottom;
-        line-height: @box_size;
+        line-height: @box_height;
         text-align: center;
         background: rgb(81, 86, 92);
 
         .top {
             width: 100%;
-            height: .3 * @box_size;
-            line-height: .3 * @box_size;
+            height: .3 * @box_height;
+            line-height: .3 * @box_height;
             background: @banner_color;
-            font-weight: bold;
         }
 
         .bottom {
             width: 100%;
-            height: .7 * @box_size;
+            height: .7 * @box_height;
 
             .price {
-                line-height: .5 * @box_size;
+                line-height: .5 * @box_height;
                 font-size: 19px;
+                color: rgba(255, 255, 255, 0.85);
+                font-weight: bold;
+
+                .price-old {
+                    text-decoration: line-through;
+                    display: block;
+                    height: .2 * @box_height;
+                    font-size: 12px;
+                    line-height: 20px;
+                    color: rgba(255, 255, 255, 0.85);
+                }
+
+                .price-new {
+                    font-weight: bold;
+                    display: block;
+                    height: .3 * @box_height;
+                    line-height: 60px;
+                }
             }
 
             .text {
-                line-height: .1 * @box_size;
+                line-height: .1 * @box_height;
                 font-size: 15px;
             }
         }

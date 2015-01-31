@@ -157,7 +157,7 @@ def process_invoice(req, invoice):
         messages.success(req, 'Scucessfully registered for ' + r.event.title)
         return redirect(r.event.get_absolute_url() + '#view-team')
 
-    elif invoice_type == 'test':
+    elif invoice.invoice_type == 'test':
         messages.success(req, 'Payment success!')
         return redirect('/profile/#pack')
 

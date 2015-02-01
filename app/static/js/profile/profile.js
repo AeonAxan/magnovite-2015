@@ -28,14 +28,14 @@ app.profile = {};
             // if everything is filled make sure the show-warn
             // class is removed
             var filled = true;
-            ['name', 'active_email', 'mobile', 'college', 'year']
+            ['name', 'active_email', 'mobile', 'college']
                 .forEach(function(key) {
                     if ($('input[name=' + key + ']').val() === '') {
                         filled = false;
                     }
                 });
 
-            $('.profile-right-panel').toggleClass('show-warn', !filled);
+            $('.profile-scene').toggleClass('show-warn', !filled);
 
         }).fail(function(err) {
             clearErrors();

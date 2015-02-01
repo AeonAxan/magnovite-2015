@@ -90,8 +90,8 @@ def profile(req):
     profile_form = ProfileForm(instance=req.user.profile)
 
     registrations = Registration.objects.filter(profile=req.user.profile)
-    day_one = map(lambda x: x.event, registrations.filter(event__date=21))
-    day_two = map(lambda x: x.event, registrations.filter(event__date=22))
+    day_one = map(lambda x: x.event, registrations.filter(event__date=20))
+    day_two = map(lambda x: x.event, registrations.filter(event__date=21))
 
     # evaluate maps
     day_one = [x for x in day_one]

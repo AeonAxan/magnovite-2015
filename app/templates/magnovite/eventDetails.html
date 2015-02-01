@@ -2,7 +2,7 @@
 {% load humanize %}
 
 {% block "extra_meta" %}
-<meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 21st and 22nd of February 2015." />
+<meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
 <meta name="keywords" content="Magnovite,Tech Fest" />
 <meta name="author" content="CUFE" />
 
@@ -27,7 +27,8 @@ transparent-banner
 
 {% block "post_js" %}
 <script>
-app.CURRENT_EVENT_ID = {{event.id}}
+app.CURRENT_EVENT_ID = {{event.id}};
+app.EVENT_TYPE = "{{event.team_type}}";
 app.eventDetails.init();
 </script>
 {% endblock "post_js" %}
@@ -46,20 +47,25 @@ app.eventDetails.init();
 				</div>
 
 				<p class="text">
+					{% if event.is_group %}
+					Pay 500/- to create your own team! Upto {{event.team_max}} of
+					your friends can join for free with your Team ID
+					{% else %}
 					Start your own team! You will be given a unique
-					team ID which your friends can use to join your
+					Team ID which your friends can use to join your
 					team
+					{% endif %}
 				</p>
 			</div>
 			<div class="panel">
-				<input class="gray" type="text" maxlength="5" placeholder="Team ID" autocomplete="off" name="teamId">
-				<p class="error">Invalid Team ID</p>
+				<input class="gray" type="text" maxlength="10" placeholder="Team ID" autocomplete="off" name="teamId">
+				<p class="error">Invalid Team ID, Make sure the Team ID matches with the event</p>
 				<div class="button gray join-team js-join-team">
 					Join Team
 				</div>
 
 				<p class="text">
-					Enter a team ID to join an existing team
+					Enter a Team ID to join a team
 				</p>
 			</div>
 		</div>
@@ -73,10 +79,10 @@ app.eventDetails.init();
 
 		<div class="body">
 			<ul class="list">
-				<li>A one time payment of Rs.500 is charged to create a team</li>
+				<li>A one time payment of Rs.500 is charged to create a Group Team</li>
 				<li>Once a team has been created, your team members can join with the team-id; They do not need to pay</li>
 				<li>All members of the team must register on Magnovite.net to join the team</li>
-				<li>Payments towards creating a team is specific to the event and cannot be transferred later.</li>
+				<li>Payments are final and refunds will not be entertained</li>
 			</ul>
 			<div class="payu">
 				<img src="/static/img/payu.jpg" alt="PayuMoney">
@@ -111,7 +117,8 @@ app.eventDetails.init();
 					your team
 				</p>
 
-				{% if not team_owner %}
+				{% if event.is_group and team_owner %}
+				{% else %}
 				<div class="button gray leave-team js-leave">
 					Leave Team
 				</div>

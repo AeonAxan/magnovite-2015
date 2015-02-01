@@ -189,7 +189,11 @@ app.eventDetails = {};
         function createTeam(e) {
             app.modal.hide();
 
-            app.modal.show('#team-create-modal');
+            if (app.EVENT_TYPE === "group") {
+                app.modal.show('#team-create-modal');
+            } else if (app.EVENT_TYPE === "team") {
+                handleSubmission(e);
+            }
         }
 
         function handleSubmission(e) {
@@ -201,7 +205,7 @@ app.eventDetails = {};
                 $input = $modal.find('input[name=teamId]');
 
                 id = $input.val();
-                if (!id || id.length !== 5) {
+                if (!id || id.length !== 7) {
                     $input.focus();
                     $modal.addClass('has-error');
                     return;
@@ -253,6 +257,19 @@ app.eventDetails = {};
                     }
 
                     var obj = err.responseJSON;
+
+                    if (obj.actionType === 'redirect') {
+                        app.notification.notify({
+                            text: obj.errorMessage,
+                            action: obj.actionText,
+                            type: 'error',
+                            persistant: true,
+                            actionCallback: function() {
+                                window.location.replace(obj.redirectLocation);
+                            }
+                        });
+                        return;
+                    }
 
                     if (obj.errorCode === 'profile_incomplete') {
                         app.notification.notify({

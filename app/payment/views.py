@@ -1,4 +1,5 @@
 import hashlib
+import random
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -15,7 +16,7 @@ from .models import create_invoice, Invoice
 
 
 def generate(req, invoice_type):
-    if not (req.user.is_authenticated() and req.user.is_staff):
+    if not settings.DEBUG and not (req.user.is_authenticated() and req.user.is_staff):
         return JsonResponse({
             'errorMessage': 'Our packages are currently not open for public'
         }, status=400)
@@ -144,8 +145,12 @@ def process_invoice(req, invoice):
         return redirect('/profile/#pack')
 
     elif invoice.invoice_type == 'team':
-        corpus = req.user.email + invoice.event.slug + settings.SECRET_KEY[:10]
-        team_id = hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
+        while True:
+            corpus = req.user.email + invoice.event.slug + settings.SECRET_KEY[:10] + str(random.random())
+            team_id = 'G-' + hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
+
+            if Registration.objects.filter(team_id=team_id).count() == 0:
+                break
 
         r = Registration()
         r.event = invoice.event

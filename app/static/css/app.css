@@ -414,6 +414,9 @@ em {
   color: rgba(255, 255, 255, 0.8);
   transition: all 350ms ease-out;
 }
+.button.deactive {
+  cursor: default;
+}
 .button:hover {
   box-shadow: 0px 0px 7px rgba(95, 236, 255, 0.26);
   border: 1px solid rgba(77, 205, 255, 0.8);
@@ -470,6 +473,14 @@ em {
   background: #585858;
   border: 1px solid #7E7E7E;
   box-shadow: none;
+}
+.button.gray.deactive {
+  background: #616161;
+  color: #999;
+}
+.button.gray.deactive:hover {
+  background: #616161;
+  border: 1px solid #808080;
 }
 .mobile .mobile-button {
   display: block;

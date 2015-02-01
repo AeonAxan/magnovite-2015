@@ -31,7 +31,7 @@ class Event(models.Model):
     # Time and venue are simple text
     date = models.IntegerField(
         max_length=2,
-        help_text='Eg: 21',
+        help_text='20 or 21',
         blank=True, null=True
     )
     time = models.CharField(
@@ -98,8 +98,8 @@ class Event(models.Model):
                 raise ValidationError('Slug must contain only lowercase letters and -')
 
         if self.date:
-            if not self.date in [21, 22]:
-                raise ValidationError('Date can only be 21 or 22')
+            if not self.date in [20, 21]:
+                raise ValidationError('Date can only be 20 or 21')
 
         time_re = re.compile(r'^1?\d:\d\d (am|pm)$')
         if self.time:
@@ -121,6 +121,9 @@ class Event(models.Model):
 
     def is_individual(self):
         return self.team_type == 'individual'
+
+    def is_team(self):
+        return self.team_type == 'team'
 
     def is_multiple(self):
         """
@@ -213,7 +216,7 @@ class Registration(models.Model):
 
     # If this registration is for a team event
     # then the team id
-    team_id = models.CharField(max_length=5, blank=True, null=True)
+    team_id = models.CharField(max_length=10, blank=True, null=True)
 
     is_owner = models.BooleanField(default=False)
 

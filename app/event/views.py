@@ -1,8 +1,10 @@
 import hashlib
+import random
 
 from django.shortcuts import render
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 
@@ -80,7 +82,7 @@ def register(req, id, team_id=None):
             'errorMessage': 'Please login first'
         }, status=400)
 
-    if not req.user.is_staff:
+    if not settings.DEBUG and not req.user.is_staff:
         return JsonResponse({
             'errorCode': 'unauthorized',
             'errorMessage': 'Sorry, Our registrations are not open yet, pleaes check back on 1st of Feb'
@@ -100,7 +102,7 @@ def register(req, id, team_id=None):
     event = get_object_or_404(Event, id=id)
 
     # you cannot register if you are on the blank pack
-    if event.is_individual() and req.user.profile.pack == 'none':
+    if not event.is_group() and req.user.profile.pack == 'none':
         return JsonResponse({
             'errorCode': 'no_pack',
             'actionType': 'redirect',
@@ -109,9 +111,9 @@ def register(req, id, team_id=None):
             'errorMessage': 'You need to opt-in for a pack before registering. Follow the link below'
         }, status=400)
 
-    if (event.is_individual() and
+    if (not event.is_group() and
         req.user.profile.pack == 'single' and
-        req.user.profile.registered_events.filter(team_type__ne='group').count() == 1):
+        req.user.profile.registered_quota_events().count() == 1):
         return JsonResponse({
             'errorCode': 'pack_full',
             'actionType': 'redirect',
@@ -124,24 +126,42 @@ def register(req, id, team_id=None):
     r.event = event
     r.profile = req.user.profile
 
-    if event.is_multiple():
+    if event.is_team() or event.is_group():
+        if event.is_group() and team_id == None:
+            return JsonResponse({
+                'statusCode': 'no-teamid',
+                'errorMessage': 'Team ID must be present for group registrations'
+            }, status=400)
+
         # team registrations
         # If team id is not given, a new create will be crated for this
         # user/event combo and the user will be registered in that team
         if team_id == None:
-            corpus = req.user.email + event.slug + settings.SECRET_KEY[:10]
-            team_id = hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
+            while True:
+                prefix = 'T-'
+                if event.is_group():
+                    prefix = 'G-'
+
+                corpus = req.user.email + event.slug + settings.SECRET_KEY[:10] + str(random.random())
+                team_id = prefix + hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
+
+                # make sure we generate a unique team-id
+                if Registration.objects.filter(team_id=team_id).count() == 0:
+                    break
         else:
+            regs = Registration.objects.filter(team_id=team_id)
+
             # make sure team_id is valid, if user has given a team_id
             # then if it is valid, it must be in our registration table
+            if regs.count() == 0:
+                return HttpResponse(status=404)
 
-            num = Registration.objects.filter(team_id=team_id).count()
-
-            if num == 0:
+            # make sure the team_id matches the event
+            if regs[0].event != event:
                 return HttpResponse(status=404)
 
             # make sure this team is not full
-            if num == event.team_max:
+            if regs.count() == event.team_max:
                 return JsonResponse({
                     'errorCode': 'team_full',
                     'errorMessage': 'The team is full!'

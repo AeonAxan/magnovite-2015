@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
@@ -127,6 +128,9 @@ class Profile(models.Model):
         help_text='The event this profile is in-charge of',
         null=True, blank=True
     )
+
+    def registered_quota_events(self):
+        return self.registered_events.filter(~Q(team_type='group'))
 
     def first_name(self):
         if not self.name:

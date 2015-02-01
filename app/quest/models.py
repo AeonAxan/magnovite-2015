@@ -8,6 +8,10 @@ from app.main.models import Profile
 class Quest(models.Model):
     level = models.IntegerField(unique=True)
 
+    header_text = models.CharField(max_length=100, blank=True, default='')
+    img1_desc = models.CharField(max_length=100, blank=True, default='')
+    img2_desc = models.CharField(max_length=100, blank=True, default='')
+
     img1 = models.URLField(help_text='Imgur direct JPG url, 250x250 px')
     img2 = models.URLField(help_text='Imgur direct JPG url, 250x250 px')
 

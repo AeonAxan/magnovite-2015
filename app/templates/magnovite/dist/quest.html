@@ -29,10 +29,18 @@ transparent-banner body-quest browser-height
             </div>
         {% else %}
             <h2>Level {{cquest.level}}</h2>
+            <p class="header-text">{{cquest.header_text}}</p>
 
             <div class="images">
-                <img src="{{cquest.img1}}" alt="">
-                <img src="{{cquest.img2}}" alt="">
+                <div class="image-box">
+                    <img src="{{cquest.img1}}" alt="">
+                    <p>{{cquest.img1_desc}}</p>
+                </div>
+
+                <div class="image-box">
+                    <img src="{{cquest.img2}}" alt="">
+                    <p>{{cquest.img2_desc}}</p>
+                </div>
             </div>
 
             <div class="answer">

@@ -3254,15 +3254,25 @@ body.mobile .notifications .notification {
 .quest-page .center-pane {
   text-align: center;
 }
+.quest-page .center-pane h2 {
+  padding-bottom: 5px;
+}
+.quest-page .center-pane .image-box {
+  width: 250px;
+  height: 300px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.quest-page .center-pane .image-box:first-child {
+  margin-right: 20px;
+}
 .quest-page .center-pane img {
   width: 250px;
   height: 250px;
   background: black;
 }
-.quest-page .center-pane img:first-child {
-  margin-right: 20px;
-}
 .quest-page .center-pane .images {
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 15px 0;
 }

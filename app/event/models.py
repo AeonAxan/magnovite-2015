@@ -59,7 +59,13 @@ class Event(models.Model):
         default=1
     )
 
-    is_team = models.BooleanField(default=False)
+    TEAM_TYPES = (
+        ('individual', 'Individual'),
+        ('team', 'Team'),
+        ('group', 'Group')
+    )
+
+    team_type = models.CharField(max_length=20, choices=TEAM_TYPES, default='individual')
 
     # if not technical, then cultural
     technical = models.BooleanField(default=True, help_text='If cultural set to false')
@@ -109,6 +115,18 @@ class Event(models.Model):
         Returns the rendered html from the markdown
         """
         return markdown2.markdown(self.info)
+
+    def is_group(self):
+        return self.team_type == 'group'
+
+    def is_individual(self):
+        return self.team_type == 'individual'
+
+    def is_multiple(self):
+        """
+        If not an individual event it is considered to be a team event
+        """
+        return self.team_type != 'individual'
 
     def complete_status(self):
         """

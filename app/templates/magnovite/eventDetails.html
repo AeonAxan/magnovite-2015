@@ -20,7 +20,7 @@
 
 {% block "body_css_class" %}
 event-details {{event.type}}-event
-{% if not event.is_team %}individual{% endif %}
+{% if not event.is_multiple %}individual{% endif %}
 {% if is_registered %}registered{% endif %}
 transparent-banner
 {% endblock %}
@@ -155,13 +155,13 @@ app.eventDetails.init();
 			<div class="register-container">
 				<div class="register-button
 				{% if is_registered %}registered{% endif %}
-				{% if event.is_team %}team-event{% endif %}">
+				{% if event.is_multiple %}team-event{% endif %}">
 					<div class="inner">
 						<div class="check"></div>
 
 						<div class="text-container">
 							{% if is_registered %}
-								{% if event.is_team %}
+								{% if event.is_multiple %}
 								<p class="text js-text">View Team</p>
 								{% else %}
 								<p class="text js-text">Unregister</p>
@@ -171,7 +171,7 @@ app.eventDetails.init();
 							{% endif %}
 
 							{% if team_owner %}
-							<p class="extra">(Team Owner)</p>
+							<p class="extra">(Team Leader)</p>
 							{% else %}
 							<p class="extra">(or Unregister)</p>
 							{% endif %}
@@ -180,8 +180,8 @@ app.eventDetails.init();
 				</div>
 
 				<div class="team-details">
-					<span class="label">Event Type</span>
-					{% if event.is_team %}
+					<span class="label">{{event.get_team_type_display}} Event</span>
+					{% if event.is_multiple %}
 						<p>Team {{event.team_min}}-{{event.team_max}}</p>
 					{% else %}
 						<p>Individual</p>

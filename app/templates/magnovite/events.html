@@ -94,11 +94,11 @@ page-events browser-height stage-view
                     <div class="header">
                         <a href="{{event.get_absolute_url}}">
                             <h2>{{ event.title }}</h2>
-                            {% if event.is_team %}
+                            {% if event.is_multiple %}
                                 {% if event.team_min == event.team_max %}
-                                <p>Team Event, {{event.team_min}} members</p>
+                                <p>{{event.get_team_type_display}} Event, {{event.team_min}} members</p>
                                 {% else %}
-                                <p>Team Event, {{event.team_min}}-{{event.team_max}} members</p>
+                                <p>{{event.get_team_type_display}} Event, {{event.team_min}}-{{event.team_max}} members</p>
                                 {% endif %}
                             {% else %}
                             <p>Individual Event</p>

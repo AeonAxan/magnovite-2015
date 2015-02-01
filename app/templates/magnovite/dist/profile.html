@@ -171,11 +171,11 @@ app.profile.init();
                     <div class="inner-pane help-list">
                         <ul>
                             <li>All payments are binding and will not be refunded.</li>
-                            <li>These packs are applicable for only individual events.</li>
-                            <li>Team events has a seperate registration fee per team per event.</li>
-                            <li><b>Single Pack</b> allows you to register to <b>one</b> individual event.</li>
-                            <li><b>Multiple Pack</b> allows you to register to <b>Any Number</b> of individual event.</li>
-                            <li>We use <a target="_blank" href="http://payumoney.com/">PayuMoney</a> as the payment gateway, It is extremely secure and well known</li>
+                            <li>These packs are applicable for only <b>Individual and Team Events</b></li>
+                            <li>Group Events are charged 500/- per team</li>
+                            <li><b>Single Pack</b> allows you to register to <b>one</b> Individual/Team event.</li>
+                            <li><b>Multiple Pack</b> allows you to register to <b>Any Number</b> of Individual/Team event.</li>
+                            <li>We use <a target="_blank" href="http://payumoney.com/">PayuMoney</a> as the payment gateway, It is extremely secure and established</li>
                         </ul>
 
                         <div class="payu">
@@ -245,7 +245,7 @@ app.profile.init();
 
                 {% for day in days %}
                 <div class="day-{{forloop.counter}} {% if day|length = 0 %}empty-day{% endif %}">
-                    <h3>Feb 2{{forloop.counter|ordinal}}</h3>
+                    <h3>Feb 2{{forloop.counter0|ordinal}}</h3>
 
                     <div class="strip empty-strip">
                         <p>You have no activities on this day.</p>
@@ -264,7 +264,7 @@ app.profile.init();
                         <div class="sq-event">
                             <p class="title">{{event.title}}</p>
 
-                            {% if event.is_team %}
+                            {% if event.is_multiple %}
                             <p class="small">Team Event</p>
                             {% else %}
                             <p class="small">Individual Event</p>

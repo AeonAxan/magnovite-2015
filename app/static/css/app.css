@@ -3539,8 +3539,7 @@ body.mobile .notifications .notification {
 .location .address-section {
   margin-right: 20px;
   padding: 30px;
-  background: #000c18;
-  box-shadow: inset 0 0 10px #000a0d;
+  background: #00060f;
   color: rgba(255, 255, 250, 0.65);
   text-align: left;
 }
@@ -3567,6 +3566,9 @@ body.mobile .notifications .notification {
 }
 .location .address-section .person a {
   display: block;
+}
+.location .address-section .person .email {
+  text-decoration: none;
 }
 .location .address-section .person .name {
   color: rgba(255, 255, 255, 0.7);
@@ -3600,6 +3602,74 @@ body.mobile .notifications .notification {
 .mobile .location .map-section iframe {
   width: 100%;
   height: 300px;
+}
+.home-footer .contact {
+  background: #00060f;
+  background-image: url('/static/img/bg_dark_blue.png');
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  padding: 50px;
+}
+.home-footer .contact .title {
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.home-footer .contact .contact-row {
+  padding: 40px 0 20px 0;
+}
+.home-footer .contact .contact-box {
+  width: 250px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 10px;
+}
+.home-footer .contact .contact-box .name {
+  font-weight: bold;
+}
+.home-footer .contact .contact-box:last-child {
+  margin-right: 0;
+}
+.home-footer .contact .contact-box a {
+  display: block;
+}
+.home-footer .contact .contact-box a.email {
+  text-decoration: none;
+}
+.home-footer .contact .contact-box h4 {
+  font-size: 22px;
+  margin: 10px 0 15px 0;
+}
+.home-footer .footer-last {
+  background: #0A1A2B;
+  padding: 50px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+.home-footer .footer-last .copy {
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.home-footer .footer-last .dev {
+  color: rgba(255, 255, 255, 0.8);
+}
+.home-footer .footer-last .dev a {
+  color: #ddd;
+  text-decoration: none;
+  border-bottom: 1px solid #1f78ff;
+}
+.home-footer .footer-last .dev a:hover {
+  color: #1f78ff;
+}
+.mobile .home-footer .contact {
+  padding: 50px 15px;
+}
+.mobile .home-footer .contact .contact-box {
+  width: 100%;
+  margin-bottom: 15px;
 }
 .mobile-events {
   display: none;

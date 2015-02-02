@@ -302,6 +302,16 @@ h3 {
 ::-webkit-scrollbar-thumb {
   background-color: #1f78ff;
 }
+.tele {
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+}
+.mobile .tele {
+  text-decoration: underline;
+  pointer-events: all;
+  cursor: pointer;
+}
 .container {
   width: 1120px;
   position: relative;
@@ -3515,6 +3525,81 @@ body.mobile .notifications .notification {
 }
 .mobile .footer-home .links .section:nth-child(2n) {
   background: #122d42;
+}
+.location {
+  text-align: center;
+  padding: 50px 0;
+}
+.location .section {
+  width: 500px;
+  height: 500px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.location .address-section {
+  margin-right: 20px;
+  padding: 20px;
+  background: #000c18;
+  box-shadow: inset 0 0 10px #000a0d;
+  color: rgba(255, 255, 250, 0.65);
+  text-align: left;
+}
+.location .address-section h3 {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 5px;
+}
+.location .address-section .block {
+  margin-bottom: 30px;
+}
+.location .address-section ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+.location .address-section p {
+  display: block;
+}
+.location .address-section .person {
+  background: rgba(245, 245, 245, 0.05);
+  padding: 15px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+}
+.location .address-section .person a {
+  display: block;
+}
+.location .address-section .person .name {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+}
+.location .address-section .em {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.location .map-section {
+  background: #eee;
+  padding: 0;
+}
+.location .map-section iframe {
+  width: 500px;
+  height: 500px;
+}
+.mobile .location {
+  padding: 0;
+}
+.mobile .location .section {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.mobile .location .person-container {
+  text-align: center;
+}
+.mobile .location .person-container .person {
+  margin: 10px 0;
+}
+.mobile .location .map-section iframe {
+  width: 100%;
+  height: 300px;
 }
 .mobile-events {
   display: none;

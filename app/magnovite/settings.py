@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'app.dashboard',
     'app.message',
     'app.payment',
+    'app.workshop',
 )
 
 if DEBUG:

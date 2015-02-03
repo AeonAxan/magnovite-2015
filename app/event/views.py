@@ -82,12 +82,6 @@ def register(req, id, team_id=None):
             'errorMessage': 'Please login first'
         }, status=400)
 
-    if not settings.DEBUG and not req.user.is_staff:
-        return JsonResponse({
-            'errorCode': 'unauthorized',
-            'errorMessage': 'Sorry, Our registrations are not open yet, pleaes check back on 1st of Feb'
-        }, status=400)
-
     # you can only register if profile is complete
     if not req.user.profile.is_complete():
         return JsonResponse({

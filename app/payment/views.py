@@ -16,11 +16,6 @@ from .models import create_invoice, Invoice
 
 
 def generate(req, invoice_type):
-    if not settings.DEBUG and not (req.user.is_authenticated() and req.user.is_staff):
-        return JsonResponse({
-            'errorMessage': 'Our packages are currently not open for public'
-        }, status=400)
-
     if invoice_type not in ('test', 'team', 'single', 'multiple', 'upgrade'):
         return HttpResponse(status=400)
 

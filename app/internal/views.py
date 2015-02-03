@@ -3,17 +3,21 @@ import json
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from django.conf import settings
 
 from app.event.utils import generate_team_id
 from app.event.models import Event, Registration
-from app.main.models import MUser, Profile
+from app.main.models import MUser
 
 from .forms import RegistrationForm
 
 
 def register_view(req):
+    if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
+        raise PermissionDenied
+
     if settings.DEBUG:
         template = 'magnovite/internalRegistration.html'
     else:
@@ -25,6 +29,9 @@ def register_view(req):
 @csrf_exempt
 @require_POST
 def register_create(req):
+    if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
+        raise PermissionDenied
+
     # IN params
     # name, email, college, mobile, referred, pack, events [{id, teamid?}]
     try:

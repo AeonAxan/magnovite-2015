@@ -3210,6 +3210,9 @@ body.mobile .notifications .notification {
   width: 120px;
   margin: 10px 0 0 40px;
 }
+.body-quest.mobile {
+  overflow-x: hidden !important;
+}
 .quest-page-outer {
   background: #2f2f2f;
   background-image: url('http://i.imgur.com/E70imDZ.png');
@@ -3248,6 +3251,17 @@ body.mobile .notifications .notification {
   width: 25%;
   max-width: 360px;
 }
+.mobile .quest-page {
+  padding-top: 20px;
+}
+.mobile .quest-page .left-pane,
+.mobile .quest-page .center-pane,
+.mobile .quest-page .right-pane {
+  width: 95%;
+  max-width: 9999px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 .quest-page .left-pane ul {
   list-style: decimal;
   padding-left: 20px;
@@ -3260,6 +3274,9 @@ body.mobile .notifications .notification {
 }
 .quest-page .left-pane li.current {
   color: #ffffff;
+}
+.mobile .quest-page .left-pane ul {
+  display: inline-block;
 }
 .quest-page .center-pane {
   text-align: center;
@@ -3369,6 +3386,12 @@ body.mobile .notifications .notification {
   animation-name: shake;
   -webkit-animation-duration: 1s;
   animation-duration: 1d;
+}
+.mobile .quest-page .center-pane .answer input {
+  width: 100%;
+}
+.mobile .quest-page .center-pane iframe {
+  width: 100%;
 }
 .quest-page .q-right-pane ul li {
   background: rgba(0, 0, 0, 0.7);

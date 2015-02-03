@@ -8,9 +8,9 @@ from app.event.models import Registration
 
 def generate_team_id(email, event):
     while True:
-        prefix = 'T-'
+        prefix = 't'
         if event.is_group():
-            prefix = 'G-'
+            prefix = 'g'
 
         corpus = email + event.slug + settings.SECRET_KEY[:10] + str(random.random())
         team_id = prefix + hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]

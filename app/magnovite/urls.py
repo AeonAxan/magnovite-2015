@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^dashboard/', include('app.dashboard.urls')),
     url(r'^payment/', include('app.payment.urls')),
     url(r'^workshop/', include('app.workshop.urls')),
+    url(r'^internal/', include('app.internal.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 

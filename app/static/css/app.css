@@ -4208,6 +4208,8 @@ body.mobile .notifications .notification {
   border: 1px solid #00B5EE;
 }
 .workshop-page .workshop .register .register-btn-box button.registered {
+  cursor: default;
+  pointer-events: none;
   border: 1px solid #00EE0A;
   background: #1AB905;
 }

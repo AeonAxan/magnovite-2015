@@ -5,7 +5,7 @@ from app.main.models import Profile
 from app.event.models import Event
 
 
-def create_invoice(invoice_type, profile, event=None):
+def create_invoice(invoice_type, profile, event=None, workshop=None):
     invoice = Invoice(
         profile=profile,
         invoice_type=invoice_type,
@@ -28,6 +28,9 @@ def create_invoice(invoice_type, profile, event=None):
     elif invoice_type == 'test':
         invoice.description = 'Test Payment'
         invoice.amount = 20
+    elif invoice_type == 'workshop':
+        invoice.description = 'Workshop registration for ' + workshop.title
+        invoice.amount = workshop.price
 
     else:
         return None

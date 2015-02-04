@@ -23,7 +23,7 @@ app.payments = {};
         if (params) {
             params = '?' + params;
         }
-
+https://test.
         $.get(GENERATE_URL + type + '/' + params)
             .done(function(html) {
                 $(html).appendTo(document.body).hide().submit();
@@ -33,12 +33,25 @@ app.payments = {};
             .fail(function(err) {
                 var obj = err.responseJSON || {};
 
-                var msg = obj.errorMessage || 'There was an error, if it persists please reach out to us in Help section';
-                app.notification.notify({
-                    text: msg,
-                    type: 'error',
-                    persistant: true
-                });
+                if (obj.actionType === 'redirect') {
+                    app.notification.notify({
+                        text: obj.errorMessage,
+                        action: obj.actionText,
+                        type: 'error',
+                        persistant: true,
+                        actionCallback: function() {
+                            window.location.replace(obj.redirectLocation);
+                        }
+                    });
+
+                } else {
+                    var msg = obj.errorMessage || 'There was an error, if it persists please reach out to us in Help section';
+                    app.notification.notify({
+                        text: msg,
+                        type: 'error',
+                        persistant: true
+                    });
+                }
 
                 NProgress.done();
                 inProgress = false;

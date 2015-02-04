@@ -1,5 +1,89 @@
 {% extends "magnovite/base.html" %}
 
 {% block "extra_meta" %}
+<meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+<meta name="keywords" content="Magnovite,Tech Fest" />
+<meta name="author" content="CUFE" />
 
+<meta property="og:title" content="Workshop | Magnovite 2015" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://magnovite.net/static/img/logo_square_share.png" />
+<meta property="og:url" content="https://magnovite.net/" />
+<meta property="og:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Workshop | Magnovite 2015" />
+<meta name="twitter:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+<meta name="twitter:image" content="https://magnovite.net/static/img/logo_square_share.png" />
 {% endblock "extra_meta" %}
+
+{% block "body_css_class" %}
+workshop-page transparent-banner
+{% endblock "body_css_class" %}
+
+{% block "content" %}
+<div class="page-container">
+    <div class="title">
+        <h1>Workshops</h1>
+    </div>
+
+    <div class="nav container">
+        <div class="nav-item">
+            <img src="http://placehold.it/120x120" alt="">
+        </div>
+        <div class="nav-item">
+            <img src="http://placehold.it/120x120" alt="">
+        </div>
+        <div class="nav-item">
+            <img src="http://placehold.it/120x120" alt="">
+        </div>
+    </div>
+
+    <div class="workshop">
+        <div class="container">
+            <div class="left">
+                <img src="http://placehold.it/400x400" alt="">
+            </div>
+            <div class="right">
+                <h2 class="workshop-title"></h2>
+                <div class="info">
+                    <p>20th and 21st February</p>
+                    <p>This workshop mainly focuses on how to use Android OS for building your own Android Application. Only the basic knowledge of programming is required for Android App Development, you do not have to be a geek for it! The workshop will start from the basics like designing layouts and building complex layouts. Once the basics of Android are done we will begin with building Apps. The duration of this workshop will be two consecutive days, with eight hours session each day in a total of sixteen hours, properly divided into theory and hand on practical sessions.</p>
+                </div>
+                <div class="incharge">
+                    <div class="student part">
+                        <h3>Student Incharge</h3>
+                        <div class="person">
+                            <p class="name">Ahmed Azaan Hassan</p>
+                            <a href="#" class="tele">+91 890 430 8580</a>
+                        </div>
+                        <div class="person">
+                            <p class="name">Ahmed Azaan Hassan</p>
+                            <a href="#" class="tele">+91 890 430 8580</a>
+                        </div>
+                    </div>
+                    <div class="faculty part">
+                        <h3>Faculty Incharge</h3>
+                        <div class="person">
+                            <p class="name">Ahmed azaan Hassan</p>
+                            <a href="#" class="tele">+91 890 430 8580</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="register">
+                    <div class="price part">
+                        <p>Price: 1600/-</p>
+                    </div>
+                    <div class="register-btn-box part">
+                        <button class="button gray">Register Now</button>
+                    </div>
+                    <div class="payu part">
+                        <img src="/static/img/payu.jpg" alt="PayuMoney">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock "content" %}
+

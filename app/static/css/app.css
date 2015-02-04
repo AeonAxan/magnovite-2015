@@ -4093,3 +4093,159 @@ body.mobile .notifications .notification {
   visibility: visible;
   opacity: 1;
 }
+.workshop-page .page-container {
+  padding-top: 100px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.workshop-page .title {
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 40px 0;
+}
+.workshop-page .title h1 {
+  font-size: 42px;
+}
+.workshop-page .nav {
+  text-align: center;
+  margin: 20px auto 40px auto;
+}
+.workshop-page .nav .nav-item {
+  display: inline-block;
+  margin-right: 40px;
+}
+.workshop-page .nav .nav-item:last-child {
+  margin-right: 0;
+}
+.workshop-page .workshop {
+  padding: 40px 0;
+  background: #040d18;
+}
+.workshop-page .workshop .left {
+  float: left;
+  width: 40%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.workshop-page .workshop .left img {
+  display: inline-block;
+  margin-top: 20px;
+}
+.workshop-page .workshop .right {
+  float: left;
+  width: 60%;
+  padding: 20px;
+}
+.workshop-page .workshop .workshop-title {
+  margin-bottom: 20px;
+  font-size: 34px;
+}
+.workshop-page .workshop .info {
+  padding: 5px 0;
+}
+.workshop-page .workshop .info p {
+  margin-bottom: 5px;
+}
+.workshop-page .workshop .incharge {
+  margin-bottom: 20px;
+}
+.workshop-page .workshop .incharge .part {
+  display: inline-block;
+  vertical-align: top;
+}
+.workshop-page .workshop .incharge .part:first-child {
+  margin-right: 10px;
+}
+.workshop-page .workshop .incharge h3 {
+  font-size: 22px;
+  padding: 10px 0;
+}
+.workshop-page .workshop .incharge .person {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+  background: rgba(52, 120, 173, 0.15);
+}
+.workshop-page .workshop .incharge .person:last-child {
+  margin-right: 0;
+}
+.workshop-page .workshop .incharge .person .name {
+  font-weight: bold;
+}
+.workshop-page .workshop .incharge .person a {
+  display: block;
+  text-decoration: none;
+}
+.workshop-page .workshop .incharge .person a:hover {
+  text-decoration: underline;
+}
+.workshop-page .workshop .register {
+  margin-top: 25px;
+}
+.workshop-page .workshop .register .part {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.workshop-page .workshop .register .part:last-child {
+  margin-right: 0;
+}
+.workshop-page .workshop .register .price {
+  padding: 10px 20px;
+  font-size: 20px;
+  background: rgba(52, 120, 173, 0.15);
+}
+.workshop-page .workshop .register .register-btn-box button {
+  height: auto;
+  padding: 2px 30px;
+  background: #008FEE;
+  border: 1px solid #00B5EE;
+}
+.workshop-page .workshop .register .register-btn-box button:hover {
+  border: 1px solid white;
+}
+.workshop-page .workshop .register .payu img {
+  margin-top: 5px;
+  width: 70px;
+}
+.mobile.workshop-page .page-container {
+  padding-top: 60px;
+}
+.mobile.workshop-page .nav-item {
+  margin-right: 10px;
+}
+.mobile.workshop-page .nav-item:last-child {
+  margin-right: 0;
+}
+.mobile.workshop-page .nav-item img {
+  width: 50px;
+  height: 50px;
+}
+.mobile.workshop-page .left {
+  width: 100%;
+}
+.mobile.workshop-page .left img {
+  width: 100%;
+}
+.mobile.workshop-page .right {
+  width: 100%;
+}
+.mobile.workshop-page .right .incharge {
+  text-align: center;
+}
+.mobile.workshop-page .right .incharge .part {
+  margin: 0;
+  margin-bottom: 20px;
+}
+.mobile.workshop-page .right .incharge .part .person {
+  margin-right: 0;
+  margin-bottom: 15px;
+}
+.mobile.workshop-page .right .register .part {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}

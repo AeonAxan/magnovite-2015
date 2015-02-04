@@ -7,7 +7,12 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import MUser, Profile
 from app.event.models import Registration, Event
+from app.workshop.models import Workshop
 
+
+class WorkshopsInline(admin.TabularInline):
+    model = Profile.registered_workshops.through
+    extra = 0
 
 class RegistrationsInline(admin.TabularInline):
     model = Registration
@@ -21,8 +26,8 @@ class EventsInline(admin.TabularInline):
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'user', 'auth_provider', 'active_email')
-    exclude = ('events',)
-    inlines = [RegistrationsInline, EventsInline]
+    exclude = ('events', 'registered_workshops')
+    inlines = [WorkshopsInline, RegistrationsInline, EventsInline]
 
 admin.site.register(Profile, ProfileAdmin)
 

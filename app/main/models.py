@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 )
 
 from app.event.models import Event, Registration
+from app.workshop.models import Workshop
 
 
 class MUserManager(BaseUserManager):
@@ -116,6 +117,7 @@ class Profile(models.Model):
     )
 
     registered_events = models.ManyToManyField(Event, through=Registration)
+    registered_workshops = models.ManyToManyField(Workshop, null=True, blank=True)
 
     # internal fields
     is_internal = models.BooleanField(

@@ -1,6 +1,23 @@
 {% extends "magnovite/base.html" %}
 {% load humanize %}
 
+{% block "extra_meta" %}
+<meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+<meta name="keywords" content="Magnovite,Tech Fest" />
+<meta name="author" content="CUFE" />
+
+<meta property="og:title" content="Quest | Magnovite 2015" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://magnovite.net/static/img/logo_square_share.png" />
+<meta property="og:url" content="https://magnovite.net/" />
+<meta property="og:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Quest | Magnovite 2015" />
+<meta name="twitter:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+<meta name="twitter:image" content="https://magnovite.net/static/img/logo_square_share.png" />
+{% endblock "extra_meta" %}
+
 {% block "body_css_class" %}
 transparent-banner body-quest browser-height
 {% endblock "body_css_class" %}

@@ -26,7 +26,6 @@ $(document).delegate('.js-teamid', 'blur', function(e) {
 
 //calculates price of events
 function calcPrice() {
-    console.log('calc');
     var html = '';
     var packInp = $('.js-pack:checked');
     var price = 0;
@@ -139,7 +138,7 @@ function sendData(e) {
         var eventObj = {};
         eventObj.id = makeId(arrInp[i].id);
 
-        var teamid = $(arrInp[i]).siblings('input').val();
+        var teamid = $(arrInp[i]).closest('.event-item').find('.js-teamid').val();
         if(teamid) {
             if(isTeamValid(teamid)) { //write isTeamValid()
                 eventObj.teamid = teamid;
@@ -162,7 +161,6 @@ function sendData(e) {
 
     var validResp = isFieldValid(jsonObj);
     if(validResp === true) {
-
         $.post( '/internal/api/register/', JSON.stringify(jsonObj))
         .done(function(resp) {
             window.location.replace(resp.url);

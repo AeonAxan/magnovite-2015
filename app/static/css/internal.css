@@ -256,3 +256,10 @@ table {
   background: #005deb;
   color: white;
 }
+.mobile.internal-registration .container {
+  width: 100%;
+  padding: 0 15px;
+}
+.mobile.internal-registration .radiobuttons label {
+  width: 70%;
+}

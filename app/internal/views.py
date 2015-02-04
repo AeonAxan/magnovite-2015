@@ -57,7 +57,9 @@ def register_view(req):
             'price': workshop.price
         })
 
-    return render(req, template)
+    return render(req, template, {
+        'jsonobj': json.dumps(obj)
+    })
 
 
 @csrf_exempt

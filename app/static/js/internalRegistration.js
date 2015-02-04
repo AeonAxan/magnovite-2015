@@ -1,61 +1,3 @@
-EVENTS = {
-	"technical": [
-	{
-		"id": 9,
-		"title": "Robitics",
-		"is_team": false
-	},
-	{
-		"id": 10,
-		"title": "CAD Modelling",
-		"is_team": true
-	}
-	],
-
-	"cultural": [
-	{
-		"id": 11,
-		"title": "Shipwreck",
-		"is_team": true
-	},
-	{
-		"id": 8,
-		"title": "Counter Strike",
-		"is_team": true
-	}
-	],
-
-	"group": [
-	{
-		"id": 12,
-		"title": "Group Dance",
-		"is_team": true
-	}
-	],
-
-	"workshop": [
-	{
-		"id": 20,
-		"title": "Android WorkShop",
-		"is_team": false,
-		"price": 1000
-	},
-	{
-		"id": 21,
-		"title": "Windows Dev Workshop",
-		"is_team": false,
-		"price": 600
-	},
-	{
-		"id": 22,
-		"title": "Apple Dev Workshop",
-		"is_team": false,
-		"price": 1400
-	}
-	]
-}
-
-
 //event listeners
 $('.js-submit').on('click', sendData);
 $(document).delegate('.js-pack', 'click',calcPrice);
@@ -63,7 +5,7 @@ $(document).delegate('.js-group-events', 'click', calcPrice);
 $(document).delegate('.js-workshop-events', 'click', calcPrice);
 $(document).delegate('.js-group-events ~ .js-teamid','blur', calcPrice);
 $(document).delegate('.js-teamid', 'blur', function(e) {
-	
+
 	//clears the error list
 	$('.js-errorlist').html('');
 
@@ -110,8 +52,8 @@ function populate() {
 		$('input[type=radio]', this).get(0).checked = true;
 	});
 
-	$('.js-events-technical').append(renderEvents(EVENTS.technical));
-	$('.js-events-cultural').append(renderEvents(EVENTS.cultural));
+	$('.js-events-technical').append(renderEvents(EVENTS.technical, 'js-tech-events'));
+	$('.js-events-cultural').append(renderEvents(EVENTS.cultural, 'js-cult-events'));
 	$('.js-events-group').append(renderEvents(EVENTS.group, 'js-group-events'));
 	$('.js-events-workshop').append(renderEvents(EVENTS.workshop, 'js-workshop-events'));
 	calcPrice();
@@ -149,7 +91,7 @@ function render(tempString,obj) {
 /*
 	sendData()
 	- does field validation
-	- sends data 
+	- sends data
 	- handles api errors
 
 */
@@ -157,7 +99,7 @@ function sendData(e) {
 	e.preventDefault();
 	$('.js-errorlist').html('');
 
-	var arrInp = $('.js-events:checked');
+	var arrInp = $('.js-events:checked').not('.js-workshop-events');
 	var packInp = $('.js-pack:checked');
 
 	var jsonObj = {};
@@ -179,7 +121,7 @@ function sendData(e) {
 
 	for (var i = 0; i < arrInp.length; i++) {
 		var eventObj = {};
-		eventObj.id = arrInp[i].id;
+		eventObj.id = makeId(arrInp[i].id);
 
 		var teamid = $(arrInp[i]).siblings('input').val();
 		if(teamid) {
@@ -194,6 +136,13 @@ function sendData(e) {
 
 		jsonObj.events.push(eventObj);
 	}
+
+	jsonObj.workshops = [];
+	$('.js-workshop-events:checked').each(function(i, el) {
+		var $el = $(el);
+
+		jsonObj.workshops.push({id: makeId($el.attr('id'))});
+	})
 
 	var validResp = isFieldValid(jsonObj);
 	if(validResp === true) {
@@ -263,7 +212,12 @@ function showError(id, errorMsgs) {
 	$el.html(html);
 }
 
+function makeId(domId) {
+	var parts = domId.split('-');
+	return parts[parts.length-1];
+}
+
 //initial call
 $(function() {
-	populate();	
+	populate();
 })

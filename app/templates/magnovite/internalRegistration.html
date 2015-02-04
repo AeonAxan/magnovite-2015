@@ -24,7 +24,7 @@
 				<div>
 					<ul class="js-errorlist"></ul>
 					<label for="name">Name</label>
-					<input type="text" id="name" name="fullname" value="" placeholder="Name">		
+					<input type="text" id="name" name="fullname" value="" placeholder="Name">
 				</div>
 
 				<div>
@@ -36,19 +36,19 @@
 				<div>
 					<ul class="js-errorlist"></ul>
 					<label for="college">College</label>
-					<input type="text" id="college" name="college" value="" placeholder="College">		
+					<input type="text" id="college" name="college" value="" placeholder="College">
 				</div>
 
 				<div>
 					<ul class="js-errorlist"></ul>
 					<label for="mobile">Mobile</label>
-					<input type="text" id="mobile" name="mobile" value="" placeholder="Mobile">		
+					<input type="text" id="mobile" name="mobile" value="" placeholder="Mobile">
 				</div>
 
 				<div>
 					<ul class="js-errorlist"></ul>
 					<label for="referred">Referred By</label>
-					<input type="text" name="referred" value="" placeholder="referred by">		
+					<input type="text" name="referred" value="" placeholder="referred by">
 				</div>
 
 				<div class="js-radiobuttons">
@@ -83,17 +83,23 @@
 	<script type="text/template"  id="singleTemplate">
 		<div>
 			<ul class="js-errorlist"></ul>
-			<input type="checkbox" data-price="[[price]]" class="js-events [[cssclass]]" id = "[[id]]" />
-			<label for="[[id]]">[[title]]</label>
-		</div> 
+			<input type="checkbox" data-price="[[price]]" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
+			<label for="[[cssclass]]-[[id]]">[[title]]</label>
+		</div>
 	</script>
 	<script type="text/template" id="teamTemplate">
 		<div>
 			<ul class="js-errorlist"></ul>
-			<input type="checkbox" class="js-events [[cssclass]]" id = "[[id]]" />
-			<label for="[[id]]">[[title]]</label>
+			<input type="checkbox" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
+			<label for="[[cssclass]]-[[id]]">[[title]]</label>
 			<input type="text" class="js-teamid teamid" id="tid-[[id]]"/>
-		</div> 
+		</div>
+	</script>
+
+	<script>
+	{% autoescape off %}
+	EVENTS = JSON.parse('{{jsonobj}}')
+	{% endautoescape %}
 	</script>
 
 	<script src="/static/js/lib/jquery-2.1.1.min.js"></script>

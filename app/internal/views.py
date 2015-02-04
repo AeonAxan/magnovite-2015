@@ -85,6 +85,9 @@ def register_create(req):
             'errors': f.errors
         }, status=400)
 
+    workshops = data.get('workshops', [])
+    events = data.get('events', [])
+
     try:
         MUser.objects.get(email=f.cleaned_data['email'])
 
@@ -96,6 +99,11 @@ def register_create(req):
     except MUser.DoesNotExist:
         user = MUser.objects.create_user(email=f.cleaned_data['email'])
 
+    # calculate payment due
+    payment = 100
+    if f.cleaned_data['pack'] == 'multiple':
+        payment = 200
+
     # setup profile
     profile = user.profile
     profile.name=f.cleaned_data['name']
@@ -104,10 +112,12 @@ def register_create(req):
     profile.referral=f.cleaned_data.get('referred', '')
     profile.pack=f.cleaned_data['pack']
     profile.auth_provider='on-spot'
-    profile.save()
+
+    profile.on_spot = True
+    profile.on_spot_registerer = req.user.profile.name
+    # profile saved at the end
 
     # do event registrations
-    events = data.get('events', [])
     for eventObj in events:
         if eventObj.get('id', '') == '':
             return JsonResponse({
@@ -132,6 +142,9 @@ def register_create(req):
                 if event.is_group():
                     is_owner = True
 
+                    # creating group team, cost 500
+                    payment += 500
+
             else:
                 try:
                     Registration.objects.get(team_id=team_id)
@@ -149,7 +162,6 @@ def register_create(req):
         )
 
     # do workshop registrations
-    workshops = data.get('workshops', [])
     for workshopObj in workshops:
         if not workshopObj.get('id', ''):
             return JsonResponse({
@@ -159,6 +171,7 @@ def register_create(req):
 
         try:
             workshop = Workshop.objects.get(id=workshopObj['id'])
+            payment += workshop.price
         except Workshop.DoesNotExist:
             return JsonResponse({
                 'status': 'error',
@@ -166,6 +179,9 @@ def register_create(req):
             }, status=400)
 
         profile.registered_workshops.add(workshop)
+
+    profile.on_spot_payment = payment
+    profile.save()
 
     return JsonResponse({
         'status': 'success',

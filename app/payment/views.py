@@ -148,10 +148,17 @@ def process_invoice(req, invoice):
 
     if invoice.invoice_type in ('single', 'multiple', 'upgrade'):
         new_pack = invoice.invoice_type
-        if new_pack == 'upgrade':
+
+        payment = 100
+        if new_pack == 'multiple':
+            payment = 200
+
+        elif new_pack == 'upgrade':
+            payment = 100
             new_pack = 'multiple'
 
         invoice.profile.pack = new_pack
+        invoice.profile.total_payment += payment
         invoice.profile.save()
 
         messages.success(req, invoice.profile.get_pack_display() + ' has successfully been activated!')
@@ -159,6 +166,9 @@ def process_invoice(req, invoice):
 
     elif invoice.invoice_type == 'team':
         team_id = generate_team_id(req.user.email, invoice.event)
+
+        invoice.profile.total_payment += 500
+        invoice.profile.save()
 
         r = Registration()
         r.event = invoice.event
@@ -172,6 +182,9 @@ def process_invoice(req, invoice):
 
     elif invoice.invoice_type == 'workshop':
         invoice.profile.registered_workshops.add(invoice.workshop)
+
+        invoice.profile.total_payment += invoice.workshop.price
+        invoice.profile.save()
 
         messages.success(req, 'Successfully registered for ' + invoice.workshop.title)
         return redirect('/workshops/')

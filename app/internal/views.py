@@ -180,7 +180,7 @@ def register_create(req):
 
         profile.registered_workshops.add(workshop)
 
-    profile.on_spot_payment = payment
+    profile.total_payment = payment
     profile.save()
 
     return JsonResponse({

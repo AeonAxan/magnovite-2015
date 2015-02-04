@@ -94,7 +94,8 @@ class Profile(models.Model):
     # if on-spot, who registered the user
     on_spot = models.BooleanField(default=False)
     on_spot_registerer = models.CharField(max_length=50, blank=True, null=True, default='')
-    on_spot_payment = models.IntegerField(max_length=4, default=0)
+
+    total_payment = models.IntegerField(max_length=4, default=0)
 
     # The payment pack
     PACKS = (

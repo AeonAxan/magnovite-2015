@@ -31,7 +31,7 @@ def login_view(req):
         return redirect('/')
 
     if req.user.is_authenticated():
-        return redirect('/')
+        logout(req)
 
     user = authenticate(username=username, password=password)
     if user is not None:

@@ -4121,6 +4121,9 @@ body.mobile .notifications .notification {
   padding: 40px 0;
   background: #040d18;
 }
+.workshop-page .workshop:nth-child(2n) {
+  background: #051f31;
+}
 .workshop-page .workshop .left {
   float: left;
   width: 40%;

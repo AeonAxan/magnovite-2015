@@ -17,6 +17,11 @@ EVENTS = {
 		"id": 11,
 		"title": "Shipwreck",
 		"is_team": true
+	},
+	{
+		"id": 8,
+		"title": "Counter Strike",
+		"is_team": true
 	}
 	],
 
@@ -26,6 +31,27 @@ EVENTS = {
 		"title": "Group Dance",
 		"is_team": true
 	}
+	],
+
+	"workshop": [
+	{
+		"id": 20,
+		"title": "Android WorkShop",
+		"is_team": false,
+		"price": 1000
+	},
+	{
+		"id": 21,
+		"title": "Windows Dev Workshop",
+		"is_team": false,
+		"price": 600
+	},
+	{
+		"id": 22,
+		"title": "Apple Dev Workshop",
+		"is_team": false,
+		"price": 1400
+	}
 	]
 }
 
@@ -34,6 +60,9 @@ EVENTS = {
 $('.js-submit').on('click', sendData);
 $(document).delegate('.js-pack', 'click',calcPrice);
 $(document).delegate('.js-group-events', 'click', calcPrice);
+//listen to workshop check
+//if checked find the price and adds it to the price
+$(document).delegate('.js-workshop-events', 'click', calcPrice);
 $(document).delegate('.js-group-events ~ .js-teamid','blur', calcPrice);
 $(document).delegate('.js-teamid', 'blur', function(e) {
 	//if not empty then check team id
@@ -65,17 +94,21 @@ function calcPrice() {
 			price += 500;
 		}
 	})
+	$('.js-workshop-events:checked').each(function(i, el) {
+		price += $(el).data("price");
+	})
 	$('.js-amount').html('Total Amount: ' + price);
 }
 
 
 function populate() {
 	$('.js-radiobuttons').each(function(){
-    	$('input[type=radio]', this).get(0).checked = true;
+		$('input[type=radio]', this).get(0).checked = true;
 	});
 	$('.js-events-technical').append(renderEvents(EVENTS.technical));
 	$('.js-events-cultural').append(renderEvents(EVENTS.cultural));
 	$('.js-events-group').append(renderEvents(EVENTS.group, 'js-group-events'));
+	$('.js-events-workshop').append(renderEvents(EVENTS.workshop, 'js-workshop-events'));
 	calcPrice();
 }
 
@@ -121,7 +154,7 @@ function sendData(e) {
 	jsonObj.events = [];
 
 	if(packInp.data('type') == 'single') {
-		if (arrInp.not('.js-group-events').length > 1) {
+		if (arrInp.not('.js-group-events').not('.js-workshop-events').length > 1) {
 			showError('pack', ['Cant register to more than one event with single pack']);
 			return;
 		}
@@ -148,7 +181,17 @@ function sendData(e) {
 	var validResp = isFieldValid(jsonObj);
 	if(validResp === true) {
 		// call api
-		console.log(jsonObj);
+		
+		$.post( '/internal/api/register/', JSON.stringify(jsonObj))
+		.done(function(resp) {
+			window.location.replace(resp.url);
+		})
+		.fail(function(err) {
+			var obj = err.responseJSON;
+			$.each(obj.errors, function(i, el) {
+				showError(i, el);
+			})
+		});
 	} else {
 		showError(validResp,['this field cant be empty'])
 	}

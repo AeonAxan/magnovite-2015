@@ -197,12 +197,8 @@ function isFieldValid(jObj) {
 //display error
 function showError(id, errorMsgs) {
 	// general case seperately
-	var $el;
-	if (id == 'form') {
-		$el = $('.js-general-errors .js-errorlist');
-	} else {
-		$el = $('#' + id).siblings('.js-errorlist');
-	}
+	
+	var	$el = $('#' + id).siblings('.js-errorlist');
 
 	var html = '';
 	$.each(errorMsgs, function(i, val) {
@@ -210,6 +206,13 @@ function showError(id, errorMsgs) {
 	});
 
 	$el.html(html);
+
+	// scroll to the element - offsetvalue (in px)
+	var scrollPos = $('#' + id).position().top - 30;
+	if ($(window).scrollTop() > scrollPos) {
+		$(window).scrollTop(scrollPos);	
+	}
+	
 }
 
 function makeId(domId) {

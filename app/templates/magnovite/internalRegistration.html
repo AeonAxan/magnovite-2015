@@ -11,88 +11,86 @@
 		<div class="page-header">
 			<h1>Regsitration <small>Maganovite 2015</small></h1>
 		</div>
-		<div id ="generalInfo">
-			<h1>General information</h1>
-		</div>
-
 		<div class="form-wrap">
-			<form>
-				<div class="js-general-errors">
-					<ul class="js-errorlist"></ul>
-				</div>
+			
+			<div class="js-general-errors">
+				<input type="hidden" name="" value="" id="form">
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div>
-					<ul class="js-errorlist"></ul>
-					<label for="name">Name</label>
-					<input type="text" id="name" name="fullname" value="" placeholder="Name">
-				</div>
+			<div>
+				<label for="name">Name</label><br>
+				<input type="text" id="name" class="inputfields" name="fullname" value="" placeholder="Name">		
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div>
-					<ul class="js-errorlist"></ul>
-					<label for="email">Email</label>
-					<input type='email' id="email" name="email" value="" placeholder="Enter you Email">
-				</div>
+			<div>
+				<label for="email">Email</label><br>
+				<input type='email' id="email" class="inputfields" name="email" value="" placeholder="Enter you Email">
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div>
-					<ul class="js-errorlist"></ul>
-					<label for="college">College</label>
-					<input type="text" id="college" name="college" value="" placeholder="College">
-				</div>
+			<div>
+				<label for="college">College</label><br>
+				<input type="text" id="college" class="inputfields" name="college" value="" placeholder="College">		
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div>
-					<ul class="js-errorlist"></ul>
-					<label for="mobile">Mobile</label>
-					<input type="text" id="mobile" name="mobile" value="" placeholder="Mobile">
-				</div>
+			<div>
+				<label for="mobile">Mobile</label><br>
+				<input type="text" id="mobile" class="inputfields" name="mobile" value="" placeholder="Mobile">		
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div>
-					<ul class="js-errorlist"></ul>
-					<label for="referred">Referred By</label>
-					<input type="text" name="referred" value="" placeholder="referred by">
-				</div>
+			<div>
+				<label for="referred">Referred By</label><br>
+				<input type="text" class="inputfields" name="referred" value="" placeholder="referred by">		
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<div class="js-radiobuttons">
-					<ul class="js-errorlist"></ul>
-					<input type="radio" id="pack" data-type="single" class="js-pack" name="pack">
-					<label for="singlepack">Single Pack</label>
-					<input type="radio" data-type="multiple" class="js-pack" name="pack">
-					<label for="Multipack">Multi Pack</label>
-				</div>
+			<div class="js-radiobuttons radiobuttons">
+				
+				<h3>Select your pack</h3>
+				<input type="radio" id="pack" data-type="single" class="js-pack pack" name="pack">
+				<label for="singlepack" class"packlabel" >Single Pack</label>
+				<input type="radio" data-type="multiple" class="js-pack pack" name="pack">
+				<label for="Multipack">Multi Pack</label>
+				<ul class="js-errorlist errorlist"></ul>
+			</div>
 
-				<p>Events</p>
-				<div class="js-events-wrap">
-					<div class="js-events-technical">
-						<h3>Technical Events</h3>
-					</div>
-					<div class="js-events-cultural">
-						<h3>Cultural Events</h3>
-					</div>
-					<div class="js-events-group">
-						<h3>Group Events</h3>
-					</div>
-					<div class="js-events-workshop">
-						<h3>Workshop</h3>
-					</div>
+			<h2>Events</h2>
+			<div class="js-events-wrap events-wrap">
+				<div class="js-events-technical">
+					<h3>Technical Events</h3>
 				</div>
-				<div class="js-amount amount"></div>
-				<input type="submit" name="Submit" class="js-submit" value="Submit">
-			</form>
+				<div class="js-events-cultural">
+					<h3>Cultural Events</h3>
+				</div>
+				<div class="js-events-group">
+					<h3>Group Events</h3>
+				</div>
+				<div class="js-events-workshop">
+					<h3>Workshop</h3>
+				</div>
+			</div>
+			<div class="js-amount amount"></div>
+			<input type="submit" name="Submit" class="js-submit submit" value="Submit">
 		</div>
-
 	</div>
 	<script type="text/template"  id="singleTemplate">
-		<div>
-			<ul class="js-errorlist"></ul>
+		<div class="event-item">
 			<input type="checkbox" data-price="[[price]]" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
 			<label for="[[cssclass]]-[[id]]">[[title]]</label>
+			<ul class="js-errorlist errorlist"></ul>
 		</div>
+
 	</script>
 	<script type="text/template" id="teamTemplate">
-		<div>
-			<ul class="js-errorlist"></ul>
+		<div class="event-item">
 			<input type="checkbox" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
 			<label for="[[cssclass]]-[[id]]">[[title]]</label>
 			<input type="text" class="js-teamid teamid" id="tid-[[id]]"/>
+			<ul class="js-errorlist errorlist"></ul>
 		</div>
 	</script>
 

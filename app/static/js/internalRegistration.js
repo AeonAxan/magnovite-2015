@@ -56,21 +56,19 @@ EVENTS = {
 }
 
 
-
+//event listeners
 $('.js-submit').on('click', sendData);
 $(document).delegate('.js-pack', 'click',calcPrice);
 $(document).delegate('.js-group-events', 'click', calcPrice);
-//listen to workshop check
-//if checked find the price and adds it to the price
 $(document).delegate('.js-workshop-events', 'click', calcPrice);
 $(document).delegate('.js-group-events ~ .js-teamid','blur', calcPrice);
 $(document).delegate('.js-teamid', 'blur', function(e) {
-	//if not empty then check team id
-	//clear all the errors
+	
+	//clears the error list
 	$('.js-errorlist').html('');
+
+	//valid teamid?
 	if($(e.target).val() != "") {
-		//check for valid team id 
-		//if it return false invalid team id
 		if(!isTeamValid($(e.target).val())) {
 			//display error message
 			//find the id of inputbox
@@ -80,31 +78,38 @@ $(document).delegate('.js-teamid', 'blur', function(e) {
 	}
 });
 
-
+//calculates price of events
 function calcPrice() {
 	var packInp = $('.js-pack:checked');
 	var price = 0;
+
 	if (packInp.data('type') == 'single') {
 		price = 100;
 	} else if(packInp.data('type') == 'multiple') {
 		price = 200;
 	}
+
 	$('.js-group-events:checked').each(function(i, el) {
 		if(!$(el).siblings('.js-teamid').val()) {
 			price += 500;
 		}
 	})
+
 	$('.js-workshop-events:checked').each(function(i, el) {
 		price += $(el).data("price");
 	})
+
 	$('.js-amount').html('Total Amount: ' + price);
 }
 
-
+//populates the dom with events
 function populate() {
+
+	//first radio button checked
 	$('.js-radiobuttons').each(function(){
 		$('input[type=radio]', this).get(0).checked = true;
 	});
+
 	$('.js-events-technical').append(renderEvents(EVENTS.technical));
 	$('.js-events-cultural').append(renderEvents(EVENTS.cultural));
 	$('.js-events-group').append(renderEvents(EVENTS.group, 'js-group-events'));
@@ -112,12 +117,15 @@ function populate() {
 	calcPrice();
 }
 
+//returns the rendered template
 function renderEvents(arrEvents, cssclass) {
 	var htmlString = "";
 	var singleTemp = $('#singleTemplate').html();
 	var multiTemp = $('#teamTemplate').html();
+
 	for(var i = 0; i < arrEvents.length; i++) {
 		arrEvents[i].cssclass = cssclass || '';
+
 		if(arrEvents[i].is_team) {
 			htmlString += render(multiTemp, arrEvents[i])
 
@@ -128,14 +136,23 @@ function renderEvents(arrEvents, cssclass) {
 	return htmlString;
 }
 
+//template rendering, key and value
 function render(tempString,obj) {
 	var template = tempString;
+
 	$.each(obj, function(key,value) {
 		template = template.replace(new RegExp('\\[\\[' + key + '\\]\\]','g'), value);
 	})
 	return template;
 }
 
+/*
+	sendData()
+	- does field validation
+	- sends data 
+	- handles api errors
+
+*/
 function sendData(e) {
 	e.preventDefault();
 	$('.js-errorlist').html('');
@@ -159,6 +176,7 @@ function sendData(e) {
 			return;
 		}
 	}
+
 	for (var i = 0; i < arrInp.length; i++) {
 		var eventObj = {};
 		eventObj.id = arrInp[i].id;
@@ -168,7 +186,6 @@ function sendData(e) {
 			if(isTeamValid(teamid)) { //write isTeamValid()
 				eventObj.teamid = teamid;
 			} else {
-				//display {{general error}}
 				showError('tid-'+eventObj.id, ['Invalid Team Id']);
 				$('#tid-' + eventObj.id).focus();
 				return;
@@ -180,8 +197,7 @@ function sendData(e) {
 
 	var validResp = isFieldValid(jsonObj);
 	if(validResp === true) {
-		// call api
-		
+
 		$.post( '/internal/api/register/', JSON.stringify(jsonObj))
 		.done(function(resp) {
 			window.location.replace(resp.url);
@@ -197,12 +213,14 @@ function sendData(e) {
 	}
 }
 
+//checks teamid syntax
 function isTeamValid(teamid) {
 	var r = /^[tg][0-9a-f]{5}$/i;
 	return teamid.match(r) != null;
 
 }
 
+//checks empty fields, returns id
 function isFieldValid(jObj) {
 	if (jObj.name == "") {
 		return "name";
@@ -227,6 +245,7 @@ function isFieldValid(jObj) {
 	}
 }
 
+//display error
 function showError(id, errorMsgs) {
 	// general case seperately
 	var $el;
@@ -244,9 +263,7 @@ function showError(id, errorMsgs) {
 	$el.html(html);
 }
 
-
-
+//initial call
 $(function() {
-
 	populate();	
 })

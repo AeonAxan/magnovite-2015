@@ -10,6 +10,7 @@ from django.conf import settings
 from app.event.utils import generate_team_id
 from app.event.models import Event, Registration
 from app.main.models import MUser
+from app.workshop.models import Workshop
 
 from .forms import RegistrationForm
 
@@ -22,6 +23,39 @@ def register_view(req):
         template = 'magnovite/internalRegistration.html'
     else:
         template = 'magnovite/dist/internalRegistration.html'
+
+    events = Event.objects.all()
+    workshops = Workshop.objects.all()
+
+    obj = {
+        'technical': [],
+        'cultural': [],
+        'group': [],
+        'workshop': []
+    }
+
+    for event in events:
+        _o = {
+            'id': event.id,
+            'title': event.title
+        }
+
+        if event.is_multiple():
+            _o['is_team'] = True
+
+        if event.team_type == 'group':
+            obj['group'].append(_o)
+        elif event.technical:
+            obj['technical'].append(_o)
+        else:
+            obj['cultural'].append(_o)
+
+    for workshop in workshops:
+        obj['workshop'].append({
+            'id': workshop.id,
+            'title': workshop.title,
+            'price': workshop.price
+        })
 
     return render(req, template)
 

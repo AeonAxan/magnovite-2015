@@ -1,4 +1,6 @@
 {% extends "magnovite/base.html" %}
+{% load humanize %}
+{% load tags %}
 
 {% block "extra_meta" %}
 <meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
@@ -28,51 +30,48 @@ workshop-page transparent-banner
     </div>
 
     <div class="nav container">
-        <div class="nav-item">
-            <img src="http://placehold.it/120x120" alt="">
-        </div>
-        <div class="nav-item">
-            <img src="http://placehold.it/120x120" alt="">
-        </div>
-        <div class="nav-item">
-            <img src="http://placehold.it/120x120" alt="">
-        </div>
+        {% for workshop in workshops %}
+        <a href="#{{workshop.id}}" class="nav-item">
+            <img src="{{workshop.img_small}}" alt="{{workshop.title}}">
+        </a>
+        {% endfor %}
     </div>
 
-    <div class="workshop">
+    {% for workshop in workshops %}
+    <div class="workshop" id="{{workshop.id}}">
         <div class="container">
             <div class="left">
-                <img src="http://placehold.it/400x400" alt="">
+                <img src="{{workshop.img_big}}" alt="{{workshop.title}}">
             </div>
             <div class="right">
-                <h2 class="workshop-title"></h2>
+                <h2 class="workshop-title">{{workshop.title}}</h2>
                 <div class="info">
-                    <p>20th and 21st February</p>
-                    <p>This workshop mainly focuses on how to use Android OS for building your own Android Application. Only the basic knowledge of programming is required for Android App Development, you do not have to be a geek for it! The workshop will start from the basics like designing layouts and building complex layouts. Once the basics of Android are done we will begin with building Apps. The duration of this workshop will be two consecutive days, with eight hours session each day in a total of sixteen hours, properly divided into theory and hand on practical sessions.</p>
+                    <p>{{workshop.desc_1}}</p>
+                    <p>{{workshop.desc_2}}</p>
                 </div>
                 <div class="incharge">
                     <div class="student part">
                         <h3>Student Incharge</h3>
                         <div class="person">
-                            <p class="name">Ahmed Azaan Hassan</p>
-                            <a href="#" class="tele">+91 890 430 8580</a>
+                            <p class="name">{{workshop.std_1_name}}</p>
+                            <a href="tel:{{workshop.std_1_mobile}}" class="tele">{{workshop.std_1_mobile|mobile}}</a>
                         </div>
                         <div class="person">
-                            <p class="name">Ahmed Azaan Hassan</p>
-                            <a href="#" class="tele">+91 890 430 8580</a>
+                            <p class="name">{{workshop.std_2_name}}</p>
+                            <a href="tel:{{workshop.std_2_mobile}}" class="tele">{{workshop.std_2_mobile|mobile}}</a>
                         </div>
                     </div>
                     <div class="faculty part">
                         <h3>Faculty Incharge</h3>
                         <div class="person">
-                            <p class="name">Ahmed azaan Hassan</p>
-                            <a href="#" class="tele">+91 890 430 8580</a>
+                            <p class="name">{{workshop.faculty_name}}</p>
+                            <a href="tel:{{workshop.faculty_mobile}}" class="tele">{{workshop.faculty_mobile|mobile}}</a>
                         </div>
                     </div>
                 </div>
                 <div class="register">
                     <div class="price part">
-                        <p>Price: 1600/-</p>
+                        <p>Fee ₹ {{workshop.price|intcomma}}</p>
                     </div>
                     <div class="register-btn-box part">
                         <button class="button gray">Register Now</button>
@@ -84,6 +83,8 @@ workshop-page transparent-banner
             </div>
         </div>
     </div>
+    {% endfor %}
+
 </div>
 {% endblock "content" %}
 

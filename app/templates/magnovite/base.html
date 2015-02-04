@@ -145,6 +145,10 @@
                         <a href="/events/">Events</a>
                     </div>
 
+                    <div class="{% selected "/workshops/" %} banner-page-link banner-box">
+                        <a href="/workshops/">Workshops</a>
+                    </div>
+
                     <div class="user-settings banner-box
                         {% if user.is_authenticated %}logged-in{% endif %}">
 
@@ -200,6 +204,8 @@
             <li class="sub"><a href="{% selected_url "/events/" "#all" %}">All</a></li>
             <li class="sub"><a href="{% selected_url "/events/" "#technical" %}">Techical</a></li>
             <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
+
+            <li class="{% selected "/workshops/" %}"><a href="{% selected_url "/workshops/" %}">Workshops</a></li>
 
             <li class="{% selected "/quest/" %}"><a href="{% selected_url "/quest/" %}">Quest</a></li>
 

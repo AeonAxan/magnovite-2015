@@ -1,0 +1,13 @@
+.teamid {
+  display: none;
+}
+input:checked ~ .teamid {
+  display: block;
+}
+.main-wrap {
+  width: 960px;
+  margin: 0 auto;
+}
+.amount {
+  margin: 10px auto;
+}

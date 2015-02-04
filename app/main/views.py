@@ -20,7 +20,7 @@ from .models import Profile
 from .utils import AjaxableResponseMixin, template_email
 
 
-def login(req):
+def login_view(req):
     """
     This is not intended to be a user facing feature, and thus no GUI
     """

@@ -16,6 +16,11 @@ class Workshop(models.Model):
 
     price = models.IntegerField(max_length=5)
 
+    date_string = models.CharField(
+        max_length=50, blank=True, null=True,
+        help_text='Eg: From 20th to 21st of February'
+    )
+
     img_big = models.URLField(help_text='400x400')
     img_small = models.URLField(help_text='120x120')
 

@@ -10,17 +10,13 @@ from django.contrib import messages
 from django.conf import settings
 
 from app.event.models import Event, Registration
+from app.event.utils import generate_team_id
 
 from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
 
 
 def generate(req, invoice_type):
-    if not settings.DEBUG and not (req.user.is_authenticated() and req.user.is_staff):
-        return JsonResponse({
-            'errorMessage': 'Our packages are currently not open for public'
-        }, status=400)
-
     if invoice_type not in ('test', 'team', 'single', 'multiple', 'upgrade'):
         return HttpResponse(status=400)
 
@@ -145,12 +141,7 @@ def process_invoice(req, invoice):
         return redirect('/profile/#pack')
 
     elif invoice.invoice_type == 'team':
-        while True:
-            corpus = req.user.email + invoice.event.slug + settings.SECRET_KEY[:10] + str(random.random())
-            team_id = 'G-' + hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
-
-            if Registration.objects.filter(team_id=team_id).count() == 0:
-                break
+        team_id = generate_team_id(req.user.email, invoice.event)
 
         r = Registration()
         r.event = invoice.event

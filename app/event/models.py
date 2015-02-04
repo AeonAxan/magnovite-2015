@@ -129,7 +129,7 @@ class Event(models.Model):
         """
         If not an individual event it is considered to be a team event
         """
-        return self.team_type != 'individual'
+        return self.is_group() or self.is_team()
 
     def complete_status(self):
         """
@@ -218,6 +218,7 @@ class Registration(models.Model):
     # then the team id
     team_id = models.CharField(max_length=10, blank=True, null=True)
 
+    # for group events, the owner will not be able to leave the team
     is_owner = models.BooleanField(default=False)
 
     class Meta:

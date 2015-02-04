@@ -9,6 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 
 from .models import Event, Registration
+from .utils import generate_team_id
 
 
 def index(req):
@@ -82,12 +83,6 @@ def register(req, id, team_id=None):
             'errorMessage': 'Please login first'
         }, status=400)
 
-    if not settings.DEBUG and not req.user.is_staff:
-        return JsonResponse({
-            'errorCode': 'unauthorized',
-            'errorMessage': 'Sorry, Our registrations are not open yet, pleaes check back on 1st of Feb'
-        }, status=400)
-
     # you can only register if profile is complete
     if not req.user.profile.is_complete():
         return JsonResponse({
@@ -137,17 +132,7 @@ def register(req, id, team_id=None):
         # If team id is not given, a new create will be crated for this
         # user/event combo and the user will be registered in that team
         if team_id == None:
-            while True:
-                prefix = 'T-'
-                if event.is_group():
-                    prefix = 'G-'
-
-                corpus = req.user.email + event.slug + settings.SECRET_KEY[:10] + str(random.random())
-                team_id = prefix + hashlib.sha1(corpus.encode('utf-8')).hexdigest()[:5]
-
-                # make sure we generate a unique team-id
-                if Registration.objects.filter(team_id=team_id).count() == 0:
-                    break
+            team_id = generate_team_id(req.user.email, event)
         else:
             regs = Registration.objects.filter(team_id=team_id)
 

@@ -129,6 +129,11 @@ class Profile(models.Model):
         null=True, blank=True
     )
 
+    class Meta:
+        permissions = (
+            ('on_spot_registration', 'Able to create on-spot registrations'),
+        )
+
     def registered_quota_events(self):
         return self.registered_events.filter(~Q(team_type='group'))
 

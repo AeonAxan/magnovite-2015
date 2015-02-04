@@ -44,7 +44,7 @@
 
     {% block "extra_meta" %}{% endblock "extra_meta" %}
 
-    <link rel="stylesheet" href="/static/dist/style-a638a6e5.css"/>
+    <link rel="stylesheet" href="/static/dist/style-f8ed87ee.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -181,6 +181,8 @@
             <li class="sub"><a href="{% selected_url "/events/" "#all" %}">All</a></li>
             <li class="sub"><a href="{% selected_url "/events/" "#technical" %}">Techical</a></li>
             <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
+
+            <li class="{% selected "/quest/" %}"><a href="{% selected_url "/quest/" %}">Quest</a></li>
 
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
             <li class="sub"><a href="{% selected_url "/profile/" "#pack" %}">Pack</a></li>

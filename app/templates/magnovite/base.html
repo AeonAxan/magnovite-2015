@@ -42,7 +42,22 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#091A27">
 
-    {% block "extra_meta" %}{% endblock "extra_meta" %}
+    {% block "extra_meta" %}
+    <meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+    <meta name="keywords" content="Magnovite,Tech Fest" />
+    <meta name="author" content="CUFE" />
+
+    <meta property="og:title" content="Magnovite 2015" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://magnovite.net/static/img/logo_square_share.png" />
+    <meta property="og:url" content="https://magnovite.net/" />
+    <meta property="og:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Magnovite 2015" />
+    <meta name="twitter:description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
+    <meta name="twitter:image" content="https://magnovite.net/static/img/logo_square_share.png" />
+    {% endblock "extra_meta" %}
 
     <!-- build:css(./app/) /static/dist/style.css -->
     <link rel="stylesheet" href="/static/css/app.css" />

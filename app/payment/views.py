@@ -170,6 +170,12 @@ def process_invoice(req, invoice):
         messages.success(req, 'Scucessfully registered for ' + r.event.title)
         return redirect(r.event.get_absolute_url() + '#view-team')
 
+    elif invoice.invoice_type == 'workshop':
+        invoice.profile.registered_workshops.add(invoice.workshop)
+
+        messages.success(req, 'Successfully registered for ' + invoice.workshop.title)
+        return redirect('/workshops/')
+
     elif invoice.invoice_type == 'test':
         messages.success(req, 'Payment success!')
         return redirect('/profile/#pack')

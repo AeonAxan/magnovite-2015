@@ -18,3 +18,6 @@ class Workshop(models.Model):
 
     img_big = models.URLField(help_text='400x400')
     img_small = models.URLField(help_text='120x120')
+
+    def __str__(self):
+        return self.title

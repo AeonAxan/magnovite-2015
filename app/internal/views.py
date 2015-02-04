@@ -91,11 +91,12 @@ def register_create(req):
         # duplicate user
         return JsonResponse({
             'status': 'error',
-            'errors': {'email': 'This user is already registered'}
+            'errors': {'email': ['This user is already registered']}
         }, status=400)
     except MUser.DoesNotExist:
         user = MUser.objects.create_user(email=f.cleaned_data['email'])
 
+    # setup profile
     profile = user.profile
     profile.name=f.cleaned_data['name']
     profile.college=f.cleaned_data['college']
@@ -105,12 +106,13 @@ def register_create(req):
     profile.auth_provider='on-spot'
     profile.save()
 
+    # do event registrations
     events = data.get('events', [])
     for eventObj in events:
         if eventObj.get('id', '') == '':
             return JsonResponse({
                 'status': 'error',
-                'errors': {'form': 'Event ID not given'}
+                'errors': {'form': ['Event ID not given']}
             }, status=400)
 
         try:
@@ -118,7 +120,7 @@ def register_create(req):
         except Event.DoesNotExist:
             return JsonResponse({
                 'status': 'error',
-                'errors': {'form': 'Invalid Event ID'}
+                'errors': {'form': ['Invalid Event ID']}
             }, status=400)
 
         team_id = eventObj.get('teamid', '')
@@ -136,7 +138,7 @@ def register_create(req):
                 except Registration.DoesNotExist:
                     return JsonResponse({
                         'status': 'error',
-                        'errors': {'tid-' + str(event.id): 'Invalid team id: ' + team_id}
+                        'errors': {'tid-' + str(event.id): ['Invalid team id: ' + team_id]}
                     }, status=400)
 
         Registration.objects.create(
@@ -145,6 +147,25 @@ def register_create(req):
             team_id=team_id,
             is_owner=is_owner
         )
+
+    # do workshop registrations
+    workshops = data.get('workshops', [])
+    for workshopObj in workshops:
+        if not workshopObj.get('id', ''):
+            return JsonResponse({
+                'status': 'error',
+                'errrors': {'form': ['Invalid Workshop ID']}
+            }, status=400)
+
+        try:
+            workshop = Workshop.objects.get(id=workshopObj['id'])
+        except Workshop.DoesNotExist:
+            return JsonResponse({
+                'status': 'error',
+                'errors': {'form': ['Invalid Workshop ID']}
+            }, status=400)
+
+        profile.registered_workshops.add(workshop)
 
     return JsonResponse({
         'status': 'success',

@@ -3,6 +3,7 @@ from django.db import models
 
 from app.main.models import Profile
 from app.event.models import Event
+from app.workshop.models import Workshop
 
 
 def create_invoice(invoice_type, profile, event=None, workshop=None):
@@ -31,6 +32,7 @@ def create_invoice(invoice_type, profile, event=None, workshop=None):
     elif invoice_type == 'workshop':
         invoice.description = 'Workshop registration for ' + workshop.title
         invoice.amount = workshop.price
+        invoice.workshop = workshop
 
     else:
         return None
@@ -47,6 +49,9 @@ class Invoice(models.Model):
 
     # if invoice is for a team event
     event = models.ForeignKey(Event, blank=True, null=True)
+
+    # if invoice is for a workshop
+    workshop = models.ForeignKey(Workshop, blank=True, null=True)
 
     invoice_type = models.CharField(max_length=20)
     description = models.CharField(max_length=200)

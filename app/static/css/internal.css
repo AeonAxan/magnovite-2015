@@ -388,3 +388,9 @@ table {
 .mobile.internal-registration .radiobuttons label {
   width: 70%;
 }
+.mobile.internal-registration .footer .user-summary li .title {
+  display: block;
+}
+.mobile.internal-registration .footer .user-summary li .teamid {
+  margin-left: 0;
+}

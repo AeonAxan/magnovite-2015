@@ -223,7 +223,8 @@ def register_create(req):
             event=event,
             profile=profile,
             team_id=team_id,
-            is_owner=is_owner
+            is_owner=is_owner,
+            on_spot=True
         )
 
     # do workshop registrations

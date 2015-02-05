@@ -221,8 +221,13 @@ class Registration(models.Model):
     # for group events, the owner will not be able to leave the team
     is_owner = models.BooleanField(default=False)
 
+    on_spot = models.BooleanField(default=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         unique_together = ['event', 'profile']
+        ordering = ['-created']
         permissions = (
             ('own_event_registrations', 'View registrations for own event'),
         )

@@ -27,7 +27,7 @@ class RegistrationsInline(admin.TabularInline):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['title', 'id', 'technical', 'team_type', 'complete_status', 'registrations', 'views']
     ordering = ['-views']
-    list_filter = ['technical',]
+    list_filter = ['technical', 'team_type']
     inlines = [EventHeadInline, RegistrationsInline]
 
     readonly_fields = ('views', 'registrations')
@@ -47,10 +47,10 @@ admin.site.register(Event, EventAdmin)
 
 class RegistrationAdmin(admin.ModelAdmin):
     fields = ('event', 'profile', 'team_id')
-    list_display = ['event', 'profile', 'team_id']
-    ordering = ['team_id']
-    search_fields = ('team_id',)
-    list_filter = ['event']
+    list_display = ['event', 'profile', 'team_id', 'on_spot', 'created']
+    ordering = ['-created']
+    search_fields = ('team_id', 'profile')
+    list_filter = ['event', 'on_spot']
 
     def get_readonly_fields(self, req, obj=None):
         fields = super(RegistrationAdmin, self).get_readonly_fields(req, obj)

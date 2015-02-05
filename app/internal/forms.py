@@ -24,7 +24,7 @@ class RegistrationForm(forms.Form):
     def clean_pack(self):
         pack = self.cleaned_data['pack']
 
-        if pack not in ('single', 'multiple'):
+        if pack not in ('single', 'multiple', 'none'):
             raise forms.ValidationError('Pack should be either single/multiple')
 
         return pack

@@ -62,7 +62,6 @@ def register_view(req):
     })
 
 
-@csrf_exempt
 @require_POST
 def register_create(req):
     if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
@@ -85,8 +84,61 @@ def register_create(req):
             'errors': f.errors
         }, status=400)
 
-    workshops = data.get('workshops', [])
-    events = data.get('events', [])
+    workshops_objs = data.get('workshops', [])
+    events_objs = data.get('events', [])
+
+    events = []
+    workshops = []
+
+    for event_obj in events_objs:
+        if event_obj.get('id', '') == '':
+            return JsonResponse({
+                'status': 'error',
+                'errors': {'form': ['Event ID not given']}
+            }, status=400)
+
+        try:
+            event = Event.objects.get(id=event_obj['id'])
+            events.append(event)
+        except Event.DoesNotExist:
+            return JsonResponse({
+                'status': 'error',
+                'errors': {'form': ['Invalid Event ID']}
+            }, status=400)
+
+    for workshop_obj in workshops_objs:
+        if not workshop_obj.get('id', ''):
+            return JsonResponse({
+                'status': 'error',
+                'errrors': {'form': ['Invalid Workshop ID']}
+            }, status=400)
+
+        try:
+            workshop = Workshop.objects.get(id=workshop_obj['id'])
+            workshops.append(workshop)
+        except Workshop.DoesNotExist:
+            return JsonResponse({
+                'status': 'error',
+                'errors': {'form': ['Invalid Workshop ID']}
+            }, status=400)
+
+    # validate pack/event combination
+    num_quota_events = 0
+    for event in events:
+        if event.team_type in ('individual', 'team'):
+            num_quota_events += 1
+
+    if f.cleaned_data['pack'] == 'single' and num_quota_events > 1:
+        return JsonResponse({
+            'status': 'error',
+            'errors': {'pack': ['Cant register to more than one individual/team event on single pack']}
+        }, status=400)
+
+    elif f.cleaned_data['pack'] == 'none' and num_quota_events > 0:
+        return JsonResponse({
+            'status': 'error',
+            'errors': {'pack': ['Cant register to individual/team events on No Pack']}
+        }, status=400)
 
     try:
         MUser.objects.get(email=f.cleaned_data['email'])
@@ -100,9 +152,12 @@ def register_create(req):
         user = MUser.objects.create_user(email=f.cleaned_data['email'])
 
     # calculate payment due
-    payment = 100
-    if f.cleaned_data['pack'] == 'multiple':
+    if f.cleaned_data['pack'] == 'single':
+        payment = 100
+    elif f.cleaned_data['pack'] == 'multiple':
         payment = 200
+    else:
+        payment = 0
 
     # setup profile
     profile = user.profile
@@ -118,23 +173,10 @@ def register_create(req):
     # profile saved at the end
 
     # do event registrations
-    for eventObj in events:
-        if eventObj.get('id', '') == '':
-            return JsonResponse({
-                'status': 'error',
-                'errors': {'form': ['Event ID not given']}
-            }, status=400)
-
-        try:
-            event = Event.objects.get(id=eventObj['id'])
-        except Event.DoesNotExist:
-            return JsonResponse({
-                'status': 'error',
-                'errors': {'form': ['Invalid Event ID']}
-            }, status=400)
-
-        team_id = eventObj.get('teamid', '')
+    for i, event in enumerate(events):
+        team_id = events_objs[i].get('teamid', '')
         is_owner = False
+
         if event.is_multiple():
             if team_id == '':
                 team_id = generate_team_id(user.email, event)
@@ -163,21 +205,7 @@ def register_create(req):
 
     # do workshop registrations
     for workshopObj in workshops:
-        if not workshopObj.get('id', ''):
-            return JsonResponse({
-                'status': 'error',
-                'errrors': {'form': ['Invalid Workshop ID']}
-            }, status=400)
-
-        try:
-            workshop = Workshop.objects.get(id=workshopObj['id'])
-            payment += workshop.price
-        except Workshop.DoesNotExist:
-            return JsonResponse({
-                'status': 'error',
-                'errors': {'form': ['Invalid Workshop ID']}
-            }, status=400)
-
+        payment += workshop.price
         profile.registered_workshops.add(workshop)
 
     profile.total_payment = payment

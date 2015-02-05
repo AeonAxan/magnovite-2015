@@ -207,7 +207,7 @@ class Event(models.Model):
         return reverse('event_details', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.title
+        return self.title + ' | ' + self.team_type
 
 
 class Registration(models.Model):

@@ -1,284 +1,361 @@
-$(document).delegate('.js-events', 'change', function(e) {
-    $(e.target).closest('.event-item').toggleClass('show-teamid');
-});
+(function() {
+    'use strict';
 
-//event listeners
-$('.js-submit').on('click', sendData);
-$(document).delegate('.js-pack', 'change',calcPrice);
-$(document).delegate('.js-group-events', 'change', calcPrice);
-$(document).delegate('.js-workshop-events', 'change', calcPrice);
-$(document).delegate('.teamid-js-group-events', 'blur', calcPrice);
-$(document).delegate('.js-teamid', 'blur', function(e) {
+    var EVENTS = window.EVENTS;
 
-    //clears the error list
-    $('.js-errorlist').html('');
+    $(function() {
+        populateDOM(EVENTS);
+    });
 
-    //valid teamid?
-    if($(e.target).val() != "") {
-        if(!isTeamValid($(e.target).val())) {
-            //display error message
-            //find the id of inputbox
-            var tId = $(e.target).attr('id');
-            showError(tId, ['Invalid Team Id']);
+    /**
+     * Toggles teamid when event checkboxes change
+     */
+    $(document).delegate('.js-events', 'change', function(e) {
+        $(e.target).closest('.event-item').toggleClass('show-teamid');
+    });
+
+    /**
+     * Validates teamids on blur of the Teamid fields
+     */
+    $(document).delegate('.js-teamid', 'blur', function(e) {
+        var $target = $(e.target);
+
+        //clears the error list
+        $('.js-errorlist').html('');
+
+        // valid teamid?
+        if($target.val() !== "") {
+            if(!isTeamValid($target.val())) {
+                var tId = $target.attr('id');
+                showError(tId, ['Invalid Team Id']);
+            }
         }
-    }
-});
+    });
 
-//calculates price of events
-function calcPrice() {
-    var html = '';
-    var packInp = $('.js-pack:checked');
-    var price = 0;
+    /**
+     * Calculates and displays the price on any change that might affect the price
+     */
+    $(document).delegate('.js-pack', 'change',calcPrice);
+    $(document).delegate('.js-group-events', 'change', calcPrice);
+    $(document).delegate('.js-workshop-events', 'change', calcPrice);
+    $(document).delegate('.teamid-js-group-events', 'blur', calcPrice);
+    function calcPrice() {
+        var html = '';
+        var packInp = $('.js-pack:checked');
+        var price = 0;
 
-    if (packInp.data('type') == 'single') {
-        price = 100;
-        html += '<li><p class="price">100</p> Single Pack</li>';
-    } else if(packInp.data('type') == 'multiple') {
-        price = 200;
-        html += '<li><p class="price">200</p> Multiple Pack</li>';
-    }
+        if (packInp.data('type') === 'single') {
+            price = 100;
+            html += '<li><p class="price">100</p> Single Pack</li>';
+        } else if(packInp.data('type') === 'multiple') {
+            price = 200;
+            html += '<li><p class="price">200</p> Multiple Pack</li>';
+        }
 
-    $('.js-group-events:checked').each(function(i, el) {
-        if(!$(el).closest('.event-item').find('.js-teamid').val()) {
-            price += 500;
+        $('.js-group-events:checked').each(function(i, el) {
+            if(!$(el).closest('.event-item').find('.js-teamid').val()) {
+                price += 500;
+
+                var id = makeId($(el).attr('id'));
+                html += '<li><p class="price">500</p> Group Event : ' + getEventTitleById(id) + '</li>';
+            }
+        });
+
+        $('.js-workshop-events:checked').each(function(i, el) {
+            price += $(el).data("price");
 
             var id = makeId($(el).attr('id'));
-            html += '<li><p class="price">500</p> Group Event : ' + getEventTitleById(id) + '</li>';
-        }
-    })
+            html += '<li><p class="price">' + price + '</p> Workshop : ' + getWorkshopTitleById(id) + '</li>';
+        });
 
-    $('.js-workshop-events:checked').each(function(i, el) {
-        price += $(el).data("price");
+        html += '<li class="total"><p class="price">' + price + '</p> Total </li>';
 
-        var id = makeId($(el).attr('id'));
-        html += '<li><p class="price">' + price + '</p> Workshop : ' + getWorkshopTitleById(id) + '</li>';
-    })
-
-    html += '<li class="total"><p class="price">' + price + '</p> Total </li>';
-
-    $('.js-amount').html(html);
-}
-
-//populates the dom with events
-function populate() {
-
-    //first radio button checked
-    $('.js-radiobuttons').each(function(){
-        $('input[type=radio]', this).get(0).checked = true;
-    });
-
-    $('.js-events-technical').append(renderEvents(EVENTS.technical, 'js-tech-events'));
-    $('.js-events-cultural').append(renderEvents(EVENTS.cultural, 'js-cult-events'));
-    $('.js-events-group').append(renderEvents(EVENTS.group, 'js-group-events'));
-    $('.js-events-workshop').append(renderEvents(EVENTS.workshop, 'js-workshop-events'));
-    calcPrice();
-}
-
-//returns the rendered template
-function renderEvents(arrEvents, cssclass) {
-    var htmlString = "";
-    var singleTemp = $('#singleTemplate').html();
-    var multiTemp = $('#teamTemplate').html();
-
-    for(var i = 0; i < arrEvents.length; i++) {
-        arrEvents[i].cssclass = cssclass || '';
-
-        if(arrEvents[i].is_team) {
-            htmlString += render(multiTemp, arrEvents[i])
-
-        } else {
-            htmlString += render(singleTemp, arrEvents[i])
-        }
+        $('.js-amount').html(html);
     }
-    return htmlString;
-}
 
-//template rendering, key and value
-function render(tempString,obj) {
-    var template = tempString;
+    /**
+     * Populates the dom using the given @events object
+     * @param  {Object} events Object which contains details of events
+     */
+    function populateDOM(events) {
+        var singleTemplate = $('#singleTemplate').html();
+        var multiTemplate = $('#teamTemplate').html();
 
-    $.each(obj, function(key,value) {
-        template = template.replace(new RegExp('\\[\\[' + key + '\\]\\]','g'), value);
-    })
-    return template;
-}
+        function render(tempString,obj) {
+            var template = tempString;
 
-/*
-    sendData()
-    - does field validation
-    - sends data
-    - handles api errors
+            $.each(obj, function(key,value) {
+                template = template.replace(new RegExp('\\[\\[' + key + '\\]\\]','g'), value);
+            });
+            return template;
+        }
 
-*/
-function sendData(e) {
-    e.preventDefault();
-    $('.js-errorlist').html('');
+        function renderEvents(arrEvents, cssclass) {
+            var htmlString = '';
 
-    var arrInp = $('.js-events:checked').not('.js-workshop-events');
-    var packInp = $('.js-pack:checked');
+            $.each(arrEvents, function(i, eventObj) {
+                eventObj.cssclass = cssclass || '';
 
-    var jsonObj = {};
+                if(eventObj.is_team) {
+                    htmlString += render(multiTemplate, eventObj);
 
-    jsonObj.name = $('input[name="fullname"]').val();
-    jsonObj.email = $('input[name="email"]').val();
-    jsonObj.college = $('input[name="college"]').val();
-    jsonObj.mobile = $('input[name="mobile"]').val();
-    jsonObj.referred = $('input[name="referred"]').val();
-    jsonObj.pack = packInp.data('type');
-    jsonObj.events = [];
+                } else {
+                    htmlString += render(singleTemplate, eventObj);
+                }
+            });
 
-    if(packInp.data('type') == 'single') {
-        if (arrInp.not('.js-group-events').not('.js-workshop-events').length > 1) {
-            showError('pack', ['Cant register to more than one event with single pack']);
+            return htmlString;
+        }
+
+        $('.js-events-technical').append(renderEvents(events.technical, 'js-tech-events'));
+        $('.js-events-cultural').append(renderEvents(events.cultural, 'js-cult-events'));
+        $('.js-events-group').append(renderEvents(events.group, 'js-group-events'));
+        $('.js-events-workshop').append(renderEvents(events.workshop, 'js-workshop-events'));
+
+        calcPrice();
+    }
+
+    /**
+     * Handles form submit
+     */
+    var sendingData = false;
+    $('.js-submit').on('click', function(e) {
+        e.preventDefault();
+
+        // make sure we dont send multiple requests to the server
+        if (sendingData) {
             return;
         }
-    }
 
-    for (var i = 0; i < arrInp.length; i++) {
-        var eventObj = {};
-        eventObj.id = makeId(arrInp[i].id);
+        sendingData = true;
 
-        var teamid = $(arrInp[i]).closest('.event-item').find('.js-teamid').val();
-        if(teamid) {
-            if(isTeamValid(teamid)) { //write isTeamValid()
-                eventObj.teamid = teamid;
-            } else {
-                showError('tid-'+eventObj.id, ['Invalid Team Id']);
-                $('#tid-' + eventObj.id).focus();
-                return;
-            }
+        // clear all errors
+        $('.js-errorlist').html('');
+
+        var checkedEvents = $('.js-events:checked').not('.js-workshop-events');
+        var pack = $('.js-pack:checked').data('type');
+
+        var jsonObj = {
+            name: $('input[name="fullname"]').val(),
+            email: $('input[name="email"]').val(),
+            college: $('input[name="college"]').val(),
+            mobile: $('input[name="mobile"]').val(),
+            referred: $('input[name="referred"]').val(),
+            pack: pack,
+            events: []
+        };
+
+        var numQuotaEvents = checkedEvents.not('.js-group-events').not('.js-workshop-events').length;
+
+        if(pack === 'single' && numQuotaEvents > 1) {
+            showError('pack', ['Cant register to more than one event with single pack']);
+
+            sendingData = false;
+            return;
         }
 
-        jsonObj.events.push(eventObj);
-    }
+        if (pack === 'none' && numQuotaEvents > 0) {
+            showError('pack', ['Cant register to any none group/workshop events with no pack']);
 
-    jsonObj.workshops = [];
-    $('.js-workshop-events:checked').each(function(i, el) {
-        var $el = $(el);
+            sendingData = false;
+            return;
+        }
 
-        jsonObj.workshops.push({id: makeId($el.attr('id'))});
-    })
+        var shouldReturn = false;
+        checkedEvents.each(function(i, event) {
+            var $event = $(event);
 
-    var validResp = isFieldValid(jsonObj);
-    if(validResp === true) {
-        $.post( '/internal/api/register/', JSON.stringify(jsonObj))
-        .done(function(resp) {
-            window.location.replace(resp.url);
-        })
-        .fail(function(err) {
-            var obj = err.responseJSON;
-            $.each(obj.errors, function(i, el) {
-                showError(i, el);
-            })
+            var eventObj = {};
+            eventObj.id = makeId($event.attr('id'));
+
+            var teamid = $event.closest('.event-item').find('.js-teamid').val();
+            if(teamid) {
+                if(isTeamValid(teamid)) {
+                    eventObj.teamid = teamid;
+                } else {
+                    showError('tid-' + eventObj.id, ['Invalid Team Id']);
+
+                    sendingData = false;
+                    shouldReturn = true;
+                }
+            }
+
+            jsonObj.events.push(eventObj);
         });
-    } else {
-        showError(validResp,['this field cant be empty'])
-    }
-}
 
-//checks teamid syntax
-function isTeamValid(teamid) {
-    var r = /^[tg][0-9a-f]{5}$/i;
-    return teamid.match(r) != null;
+        if (shouldReturn) {
+            return;
+        }
 
-}
+        jsonObj.workshops = [];
+        $('.js-workshop-events:checked').each(function(i, el) {
+            var $el = $(el);
 
-//checks empty fields, returns id
-function isFieldValid(jObj) {
-    if (jObj.name == "") {
-        return "name";
-    }
-    else if (jObj.email == "") {
-        return "email";
-    }
-    else if (jObj.college == "") {
-        return "college";
-    }
-    else if (jObj.mobile == "") {
-        return "mobile";
-    }
-    else if (!jObj.pack) {
-        showError('form',['Select a pack']);
-    }
-    else if (jObj.events.length == 0) {
-        showError('form', ['Include Atleast One Event']);
-    }
-    else {
-        return true;
-    }
-}
+            jsonObj.workshops.push({id: makeId($el.attr('id'))});
+        });
 
-//display error
-function showError(id, errorMsgs) {
-    // general case seperately
+        var validResp = isFieldValid(jsonObj);
+        if(validResp === true) {
+            NProgress.start();
 
-    var $el = $('#' + id).siblings('.js-errorlist');
+            $.post('/internal/api/register/', JSON.stringify(jsonObj))
+                .done(function(resp) {
+                    registrationSuccess(resp);
+                })
+                .fail(function(err) {
+                    var obj = err.responseJSON;
+                    $.each(obj.errors, function(i, el) {
+                        showError(i, el);
+                    });
+                })
+                .always(function() {
+                    NProgress.done();
+                });
 
-    var html = '';
-    $.each(errorMsgs, function(i, val) {
-        html += '<li>' + val + '</li>';
+        } else {
+            showError(validResp,['this field cant be empty']);
+
+            sendingData = false;
+            return;
+        }
     });
 
-    $el.html(html);
-
-    // scroll to the element - offsetvalue (in px)
-    var scrollPos = $('#' + id).position().top - 30;
-    if ($(window).scrollTop() > scrollPos) {
-        $(window).scrollTop(scrollPos);
+    /**
+     * Callback on successful registration
+     * @param  {Object} obj Success Object the server returned
+     */
+    function registrationSuccess(obj) {
+        alert('SUCCESS');
     }
 
-}
-
-function makeId(domId) {
-    var parts = domId.split('-');
-    return parts[parts.length-1];
-}
-
-function getEventTitleById(eid) {
-    var out;
-
-    out = searchArray(EVENTS.technical);
-    if (out) {
-        return out;
+    /**
+     * Validates a teamID string syntactically
+     * @param  {String}  teamid Team ID
+     * @return {Boolean}        Is the teamID valid
+     */
+    function isTeamValid(teamid) {
+        var r = /^[tg][0-9a-f]{5}$/i;
+        return teamid.match(r) !== null;
     }
 
-    out = searchArray(EVENTS.cultural);
-    if (out) {
-        return out;
+    /**
+     * Validates fields and returns the id of the first invalid field
+     * @param  {Object}         jObj        Object with fields and values to validate
+     * @return {String|Boolean}             String ID, if any invalid field, Boolean true if valid
+     */
+    function isFieldValid(jObj) {
+        if (!jObj.name.trim()) {
+            return 'name';
+
+        } else if (!jObj.email.trim()) {
+            return 'email';
+
+        } else if (!jObj.college.trim()) {
+            return 'college';
+
+        } else if (!jObj.mobile.trim()) {
+            return 'mobile';
+
+        } else if (!jObj.pack) {
+            showError('form',['Select a pack']);
+
+        } else {
+            return true;
+        }
     }
 
-    out = searchArray(EVENTS.group);
-    if (out) {
-        return out;
+    /**
+     * Show Errors in the DOM, expects a ul with class js-errorlist to be adjacent
+     * to the element whose @id is given
+     *
+     * @param  {string}         id        The id of element which the error belongs to
+     * @param  {Array[String]}  errorMsgs Array of strings
+     */
+    function showError(id, errorMsgs) {
+        // general case seperately
+
+        var $el = $('#' + id).siblings('.js-errorlist');
+
+        var html = '';
+        $.each(errorMsgs, function(i, val) {
+            html += '<li>' + val + '</li>';
+        });
+
+        $el.html(html);
+
+        // scroll to the element - offsetvalue (in px)
+        var scrollPos = $('#' + id).position().top - 30;
+
+        // make sure we only scroll up (i.e the topmost error will be focused)
+        if ($(window).scrollTop() > scrollPos) {
+            $(window).scrollTop(scrollPos);
+            $el.focus();
+        }
+
     }
 
-    function searchArray(arr) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].id == eid) {
-                return arr[i].title;
+    /**
+     * Takes a string in - seperated form and returns last part
+     * @param  {String} domId The string
+     * @return {String}       The last part of the @domId
+     */
+    function makeId(domId) {
+        var parts = domId.split('-');
+        return parts[parts.length-1];
+    }
+
+    /**
+     * Given an @eid find the title in the events technical/cultural/group
+     * @param  {Any} eid    The id of the element to find
+     * @return {String}     The title for the corrosponding ID
+     */
+    function getEventTitleById(eid) {
+        var out;
+
+        out = searchArray(EVENTS.technical);
+        if (out) {
+            return out;
+        }
+
+        out = searchArray(EVENTS.cultural);
+        if (out) {
+            return out;
+        }
+
+        out = searchArray(EVENTS.group);
+        if (out) {
+            return out;
+        }
+
+        function searchArray(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id.toString() === eid.toString()) {
+                    return arr[i].title;
+                }
             }
         }
     }
-}
 
-function getWorkshopTitleById(eid) {
-    var out;
+    /**
+     * Given an @eid find the title in the workshops
+     * @param  {Any} eid    The id of the element to find
+     * @return {String}     The title for the corrosponding ID
+     */
+    function getWorkshopTitleById(eid) {
+        var out;
 
-    out = searchArray(EVENTS.workshop);
-    if (out) {
-        return out;
-    }
+        out = searchArray(EVENTS.workshop);
+        if (out) {
+            return out;
+        }
 
-    function searchArray(arr) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].id == eid) {
-                return arr[i].title;
+        function searchArray(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id.toString() === eid.toString()) {
+                    return arr[i].title;
+                }
             }
         }
     }
-}
 
-//initial call
-$(function() {
-    populate();
-})
+})();

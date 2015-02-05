@@ -134,15 +134,11 @@ def register(req, id, team_id=None):
         if team_id == None:
             team_id = generate_team_id(req.user.email, event)
         else:
-            regs = Registration.objects.filter(team_id=team_id)
+            regs = Registration.objects.filter(team_id=team_id, event=event)
 
             # make sure team_id is valid, if user has given a team_id
             # then if it is valid, it must be in our registration table
             if regs.count() == 0:
-                return HttpResponse(status=404)
-
-            # make sure the team_id matches the event
-            if regs[0].event != event:
                 return HttpResponse(status=404)
 
             # make sure this team is not full

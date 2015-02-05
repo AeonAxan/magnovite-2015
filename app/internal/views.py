@@ -112,10 +112,17 @@ def register_create(req):
         # validate teamids
         team_id = event_obj.get('teamid', '')
         if team_id != '':
-            if Registration.objects.filter(team_id=team_id, event=event).count() == 0:
+            regs = Registration.objects.filter(team_id=team_id, event=event).count()
+            if regs == 0:
                 return JsonResponse({
                     'status': 'error',
                     'errors': {'tid-' + str(event.id): ['Invalid team id: ' + team_id]}
+                }, status=400)
+
+            elif regs == event.team_max:
+                return JsonResponse({
+                    'status': 'error',
+                    'errors': {'tid-' + str(event.id): ['Team (' + team_id + ') is full']}
                 }, status=400)
 
     # validate workshops passed in

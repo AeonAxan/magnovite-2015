@@ -59,7 +59,7 @@
     <meta name="twitter:image" content="https://magnovite.net/static/img/logo_square_share.png" />
     {% endblock "extra_meta" %}
 
-    <link rel="stylesheet" href="/static/dist/style-f8ed87ee.css"/>
+    <link rel="stylesheet" href="/static/dist/style-1c03e4cb.css"/>
 
     <script src="/static/dist/js-head-cd467f0f.js"></script>
 
@@ -141,6 +141,10 @@
                         <a href="/events/">Events</a>
                     </div>
 
+                    <div class="{% selected "/workshops/" %} banner-page-link banner-box">
+                        <a href="/workshops/">Workshops</a>
+                    </div>
+
                     <div class="user-settings banner-box
                         {% if user.is_authenticated %}logged-in{% endif %}">
 
@@ -197,6 +201,8 @@
             <li class="sub"><a href="{% selected_url "/events/" "#technical" %}">Techical</a></li>
             <li class="sub"><a href="{% selected_url "/events/" "#cultural" %}">Cultural</a></li>
 
+            <li class="{% selected "/workshops/" %}"><a href="{% selected_url "/workshops/" %}">Workshops</a></li>
+
             <li class="{% selected "/quest/" %}"><a href="{% selected_url "/quest/" %}">Quest</a></li>
 
             <li class="{% selected "/profile/" %}"><a href="{% selected_url "/profile/" %}">Profile</a></li>
@@ -228,7 +234,7 @@
     app.DEBUG = false;
     </script>
 
-    <script src="/static/dist/app-9cad7efa.js"></script>
+    <script src="/static/dist/app-d6e5e7e7.js"></script>
 
     {% block "post_js" %}{% endblock %}
 

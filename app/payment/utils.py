@@ -23,7 +23,7 @@ def get_payu_form(req, invoice):
     obj['hash'] = generate_checksum(obj)
     return render(req, 'magnovite/paymentForm.html', {
         'fields': obj.items(),
-        'url': settings.PAYU_URL
+        'url': settings.PAYU_URL,
     })
 
 PAYU_FIELDS = [

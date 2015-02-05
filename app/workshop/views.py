@@ -10,6 +10,11 @@ def index(req):
     else:
         template = 'magnovite/dist/workshop.html'
 
+    registered = []
+    if req.user.is_authenticated():
+        registered = req.user.profile.registered_workshops.all()
+
     return render(req, template, {
-        'workshops': Workshop.objects.all()
+        'workshops': Workshop.objects.all(),
+        'registered': registered
     })

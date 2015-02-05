@@ -5,7 +5,7 @@ from datetime import timedelta
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -18,6 +18,27 @@ from app.message.models import Thread, Message
 from .forms import ProfileForm
 from .models import Profile
 from .utils import AjaxableResponseMixin, template_email
+
+
+def login_view(req):
+    """
+    This is not intended to be a user facing feature, and thus no GUI
+    """
+    username = req.GET.get('u', '')
+    password = req.GET.get('p', '')
+
+    if not username or not password:
+        return redirect('/')
+
+    if req.user.is_authenticated():
+        logout(req)
+
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(req, user)
+
+    return redirect('/')
+
 
 def logout_view(req):
     if req.user.is_authenticated():

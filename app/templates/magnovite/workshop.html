@@ -73,9 +73,17 @@ workshop-page transparent-banner
                     <div class="price part">
                         <p>Fee ₹ {{workshop.price|intcomma}}</p>
                     </div>
-                    <div class="register-btn-box part">
-                        <button class="button gray">Register Now</button>
+
+                    {% if workshop in registered %}
+                    <div class="register-btn-box part registered">
+                        <button class="button gray registered">Registered</button>
                     </div>
+                    {% else %}
+                    <div class="register-btn-box part">
+                        <button data-type="workshop" data-params="id={{workshop.id}}" class="button gray js-pay">Register Now</button>
+                    </div>
+                    {% endif %}
+
                     <div class="payu part">
                         <img src="/static/img/payu.jpg" alt="PayuMoney">
                     </div>
@@ -87,4 +95,3 @@ workshop-page transparent-banner
 
 </div>
 {% endblock "content" %}
-

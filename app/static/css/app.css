@@ -4207,6 +4207,15 @@ body.mobile .notifications .notification {
   background: #008FEE;
   border: 1px solid #00B5EE;
 }
+<<<<<<< HEAD
+=======
+.workshop-page .workshop .register .register-btn-box button.registered {
+  cursor: default;
+  pointer-events: none;
+  border: 1px solid #00EE0A;
+  background: #1AB905;
+}
+>>>>>>> master
 .workshop-page .workshop .register .register-btn-box button:hover {
   border: 1px solid white;
 }

@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 )
 
 from app.event.models import Event, Registration
+from app.workshop.models import Workshop
 
 
 class MUserManager(BaseUserManager):
@@ -90,6 +91,12 @@ class Profile(models.Model):
     # auth provider
     auth_provider = models.CharField(max_length=30, blank=True)
 
+    # if on-spot, who registered the user
+    on_spot = models.BooleanField(default=False)
+    on_spot_registerer = models.CharField(max_length=50, blank=True, null=True, default='')
+
+    total_payment = models.IntegerField(max_length=4, default=0)
+
     # The payment pack
     PACKS = (
         ('none', 'No Pack'),
@@ -116,6 +123,7 @@ class Profile(models.Model):
     )
 
     registered_events = models.ManyToManyField(Event, through=Registration)
+    registered_workshops = models.ManyToManyField(Workshop, null=True, blank=True)
 
     # internal fields
     is_internal = models.BooleanField(

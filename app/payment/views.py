@@ -1,29 +1,41 @@
-import hashlib
-import random
-
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
+from django.core.exceptions import PermissionDenied
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import mail_admins
 from django.contrib import messages
-from django.conf import settings
 
 from app.event.models import Event, Registration
 from app.event.utils import generate_team_id
+from app.workshop.models import Workshop
 
 from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
 
 
 def generate(req, invoice_type):
-    if invoice_type not in ('test', 'team', 'single', 'multiple', 'upgrade'):
+    if not req.user.is_authenticated():
+        raise PermissionDenied
+
+    if invoice_type not in ('test', 'team', 'single', 'multiple',
+                            'upgrade', 'workshop'):
         return HttpResponse(status=400)
+
+
+    if not req.user.profile.is_complete():
+        return JsonResponse({
+            'errorCode': 'profile_incomplete',
+            'actionType': 'redirect',
+            'actionText': 'Complete Now',
+            'redirectLocation': '/profile/',
+            'errorMessage': 'You need to complete your profile first'
+        }, status=400)
 
     # if team verify event is correct
     if invoice_type == 'team':
         event = get_object_or_404(Event, id=req.GET.get('id', None))
-        invoice = create_invoice(invoice_type, req.user.profile, event)
+        invoice = create_invoice(invoice_type, req.user.profile, event=event)
         return get_payu_form(req, invoice)
 
     elif invoice_type in ('single', 'multiple'):
@@ -43,6 +55,11 @@ def generate(req, invoice_type):
             return HttpResponse(status=403)
 
         invoice = create_invoice(invoice_type, req.user.profile)
+        return get_payu_form(req, invoice)
+
+    elif invoice_type == 'workshop':
+        workshop = get_object_or_404(Workshop, id=req.GET.get('id', None))
+        invoice = create_invoice(invoice_type, req.user.profile, workshop=workshop)
         return get_payu_form(req, invoice)
 
     # unrecognized invoice_type
@@ -131,10 +148,17 @@ def process_invoice(req, invoice):
 
     if invoice.invoice_type in ('single', 'multiple', 'upgrade'):
         new_pack = invoice.invoice_type
-        if new_pack == 'upgrade':
+
+        payment = 100
+        if new_pack == 'multiple':
+            payment = 200
+
+        elif new_pack == 'upgrade':
+            payment = 100
             new_pack = 'multiple'
 
         invoice.profile.pack = new_pack
+        invoice.profile.total_payment += payment
         invoice.profile.save()
 
         messages.success(req, invoice.profile.get_pack_display() + ' has successfully been activated!')
@@ -142,6 +166,9 @@ def process_invoice(req, invoice):
 
     elif invoice.invoice_type == 'team':
         team_id = generate_team_id(req.user.email, invoice.event)
+
+        invoice.profile.total_payment += 500
+        invoice.profile.save()
 
         r = Registration()
         r.event = invoice.event
@@ -152,6 +179,15 @@ def process_invoice(req, invoice):
 
         messages.success(req, 'Scucessfully registered for ' + r.event.title)
         return redirect(r.event.get_absolute_url() + '#view-team')
+
+    elif invoice.invoice_type == 'workshop':
+        invoice.profile.registered_workshops.add(invoice.workshop)
+
+        invoice.profile.total_payment += invoice.workshop.price
+        invoice.profile.save()
+
+        messages.success(req, 'Successfully registered for ' + invoice.workshop.title)
+        return redirect('/workshops/')
 
     elif invoice.invoice_type == 'test':
         messages.success(req, 'Payment success!')

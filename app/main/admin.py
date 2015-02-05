@@ -7,7 +7,12 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import MUser, Profile
 from app.event.models import Registration, Event
+from app.workshop.models import Workshop
 
+
+class WorkshopsInline(admin.TabularInline):
+    model = Profile.registered_workshops.through
+    extra = 0
 
 class RegistrationsInline(admin.TabularInline):
     model = Registration
@@ -20,9 +25,9 @@ class EventsInline(admin.TabularInline):
     extra = 0
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'user', 'auth_provider', 'active_email')
-    exclude = ('events',)
-    inlines = [RegistrationsInline, EventsInline]
+    list_display = ('name', 'user', 'auth_provider', 'active_email', 'total_payment')
+    exclude = ('events', 'registered_workshops')
+    inlines = [WorkshopsInline, RegistrationsInline, EventsInline]
 
 admin.site.register(Profile, ProfileAdmin)
 
@@ -62,7 +67,10 @@ class UserChangeForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
-    password = ReadOnlyPasswordHashField()
+    password = ReadOnlyPasswordHashField(label= ("Password"),
+        help_text= ("Raw passwords are not stored, so there is no way to see "
+                    "this user's password, but you can change the password "
+                    "using <a href=\"password/\">this form</a>."))
 
     class Meta:
         model = MUser

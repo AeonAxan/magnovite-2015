@@ -14,7 +14,7 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('watch', function() {
     'use strict';
 
-    gulp.watch('app/static/css/**/*.less', ['css']);
+    gulp.watch('app/static/css/**/*.less', ['css', 'css-internal']);
 });
 
 /**
@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 gulp.task('dist', function(cb) {
     'use strict';
 
-    runSequence(['clean', 'usemin', 'css'], 'move-usemin', ['clean-usemin', 'prefix']);
+    runSequence(['clean', 'usemin', 'css', 'css-internal'], 'move-usemin', ['clean-usemin', 'prefix']);
 });
 
 /**
@@ -33,6 +33,17 @@ gulp.task('css', function() {
     'use strict';
 
     return gulp.src('app/static/css/app.less')
+               .pipe(less())
+               .pipe(gulp.dest('app/static/css/'));
+});
+
+/**
+ * Builds the internal css file
+ */
+gulp.task('css-internal', function() {
+    'use strict';
+
+    return gulp.src('app/static/css/internal.less')
                .pipe(less())
                .pipe(gulp.dest('app/static/css/'));
 });

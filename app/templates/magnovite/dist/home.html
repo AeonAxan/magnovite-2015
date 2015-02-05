@@ -65,6 +65,10 @@
                     <a href="/events/">Events</a>
                 </div>
 
+                <div class="{% selected "/workshops/" %} banner-page-link banner-box">
+                    <a href="/workshops/">Workshops</a>
+                </div>
+
                 <div class="user-settings banner-box
                     {% if user.is_authenticated %}logged-in{% endif %}">
 
@@ -302,10 +306,10 @@
                         <img src="/static/img/pronight.png" alt="">
                         <div class="cover"></div>
                     </div>
-                    <div class="circle c4 deactive" data-type="c4">
+                    <a href="/workshops/" class="circle c4" data-type="c4">
                         <img src="/static/img/workshop.png" alt="">
                         <div class="cover"></div>
-                    </div>
+                    </a>
                     <a href="/events/#cultural" class="circle c5" data-type="c5">
                         <img src="/static/img/cultural.png" alt="">
                         <div class="cover"></div>
@@ -346,7 +350,6 @@
                     <div class="group">
                         <a href="/events/#technical" class="button">See Technical Events</a>
                     </div>
-
                 </div>
             </div>
             <div class="event-section c2">
@@ -411,20 +414,9 @@
                 </p>
 
                 <div class="subscribe">
-                    <p>
-                        Our registrations are not open yet. Drop us your email and we'll be sure
-                        to ping you when they are.
-                    </p>
-
                     <div class="group">
-                        <input class="js-email" name="email" placeholder="email" />
-                        <button class="js-subscribe button progress-button">
-                            <span class="text">Subscribe</span>
-                            <span class="progress">...</span>
-                            <span class="done">Subscribed!</span>
-                        </button>
+                        <a href="/workshops/" class="button">See Workshops</a>
                     </div>
-
                 </div>
             </div>
             <div class="event-section c5">
@@ -501,7 +493,7 @@
             </div>
             <div class="section">
                 <h3 class="title">Events</h3>
-                <p class="desc">Event registrations will be available from the 20th of January 2015, But you can browse them now!</p>
+                <p class="desc">Event Registrations are open for all!</p>
                 <a href="/events/" class="link button">See All Events</a>
             </div>
         </div>

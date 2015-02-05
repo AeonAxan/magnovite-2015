@@ -42,6 +42,8 @@ def register_view(req):
 
         if event.is_multiple():
             _o['is_team'] = True
+            _o['team_min'] = event.team_min
+            _o['team_max'] = event.team_max
 
         if event.team_type == 'group':
             obj['group'].append(_o)

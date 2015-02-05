@@ -62,10 +62,11 @@
         });
 
         $('.js-workshop-events:checked').each(function(i, el) {
-            price += $(el).data("price");
+            var workshopPrice = $(el).data('price');
+            price += workshopPrice;
 
             var id = makeId($(el).attr('id'));
-            html += '<li><p class="price">' + price + '</p> Workshop : ' + getWorkshopTitleById(id) + '</li>';
+            html += '<li><p class="price">' + workshopPrice + '</p> Workshop : ' + getWorkshopTitleById(id) + '</li>';
         });
 
         html += '<li class="total"><p class="price">' + price + '</p> Total </li>';

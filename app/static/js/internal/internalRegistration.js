@@ -81,15 +81,6 @@
         var singleTemplate = $('#singleTemplate').html();
         var multiTemplate = $('#teamTemplate').html();
 
-        function render(tempString,obj) {
-            var template = tempString;
-
-            $.each(obj, function(key,value) {
-                template = template.replace(new RegExp('\\[\\[' + key + '\\]\\]','g'), value);
-            });
-            return template;
-        }
-
         function renderEvents(arrEvents, cssclass) {
             var htmlString = '';
 
@@ -204,12 +195,19 @@
                 })
                 .fail(function(err) {
                     var obj = err.responseJSON;
+
+                    if (!obj || !obj.errors) {
+                        showError('form', ['There was an unexpected error']);
+                        return;
+                    }
+
                     $.each(obj.errors, function(i, el) {
                         showError(i, el);
                     });
                 })
                 .always(function() {
                     NProgress.done();
+                    sendingData = false;
                 });
 
         } else {
@@ -224,9 +222,42 @@
      * Callback on successful registration
      * @param  {Object} obj Success Object the server returned
      */
-    function registrationSuccess(obj) {
-        alert('SUCCESS');
+    function registrationSuccess(successObj) {
+        var summaryRowTemplate = $('#summaryRowTemplate').html();
+
+        var html = '';
+        $.each(successObj.multipleEvents, function() {
+            html += render(summaryRowTemplate, this);
+        });
+
+        // clear current form
+        $('.inputfields').val('');
+        $('input[type=checkbox]').prop('checked', false);
+        $('.js-none-pack').prop('checked', true);
+        $('.show-teamid').removeClass('show-teamid');
+        calcPrice();
+
+        // show summary
+        $('.js-summary-ul').html(html);
+        $('.js-user-summary h3').html('Team IDs for ' + successObj.name);
+        $('.js-user-summary').addClass('visible');
+
+        // show recipt button
+        $('.js-btn-recipt').addClass('visible')
+            .html('Recipt for ' + successObj.name);
     }
+
+    $(document).delegate('.js-use-teamid', 'click', function(e) {
+        var $target = $(e.target);
+
+        var $el = $('#' + $target.data('id'));
+        var teamID = $target.data('teamid');
+
+        $el.val(teamID);
+        $el.closest('.event-item').addClass('show-teamid').find('input[type=checkbox]').prop('checked', true);
+
+        $(window).scrollTop($el.position().top - 20);
+    });
 
     /**
      * Validates a teamID string syntactically
@@ -234,7 +265,7 @@
      * @return {Boolean}        Is the teamID valid
      */
     function isTeamValid(teamid) {
-        var r = /^[tg][0-9a-f]{5}$/i;
+        var r = /^[tg]-[0-9a-f]{5}$/i;
         return teamid.match(r) !== null;
     }
 
@@ -356,6 +387,22 @@
                 }
             }
         }
+    }
+
+
+    /**
+     * Renders the given template string using the object
+     * @param  {String} tempString HTML template string [[vars]]
+     * @param  {Object} obj        Object whose keys will be replaced with [[key]] in the template
+     * @return {String}            Rendered HTML String
+     */
+    function render(tempString, obj) {
+        var template = tempString;
+
+        $.each(obj, function(key,value) {
+            template = template.replace(new RegExp('\\[\\[' + key + '\\]\\]','g'), value);
+        });
+        return template;
     }
 
 })();

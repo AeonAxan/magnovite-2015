@@ -90,6 +90,7 @@ def register_create(req):
     events = []
     workshops = []
 
+    # validate events passed in
     for event_obj in events_objs:
         if event_obj.get('id', '') == '':
             return JsonResponse({
@@ -106,6 +107,16 @@ def register_create(req):
                 'errors': {'form': ['Invalid Event ID']}
             }, status=400)
 
+        # validate teamids
+        team_id = event_obj.get('teamid', '')
+        if team_id != '':
+            if Registration.objects.filter(team_id=team_id, event=event).count() == 0:
+                return JsonResponse({
+                    'status': 'error',
+                    'errors': {'tid-' + str(event.id): ['Invalid team id: ' + team_id]}
+                }, status=400)
+
+    # validate workshops passed in
     for workshop_obj in workshops_objs:
         if not workshop_obj.get('id', ''):
             return JsonResponse({
@@ -172,12 +183,18 @@ def register_create(req):
     profile.on_spot_registerer = req.user.profile.name
     # profile saved at the end
 
+    success_obj = {
+        'name': profile.name,
+        'multipleEvents': []
+    }
+
     # do event registrations
     for i, event in enumerate(events):
         team_id = events_objs[i].get('teamid', '')
         is_owner = False
 
         if event.is_multiple():
+            # if team_id given it would already be validated above
             if team_id == '':
                 team_id = generate_team_id(user.email, event)
 
@@ -187,14 +204,11 @@ def register_create(req):
                     # creating group team, cost 500
                     payment += 500
 
-            else:
-                try:
-                    Registration.objects.get(team_id=team_id)
-                except Registration.DoesNotExist:
-                    return JsonResponse({
-                        'status': 'error',
-                        'errors': {'tid-' + str(event.id): ['Invalid team id: ' + team_id]}
-                    }, status=400)
+            success_obj['multipleEvents'].append({
+                'id': event.id,
+                'title': event.title,
+                'teamid': team_id
+            })
 
         Registration.objects.create(
             event=event,
@@ -211,7 +225,7 @@ def register_create(req):
     profile.total_payment = payment
     profile.save()
 
-    return JsonResponse({
-        'status': 'success',
-        'url': '/profile/'
-    })
+    success_obj['status'] = 'success'
+    success_obj['reciptURL'] = '/profile/'
+
+    return JsonResponse(success_obj)

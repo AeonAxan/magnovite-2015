@@ -309,7 +309,7 @@ table {
   width: 100%;
   text-align: center;
 }
-.internal-registration .footer .submit {
+.internal-registration .footer .button {
   margin: 20px auto;
   width: 100%;
   display: inline-block;
@@ -321,9 +321,65 @@ table {
   cursor: pointer;
   text-transform: uppercase;
 }
-.internal-registration .footer .submit:hover {
+.internal-registration .footer .button:hover {
   background: #005deb;
   color: white;
+}
+.internal-registration .footer .button.gray {
+  background: #aaa;
+  border: 2px solid #999;
+}
+.internal-registration .footer .button.gray:hover {
+  background: #999;
+  border: 2px solid #888;
+}
+.internal-registration .footer .view-btn {
+  margin-top: 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  display: none;
+}
+.internal-registration .footer .view-btn.visible {
+  display: block;
+}
+.internal-registration .footer .user-summary {
+  display: none;
+}
+.internal-registration .footer .user-summary.visible {
+  display: block;
+}
+.internal-registration .footer .user-summary h3 {
+  margin: 40px 0 20px 0;
+}
+.internal-registration .footer .user-summary li {
+  padding: 5px;
+  margin: 5px 0;
+  overflow: hidden;
+  clear: both;
+  vertical-align: middle;
+}
+.internal-registration .footer .user-summary li p {
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 7px;
+}
+.internal-registration .footer .user-summary li .title {
+  color: #444;
+}
+.internal-registration .footer .user-summary li .teamid {
+  margin-left: 20px;
+  padding: 10px 10px;
+  background: #ccc;
+  font-family: 'monospace';
+}
+.internal-registration .footer .user-summary li .btn-add-team {
+  width: auto;
+  font-size: 16px;
+  text-transform: none;
+  padding: 5px 10px;
+  margin: 0;
+  margin-left: 20px;
 }
 .mobile.internal-registration .container {
   width: 100%;

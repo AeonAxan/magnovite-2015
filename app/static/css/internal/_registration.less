@@ -125,7 +125,7 @@
             text-align: center;
         }
 
-        .submit {
+        .button {
             margin: 20px auto;
             width: 100%;
             display: inline-block;
@@ -140,6 +140,74 @@
             &:hover {
                 background: darken(@light_blue, 10%);
                 color: white;
+            }
+
+            &.gray {
+                background: #aaa;
+                border: 2px solid #999;
+
+                &:hover {
+                    background: #999;
+                    border: 2px solid #888;
+                }
+            }
+        }
+
+        .view-btn {
+            margin-top: 0;
+            text-align: center;
+            text-decoration: none;
+            text-transform: none;
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+
+        .user-summary {
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+
+            h3 {
+                margin: 40px 0 20px 0;
+            }
+
+            li {
+                padding: 5px;
+                margin: 5px 0;
+                overflow: hidden;
+                clear: both;
+                vertical-align: middle;
+
+                p {
+                    display: inline-block;
+                    font-size: 20px;
+                    margin-top: 7px;
+                }
+
+                .title {
+                    color: #444;
+                }
+
+                .teamid {
+                    margin-left: 20px;
+                    padding: 10px 10px;
+                    background: #ccc;
+                    font-family: 'monospace';
+                }
+
+                .btn-add-team {
+                    width: auto;
+                    font-size: 16px;
+                    text-transform: none;
+                    padding: 5px 10px;
+                    margin: 0;
+                    margin-left: 20px;
+                }
             }
         }
     }

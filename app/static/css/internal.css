@@ -434,3 +434,17 @@ h3 {
   border-bottom: 1px solid #999;
   color: #000;
 }
+.mobile.recipt-page .container {
+  width: 100%;
+  padding: 20px 10px;
+}
+.mobile.recipt-page .row {
+  padding: 10px 0;
+}
+.mobile.recipt-page .row .label,
+.mobile.recipt-page .row .value {
+  display: block;
+}
+.mobile.recipt-page .row .label {
+  margin-bottom: 5px;
+}

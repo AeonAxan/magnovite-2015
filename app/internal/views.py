@@ -276,6 +276,6 @@ def register_create(req):
     )
 
     success_obj['status'] = 'success'
-    success_obj['reciptURL'] = '/profile/'
+    success_obj['reciptURL'] = '/receipt/' + profile.receipt_id + '/'
 
     return JsonResponse(success_obj)

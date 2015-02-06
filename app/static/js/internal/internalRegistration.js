@@ -1,6 +1,10 @@
 (function() {
     'use strict';
 
+    if (!$(document.body).hasClass('js-internal-registration')) {
+        return;
+    }
+
     var EVENTS = window.EVENTS;
 
     $(function() {
@@ -245,7 +249,8 @@
 
         // show recipt button
         $('.js-btn-recipt').addClass('visible')
-            .html('Recipt for ' + successObj.name);
+            .html('Recipt for ' + successObj.name)
+            .attr('href', successObj.reciptURL);
     }
 
     $(document).delegate('.js-use-teamid', 'click', function(e) {

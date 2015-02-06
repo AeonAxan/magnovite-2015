@@ -15,6 +15,10 @@ urlpatterns = [
     url(r'^workshops/', include('app.workshop.urls')),
     url(r'^internal/', include('app.internal.urls')),
 
+    # this view is in internal
+    url(r'^receipt/$', 'app.internal.views.recipt_view'),
+    url(r'^receipt/(?P<rid>[a-f0-9]+)/', 'app.internal.views.recipt_view'),
+
     url(r'^admin/', include(admin.site.urls)),
 
     # 3rd party

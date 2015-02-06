@@ -1,18 +1,50 @@
 import json
 
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
+from django.http import JsonResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 
 from app.event.utils import generate_team_id
 from app.event.models import Event, Registration
-from app.main.models import MUser
+from app.main.models import MUser, Profile
 from app.workshop.models import Workshop
 
 from .forms import RegistrationForm
+from app.main.utils import template_email
+
+def recipt_view(req, rid=None):
+    user = None
+
+    # allow admins to access receipts using ids
+    if rid is not None and req.user.is_authenticated() and req.user.is_staff:
+        try:
+            uid = int(rid)
+
+            # guard the improbable case where hash is all numeric
+            if uid < 999999:
+                user = get_object_or_404(MUser, id=MUser.get_real_id(uid))
+        except:
+            pass
+
+    if user is None:
+        if rid is not None:
+            user = get_object_or_404(Profile, receipt_id=rid).user
+        else:
+            if not req.user.is_authenticated():
+                raise Http404
+
+            user = req.user
+
+    registrations = Registration.objects.filter(profile=user.profile)
+    workshops = user.profile.registered_workshops.all()
+
+    return render(req, 'magnovite/recipt.html', {
+        'user': user,
+        'profile': user.profile,
+        'registrations': registrations,
+        'workshops': workshops
+    })
 
 
 def register_view(req):
@@ -234,6 +266,14 @@ def register_create(req):
 
     profile.total_payment = payment
     profile.save()
+
+    template_email(
+        'server@magnovite.net',
+        (user.email,),
+        'Welcome to Magnovite 2015',
+        'on_spot_receipt',
+        {'profile': profile}
+    )
 
     success_obj['status'] = 'success'
     success_obj['reciptURL'] = '/profile/'

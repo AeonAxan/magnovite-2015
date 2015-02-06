@@ -182,6 +182,7 @@ ROOT_URLCONF = 'app.magnovite.urls'
 
 WSGI_APPLICATION = 'app.magnovite.wsgi.application'
 
+ID_OFFSET = int(os.environ.get('ID_OFFSET', 1432))
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

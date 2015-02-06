@@ -1,5 +1,8 @@
+import hashlib
+
 from django.db import models
 from django.db.models import Q
+from django.conf import settings
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
@@ -81,12 +84,21 @@ class MUser(AbstractBaseUser, PermissionsMixin):
         # The user is identified by their email address
         return self.email
 
+    def get_id(self):
+        return settings.ID_OFFSET + self.id
+
+    @staticmethod
+    def get_real_id(id):
+        return id - settings.ID_OFFSET
+
     def __str__(self):
         return self.email
 
 
 class Profile(models.Model):
     user = models.OneToOneField(MUser, null=True)
+
+    receipt_id = models.CharField(max_length=100, blank=True, null=True)
 
     # auth provider
     auth_provider = models.CharField(max_length=30, blank=True)
@@ -141,6 +153,13 @@ class Profile(models.Model):
         permissions = (
             ('on_spot_registration', 'Able to create on-spot registrations'),
         )
+
+    def save(self, *args, **kwargs):
+        if not self.receipt_id:
+            corpus = settings.SECRET_KEY + self.active_email + self.name
+            self.receipt_id = hashlib.sha1(corpus.encode('utf-8')).hexdigest()
+
+        return super(Profile, self).save(*args, **kwargs)
 
     def registered_quota_events(self):
         return self.registered_events.filter(~Q(team_type='group'))

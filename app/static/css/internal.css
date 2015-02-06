@@ -205,14 +205,14 @@ table {
   width: 600px;
   margin: 50px auto;
 }
-.internal-registration {
+body {
   color: #333;
 }
-.internal-registration h1 {
+h1 {
   font-size: 36px;
   margin-bottom: 20px;
 }
-.internal-registration h3 {
+h3 {
   font-size: 28px;
   margin: 50px 0 10px 0;
   color: #999;
@@ -393,4 +393,44 @@ table {
 }
 .mobile.internal-registration .footer .user-summary li .teamid {
   margin-left: 0;
+}
+.recipt-page h3 {
+  font-size: 34px;
+}
+.recipt-page .row {
+  font-size: 20px;
+  padding: 5px 0;
+}
+.recipt-page .row .label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #666;
+}
+.recipt-page .row .value {
+  display: inline-block;
+  vertical-align: middle;
+  color: #000;
+}
+.recipt-page .list {
+  font-size: 20px;
+  color: #000;
+  padding: 5px 0;
+}
+.recipt-page .list li {
+  padding: 5px 0;
+}
+.recipt-page .footer {
+  margin-top: 40px;
+  color: #999;
+}
+.recipt-page .footer a {
+  color: #666;
+  text-decoration: none;
+  padding: 3px 0;
+  border-bottom: 1px solid #bbb;
+}
+.recipt-page .footer a:hover {
+  border-bottom: 1px solid #999;
+  color: #000;
 }

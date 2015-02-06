@@ -23,7 +23,7 @@ app.payments = {};
         if (params) {
             params = '?' + params;
         }
-https://test.
+
         $.get(GENERATE_URL + type + '/' + params)
             .done(function(html) {
                 $(html).appendTo(document.body).hide().submit();

@@ -16,11 +16,17 @@ from .models import create_invoice, Invoice
 
 def generate(req, invoice_type):
     if not req.user.is_authenticated():
-        raise PermissionDenied
+        return JsonResponse({
+            'status': 'error',
+            'errorMessage': 'Please Login/Register first'
+        }, status=403)
 
     if invoice_type not in ('test', 'team', 'single', 'multiple',
                             'upgrade', 'workshop'):
-        return HttpResponse(status=400)
+        return JsonResponse({
+            'status': 'error',
+            'errorMessage': 'Invalid invoice type'
+        }, status=400)
 
 
     if not req.user.profile.is_complete():
@@ -45,7 +51,10 @@ def generate(req, invoice_type):
     elif invoice_type == 'upgrade':
         # upgrade only valid if user is in single pack
         if req.user.profile.pack != 'single':
-            return HttpResponse(status=403)
+            return JsonResponse({
+                'status': 'error',
+                'errorMessage': 'Upgrade only valid for single pack'
+            }, status=400)
 
         invoice = create_invoice(invoice_type, req.user.profile)
         return get_payu_form(req, invoice)
@@ -63,7 +72,10 @@ def generate(req, invoice_type):
         return get_payu_form(req, invoice)
 
     # unrecognized invoice_type
-    return HttpResponse(status=400)
+    return JsonResponse({
+        'status': 'error',
+        'errorMessage': 'Unrecognized invoice type'
+    }, status=403)
 
 
 @csrf_exempt

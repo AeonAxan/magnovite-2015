@@ -11,3 +11,5 @@ myvirtualenv
 app/main/static/css/app\.css
 app/static/css/app\.css
 app/media/
+\.venv
+\.venvvars

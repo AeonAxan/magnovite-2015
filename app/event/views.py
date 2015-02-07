@@ -159,7 +159,6 @@ def register(req, id, team_id=None):
         }, status=400)
 
     # success
-    event.registrations += 1
     event.save()
 
     if event.is_multiple():
@@ -199,7 +198,6 @@ def unregister(req, id):
         reg = Registration.objects.get(event=event, profile=req.user.profile)
         reg.delete()
 
-        event.registrations -= 1
         event.save()
     except Registration.DoesNotExist:
         pass

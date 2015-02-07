@@ -80,7 +80,6 @@ class Event(models.Model):
 
     # analytics
     views = models.IntegerField(default=0)
-    registrations = models.IntegerField(default=0)
 
     class Meta:
         permissions = (
@@ -130,6 +129,9 @@ class Event(models.Model):
         If not an individual event it is considered to be a team event
         """
         return self.is_group() or self.is_team()
+
+    def num_registrations(self):
+        return self.registration_set.count()
 
     def complete_status(self):
         """

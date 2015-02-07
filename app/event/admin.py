@@ -25,12 +25,11 @@ class RegistrationsInline(admin.TabularInline):
         return fields
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['title', 'id', 'technical', 'team_type', 'complete_status', 'registrations', 'views']
-    ordering = ['-registrations']
+    list_display = ['title', 'id', 'technical', 'team_type', 'complete_status', 'num_registrations', 'views']
     list_filter = ['technical', 'team_type']
     inlines = [EventHeadInline, RegistrationsInline]
 
-    readonly_fields = ('views', 'registrations')
+    readonly_fields = ('views',)
 
     def get_queryset(self, req):
         qs = super(EventAdmin, self).get_queryset(req)

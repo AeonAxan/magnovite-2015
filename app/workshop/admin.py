@@ -11,5 +11,5 @@ class RegisteredInline(admin.TabularInline):
 
 @admin.register(Workshop)
 class WorkshopAdmin(admin.ModelAdmin):
-    list_display = ['title']
+    list_display = ['title', 'num_registered']
     inlines = [RegisteredInline]

@@ -45,7 +45,10 @@ def logout_view(req):
         logout(req)
 
     next_url = req.GET.get('next', '/')
-    return HttpResponseRedirect(next_url)
+
+    resp = HttpResponseRedirect(next_url)
+    resp.delete_cookie('mag_uid')
+    return resp
 
 def index(req):
     if settings.DEBUG:
@@ -53,8 +56,12 @@ def index(req):
     else:
         template = 'magnovite/dist/home.html'
 
-    return render(req, template)
+    resp = render(req, template)
 
+    if req.user.is_authenticated() and 'mag_uid' not in req.COOKIES:
+        resp.set_cookie('mag_uid', req.user.get_id(), max_age=365*24*60*60)
+
+    return resp
 
 @require_POST
 @login_required

@@ -22,7 +22,7 @@ class Analytics(models.Model):
                 'title': event.title,
                 'url': event.get_absolute_url(),
                 'views': event.views,
-                'registrations': event.num_registrations
+                'registrations': event.num_registrations()
             })
 
         try:

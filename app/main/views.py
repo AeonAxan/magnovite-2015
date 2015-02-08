@@ -76,7 +76,7 @@ def add_message(req):
         time_check = ratelimit_hour
         if (last_staff_msg and last_staff_msg[0].timestamp > ratelimit_hour):
             # chose last hour, or the last time a staff replied
-            time_check = last_staff_msg.timestamp
+            time_check = last_staff_msg[0].timestamp
 
         count = Message.objects.filter(timestamp__gt=time_check).count()
 

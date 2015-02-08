@@ -7,6 +7,7 @@ from .models import Event, Registration
 
 class EventHeadInline(admin.TabularInline):
     model = Profile.events.through
+    raw_id_fields = ('profile',)
     extra = 0
     verbose_name = 'Event Head'
     verbose_name_plural = 'Event Heads'

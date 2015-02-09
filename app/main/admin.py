@@ -26,6 +26,7 @@ class EventsInline(admin.TabularInline):
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'user', 'auth_provider', 'active_email', 'total_payment')
+    search_fields = ('name', 'active_email')
     exclude = ('events', 'registered_workshops')
     inlines = [WorkshopsInline, RegistrationsInline, EventsInline]
 

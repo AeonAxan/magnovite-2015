@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.exceptions import ImmediateHttpResponse
+from django.contrib import messages
 
 from app.main.models import Profile, MUser
 
@@ -48,6 +49,10 @@ class MSocialAccountAdapter(DefaultSocialAccountAdapter):
             return
 
         try:
+            if 'email' not in sociallogin.account.extra_data:
+                messages.error(request, 'Facebook did not return an email!, please make sure you authorized us to access your email id')
+                raise ImmediateHttpResponse(HttpResponseRedirect('/'))
+
             user = MUser.objects.get(email=sociallogin.account.extra_data['email'])
             sociallogin.connect(request, user)
 

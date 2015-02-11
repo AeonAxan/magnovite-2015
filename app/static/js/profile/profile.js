@@ -6,7 +6,55 @@ app.profile = {};
 
 	app.profile.init = function() {
         $('#profile-form').on('submit', formSubmit);
+
+        hospBtnClick();
+        $('.js-hosp-btn').on('click', hospBtnClick);
 	};
+
+    /**
+     * Clicked on +1 or -1 btn
+     */
+    function hospBtnClick(e) {
+        var currentDays = +$('.js-hosp-numdays').text();
+        var $hospNumdays = $('.js-hosp-numdays');
+
+        var paidDays = +$hospNumdays.data('paiddays');
+
+        if (e !== undefined) {
+            var type = $(e.target).data('type');
+            if (type === 'plus' && currentDays >= 4 ||
+                type === 'minus' && (currentDays <= 1 || currentDays <= paidDays+1)) {
+                return;
+            }
+
+            if (type === 'plus') {
+                currentDays += 1;
+            } else {
+                currentDays -= 1;
+            }
+        }
+
+        $('.js-hosp-btn').removeClass('deactive');
+
+        if (currentDays === 4) {
+            $('.js-hosp-btn[data-type=plus]').addClass('deactive');
+
+        }
+        if (currentDays === 1 || currentDays <= paidDays + 1) {
+            $('.js-hosp-btn[data-type=minus]').addClass('deactive');
+        }
+
+        $('.js-hosp-daystext').text('day' + (currentDays === 1 ? '' : 's'));
+        $hospNumdays.text(currentDays);
+        $('.js-hosp-amount').text((currentDays - paidDays) * 150);
+        $('.js-hosp-pay').data('params', 'days=' + currentDays);
+
+        if (paidDays !== 0 && currentDays !== paidDays) {
+            $('.js-hosp-daysextra').text('(' + (currentDays - paidDays) + ' extra)');
+        } else {
+            $('.js-hosp-daysextra').text('');
+        }
+    }
 
     function clearErrors() {
         $('.errorlist').html('');

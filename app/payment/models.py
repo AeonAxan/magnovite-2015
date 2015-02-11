@@ -6,33 +6,52 @@ from app.event.models import Event
 from app.workshop.models import Workshop
 
 
-def create_invoice(invoice_type, profile, event=None, workshop=None):
+def create_invoice(invoice_type, profile, event=None, workshop=None, days=None):
     invoice = Invoice(
         profile=profile,
         invoice_type=invoice_type,
     )
 
     if invoice_type == 'team':
-        invoice.description = 'Registration for ' + event.title
+        invoice.description = 'Registration for ' + event.title,
         invoice.amount = 500
         invoice.event = event
+
     elif invoice_type == 'single':
         invoice.description = 'Subscription for Single Pack'
         invoice.amount = 100
+
     elif invoice_type == 'multiple':
         invoice.description = 'Subscription for Multiple Pack'
         invoice.amount = 200
+
     elif invoice_type == 'upgrade':
         # upgrade condition must be checked before calling this fn
         invoice.description = 'Upgrade to Multiple Pack'
         invoice.amount = 100
+
     elif invoice_type == 'test':
         invoice.description = 'Test Payment'
         invoice.amount = 20
+
     elif invoice_type == 'workshop':
         invoice.description = 'Workshop registration for ' + workshop.title
         invoice.amount = workshop.price
         invoice.workshop = workshop
+
+    elif invoice_type == 'hospitality':
+        if days == 1:
+            day_text = 'day'
+        else:
+            day_text = 'days'
+
+        if profile.hospitality_days == 0:
+            invoice.description = 'Register for hospitality, ' + str(days) + ' ' + day_text
+        else:
+            invoice.description = 'Register for hospitality, ' + str(days - profile.hospitality_days) + ' more ' + day_text + '. Total ' + str(days)
+
+        invoice.days = days
+        invoice.amount = 150 * (days - profile.hospitality_days)
 
     else:
         return None
@@ -52,6 +71,9 @@ class Invoice(models.Model):
 
     # if invoice is for a workshop
     workshop = models.ForeignKey(Workshop, blank=True, null=True)
+
+    # if for hospitality
+    days = models.IntegerField(default=0)
 
     invoice_type = models.CharField(max_length=20)
     description = models.CharField(max_length=200)

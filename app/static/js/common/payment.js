@@ -15,11 +15,11 @@ app.payments = {};
         inProgress = true;
         NProgress.start();
 
-        var $target = $(e.target);
+        var $target = $(e.target).closest('.js-pay');
 
         $target.addClass('deactive');
-        var type = $(e.target).data('type');
-        var params = $(e.target).data('params') || '';
+        var type = $target.data('type');
+        var params = $target.data('params') || '';
         if (params) {
             params = '?' + params;
         }

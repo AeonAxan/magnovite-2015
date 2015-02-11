@@ -484,7 +484,12 @@
         <div class="container">
             <div class="section">
                 <h3 class="title">Hospitality</h3>
-                <p class="desc">We provide hospitality arrangment for students who want to opt for it. Please check back for more details</p>
+                <p class="desc">We provide hospitality arrangment for students who want to opt for it. Follow the link for more information</p>
+                {% if request.user.is_authenticated %}
+                <a href="/profile/#hospitality" class="link button">See Hospitality</a>
+                {% else %}
+                <a href="#" onclick="app.modal.show('#login-modal');" class="link button">See Hospitality</a>
+                {% endif %}
             </div>
             <div class="section">
                 <h3 class="title">Help</h3>

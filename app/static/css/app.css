@@ -2778,7 +2778,8 @@ body.mobile .notifications .notification {
 .page-profile .profile-scene-on .profile-scene,
 .page-profile .schedule-scene-on .schedule-scene,
 .page-profile .help-scene-on .help-scene,
-.page-profile .pack-scene-on .pack-scene {
+.page-profile .pack-scene-on .pack-scene,
+.page-profile .hospitality-scene-on .hospitality-scene {
   display: block;
 }
 .profile-scene .errorlist {
@@ -3209,6 +3210,79 @@ body.mobile .notifications .notification {
 .pack-scene .payu img {
   width: 120px;
   margin: 10px 0 0 40px;
+}
+.hospitality-scene .section {
+  margin: 20px 0 20px 0;
+  overflow: hidden;
+  clear: both;
+}
+.hospitality-scene .inner-pane {
+  max-width: 450px;
+  float: left;
+}
+.hospitality-scene ul {
+  list-style: disc;
+  margin: 40px 0 0 40px;
+}
+.hospitality-scene ul li {
+  margin-bottom: 5px;
+}
+.hospitality-scene ul b {
+  font-weight: bold;
+}
+.hospitality-scene .my-pack {
+  font-size: 18px;
+}
+.hospitality-scene .my-pack .name {
+  font-weight: bold;
+}
+.hospitality-scene .payu img {
+  width: 120px;
+  margin: 10px 0 0 40px;
+}
+.hospitality-scene .apply {
+  width: 250px;
+  padding: 20px 20px;
+}
+.hospitality-scene .apply .row {
+  padding: 5px 0;
+  text-align: center;
+}
+.hospitality-scene .apply .row .btn {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.3);
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.hospitality-scene .apply .row .btn.deactive {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: default;
+}
+.hospitality-scene .apply .row .btn.deactive:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.hospitality-scene .apply .row .btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+.hospitality-scene .apply .row p {
+  font-size: 18px;
+  padding: 10px 0;
+}
+.hospitality-scene .apply .pay-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+.hospitality-scene .apply .button {
+  background: #0C8EC0;
+  margin: 10px 0 0 0;
+  border: 1px solid #00859E;
+  display: inline-block;
+  outline: 0;
+}
+.hospitality-scene .apply .button:hover {
+  background: #0a99ff;
 }
 .body-quest.mobile {
   overflow-x: hidden !important;

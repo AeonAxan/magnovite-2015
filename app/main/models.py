@@ -137,6 +137,8 @@ class Profile(models.Model):
     registered_events = models.ManyToManyField(Event, through=Registration)
     registered_workshops = models.ManyToManyField(Workshop, null=True, blank=True)
 
+    hospitality_days = models.IntegerField(default=0)
+
     # internal fields
     is_internal = models.BooleanField(
         default=False,
@@ -172,6 +174,9 @@ class Profile(models.Model):
 
     def is_registered_to_event(self, event):
         return self.registered_events.filter(id=event.id).count() == 1
+
+    def hospitality_days_plus_one(self):
+        return self.hospitality_days + 1
 
     def get_absolute_url(self):
         return '/profile/'

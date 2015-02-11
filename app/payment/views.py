@@ -22,7 +22,7 @@ def generate(req, invoice_type):
         }, status=403)
 
     if invoice_type not in ('test', 'team', 'single', 'multiple',
-                            'upgrade', 'workshop'):
+                            'upgrade', 'workshop', 'hospitality'):
         return JsonResponse({
             'status': 'error',
             'errorMessage': 'Invalid invoice type'
@@ -69,6 +69,21 @@ def generate(req, invoice_type):
     elif invoice_type == 'workshop':
         workshop = get_object_or_404(Workshop, id=req.GET.get('id', None))
         invoice = create_invoice(invoice_type, req.user.profile, workshop=workshop)
+        return get_payu_form(req, invoice)
+
+    elif invoice_type == 'hospitality':
+        # validate
+        try:
+            days = int(req.GET.get('days', None))
+            if days <= 0 or days > 4 or days <= req.user.profile.hospitality_days:
+                raise ValueError
+        except ValueError:
+            return JsonResponse({
+                'status': 'error',
+                'errorMessage': 'Invalid days'
+            }, status=400)
+
+        invoice = create_invoice(invoice_type, req.user.profile, days=days)
         return get_payu_form(req, invoice)
 
     # unrecognized invoice_type
@@ -204,6 +219,13 @@ def process_invoice(req, invoice):
     elif invoice.invoice_type == 'test':
         messages.success(req, 'Payment success!')
         return redirect('/profile/#pack')
+
+    elif invoice.invoice_type == 'hospitality':
+        invoice.profile.hospitality_days = invoice.days
+        invoice.profile.save()
+
+        messages.success(req, 'Successfully applied for ' + str(invoice.days) + ' day(s)')
+        return redirect('/profile/#hospitality')
 
     # invalid invoice
     return None

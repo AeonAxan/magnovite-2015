@@ -163,6 +163,9 @@ class Profile(models.Model):
 
         return super(Profile, self).save(*args, **kwargs)
 
+    def receipt_url(self):
+        return '/receipt/' + self.receipt_id + '/'
+
     def registered_quota_events(self):
         return self.registered_events.filter(~Q(team_type='group'))
 

@@ -394,11 +394,15 @@ h3 {
 .mobile.internal-registration .footer .user-summary li .teamid {
   margin-left: 0;
 }
+.recipt-page h1 {
+  font-size: 28px;
+}
 .recipt-page h3 {
-  font-size: 34px;
+  font-size: 24px;
+  margin-top: 20px;
 }
 .recipt-page .row {
-  font-size: 20px;
+  font-size: 18px;
   padding: 5px 0;
 }
 .recipt-page .row .label {

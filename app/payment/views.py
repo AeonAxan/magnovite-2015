@@ -10,6 +10,7 @@ from app.event.models import Event, Registration
 from app.event.utils import generate_team_id
 from app.workshop.models import Workshop
 
+from app.main.utils import template_email
 from .utils import get_payu_form, test_checksum
 from .models import create_invoice, Invoice
 
@@ -116,6 +117,18 @@ def success(req):
         messages.error(req, 'Transaction could not be completed, please contact support (Error: ES02)')
         return redirect('/profile/#help')
     else:
+        # Success
+        template_email(
+            'server@magnovite.net',
+            (invoice.profile.active_email,),
+            'Transaction Receipt',
+            'payment_success',
+            {
+                'profile': invoice.profile,
+                'invoice': invoice
+            }
+        )
+
         return return_val
 
 @csrf_exempt
@@ -221,6 +234,7 @@ def process_invoice(req, invoice):
         return redirect('/profile/#pack')
 
     elif invoice.invoice_type == 'hospitality':
+        invoice.profile.total_payment += invoice.amount
         invoice.profile.hospitality_days = invoice.days
         invoice.profile.save()
 

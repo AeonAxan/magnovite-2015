@@ -34,6 +34,7 @@ class EventAdmin(admin.ModelAdmin):
 
     def get_queryset(self, req):
         qs = super(EventAdmin, self).get_queryset(req)
+        qs = qs.prefetch_related('registration_set')
         if req.user.is_superuser:
             return qs
 

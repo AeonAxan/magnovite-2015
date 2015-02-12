@@ -92,7 +92,7 @@ class MUser(AbstractBaseUser, PermissionsMixin):
         return id - settings.ID_OFFSET
 
     def __str__(self):
-        return self.email
+        return str(self.get_id()) + ' | ' + self.email
 
 
 class Profile(models.Model):

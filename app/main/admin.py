@@ -38,6 +38,11 @@ class ProfileAdmin(admin.ModelAdmin):
     exclude = ('events', 'registered_workshops')
     inlines = [InvoiceInline, WorkshopsInline, RegistrationsInline, EventsInline]
 
+    def get_queryset(self, req):
+        print('hi')
+        qs = super(ProfileAdmin, self).get_queryset(req)
+        return qs.prefetch_related('user')
+
 admin.site.register(Profile, ProfileAdmin)
 
 

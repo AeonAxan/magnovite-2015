@@ -40,7 +40,12 @@ def recipt_view(req, rid=None):
     registrations = Registration.objects.filter(profile=user.profile)
     workshops = user.profile.registered_workshops.all()
 
-    return render(req, 'magnovite/recipt.html', {
+    if settings.DEBUG:
+        template = 'magnovite/recipt.html'
+    else:
+        template = 'magnovite/dist/recipt.html'
+
+    return render(req, template, {
         'user': user,
         'profile': user.profile,
         'registrations': registrations,

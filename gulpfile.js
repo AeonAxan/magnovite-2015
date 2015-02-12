@@ -70,6 +70,7 @@ gulp.task('usemin', function() {
     return gulp.src('app/templates/magnovite/*.html')
         .pipe(replace('app.DEBUG = true', 'app.DEBUG = false'))
         .pipe(replace('{% extends "magnovite/base.html" %}', '{% extends "magnovite/dist/base.html" %}'))
+        .pipe(replace('{% extends "magnovite/base_internal.html" %}', '{% extends "magnovite/dist/base_internal.html" %}'))
         .pipe(usemin({
             css: [minifyCss(), rev()],
             js: [uglify(), rev()]

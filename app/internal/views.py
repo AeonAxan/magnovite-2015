@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.http import JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
+from django.utils import timezone
 from django.core.exceptions import PermissionDenied
 
 from app.event.utils import generate_team_id
@@ -54,28 +55,59 @@ def recipt_view(req, rid=None):
     })
 
 
+def table_view(req, type, slug):
+    if not type in ('workshop', 'event'):
+        raise Http404
+
+    workshop, event = None, None
+    if type == 'workshop':
+        workshop = get_object_or_404(Workshop, slug=slug)
+    else:
+        event = get_object_or_404(Event, slug=slug)
+
+    return show_table_view(req, type, event, workshop)
+
+
 def private_view(req, type, slug):
     """
     Private view for private urls of events and workshops
     shows a table of registrations
     """
-    if not type in ('workshop'):
+    if not type in ('workshop', 'event'):
         raise Http404
 
-    workshop = None
+    workshop, event = None, None
     if type == 'workshop':
         workshop = get_object_or_404(Workshop, private_slug=slug)
-
-    if settings.DEBUG:
-        template = 'magnovite/private_view.html'
     else:
-        template = 'magnovite/dist/private_view.html'
+        event = get_object_or_404(Event, private_slug=slug)
+
+    return show_table_view(req, type, event, workshop)
+
+
+def show_table_view(req, type, event=None, workshop=None):
+    """
+    Shows a given workshop or event
+    This is not used in the URL conf, but called by other views
+    """
+    if settings.DEBUG:
+        template = 'magnovite/table_view.html'
+    else:
+        template = 'magnovite/dist/table_view.html'
+
+    if type == 'workshop':
+        profiles = workshop.profile_set.all().prefetch_related('user').order_by('user__id')
+    elif type == 'event':
+        profiles = event.profile_set.all().prefetch_related('user')
 
     return render(req, template, {
         'type': type,
         'workshop': workshop,
-        'profiles': workshop.profile_set.all().prefetch_related('user').order_by('user__id')
+        'event': event,
+        'profiles': profiles,
+        'now': timezone.now()
     })
+
 
 def register_view(req):
     if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):

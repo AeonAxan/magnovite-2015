@@ -1,7 +1,9 @@
 import markdown2
 import re
+import hashlib
 
 from django.db import models
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 
@@ -17,7 +19,9 @@ class Event(models.Model):
     )
 
     title = models.CharField(max_length=100)
+
     slug = models.SlugField(help_text='The event url, use all simple and - as a seperator, Eg: junkyard-wars')
+    private_slug = models.CharField(max_length=40, blank=True, default='')
 
     quote = models.CharField(max_length=70, help_text='Text displayed on the cards in /events/')
 
@@ -85,6 +89,13 @@ class Event(models.Model):
         permissions = (
             ('change_own', 'Change events incharge of'),
         )
+
+    def save(self, *args, **kwargs):
+        if not self.private_slug:
+            text = self.title + self.quote + settings.SECRET_KEY
+            self.private_slug = hashlib.sha1(text.encode('utf-8')).hexdigest()
+
+        return super(Event, self).save(*args, **kwargs)
 
     def clean(self):
         if self.title:

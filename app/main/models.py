@@ -163,6 +163,15 @@ class Profile(models.Model):
 
         return super(Profile, self).save(*args, **kwargs)
 
+    def college_neat(self):
+        """
+        Returns title case unless everything is one uppercase word
+        """
+        if len(self.college.split(' ')) == 1 and self.college.upper() == self.college:
+            return self.college
+
+        return self.college.title()
+
     def receipt_url(self):
         return '/receipt/' + self.receipt_id + '/'
 

@@ -143,7 +143,6 @@ class LogEntryAdmin(admin.ModelAdmin):
                        'action_flag', 'object_repr')
 
     list_filter = [
-        'user',
         'content_type',
         'action_flag'
     ]
@@ -186,8 +185,8 @@ class LogEntryAdmin(admin.ModelAdmin):
     object_link.admin_order_field = 'object_repr'
     object_link.short_description = u'object'
 
-    def queryset(self, request):
-        return super(LogEntryAdmin, self).queryset(request) \
+    def get_queryset(self, request):
+        return super(LogEntryAdmin, self).get_queryset(request) \
             .prefetch_related('content_type')
 
 

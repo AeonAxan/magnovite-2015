@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from .models import MUser, Profile
 from app.event.models import Registration, Event
 from app.workshop.models import Workshop
-
+from app.payment.models import Invoice
 
 class WorkshopsInline(admin.TabularInline):
     model = Profile.registered_workshops.through
@@ -27,11 +27,16 @@ class EventsInline(admin.TabularInline):
     verbose_name_plural = 'Events Incharge Of'
     extra = 0
 
+class InvoiceInline(admin.TabularInline):
+    model = Invoice
+    fields = ('description', 'invoice_type', 'success')
+    extra = 0
+
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'user', 'auth_provider', 'active_email', 'total_payment')
     search_fields = ('name', 'active_email')
     exclude = ('events', 'registered_workshops')
-    inlines = [WorkshopsInline, RegistrationsInline, EventsInline]
+    inlines = [InvoiceInline, WorkshopsInline, RegistrationsInline, EventsInline]
 
 admin.site.register(Profile, ProfileAdmin)
 

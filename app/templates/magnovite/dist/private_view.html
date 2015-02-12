@@ -10,7 +10,7 @@
     {% if type == 'workshop' %}
     <h1>{{workshop.title}}</h1>
 
-    <table class="pure-table">
+    <table class="pure-table pure-table-horizontal">
         <thead>
             <tr>
                 <th>S.No</th>
@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             {% for profile in workshop.profile_set.all %}
-            <tr>
+            <tr class="{% if forloop.counter|divisibleby:2 %}pure-table-odd{% endif %}">
                 <td>{{forloop.counter}}</td>
                 <td>{{profile.user.get_id|unlocalize}}</td>
                 <td>{{profile.name}}</td>

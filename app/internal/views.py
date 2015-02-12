@@ -56,6 +56,9 @@ def recipt_view(req, rid=None):
 
 
 def table_view(req, type, slug):
+    if not req.user.is_staff:
+        raise PermissionDenied
+
     if not type in ('workshop', 'event'):
         raise Http404
 

@@ -87,6 +87,6 @@ class Invoice(models.Model):
 
     def get_id(self):
         if settings.DEBUG:
-            return 'debug-' + str(self.id)
+            return 'mag15-d-' + str(self.id)
         else:
-            return 'prod-' + str(self.id)
+            return 'mag15-p-' + str(self.id)

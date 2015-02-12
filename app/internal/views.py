@@ -14,6 +14,16 @@ from app.workshop.models import Workshop
 from .forms import RegistrationForm
 from app.main.utils import template_email
 
+
+def index(req):
+    if settings.DEBUG:
+        template = 'magnovite/internal.html'
+    else:
+        template = 'magnovite/dist/internal.html'
+
+    return render(req, template)
+
+
 def recipt_view(req, rid=None):
     user = None
 
@@ -52,6 +62,28 @@ def recipt_view(req, rid=None):
         'workshops': workshops
     })
 
+
+def private_view(req, type, slug):
+    """
+    Private view for private urls of events and workshops
+    shows a table of registrations
+    """
+    if not type in ('workshop'):
+        raise Http404
+
+    workshop = None
+    if type == 'workshop':
+        workshop = get_object_or_404(Workshop, private_slug=slug)
+
+    if settings.DEBUG:
+        template = 'magnovite/private_view.html'
+    else:
+        template = 'magnovite/dist/private_view.html'
+
+    return render(req, template, {
+        'type': type,
+        'workshop': workshop
+    })
 
 def register_view(req):
     if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
@@ -285,3 +317,41 @@ def register_create(req):
     success_obj['reciptURL'] = '/receipt/' + profile.receipt_id + '/'
 
     return JsonResponse(success_obj)
+
+
+def api_items(req):
+    out = {
+        'events': {
+            'technical': [],
+            'cultural': [],
+            'group': []
+        },
+        'workshops': []
+    }
+
+    for event in Event.objects.all():
+        _o = {
+            'id': event.id,
+            'title': event.title,
+            'slug': event.slug
+        }
+
+        if event.is_multiple():
+            _o['is_team'] = True
+            _o['team_min'] = event.team_min
+            _o['team_max'] = event.team_max
+
+        if event.team_type == 'group':
+            out['events']['group'].append(_o)
+        elif event.technical:
+            out['events']['technical'].append(_o)
+        else:
+            out['events']['cultural'].append(_o)
+
+    for workshop in Workshop.objects.all():
+        out['workshops'].append({
+            'id': workshop.id,
+            'title': workshop.title,
+        })
+
+    return JsonResponse(out)

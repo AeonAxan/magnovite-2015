@@ -17,6 +17,8 @@
     <meta name="theme-color" content="#091A27">
 
     <link rel="stylesheet" href="/static/css/internal.css" />
+
+    {% block "extra_css" %}{% endblock %}
 </head>
 <body class="{% block "body_css_class" %}{% endblock %}">
     {% csrf_token %}

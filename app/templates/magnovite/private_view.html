@@ -1,0 +1,38 @@
+{% extends "magnovite/base_internal.html" %}
+{% load l10n %}
+
+{% block "extra_css" %}
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+{% endblock "extra_css" %}
+
+{% block "content" %}
+<div class="container">
+    {% if type == 'workshop' %}
+    <h1>{{workshop.title}}</h1>
+
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>College</th>
+                <th>Mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in workshop.profile_set.all %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{profile.user.get_id|unlocalize}}</td>
+                <td>{{profile.name}}</td>
+                <td>{{profile.college}}</td>
+                <td>{{profile.mobile}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</div>
+{% endblock "content" %}

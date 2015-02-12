@@ -1,7 +1,12 @@
-from django.db import models
+import hashlib
 
+from django.db import models
+from django.conf import settings
 
 class Workshop(models.Model):
+    sulg = models.CharField(max_length=50, blank=True, null=True, default='')
+    private_slug = models.CharField(max_length=50, blank=True, null=True, default='')
+
     title = models.CharField(max_length=50)
     desc_1 = models.TextField()
     desc_2 = models.TextField()
@@ -23,6 +28,13 @@ class Workshop(models.Model):
 
     img_big = models.URLField(help_text='400x400')
     img_small = models.URLField(help_text='120x120')
+
+    def save(self, *args, **kwargs):
+        if not self.private_slug:
+            text = self.title + self.desc_1 + settings.SECRET_KEY[:10]
+            self.private_slug = hashlib.sha1(text.encode('utf-8')).hexdigest()
+
+        return super(Workshop, self).save(*args, **kwargs)
 
     def num_registered(self):
         return self.profile_set.count()

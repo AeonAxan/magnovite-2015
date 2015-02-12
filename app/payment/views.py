@@ -102,7 +102,7 @@ def success(req):
         print(req.POST)
         return redirect('/profile/#help')
 
-    invoice_id = int(req.POST.get('txnid', '').split('-')[1])
+    invoice_id = int(req.POST.get('txnid', '').split('-')[-1])
     invoice = get_object_or_404(Invoice, id=invoice_id)
 
     # if already processed skip
@@ -123,7 +123,7 @@ def success(req):
 def failure(req):
     messages.error(req, 'Could not complete transaction, please try again or contact support (Error: EF01)')
 
-    invoice_id = int(req.POST.get('txnid', '').split('-')[1])
+    invoice_id = int(req.POST.get('txnid', '').split('-')[-1])
     try:
         invoice = Invoice.objects.get(id=invoice_id)
         invoice.pending = False
@@ -143,7 +143,7 @@ def notify(req):
         print('ERROR: Invalid checksum in notify()')
         return HttpResponse()
 
-    invoice_id = int(req.POST.get('txnid', '').split('-')[1])
+    invoice_id = int(req.POST.get('txnid', '').split('-')[-1])
     invoice = get_object_or_404(Invoice, id=invoice_id)
 
     print(req.POST)

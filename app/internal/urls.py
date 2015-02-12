@@ -7,7 +7,4 @@ urlpatterns = patterns('app.internal.views',
 
     url(r'^api/register/$', 'register_create', name='register:create'),
     url(r'^api/items/$', 'api_items'),
-
-    # catch
-    url(r'^$', 'index'),
 )

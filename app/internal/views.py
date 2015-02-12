@@ -15,15 +15,6 @@ from .forms import RegistrationForm
 from app.main.utils import template_email
 
 
-def index(req):
-    if settings.DEBUG:
-        template = 'magnovite/internal.html'
-    else:
-        template = 'magnovite/dist/internal.html'
-
-    return render(req, template)
-
-
 def recipt_view(req, rid=None):
     user = None
 

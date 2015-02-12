@@ -279,6 +279,9 @@ h3 {
   margin: 50px 0 10px 0;
   color: #999;
 }
+strong {
+  font-weight: bold;
+}
 .internal-registration .inputfields {
   outline: 0;
   padding: 10px 15px;
@@ -513,4 +516,11 @@ h3 {
 }
 .mobile.recipt-page .row .label {
   margin-bottom: 5px;
+}
+.page-tableview .timestamp {
+  margin-bottom: 20px;
+  color: #666;
+}
+.page-tableview thead th {
+  font-weight: bold;
 }

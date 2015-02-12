@@ -2,6 +2,10 @@
 {% load l10n %}
 {% load tags %}
 
+{% block "body_css_class" %}
+page-tableview
+{% endblock "body_css_class" %}
+
 {% block "content" %}
 <div class="container-wide">
     {% if type == 'workshop' %}
@@ -10,7 +14,7 @@
     <h1>{{event.title}}</h1>
     {% endif %}
 
-    <p>Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>
+    <p class="timestamp">Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>
 
     <table class="pure-table pure-table-horizontal">
         <thead>

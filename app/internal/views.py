@@ -73,7 +73,8 @@ def private_view(req, type, slug):
 
     return render(req, template, {
         'type': type,
-        'workshop': workshop
+        'workshop': workshop,
+        'profiles': workshop.profile_set.all().prefetch_related('user')
     })
 
 def register_view(req):

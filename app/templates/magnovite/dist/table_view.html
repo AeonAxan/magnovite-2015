@@ -1,14 +1,20 @@
 {% extends "magnovite/dist/base_internal.html" %}
 {% load l10n %}
+{% load tags %}
 
 {% block "extra_css" %}
 <link rel="stylesheet" href="/static/css/lib/purelib.css">
 {% endblock "extra_css" %}
 
 {% block "content" %}
-<div class="container">
+<div class="container-wide">
     {% if type == 'workshop' %}
     <h1>{{workshop.title}}</h1>
+    {% elif type == 'event' %}
+    <h1>{{event.title}}</h1>
+    {% endif %}
+
+    <p>Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>
 
     <table class="pure-table pure-table-horizontal">
         <thead>
@@ -25,14 +31,12 @@
             <tr class="{% if forloop.counter|divisibleby:2 %}pure-table-odd{% endif %}">
                 <td>{{forloop.counter}}</td>
                 <td>{{profile.user.get_id|unlocalize}}</td>
-                <td>{{profile.name}}</td>
-                <td>{{profile.college}}</td>
-                <td>{{profile.mobile}}</td>
+                <td>{{profile.name|title}}</td>
+                <td>{{profile.college_neat}}</td>
+                <td>{{profile.mobile|mobile}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    {% endif %}
 </div>
 {% endblock "content" %}

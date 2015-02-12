@@ -4,7 +4,7 @@ from django.db import models
 from django.conf import settings
 
 class Workshop(models.Model):
-    sulg = models.CharField(max_length=50, blank=True, null=True, default='')
+    slug = models.CharField(max_length=50, blank=True, null=True, default='')
     private_slug = models.CharField(max_length=50, blank=True, null=True, default='')
 
     title = models.CharField(max_length=50)

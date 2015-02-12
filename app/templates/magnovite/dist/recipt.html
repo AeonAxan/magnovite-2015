@@ -61,7 +61,14 @@ recipt-page
     </div>
 
     <div class="section">
-        <h3>Payment</h3>
+        <h3>Other</h3>
+
+        {% if profile.hospitality_days != 0 %}
+        <div class="row">
+            <p class="label">Hospitality Days</p>
+            <p class="value">{{profile.hospitality_days}}</p>
+        </div>
+        {% endif %}
 
         {% if profile.on_spot %}
         <div class="row">

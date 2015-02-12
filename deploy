@@ -1,5 +1,7 @@
 #! /bin/env bash
 
+set -e
+
 if [ "$#" -lt 2 ]; then
     echo "Usage: <production|staging> <commit message> [--no-dist]"
     exit 1

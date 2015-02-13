@@ -50,7 +50,7 @@ class RegistrationAdmin(admin.ModelAdmin):
     fields = ('event', 'profile', 'team_id')
     list_display = ['event', 'profile', 'team_id', 'on_spot', 'created']
     ordering = ['-created']
-    search_fields = ('team_id', 'profile')
+    search_fields = ('team_id', 'profile__name')
     list_filter = ['event', 'on_spot']
 
     def get_readonly_fields(self, req, obj=None):

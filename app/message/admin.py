@@ -6,6 +6,11 @@ class MessageInline(admin.TabularInline):
     model = Message
     extra = 1
 
+    def get_queryset(self, req):
+        qs = super(MessageInline, self).get_queryset(req)
+        qs = qs.order_by('timestamp')
+        return qs
+
 @admin.register(Thread)
 class ThreadAdmin(admin.ModelAdmin):
     list_display = ['id', 'profile', 'is_pending']

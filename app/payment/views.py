@@ -76,7 +76,7 @@ def generate(req, invoice_type):
         # validate
         try:
             days = int(req.GET.get('days', None))
-            if days <= 0 or days > 4 or days <= req.user.profile.hospitality_days:
+            if days <= 0 or days > 6 or days <= req.user.profile.hospitality_days:
                 raise ValueError
         except ValueError:
             return JsonResponse({

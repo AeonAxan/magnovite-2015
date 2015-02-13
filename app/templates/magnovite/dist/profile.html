@@ -112,8 +112,8 @@ app.profile.init();
                                 <div data-type="plus" class="btn js-hosp-btn deactive">+1</div>
                             </div>
                             <div class="row">
-                                {% if profile.hospitality_days == 4%}
-                                <p>Apply for <span data-paiddays="4" class="js-hosp-numdays">4</span> <span class="js-hosp-daystext">days</span> <span class="js-hosp-daysextra"></span></p>
+                                {% if profile.hospitality_days == 6 %}
+                                <p>Apply for <span data-paiddays="6" class="js-hosp-numdays">6</span> <span class="js-hosp-daystext">days</span> <span class="js-hosp-daysextra"></span></p>
                                 {% else %}
                                 <p>Apply for <span data-paiddays="{{profile.hospitality_days}}" class="js-hosp-numdays">{{profile.hospitality_days_plus_one}}</span> <span class="js-hosp-daystext">days</span> <span class="js-hosp-daysextra"></span></p>
                                 {% endif %}
@@ -131,7 +131,7 @@ app.profile.init();
                         <ul>
                             <li>All payments are binding and will not be refunded.</li>
                             <li><b>₹ 150</b> per person per day will be charged for staying</li>
-                            <li>Maximum available days is 4, this is intended for participants of Microsoft Workshop</li>
+                            <li>Maximum available days is 6, this is intended for participants of Microsoft Workshop</li>
                             <li>We use <a target="_blank" href="http://payumoney.com/">PayuMoney</a> as the payment gateway, It is extremely secure and established</li>
                         </ul>
 

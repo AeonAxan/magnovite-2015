@@ -22,7 +22,7 @@ app.profile = {};
 
         if (e !== undefined) {
             var type = $(e.target).data('type');
-            if (type === 'plus' && currentDays >= 4 ||
+            if (type === 'plus' && currentDays >= 6 ||
                 type === 'minus' && (currentDays <= 1 || currentDays <= paidDays+1)) {
                 return;
             }
@@ -36,7 +36,7 @@ app.profile = {};
 
         $('.js-hosp-btn').removeClass('deactive');
 
-        if (currentDays === 4) {
+        if (currentDays === 6) {
             $('.js-hosp-btn[data-type=plus]').addClass('deactive');
 
         }

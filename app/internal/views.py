@@ -215,7 +215,7 @@ def register_create(req):
         raise PermissionDenied
 
     # IN params
-    # name, email, college, mobile, referred, pack, events [{id, teamid?}]
+    # name, email, college, mobile, referred, pack, events[{id, teamid?}], workshops[id]
     try:
         data = json.loads(req.body.decode('utf-8'))
     except ValueError:

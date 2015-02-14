@@ -164,7 +164,7 @@ class Profile(models.Model):
         return super(Profile, self).save(*args, **kwargs)
 
     def get_event_incharge_of(self):
-        return self.events.all()[0]
+        return self.events.all().first()
 
     def college_neat(self):
         """

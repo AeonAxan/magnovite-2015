@@ -3,6 +3,8 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('app.internal.views',
     url(r'^register/$', 'register_view', name='register'),
 
+    url(r'^accounts/$', 'accounts_view'),
+
     url(r'^(?P<type>[a-z]+)/$', 'table_view'),
     url(r'^(?P<type>[a-z]+)/(?P<slug>[a-z\-]*)/$', 'table_view'),
 

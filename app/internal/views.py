@@ -11,6 +11,7 @@ from app.event.utils import generate_team_id
 from app.event.models import Event, Registration
 from app.main.models import MUser, Profile
 from app.workshop.models import Workshop
+from app.payment.models import Invoice
 
 from .forms import RegistrationForm
 from app.main.utils import template_email
@@ -52,6 +53,51 @@ def recipt_view(req, rid=None):
         'profile': user.profile,
         'registrations': registrations,
         'workshops': workshops
+    })
+
+
+def accounts_view(req):
+    if not req.user.is_staff:
+        raise PermissionDenied
+
+    invoices = Invoice.objects.filter(success=True).prefetch_related('profile').order_by('-id')
+
+    transactions = [
+        {
+            'title': 'Single Pack',
+            'invoices': invoices.filter(invoice_type='single')
+        },
+        {
+            'title': 'Multiple Pack',
+            'invoices': invoices.filter(invoice_type='multiple')
+        },
+        {
+            'title': 'Group Events',
+            'invoices': invoices.filter(invoice_type='team')
+        },
+        {
+            'title': 'Upgrade from Single to Multiple',
+            'invoices': invoices.filter(invoice_type='upgrade')
+        },
+        {
+            'title': 'Workshop',
+            'invoices': invoices.filter(invoice_type='workshop')
+        },
+        {
+            'title': 'Hospitality',
+            'invoices': invoices.filter(invoice_type='hospitality')
+        }
+    ]
+
+    if settings.DEBUG:
+        template = 'magnovite/internalAccounts.html'
+    else:
+        template = 'magnovite/dist/internalAccounts.html'
+
+    return render(req, template, {
+        'transactions': transactions,
+        'total': invoices.count(),
+        'now': timezone.now()
     })
 
 

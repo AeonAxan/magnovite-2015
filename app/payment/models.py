@@ -87,6 +87,16 @@ class Invoice(models.Model):
 
     def get_id(self):
         if settings.DEBUG:
-            return 'mag15-d-' + str(self.id)
+            if self.id >= 157:
+                prefix = 'mag15-d-'
+            else:
+                prefix = 'debug-'
+
+            return prefix + str(self.id)
         else:
-            return 'mag15-p-' + str(self.id)
+            if self.id >= 157:
+                prefix = 'mag15-p-'
+            else:
+                prefix = 'prod-'
+
+            return prefix + str(self.id)

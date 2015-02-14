@@ -163,6 +163,9 @@ class Profile(models.Model):
 
         return super(Profile, self).save(*args, **kwargs)
 
+    def get_event_incharge_of(self):
+        return self.events.all()[0]
+
     def college_neat(self):
         """
         Returns title case unless everything is one uppercase word

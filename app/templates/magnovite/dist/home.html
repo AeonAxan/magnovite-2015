@@ -48,6 +48,11 @@
                             <a href="/admin/">Admin Panel</a>
                         </div>
                         {% endif %}
+                        {% if access_level == 'Event Head' %}
+                        <div class="part">
+                            <a href="/internal/event/{{profile.get_event_incharge_of.slug}}/">Registrations</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 {% endif %}

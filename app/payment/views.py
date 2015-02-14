@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import mail_admins
 from django.contrib import messages
+from django.conf import settings
 
 from app.event.models import Event, Registration
 from app.event.utils import generate_team_id
@@ -237,6 +238,17 @@ def process_invoice(req, invoice):
         invoice.profile.total_payment += invoice.amount
         invoice.profile.hospitality_days = invoice.days
         invoice.profile.save()
+
+        # Success
+        template_email(
+            'server@magnovite.net',
+            settings.ACCOMODATION_INCHARGE,
+            'New Accomodation Request',
+            'accomodation_request',
+            {
+                'profile': invoice.profile,
+            }
+        )
 
         messages.success(req, 'Successfully applied for ' + str(invoice.days) + ' day(s)')
         return redirect('/profile/#hospitality')

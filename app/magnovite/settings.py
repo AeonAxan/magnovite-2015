@@ -24,6 +24,12 @@ HELP_INCHARGE = (
     'arjunjariwala1994@gmail.com',
 )
 
+ACCOMODATION_INCHARGE = (
+    'azaan@outlook.com',
+    'jons.cyriac@cse.christuniversity.in',
+    'roshenanil@gmail.com',
+)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 

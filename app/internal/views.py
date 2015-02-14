@@ -55,17 +55,17 @@ def recipt_view(req, rid=None):
     })
 
 
-def table_view(req, type, slug):
+def table_view(req, type, slug=None):
     if not req.user.is_staff:
         raise PermissionDenied
 
-    if not type in ('workshop', 'event'):
+    if not type in ('workshop', 'event', 'hospitality',):
         raise Http404
 
     workshop, event = None, None
     if type == 'workshop':
         workshop = get_object_or_404(Workshop, slug=slug)
-    else:
+    elif type == 'event':
         event = get_object_or_404(Event, slug=slug)
 
     return show_table_view(req, type, event, workshop)
@@ -102,6 +102,8 @@ def show_table_view(req, type, event=None, workshop=None):
         profiles = workshop.profile_set.all().prefetch_related('user').order_by('user__id')
     elif type == 'event':
         profiles = event.profile_set.all().prefetch_related('user')
+    elif type == 'hospitality':
+        profiles = Profile.objects.filter(hospitality_days__gt=0)
 
     return render(req, template, {
         'type': type,

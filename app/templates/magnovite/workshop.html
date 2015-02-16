@@ -78,10 +78,12 @@ workshop-page transparent-banner
                     <div class="register-btn-box part registered">
                         <button class="button gray registered">Registered</button>
                     </div>
-                    {% else %}
+                    {% elif workshop.registrations_open %}
                     <div class="register-btn-box part">
                         <button data-type="workshop" data-params="id={{workshop.id}}" class="button gray js-pay">Register Now</button>
                     </div>
+                    {% else %}
+                    <p>Registrations are closed!</p>
                     {% endif %}
 
                     <div class="payu part">

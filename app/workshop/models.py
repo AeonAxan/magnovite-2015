@@ -7,6 +7,8 @@ class Workshop(models.Model):
     slug = models.CharField(max_length=50, blank=True, null=True, default='')
     private_slug = models.CharField(max_length=50, blank=True, null=True, default='')
 
+    registrations_open = models.BooleanField(default=True)
+
     title = models.CharField(max_length=50)
     desc_1 = models.TextField()
     desc_2 = models.TextField()

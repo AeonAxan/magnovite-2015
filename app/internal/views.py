@@ -436,7 +436,9 @@ def api_items(req):
 
 @csrf_exempt
 def test(req):
-    print(req.GET.get('secret'))
+    # Closed
+    raise PermissionDenied
+
     if req.GET.get('secret') != settings.SECRET_KEY[:5]:
         return JsonResponse({'status': 'unauthorized'}, status=403)
 

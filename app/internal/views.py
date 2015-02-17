@@ -5,6 +5,7 @@ from django.http import JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import PermissionDenied
 
 from app.event.utils import generate_team_id
@@ -369,7 +370,8 @@ def register_create(req):
             profile=profile,
             team_id=team_id,
             is_owner=is_owner,
-            on_spot=True
+            on_spot=True,
+            mode='on-spot'
         )
 
     # do workshop registrations
@@ -430,3 +432,56 @@ def api_items(req):
         })
 
     return JsonResponse(out)
+
+
+@csrf_exempt
+def test(req):
+    print(req.GET.get('secret'))
+    if req.GET.get('secret') != settings.SECRET_KEY[:5]:
+        return JsonResponse({'status': 'unauthorized'}, status=403)
+
+    try:
+        data = json.loads(req.body.decode('utf-8'))['data']
+    except ValueError:
+        return JsonResponse({
+            'status': 'error',
+            'errorMessage': 'Invalid JSON'
+        }, status=400)
+
+    print(len(data))
+    for obj in data:
+        user = MUser.objects.create_user(email=obj['email'])
+
+        profile = user.profile
+        profile.name = obj['name']
+        profile.college = obj['college']
+        profile.mobile = obj['mobile']
+        profile.pack = obj['pack']
+        profile.auth_provider = 'publicity'
+        profile.remarks = obj['remarks']
+
+        for id in obj['events']:
+            try:
+                event = Event.objects.get(id=id)
+            except Event.DoesNotExist:
+                return JsonResponse({'error': 'Invalid event ' + str(id)})
+
+            team_id = ''
+            is_owner = False
+            if event.is_multiple():
+                team_id = generate_team_id(user.email, event)
+
+                if event.is_group():
+                    is_owner = True
+
+            Registration.objects.create(
+                event=event,
+                profile=profile,
+                team_id=team_id,
+                is_owner=is_owner,
+                mode='publicity'
+            )
+
+        profile.save()
+
+    return JsonResponse({'status': 'success'})

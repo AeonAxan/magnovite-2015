@@ -238,6 +238,8 @@ class Registration(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    mode = models.CharField(max_length=50, default='online', blank=True, null=True)
+
     class Meta:
         unique_together = ['event', 'profile']
         ordering = ['-created']

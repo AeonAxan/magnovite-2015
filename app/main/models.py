@@ -100,6 +100,8 @@ class Profile(models.Model):
 
     receipt_id = models.CharField(max_length=100, blank=True, null=True)
 
+    remarks = models.TextField(blank=True, null=True, default='')
+
     # auth provider
     auth_provider = models.CharField(max_length=30, blank=True)
 

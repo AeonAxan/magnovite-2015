@@ -1,5 +1,6 @@
 {% extends "magnovite/base.html" %}
 {% load humanize %}
+{% load tags %}
 
 {% block "extra_meta" %}
 <meta name="description" content="Christ University presents its annual techno-cultural fest Magnovite 2015, on 20th and 21st of February 2015." />
@@ -224,8 +225,8 @@ app.eventDetails.init();
 						<img src="{{event.event_head_p1}}" alt="">
 					</div>
 					<div class="right-head">
-						<p class="name">{{head_one.name}}</p>
-						<p class="details">{{head_one.mobile}}</p>
+						<p class="name">{{head_one.name.title}}</p>
+						<p class="details">{{head_one.mobile|mobile}}</p>
 						<p class="details">{{head_one.active_email}}</p>
 					</div>
 				</div>
@@ -237,8 +238,8 @@ app.eventDetails.init();
 						<img src="{{event.event_head_p2}}" alt="">
 					</div>
 					<div class="right-head">
-						<p class="name">{{head_two.name}}</p>
-						<p class="details">{{head_two.mobile}}</p>
+						<p class="name">{{head_two.name.title}}</p>
+						<p class="details">{{head_two.mobile|mobile}}</p>
 						<p class="details">{{head_two.active_email}}</p>
 					</div>
 				</div>

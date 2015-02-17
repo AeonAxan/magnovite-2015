@@ -89,6 +89,7 @@ class Event(models.Model):
         permissions = (
             ('change_own', 'Change events incharge of'),
         )
+        ordering = ['-views']
 
     def save(self, *args, **kwargs):
         if not self.private_slug:

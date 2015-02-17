@@ -69,6 +69,9 @@ class MUser(AbstractBaseUser, PermissionsMixin):
         p.active_email = self.email
         p.save()
 
+    def auth_provider(self):
+        return self.profile.auth_provider
+
     def has_profile(self):
         try:
             self.profile

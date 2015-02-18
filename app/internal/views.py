@@ -524,7 +524,7 @@ def all_csv(req):
     only_group = only_group.filter(registered_events__count__gt=0).prefetch_related('user')
 
     out = []
-    for obj in not_none:
+    for obj in list(not_none) + list(only_group):
         if obj.pack == 'single':
             type = 'Single'
         elif obj.pack == 'multiple':
@@ -540,7 +540,7 @@ def all_csv(req):
 
         elif type == 'Group':
             for _event in obj.registered_events.all():
-                if event == 'N/A':
+                if event == '-':
                     event = ''
 
                 event = INV_EVENT_MAP[_event.id] + ', '
@@ -554,6 +554,13 @@ def all_csv(req):
             type, # type
             event
         ])
+
+    # mark all selected as id printed
+    not_none.update(id_printed=True)
+
+    for obj in only_group:
+        obj.id_printed = True
+        obj.save()
 
     out = sorted(out, key=lambda x: int(x[0]))
 

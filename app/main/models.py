@@ -101,6 +101,8 @@ class MUser(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(MUser, null=True)
 
+    id_printed = models.BooleanField(default=False)
+
     receipt_id = models.CharField(max_length=100, blank=True, null=True)
 
     remarks = models.TextField(blank=True, null=True, default='')

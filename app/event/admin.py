@@ -28,7 +28,7 @@ class RegistrationsInline(admin.TabularInline):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['title', 'id', 'technical', 'team_type', 'complete_status', 'num_registrations', 'views']
     list_filter = ['technical', 'team_type']
-    inlines = [EventHeadInline, RegistrationsInline]
+    inlines = [EventHeadInline]
 
     readonly_fields = ('views',)
 

@@ -1,10 +1,15 @@
 import json
+import csv
+import io
+import operator
 
 from django.views.decorators.http import require_POST
-from django.http import JsonResponse, Http404
+from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.utils import timezone
+from django.db.models import Q
+from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import PermissionDenied
 
@@ -487,3 +492,78 @@ def test(req):
         profile.save()
 
     return JsonResponse({'status': 'success'})
+
+
+def all_csv(req):
+    if not req.user.is_superuser:
+        raise PermissionDenied
+
+    try:
+        min_id = int(req.GET.get('from_id', '0'))
+    except ValueError:
+        return HttpResponse(status=400)
+
+    EVENT_MAP = {
+        'DEFC':1, 'DANC':4, 'GCS':5, 'CTYC':6, 'WEBD':7, 'TEKH':8,
+        'PRJ':9, 'CADM':11, 'JYW':12, 'CANG':13, 'LDSC':14, 'BLDR':15,
+        'PPR':16, 'RBW':18, 'WATR':19, 'LINE':20, 'CDBG':21, 'THT':22,
+        'CMCS':23, 'ARTR':24, 'PHOT':25, 'DMBC':26, 'QUIZ':27,
+        'POTP':28, 'JAM':29, 'DBTE':31, 'INDM':32, 'WSEL':33, 'ACOU':34,
+        'KRKE':35, 'BBOY':36, 'SWTCH':37, 'OVNC':38, 'ANDV':39,
+        'GNFS':40, 'CADC':41, 'INSW':42, 'SOLO':44,
+    }
+
+    INV_EVENT_MAP = {v: k for k, v in EVENT_MAP.items()}
+
+    base = Profile.objects.filter(id__gt=MUser.get_real_id(min_id))
+
+    not_none = base.filter(~Q(pack='none')).prefetch_related('user')
+
+    only_group = base.filter(pack='none')
+    only_group = only_group.annotate(Count('registered_events'))
+    only_group = only_group.filter(registered_events__count__gt=0).prefetch_related('user')
+
+    out = []
+    for obj in not_none:
+        if obj.pack == 'single':
+            type = 'Single'
+        elif obj.pack == 'multiple':
+            type = 'Multiple'
+        else:
+            type = 'Group'
+
+        event = '-'
+        if type == 'Single':
+            _event = obj.registered_events.first()
+            if _event:
+                event = INV_EVENT_MAP[_event.id]
+
+        elif type == 'Group':
+            for _event in obj.registered_events.all():
+                if event == 'N/A':
+                    event = ''
+
+                event = INV_EVENT_MAP[_event.id] + ', '
+
+            event = event.strip(' ,')
+
+        out.append([
+            obj.user.get_id(), #id
+            obj.name.title(), #name
+            obj.college, #college
+            type, # type
+            event
+        ])
+
+    out = sorted(out, key=lambda x: int(x[0]))
+
+    filename = 'mag_' + str(out[0][0]) + '_' + str(out[-1][0]) + '.csv'
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
+
+    writer = csv.writer(response)
+    for row in out:
+        writer.writerow(row)
+
+    return response

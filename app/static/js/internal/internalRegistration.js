@@ -243,9 +243,9 @@
         calcPrice();
 
         // show summary
-        // $('.js-summary-ul').html(html);
-        // $('.js-user-summary h3').html('Team IDs for ' + successObj.name);
-        // $('.js-user-summary').addClass('visible');
+        var html = '<li><p>' + successObj.data.name + ' - ' + successObj.data.id + '</p></li>';
+        $('.js-summary-ul').html(html);
+        $('.js-user-summary').addClass('visible');
 
         // show recipt button
         // $('.js-btn-recipt').addClass('visible')

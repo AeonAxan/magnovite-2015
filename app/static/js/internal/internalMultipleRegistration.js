@@ -5,8 +5,107 @@
         return;
     }
 
+    var sendingdata = false;
+    $('.js-submit').on('click', function(e) {
+        e.preventDefault();
+
+        if (sendingdata) {
+            return;
+        }
+
+        sendingdata = true;
+
+        $('.js-errorlist').html('');
+
+        if (checkedTeam.length === 0 && checkedGroup.length === 0) {
+            showError('form', ['Please chose an event']);
+
+            sendingdata = false;
+            return;
+        }
+
+        var pack = 'none';
+        if (checkedTeam.length === 1) {
+            pack = 'single';
+        } else if (checkedTeam.length > 1) {
+            pack = 'multiple';
+        }
+
+        var hasError = false;
+        if ($('#leader-name').val().trim() === '') {
+            showError('leader-name', ['This field cant be empty']);
+            hasError = true;
+        } else if ($('#leader-college').val().trim() === '') {
+            showError('leader-college', ['This field cant be empty']);
+            hasError = true;
+        } else if ($('#leader-mobile').val().trim() === '') {
+            showError('leader-mobile', ['This field cant be empty']);
+            hasError = true;
+        }
+
+        if (hasError) {
+            sendingdata = false;
+            return;
+        }
+
+        var members = [{
+            'name': $('#leader-name').val(),
+            'college': $('#leader-college').val(),
+            'mobile': $('#leader-mobile').val(),
+            'email': $('#leader-email').val()
+        }].concat(
+            $('.js-member-row')
+                .filter(function() {
+                    return $(this).find('input[name=name]').val().trim() !== '';
+                })
+                .map(function() {
+                    return {
+                        'name': $(this).find('input[name=name]').val(),
+                        'college': $(this).find('input[name=college]').val(),
+                    };
+                })
+                .toArray()
+        );
+
+        var out = {
+            'events': $(checkedTeam.concat(checkedGroup)).map(function() {
+                return this.id;
+            }).toArray(),
+            'pack': pack,
+            'members': members
+        };
+
+        NProgress.start();
+        $.post('/internal/api/register-team/', JSON.stringify(out))
+            .done(function(resp) {
+                var html = '';
+                $(resp.data).each(function() {
+                    html += '<li><p>' + this.name + ' - ' + this.id + '</p></li>';
+                });
+
+                $('.js-summary-ul').html(html);
+                $('.js-user-summary').addClass('visible');
+            })
+            .fail(function(err) {
+                var obj = err.responseJSON;
+
+                if (!obj || !obj.errors) {
+                    showError('form', ['There was an unexpected error']);
+                    return;
+                }
+
+                $.each(obj.errors, function(i, el) {
+                    showError(i, el);
+                });
+            })
+            .always(function() {
+                NProgress.done();
+                sendingdata = false;
+            });
+    });
+
     var checkedTeam = [];
-    var checekdGroup = [];
+    var checkedGroup = [];
 
     $('.js-event-item input[type=checkbox]').on('change', function(e) {
         var $event = $(e.target).closest('.js-event-item');
@@ -23,7 +122,7 @@
         if ($event.data('type') === 'team') {
             fn(checkedTeam, obj);
         } else {
-            fn(checekdGroup, obj);
+            fn(checkedGroup, obj);
         }
 
         updateMembers();
@@ -35,7 +134,7 @@
         var html = '', price = 0;
 
         var nTeam = checkedTeam.length;
-        var nGroup = checekdGroup.length;
+        var nGroup = checkedGroup.length;
 
         var members = $('.js-member-row').find('input[name=name]').filter(function() {
             return !!this.value;
@@ -70,10 +169,6 @@
 
         if ($college.val().trim() === '') {
             $college.val(college);
-        }
-
-        if ($mobile.val().trim() === '') {
-            $mobile.val(mobile);
         }
     });
 
@@ -117,7 +212,7 @@
 
     function getMinMembers() {
         var min = 0;
-        var arr = checkedTeam.concat(checekdGroup);
+        var arr = checkedTeam.concat(checkedGroup);
 
         for (var i = 0; i < arr.length; i++) {
             if (min < arr[i].min) {
@@ -130,7 +225,7 @@
 
     function getMaxMembers() {
         var max = 0;
-        var arr = checkedTeam.concat(checekdGroup);
+        var arr = checkedTeam.concat(checkedGroup);
 
         for (var i = 0; i < arr.length; i++) {
             if (max < arr[i].max) {
@@ -181,6 +276,36 @@
         }
 
         return array;
+    }
+
+    /**
+     * Show Errors in the DOM, expects a ul with class js-errorlist to be adjacent
+     * to the element whose @id is given
+     *
+     * @param  {string}         id        The id of element which the error belongs to
+     * @param  {Array[String]}  errorMsgs Array of strings
+     */
+    function showError(id, errorMsgs) {
+        // general case seperately
+
+        var $el = $('#' + id).siblings('.js-errorlist');
+
+        var html = '';
+        $.each(errorMsgs, function(i, val) {
+            html += '<li>' + val + '</li>';
+        });
+
+        $el.html(html);
+
+        // scroll to the element - offsetvalue (in px)
+        var scrollPos = $('#' + id).position().top - 30;
+
+        // make sure we only scroll up (i.e the topmost error will be focused)
+        if ($(window).scrollTop() > scrollPos) {
+            $(window).scrollTop(scrollPos);
+            $el.focus();
+        }
+
     }
 
 })();

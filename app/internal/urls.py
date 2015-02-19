@@ -14,6 +14,7 @@ urlpatterns = patterns('app.internal.views',
     url(r'^private/(?P<type>[a-z]+)/(?P<slug>[a-z0-9]*)/$', 'private_view'),
 
     url(r'^api/register/$', 'register_create', name='register:create'),
+    url(r'^api/register-team/$', 'register_multiple'),
     url(r'^api/items/$', 'api_items'),
     url(r'^api/bulk/$', 'test'),
 

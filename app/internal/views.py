@@ -2,6 +2,7 @@ import json
 import csv
 import io
 import operator
+import random
 
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, JsonResponse, Http404
@@ -219,7 +220,7 @@ def register_multiple_view(req):
     if settings.DEBUG:
         template = 'magnovite/internalMultipleRegistration.html'
     else:
-        templat = 'magnovite/dist/internalMultipleRegistration.html'
+        template = 'magnovite/dist/internalMultipleRegistration.html'
 
     cult = Event.objects.filter(technical=False, team_type='team')
     tech = Event.objects.filter(technical=True, team_type='team')
@@ -229,6 +230,69 @@ def register_multiple_view(req):
         'cult': cult,
         'tech': tech,
         'group': group
+    })
+
+
+@require_POST
+def register_multiple(req):
+    if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
+        raise PermissionDenied
+
+    try:
+        data = json.loads(req.body.decode('utf-8'))
+    except ValueError:
+        return JsonResponse({
+            'status': 'error',
+            'errorMessage': 'Invalid JSON'
+        }, status=400)
+
+    success_obj = []
+
+    events = []
+    for event in data['events']:
+        event = Event.objects.get(id=event)
+        team_id = generate_team_id(str(random.random()) + str(random.random()), event)
+
+        events.append((event, team_id))
+
+    for i, member in enumerate(data['members']):
+        email = member.get('email', '')
+        if not email:
+            email = str(i) + '|' + member['name'][:10] + '|' + member['college'][:5] + '@onspotteam.com'
+            email = email.replace(' ', '_')
+
+        user = MUser.objects.create_user(email=email)
+
+        profile = user.profile
+        profile.name = member['name']
+        profile.college = member['college']
+        profile.mobile = member.get('mobile', '')
+        profile.pack = data['pack']
+        profile.auth_provider = 'on-spot-team'
+
+        profile.on_spot = True
+        profile.checked_in = True
+        profile.on_spot_registerer = req.user.profile.name
+
+        profile.save()
+
+        success_obj.append({
+            'name': profile.name,
+            'id': user.get_id()
+        })
+
+        for event, team_id in events:
+            Registration.objects.create(
+                event=event,
+                profile=profile,
+                team_id=team_id,
+                on_spot=True,
+                mode='on-spot-team',
+            )
+
+    return JsonResponse({
+        'status': 'success',
+        'data': success_obj
     })
 
 @require_POST
@@ -356,6 +420,7 @@ def register_create(req):
     profile.auth_provider='on-spot'
 
     profile.on_spot = True
+    profile.checked_in = True
     profile.on_spot_registerer = req.user.profile.name
     # profile saved at the end
 
@@ -411,7 +476,11 @@ def register_create(req):
     #     {'profile': profile}
     # )
 
-    success_obj['id'] = user.get_id()
+    success_obj['data'] = {
+        'id': user.get_id(),
+        'name': profile.name
+    }
+
     success_obj['status'] = 'success'
     success_obj['reciptURL'] = '/receipt/' + profile.receipt_id + '/'
 

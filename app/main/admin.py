@@ -33,8 +33,8 @@ class InvoiceInline(admin.TabularInline):
     extra = 0
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'user', 'auth_provider', 'active_email', 'total_payment')
-    search_fields = ('name', 'active_email')
+    list_display = ('id', 'name', 'user', 'auth_provider', 'college', 'mobile')
+    search_fields = ('name', 'mobile', 'college')
     exclude = ('events', 'registered_workshops')
     list_filter = ('auth_provider',)
     inlines = [InvoiceInline, WorkshopsInline, RegistrationsInline, EventsInline]

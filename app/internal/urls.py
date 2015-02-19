@@ -7,6 +7,8 @@ urlpatterns = patterns('app.internal.views',
 
     url(r'^all.csv/$', 'all_csv'),
 
+    url(r'^query/profile/$', 'user_list'),
+
     url(r'^private/(?P<type>[a-z]+)/$', 'private_view'),
     url(r'^private/(?P<type>[a-z]+)/(?P<slug>[a-z0-9]*)/$', 'private_view'),
 

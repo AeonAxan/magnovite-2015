@@ -574,3 +574,40 @@ def all_csv(req):
         writer.writerow(row)
 
     return response
+
+
+def user_list(req):
+    if not req.user.is_authenticated() and req.user.is_staff:
+        raise PermissionDenied
+
+    profiles = Profile.objects.all()
+
+    if 'name' in req.GET:
+        query_param = 'Name'
+        query = req.GET.get('name', '')
+        profiles = profiles.filter(name__icontains=query)
+    elif 'college' in req.GET:
+        query_param = 'College'
+        query = req.GET.get('college', '')
+        profiles = profiles.filter(college__icontains=query)
+    elif 'mobile' in req.GET:
+        query_param = 'Mobile'
+        query = req.GET.get('mobile', '')
+        profiles = profiles.filter(college__icontains=query)
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'errorMessage': 'Invalid filter param'
+        }, status=400)
+
+    if settings.DEBUG:
+        template = 'magnovite/internalUserList.html'
+    else:
+        template = 'magnovite/dist/internalUserList.html'
+
+    return render(req, template, {
+        'query': query,
+        'query_param': query_param,
+        'profiles': profiles,
+        'now': timezone.now()
+    })

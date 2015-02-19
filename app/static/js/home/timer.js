@@ -75,6 +75,11 @@ var app = app || {};
     app.Timer.prototype.tick = function() {
         var diff = countdown(magnoviteDate);
 
+        /** Show all values as zero / cause countdown expired */
+        if (window.MAG_TIMER_ZERO) {
+            diff.months = diff.days = diff.hours = diff.minutes = diff.seconds = 0;
+        }
+
         var blocks = document.getElementsByClassName('timer-block');
         updateTimerBlock(blocks[0], diff.months, 'months');
         updateTimerBlock(blocks[1], diff.days);

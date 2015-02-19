@@ -52,6 +52,9 @@ AUTH_USER_MODEL = 'main.MUser'
 
 SITE_ID = 1
 
+# should countdown timer be zero
+TIMER_ZERO = os.environ.get('TIMER_ZERO', False)
+
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',

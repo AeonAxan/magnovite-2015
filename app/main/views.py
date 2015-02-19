@@ -56,7 +56,11 @@ def index(req):
     else:
         template = 'magnovite/dist/home.html'
 
-    resp = render(req, template)
+    timer_zero = 'false'
+    if settings.TIMER_ZERO:
+        timer_zero = 'true'
+
+    resp = render(req, template, {'timer_zero': timer_zero})
 
     if req.user.is_authenticated() and 'mag_uid' not in req.COOKIES:
         resp.set_cookie('mag_uid', req.user.get_id(), max_age=365*24*60*60)

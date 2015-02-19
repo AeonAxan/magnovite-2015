@@ -92,7 +92,7 @@ class MUser(AbstractBaseUser, PermissionsMixin):
 
     @staticmethod
     def get_real_id(id):
-        return id - settings.ID_OFFSET
+        return int(id) - settings.ID_OFFSET
 
     def __str__(self):
         return str(self.get_id()) + ' | ' + self.email

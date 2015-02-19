@@ -264,6 +264,10 @@ table {
   width: 1050px;
   margin: 50px auto;
 }
+.container-wide-wide {
+  width: 1300px;
+  margin: 50px auto;
+}
 table {
   width: 100%;
 }
@@ -533,4 +537,7 @@ strong {
 }
 .page-tableview thead th {
   font-weight: bold;
+}
+.page-tableview .checked-in {
+  background: #c5c5c5;
 }

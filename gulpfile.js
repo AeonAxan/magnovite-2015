@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 gulp.task('dist', function(cb) {
     'use strict';
 
-    runSequence(['clean', 'usemin', 'css', 'css-internal'], 'move-usemin', ['clean-usemin', 'prefix']);
+    runSequence('clean', 'usemin', 'css', 'css-internal', 'move-usemin', 'clean-usemin', 'prefix');
 });
 
 /**

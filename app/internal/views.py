@@ -215,6 +215,22 @@ def register_view(req):
     })
 
 
+def register_multiple_view(req):
+    if settings.DEBUG:
+        template = 'magnovite/internalMultipleRegistration.html'
+    else:
+        templat = 'magnovite/dist/internalMultipleRegistration.html'
+
+    cult = Event.objects.filter(technical=False, team_type='team')
+    tech = Event.objects.filter(technical=True, team_type='team')
+    group = Event.objects.filter(team_type='group')
+
+    return render(req, template, {
+        'cult': cult,
+        'tech': tech,
+        'group': group
+    })
+
 @require_POST
 def register_create(req):
     if not (req.user.is_staff and req.user.has_perm('main.on_spot_registration')):
@@ -387,14 +403,15 @@ def register_create(req):
     profile.total_payment = payment
     profile.save()
 
-    template_email(
-        'server@magnovite.net',
-        (user.email,),
-        'Welcome to Magnovite 2015',
-        'on_spot_receipt',
-        {'profile': profile}
-    )
+    # template_email(
+    #     'server@magnovite.net',
+    #     (user.email,),
+    #     'Welcome to Magnovite 2015',
+    #     'on_spot_receipt',
+    #     {'profile': profile}
+    # )
 
+    success_obj['id'] = user.get_id()
     success_obj['status'] = 'success'
     success_obj['reciptURL'] = '/receipt/' + profile.receipt_id + '/'
 

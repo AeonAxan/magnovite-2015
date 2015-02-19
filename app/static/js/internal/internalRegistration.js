@@ -11,30 +11,30 @@
         populateDOM(EVENTS);
     });
 
-    /**
-     * Toggles teamid when event checkboxes change
-     */
-    $(document).delegate('.js-events', 'change', function(e) {
-        $(e.target).closest('.event-item').toggleClass('show-teamid');
-    });
+    // /**
+    //  * Toggles teamid when event checkboxes change
+    //  */
+    // $(document).delegate('.js-events', 'change', function(e) {
+    //     $(e.target).closest('.event-item').toggleClass('show-teamid');
+    // });
 
-    /**
-     * Validates teamids on blur of the Teamid fields
-     */
-    $(document).delegate('.js-teamid', 'blur', function(e) {
-        var $target = $(e.target);
+    // /**
+    //  * Validates teamids on blur of the Teamid fields
+    //  */
+    // $(document).delegate('.js-teamid', 'blur', function(e) {
+    //     var $target = $(e.target);
 
-        //clears the error list
-        $('.js-errorlist').html('');
+    //     //clears the error list
+    //     $('.js-errorlist').html('');
 
-        // valid teamid?
-        if($target.val() !== "") {
-            if(!isTeamValid($target.val())) {
-                var tId = $target.attr('id');
-                showError(tId, ['Invalid Team Id']);
-            }
-        }
-    });
+    //     // valid teamid?
+    //     if($target.val() !== "") {
+    //         if(!isTeamValid($target.val())) {
+    //             var tId = $target.attr('id');
+    //             showError(tId, ['Invalid Team Id']);
+    //         }
+    //     }
+    // });
 
     /**
      * Calculates and displays the price on any change that might affect the price
@@ -136,7 +136,7 @@
             email: $('input[name="email"]').val(),
             college: $('input[name="college"]').val(),
             mobile: $('input[name="mobile"]').val(),
-            referred: $('input[name="referred"]').val(),
+            // referred: $('input[name="referred"]').val(),
             pack: pack,
             events: []
         };
@@ -228,12 +228,12 @@
      * @param  {Object} obj Success Object the server returned
      */
     function registrationSuccess(successObj) {
-        var summaryRowTemplate = $('#summaryRowTemplate').html();
+        // var summaryRowTemplate = $('#summaryRowTemplate').html();
 
-        var html = '';
-        $.each(successObj.multipleEvents, function() {
-            html += render(summaryRowTemplate, this);
-        });
+        // var html = '';
+        // $.each(successObj.multipleEvents, function() {
+        //     html += render(summaryRowTemplate, this);
+        // });
 
         // clear current form
         $('.inputfields').val('');
@@ -243,27 +243,27 @@
         calcPrice();
 
         // show summary
-        $('.js-summary-ul').html(html);
-        $('.js-user-summary h3').html('Team IDs for ' + successObj.name);
-        $('.js-user-summary').addClass('visible');
+        // $('.js-summary-ul').html(html);
+        // $('.js-user-summary h3').html('Team IDs for ' + successObj.name);
+        // $('.js-user-summary').addClass('visible');
 
         // show recipt button
-        $('.js-btn-recipt').addClass('visible')
-            .html('Recipt for ' + successObj.name)
-            .attr('href', successObj.reciptURL);
+        // $('.js-btn-recipt').addClass('visible')
+        //     .html('Recipt for ' + successObj.name)
+        //     .attr('href', successObj.reciptURL);
     }
 
-    $(document).delegate('.js-use-teamid', 'click', function(e) {
-        var $target = $(e.target);
+    // $(document).delegate('.js-use-teamid', 'click', function(e) {
+    //     var $target = $(e.target);
 
-        var $el = $('#' + $target.data('id'));
-        var teamID = $target.data('teamid');
+    //     var $el = $('#' + $target.data('id'));
+    //     var teamID = $target.data('teamid');
 
-        $el.val(teamID);
-        $el.closest('.event-item').addClass('show-teamid').find('input[type=checkbox]').prop('checked', true);
+    //     $el.val(teamID);
+    //     $el.closest('.event-item').addClass('show-teamid').find('input[type=checkbox]').prop('checked', true);
 
-        $(window).scrollTop($el.position().top - 20);
-    });
+    //     $(window).scrollTop($el.position().top - 20);
+    // });
 
     /**
      * Validates a teamID string syntactically
@@ -284,8 +284,8 @@
         if (!jObj.name.trim()) {
             return 'name';
 
-        } else if (!jObj.email.trim()) {
-            return 'email';
+        // } else if (!jObj.email.trim()) {
+        //     return 'email';
 
         } else if (!jObj.college.trim()) {
             return 'college';

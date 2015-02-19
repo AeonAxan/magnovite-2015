@@ -296,6 +296,16 @@ strong {
   border: 1px solid #1f78ff;
   background: white;
 }
+.internal-registration h2 {
+  font-size: 28px;
+  color: #bbb;
+  margin-top: 50px;
+}
+.internal-registration h4 {
+  margin-top: 15px;
+  font-size: 22px;
+  color: #aaa;
+}
 .internal-registration label {
   color: #ccc;
 }

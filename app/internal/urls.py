@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns('app.internal.views',
+    url(r'^register2/$', 'register_multiple_view', name='register'),
     url(r'^register/$', 'register_view', name='register'),
 
     url(r'^accounts/$', 'accounts_view'),

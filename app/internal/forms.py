@@ -3,11 +3,22 @@ from django import forms
 
 class RegistrationForm(forms.Form):
     name = forms.CharField(max_length=50)
-    email = forms.EmailField()
+    email = forms.EmailField(required=False)
     college = forms.CharField(max_length=50)
     mobile = forms.CharField(max_length=10)
     referral = forms.CharField(max_length=50, required=False)
     pack = forms.CharField(max_length=10)
+
+    def clean(self):
+        email = self.cleaned_data['email']
+        name = self.cleaned_data['name']
+        college = self.cleaned_data['college']
+
+        if not email:
+            email = name[:8] + '|' + college[:5] + '@onspot.com'
+            self.cleaned_data['email'] = email.replace(' ', '_')
+
+        return self.cleaned_data
 
     def clean_mobile(self):
         mobile = str(self.cleaned_data['mobile'])

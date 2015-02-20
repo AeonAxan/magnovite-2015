@@ -37,7 +37,7 @@ page-tableview js-full-table
                 <td>{{profile.college_neat}}</td>
                 <td>{{profile.active_email}}</td>
                 <td>{{profile.mobile}}</td>
-                <td>{{profile.summary_str}}</td>
+                <td>{{profile.summary_str|truncatechars:25}}</td>
                 <td>{{profile.auth_provider}}</td>
             </tr>
             {% endfor %}

@@ -96,7 +96,7 @@ page-tableview
                 <td>{{profile.college_neat}}</td>
                 <td>{{profile.mobile|mobile}}</td>
                 <td>{{profile.auth_provider}}</td>
-                <td>{{profile.summary_str}}</td>
+                <td>{{profile.summary_str|truncatechars:25}}</td>
             </tr>
             {% endfor %}
         </tbody>

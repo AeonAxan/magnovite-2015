@@ -102,6 +102,7 @@ class Profile(models.Model):
     user = models.OneToOneField(MUser, null=True)
 
     checked_in = models.BooleanField(default=False)
+    checked_in_first_day = models.BooleanField(default=False)
 
     id_printed = models.BooleanField(default=False)
 

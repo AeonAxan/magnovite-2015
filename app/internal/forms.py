@@ -1,5 +1,5 @@
 from django import forms
-
+import random
 
 class RegistrationForm(forms.Form):
     name = forms.CharField(max_length=50)
@@ -10,12 +10,13 @@ class RegistrationForm(forms.Form):
     pack = forms.CharField(max_length=10)
 
     def clean(self):
-        email = self.cleaned_data['email']
-        name = self.cleaned_data['name']
-        college = self.cleaned_data['college']
+        super(RegistrationForm, self).clean()
+        email = self.cleaned_data.get('email', '')
+        name = self.cleaned_data.get('name', '')
+        college = self.cleaned_data.get('college', '')
 
         if not email:
-            email = name[:8] + '|' + college[:5] + '@onspot.com'
+            email = str(random.random()) + name[:8] + '|' + college[:5] + '@onspot.com'
             self.cleaned_data['email'] = email.replace(' ', '_')
 
         return self.cleaned_data

@@ -18,6 +18,8 @@ class Event(models.Model):
         ('civil', 'Civil'),
     )
 
+    reg_closed = models.BooleanField(default=False)
+
     title = models.CharField(max_length=100)
 
     slug = models.SlugField(help_text='The event url, use all simple and - as a seperator, Eg: junkyard-wars')

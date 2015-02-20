@@ -92,6 +92,12 @@
             $.each(arrEvents, function(i, eventObj) {
                 eventObj.cssclass = cssclass || '';
 
+                if (eventObj.closed) {
+                    eventObj.closed = 'Closed';
+                } else {
+                    eventObj.closed = '';
+                }
+
                 if(eventObj.is_team) {
                     htmlString += render(multiTemplate, eventObj);
 

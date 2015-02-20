@@ -109,7 +109,7 @@ internal-registration js-internal-registration
 <script type="text/template"  id="singleTemplate">
 	<div class="event-item">
 		<input type="checkbox" data-price="[[price]]" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
-		<label for="[[cssclass]]-[[id]]">[[title]]</label>
+		<label for="[[cssclass]]-[[id]]">[[title]] <span class="red">[[closed]]</span></label>
 		<ul class="js-errorlist errorlist"></ul>
 	</div>
 
@@ -119,7 +119,7 @@ internal-registration js-internal-registration
 	<div class="event-item">
 		<div class="checkbox-box">
 			<input type="checkbox" class="js-events [[cssclass]]" id = "[[cssclass]]-[[id]]" />
-			<label class="event-name" for="[[cssclass]]-[[id]]">[[title]] ([[team_min]]-[[team_max]])</label>
+			<label class="event-name" for="[[cssclass]]-[[id]]">[[title]] ([[team_min]]-[[team_max]]) <span class="red">[[closed]]</span></label>
 		</div>
 
 		<div class="input-box teamid-box">

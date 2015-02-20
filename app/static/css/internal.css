@@ -286,6 +286,10 @@ h3 {
 strong {
   font-weight: bold;
 }
+.red {
+  color: red;
+  font-weight: bold;
+}
 .internal-registration .inputfields {
   outline: 0;
   padding: 10px 15px;

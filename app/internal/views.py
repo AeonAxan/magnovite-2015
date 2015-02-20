@@ -212,7 +212,8 @@ def register_view(req):
     for event in events:
         _o = {
             'id': event.id,
-            'title': event.title
+            'title': event.title,
+            'closed': event.reg_closed
         }
 
         if event.is_multiple():

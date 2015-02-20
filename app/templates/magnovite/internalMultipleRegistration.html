@@ -28,7 +28,12 @@ internal-registration js-multiple-registration
 
             <div class="checkbox-box">
                 <input type="checkbox" id="tech-{{event.id}}">
-                <label for="tech-{{event.id}}">{{event.title}} [{{event.team_min}}-{{event.team_max}}]</label>
+                <label for="tech-{{event.id}}">
+                    {{event.title}} [{{event.team_min}}-{{event.team_max}}]
+                    {% if event.reg_closed %}
+                    <span class="red">Closed</span>
+                    {% endif %}
+                </label>
             </div>
         </div>
         {% endfor %}
@@ -43,7 +48,12 @@ internal-registration js-multiple-registration
 
             <div class="checkbox-box">
                 <input type="checkbox" id="cult-{{event.id}}">
-                <label for="cult-{{event.id}}">{{event.title}} [{{event.team_min}}-{{event.team_max}}]</label>
+                <label for="cult-{{event.id}}">
+                    {{event.title}} [{{event.team_min}}-{{event.team_max}}]
+                    {% if event.reg_closed %}
+                    <span class="red">Closed</span>
+                    {% endif %}
+                </label>
             </div>
         </div>
         {% endfor %}
@@ -58,7 +68,12 @@ internal-registration js-multiple-registration
 
             <div class="checkbox-box">
                 <input type="checkbox" id="group-{{event.id}}">
-                <label for="group-{{event.id}}">{{event.title}} [{{event.team_min}}-{{event.team_max}}]</label>
+                <label for="group-{{event.id}}">
+                    {{event.title}} [{{event.team_min}}-{{event.team_max}}]
+                    {% if event.reg_closed %}
+                    <span class="red">Closed</span>
+                    {% endif %}
+                </label>
             </div>
         </div>
         {% endfor %}

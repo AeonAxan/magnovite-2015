@@ -220,7 +220,7 @@ def show_table_view(req, type, event=None, workshop=None):
         template = 'magnovite/dist/table_view.html'
 
     if type == 'workshop':
-        profiles = workshop.profile_set.all().prefetch_related('user').order_by('user__id')
+        profiles = workshop.profile_set.all().prefetch_related('user').order_by('name')
     elif type == 'event':
         profiles = event.profile_set.all().prefetch_related('user')
     elif type == 'hospitality':

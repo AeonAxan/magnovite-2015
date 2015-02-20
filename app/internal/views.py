@@ -163,6 +163,8 @@ def show_table_view(req, type, event=None, workshop=None):
     Shows a given workshop or event
     This is not used in the URL conf, but called by other views
     """
+    days = ''
+
     if settings.DEBUG:
         template = 'magnovite/table_view.html'
     else:
@@ -176,9 +178,28 @@ def show_table_view(req, type, event=None, workshop=None):
         profiles = Profile.objects.filter(hospitality_days__gt=0)
     elif type == 'on-spot':
         profiles = Profile.objects.filter(on_spot=True).order_by('id')
+
+        days = 'Both'
+        if 'day' in req.GET:
+            if req.GET.get('day', '') == '1':
+                days = 'First'
+                profiles = Profile.objects.filter(checked_in_first_day=True)
+            else:
+                days = 'Second'
+                profiles = Profile.objects.filter(checked_in_first_day=False)
+
         profiles = Profile.prefetch_all(profiles)
     elif type == 'checked-in':
         profiles = Profile.objects.filter(checked_in=True).order_by('id')
+
+        days = 'Both'
+        if req.GET.get('day', '') == '1':
+            days = 'First'
+            profiles = Profile.objects.filter(checked_in_first_day=True)
+        else:
+            days = 'Second'
+            profiles = Profile.objects.filter(checked_in_first_day=False)
+
         profiles = Profile.prefetch_all(profiles)
 
     return render(req, template, {
@@ -186,7 +207,8 @@ def show_table_view(req, type, event=None, workshop=None):
         'workshop': workshop,
         'event': event,
         'profiles': profiles,
-        'now': timezone.now()
+        'now': timezone.now(),
+        'days': days
     })
 
 

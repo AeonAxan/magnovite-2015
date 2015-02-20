@@ -15,9 +15,9 @@ page-tableview
     {% elif type == 'hospitality' %}
     <h1>Hospitality</h1>
     {% elif type == 'on-spot' %}
-    <h1>On Spot Registrations</h1>
+    <h1>On Spot Registrations | Day: {{days}}</h1>
     {% elif type == 'checked-in' %}
-    <h1>Checked In</h1>
+    <h1>Checked In | Day: {{days}}</h1>
     {% endif %}
 
     <p class="timestamp">Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>

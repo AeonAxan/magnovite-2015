@@ -112,7 +112,7 @@ def table_view(req, type, slug=None):
     if not req.user.is_staff:
         raise PermissionDenied
 
-    if not type in ('workshop', 'event', 'hospitality',):
+    if not type in ('workshop', 'event', 'hospitality', 'on-spot'):
         raise Http404
 
     workshop, event = None, None
@@ -222,6 +222,8 @@ def show_table_view(req, type, event=None, workshop=None):
         profiles = event.profile_set.all().prefetch_related('user')
     elif type == 'hospitality':
         profiles = Profile.objects.filter(hospitality_days__gt=0)
+    elif type == 'on-spot':
+        profiles = Profile.objects.filter(on_spot=True).order_by('-id')
 
     return render(req, template, {
         'type': type,

@@ -22,6 +22,6 @@ urlpatterns = patterns('app.internal.views',
     url(r'^api/items/$', 'api_items'),
     url(r'^api/bulk/$', 'test'),
 
-    url(r'^(?P<type>[a-z]+)/$', 'table_view'),
-    url(r'^(?P<type>[a-z]+)/(?P<slug>[a-z\-]*)/$', 'table_view'),
+    url(r'^(?P<type>[a-z\-]+)/$', 'table_view'),
+    url(r'^(?P<type>[a-z\-]+)/(?P<slug>[a-z\-]*)/$', 'table_view'),
 )

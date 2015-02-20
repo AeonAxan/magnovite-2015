@@ -28,6 +28,7 @@ page-tableview
                 <th>College</th>
                 <th>Mobile</th>
                 <th>CheckedIn</th>
+                <th>AuthProvider</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@ page-tableview
                 <td>{{profile.college_neat}}</td>
                 <td>{{profile.mobile|mobile}}</td>
                 <td>{{profile.checked_in}}</td>
+                <td>{{profile.auth_provider}}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -140,7 +140,7 @@ def all_table_view(req):
 
     INV_EVENT_MAP = {v: k for k, v in EVENT_MAP.items()}
 
-    profiles = Profile.objects.all().prefetch_related('user').prefetch_related('registered_events')
+    profiles = Profile.objects.all().prefetch_related('user').prefetch_related('registered_events').prefetch_related('registered_workshops')
 
     for obj in profiles:
         if obj.pack == 'single':
@@ -166,9 +166,17 @@ def all_table_view(req):
             event = event.strip(' ,')
 
         if event:
-            obj.id_text = type + '-' + event
+            id_text = type + '-' + event
         else:
-            obj.id_text = type
+            id_text = type
+
+        workshops = obj.registered_workshops.all()
+        if workshops.count() != 0:
+            id_text += '|W: '
+            for workshop in workshops:
+                id_text += workshop.slug + ','
+
+        obj.id_text = id_text
 
     if settings.DEBUG:
         template = 'magnovite/fullTable.html'

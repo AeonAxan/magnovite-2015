@@ -140,18 +140,7 @@ def all_table_view(req):
 
     INV_EVENT_MAP = {v: k for k, v in EVENT_MAP.items()}
 
-    base = Profile.objects.all()
-
-    not_none = base.filter(~Q(pack='none')).prefetch_related('user')
-
-    only_group = base.filter(pack='none')
-    only_group = only_group.annotate(Count('registered_events'))
-    only_group = only_group.filter(registered_events__count__gt=0).prefetch_related('user')
-
-    not_none = not_none.prefetch_related('registered_events')
-    only_group = only_group.prefetch_related('registered_events')
-
-    profiles = list(not_none) + list(only_group)
+    profiles = Profile.objects.all().prefetch_related('user').prefetch_related('registered_events')
 
     for obj in profiles:
         if obj.pack == 'single':

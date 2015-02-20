@@ -223,7 +223,7 @@ def show_table_view(req, type, event=None, workshop=None):
     elif type == 'hospitality':
         profiles = Profile.objects.filter(hospitality_days__gt=0)
     elif type == 'on-spot':
-        profiles = Profile.objects.filter(on_spot=True).order_by('-id')
+        profiles = Profile.objects.filter(on_spot=True).order_by('id')
 
     return render(req, template, {
         'type': type,

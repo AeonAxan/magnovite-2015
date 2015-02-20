@@ -14,6 +14,10 @@ page-tableview
     <h1>{{event.title}}</h1>
     {% elif type == 'hospitality' %}
     <h1>Hospitality</h1>
+    {% elif type == 'on-spot' %}
+    <h1>On Spot Registrations</h1>
+    {% elif type == 'checked-in' %}
+    <h1>Checked In</h1>
     {% endif %}
 
     <p class="timestamp">Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>
@@ -70,7 +74,7 @@ page-tableview
             {% endfor %}
         </tbody>
     </table>
-    {% elif type == 'on-spot' %}
+    {% elif type == 'on-spot' or type == 'checked-in' %}
     <table class="pure-table pure-table-horizontal">
         <thead>
             <tr>
@@ -80,6 +84,7 @@ page-tableview
                 <th>College</th>
                 <th>Mobile</th>
                 <th>Provider</th>
+                <th>Summary</th>
             </tr>
         </thead>
         <tbody>
@@ -91,6 +96,7 @@ page-tableview
                 <td>{{profile.college_neat}}</td>
                 <td>{{profile.mobile|mobile}}</td>
                 <td>{{profile.auth_provider}}</td>
+                <td>{{profile.summary_str}}</td>
             </tr>
             {% endfor %}
         </tbody>

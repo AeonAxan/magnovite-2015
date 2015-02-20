@@ -172,6 +172,45 @@ class Profile(models.Model):
 
         return super(Profile, self).save(*args, **kwargs)
 
+    def summary_str(self):
+        EVENT_MAP = {
+            'DEFC':1, 'DANC':4, 'GCS':5, 'CTYC':6, 'WEBD':7, 'TEKH':8,
+            'PRJ':9, 'CADM':11, 'JYW':12, 'CANG':13, 'LDSC':14, 'BLDR':15,
+            'PPR':16, 'RBW':18, 'WATR':19, 'LINE':20, 'CDBG':21, 'THT':22,
+            'CMCS':23, 'ARTR':24, 'PHOT':25, 'DMBC':26, 'QUIZ':27,
+            'POTP':28, 'JAM':29, 'DBTE':31, 'INDM':32, 'WSEL':33, 'ACOU':34,
+            'KRKE':35, 'BBOY':36, 'SWTCH':37, 'OVNC':38, 'ANDV':39,
+            'GNFS':40, 'CADC':41, 'INSW':42, 'SOLO':44,
+        }
+
+        INV_EVENT_MAP = {v: k for k, v in EVENT_MAP.items()}
+
+        if self.pack == 'single':
+            type = 'S'
+        elif self.pack == 'multiple':
+            type = 'M'
+        elif self.registered_events.count() != 0:
+            type = 'G'
+        else:
+            type = 'N'
+
+        id_text = type + '| '
+        for _event in self.registered_events.all():
+            id_text += INV_EVENT_MAP[_event.id] + ','
+
+        id_text = id_text.strip(', ')
+
+        workshops = self.registered_workshops.all()
+        if workshops.count() != 0:
+            id_text += ' |W '
+            for workshop in workshops:
+                id_text += workshop.slug + ','
+
+            id_text = id_text.strip(',')
+
+        return id_text
+
+
     def get_event_incharge_of(self):
         return self.events.all().first()
 
@@ -209,6 +248,13 @@ class Profile(models.Model):
         return self.name != '' and self.mobile != '' and \
             self.college != '' and \
             self.active_email != ''
+
+    @staticmethod
+    def prefetch_all(qs):
+        qs = qs.prefetch_related('registered_workshops')
+        qs = qs.prefetch_related('registered_events')
+        qs = qs.prefetch_related('user')
+        return qs
 
     def __str__(self):
         return str(self.id) + ', ' + self.name + '(' + self.active_email + ')'

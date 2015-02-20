@@ -30,7 +30,7 @@ page-tableview js-full-table
         </thead>
         <tbody>
             {% for profile in profiles %}
-            <tr data-id="{{profile.user.get_id|unlocalize}}" {{class="{% if profile.checked_in %}checked-in{% endif %}">
+            <tr data-id="{{profile.user.get_id|unlocalize}}" class="{% if profile.checked_in %}checked-in{% endif %}">
                 <td><a target="_blank" href="/receipt/{{profile.receipt_id}}/">{{profile.user.get_id|unlocalize}}</a></td>
                 <td><a href="#" class="id">c-in/out</a></td>
                 <td>{{profile.name|title}}</td>

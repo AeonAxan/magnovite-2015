@@ -183,10 +183,10 @@ def show_table_view(req, type, event=None, workshop=None):
         if 'day' in req.GET:
             if req.GET.get('day', '') == '1':
                 days = 'First'
-                profiles = Profile.objects.filter(checked_in_first_day=True)
+                profiles = profiles.filter(checked_in_first_day=True)
             else:
                 days = 'Second'
-                profiles = Profile.objects.filter(checked_in_first_day=False)
+                profiles = profiles.filter(checked_in_first_day=False)
 
         profiles = Profile.prefetch_all(profiles)
     elif type == 'checked-in':
@@ -195,10 +195,10 @@ def show_table_view(req, type, event=None, workshop=None):
         days = 'Both'
         if req.GET.get('day', '') == '1':
             days = 'First'
-            profiles = Profile.objects.filter(checked_in_first_day=True)
+            profiles = profiles.filter(checked_in_first_day=True)
         else:
             days = 'Second'
-            profiles = Profile.objects.filter(checked_in_first_day=False)
+            profiles = profiles.filter(checked_in_first_day=False)
 
         profiles = Profile.prefetch_all(profiles)
 

@@ -307,6 +307,8 @@ def register_multiple(req):
             email = str(i) + '|' + member['name'][:10] + '|' + member['college'][:5] + '@onspotteam.com'
             email = email.replace(' ', '_')
 
+        user = MUser.objects.create_user(email=email)
+
         profile = user.profile
         profile.name = member['name']
         profile.college = member['college']

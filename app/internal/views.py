@@ -193,12 +193,13 @@ def show_table_view(req, type, event=None, workshop=None):
         profiles = Profile.objects.filter(checked_in=True).order_by('id')
 
         days = 'Both'
-        if req.GET.get('day', '') == '1':
-            days = 'First'
-            profiles = profiles.filter(checked_in_first_day=True)
-        else:
-            days = 'Second'
-            profiles = profiles.filter(checked_in_first_day=False)
+        if 'day' in req.GET:
+            if req.GET.get('day', '') == '1':
+                days = 'First'
+                profiles = profiles.filter(checked_in_first_day=True)
+            else:
+                days = 'Second'
+                profiles = profiles.filter(checked_in_first_day=False)
 
         profiles = Profile.prefetch_all(profiles)
 

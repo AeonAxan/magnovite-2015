@@ -18,6 +18,8 @@ page-tableview
     <h1>On Spot Registrations | Day: {{days}}</h1>
     {% elif type == 'checked-in' %}
     <h1>Checked In | Day: {{days}}</h1>
+    {% elif type == 'colleges' %}
+    <h1>Colleges</h1>
     {% endif %}
 
     <p class="timestamp">Generated on {{now|date:"M-j, f a"}}, Total: <strong>{{profiles.count}}</strong></p>
@@ -97,6 +99,25 @@ page-tableview
                 <td>{{profile.mobile|mobile}}</td>
                 <td>{{profile.auth_provider}}</td>
                 <td>{{profile.summary_str|truncatechars:25}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif type == 'colleges' %}
+    <table class="pure-table pure-table-horizontal">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>College</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles %}
+            <tr class="{% if forloop.counter|divisibleby:2 %}pure-table-odd{% endif %}">
+                <td>{{forloop.counter}}</td>
+                <td>{{profile.college}}</td>
+                <td>{{profile.total}}</td>
             </tr>
             {% endfor %}
         </tbody>

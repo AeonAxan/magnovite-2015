@@ -146,7 +146,7 @@ def table_view(req, type, slug=None):
     if not req.user.is_staff:
         raise PermissionDenied
 
-    if not type in ('workshop', 'event', 'hospitality', 'on-spot', 'checked-in'):
+    if not type in ('workshop', 'event', 'hospitality', 'on-spot', 'checked-in', 'colleges'):
         raise Http404
 
     workshop, event = None, None
@@ -202,6 +202,13 @@ def show_table_view(req, type, event=None, workshop=None):
                 profiles = profiles.filter(checked_in_first_day=False)
 
         profiles = Profile.prefetch_all(profiles)
+    elif type == 'colleges':
+        profiles = Profile.objects.filter(checked_in=True).values('college').annotate(total=Count('college'))
+
+        if req.GET.get('order', '') == 'college':
+            profiles = profiles.order_by('college')
+        else:
+            profiles = profiles.order_by('-total')
 
     return render(req, template, {
         'type': type,
